@@ -181,6 +181,7 @@ footer a {
         <a href="membership.html">Membership</a>
     </div>
 </footer>
+    <style>
     /* Enhanced styling for chatbot */
 #chatbot {
     position: fixed;
@@ -193,11 +194,15 @@ footer a {
     background-color: #fff;
     display: none;
     z-index: 1000;
+    </style>
+    <script>
 }// Chatbot toggle visibility on all pages
+    
 document.getElementById('openChatbot').addEventListener('click', () => {
     const chatbot = document.getElementById('chatbot');
     chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
 });
+    </script>     
 </body>
 </html>
 
