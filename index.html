@@ -35,6 +35,33 @@
             border: none;
             cursor: pointer;
         }
+        /* Multi-tiered navigation styling */
+nav ul {
+    list-style-type: none;
+}
+
+nav ul ul {
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+nav ul li {
+    padding: 5px;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+footer a {
+    color: #ff8800;
+    text-decoration: none;
+    margin: 0 10px;
+}
     </style>
 </head>
 <body>
@@ -104,14 +131,15 @@
         <p>Combining quantum technology allows for even more advanced, non-human vehicle and space technology including the potential for interdimensional travel. This process would involve digitizing a person’s thoughts, memories, and personality through brain-computer interface (BCI) technologies, and uploading them into the quantum-based systems of space vehicles. Once integrated, the mind would control the vehicle, allowing for exploration beyond human physical limits, such as high-speed travel, quantum manipulation, and accessing different dimensions. This offers a transformative way for humans to transcend their biological forms and experience the universe in entirely new ways.</p>
     </section>
 
-    <!-- Chatbot -->
-    <div id="chatbot">
-        <h3>Chatbot</h3>
-        <textarea id="chatInput" placeholder="Ask a question..."></textarea>
-        <button onclick="sendMessage()">Send</button>
-        <div id="chatResponse"></div>
-    </div>
-    <button id="openChatbot" style="position:fixed; bottom:20px; right:20px;">Chat with us!</button>
+    <section id="myFutureTech">
+    <h2>MyFutureTech: Courses and Mentorship</h2>
+    <p>Access our program courses, customized by mentors to cater to different learning levels.</p>
+    <ul>
+        <li><a href="biotech_video_course.html">Biotechnology Course</a></li>
+        <li><a href="bci_intro.html">Introduction to Brain-Computer Interface</a></li>
+        <!-- Additional video links and mentor-specific content -->
+    </ul>
+    </section>
 
     <script>
         // MetaMask login
@@ -144,6 +172,32 @@
             document.getElementById('chatResponse').innerText = response;
         }
     </script>
+    <footer>
+    <div>
+        <a href="contact.html">Contact Us</a> |
+        <a href="careers.html">Careers</a> |
+        <a href="volunteer.html">Volunteer</a> |
+        <a href="give.html">Give</a> |
+        <a href="membership.html">Membership</a>
+    </div>
+</footer>
+    /* Enhanced styling for chatbot */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    display: none;
+    z-index: 1000;
+}// Chatbot toggle visibility on all pages
+document.getElementById('openChatbot').addEventListener('click', () => {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+});
 </body>
 </html>
 
