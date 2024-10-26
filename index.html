@@ -5,207 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies.">
     <title>FutureTech Foundation</title>
-    <script src="https://cdn.jsdelivr.net/gh/MetaMask/metamask-extension@latest/dist/metamask.min.js"></script>
+    
+    <!-- CSS Styling -->
     <style>
-        /* Add some basic styling for the chatbot and MetaMask login button */
-        #chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #fff;
-            display: none;
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        #chatbot textarea {
-            width: 100%;
-            height: 70%;
+
+        body {
+            line-height: 1.6;
+            color: #333;
         }
-        #chatbot button {
-            width: 100%;
-            margin-top: 10px;
-        }
-        #loginButton {
-            margin: 20px;
-            padding: 10px;
-            background-color: #ff8800;
+
+        /* Header and Top Bar */
+        .top-bar {
+            background-color: #7c0017;
             color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .menu-button {
+            background: none;
+            color: #fff;
+            font-size: 1em;
             border: none;
             cursor: pointer;
         }
-        /* Multi-tiered navigation styling */
-nav ul {
-    list-style-type: none;
-}
 
-nav ul ul {
-    margin-left: 20px;
-    padding-left: 0;
-}
+        /* Welcome Section */
+        .welcome {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 60px 20px;
+        }
 
-nav ul li {
-    padding: 5px;
-}
+        .welcome h1 {
+            color: #7c0017;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-/* Footer styling */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
+        .welcome p {
+            font-size: 1.2em;
+        }
 
-footer a {
-    color: #ff8800;
-    text-decoration: none;
-    margin: 0 10px;
-}
+        /* Main Content Section */
+        .main-content {
+            background-color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .main-content h2 {
+            color: #7c0017;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background-color: #007b7b;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .cta h2 {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background-color: #00bfae;
+            color: #fff;
+            padding: 15px 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .cta-button.secondary {
+            background-color: #7c0017;
+        }
+
+        /* Testimonial Section */
+        .testimonial {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .testimonial blockquote {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #00bfae;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>FutureTech Foundation</h1>
-        <p>FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing mentorship, hands-on learning experiences, and community engagement in fields such as nanorobotics, 3D bioprinting, biotechnology, artificial intelligence, and space technology. Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational tools and resources that inspire curiosity and empower learners to explore the future of human potential. FutureTech Foundation strives to bridge the gap between cutting-edge technology and real-world impact, nurturing a global network of innovators committed to making a difference.</p>
-
-        <!-- MetaMask login button -->
-        <button id="loginButton">Login with MetaMask</button>
+        <div class="top-bar">
+            <img src="logo.png" alt="FutureTech Foundation Logo" class="logo">
+            <nav>
+                <button onclick="toggleMenu()" class="menu-button">Menu</button>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <h2>Menu</h2>
-        <ul>
-            <li><strong>Explore</strong>
-                <ul>
-                    <li><a href="mission.html">Our Mission</a></li>
-                    <li><a href="accountability.html">Our Accountability</a></li>
-                    <li><a href="newsroom.html">Newsroom</a></li>
-                    <li><a href="events.html">Find Events</a></li>
-                    <li><a href="academic_programs.html">Academic Programs</a></li>
-                    <li><a href="research.html">Research</a></li>
-                </ul>
-            </li>
-            <li><strong>Connect</strong>
-                <ul>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="volunteer.html">Volunteer</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="ethics.html">Ethics Helpline</a></li>
-                </ul>
-            </li>
-            <li><strong>Give</strong>
-                <ul>
-                    <li><a href="donate.html">Donate Now</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                    <li><a href="estate.html">Gift & Estate Planning</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <section>
-        <h2>FutureTech Academy: Future of Humans Track</h2>
-        <p>The "Future of Humans" track in Futuretech Academy focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here's an overview of the key components:</p>
-        <ul>
-            <li><strong>Biotechnology:</strong> This area covers the use of biological systems, organisms, or derivatives to develop or create different products and technologies. Topics may include genetic engineering, synthetic biology, and bioinformatics.</li>
-            
-            <li><strong>Regenerative Biotherapeutics:</strong> This involves the development of therapies to regenerate or replace damaged tissues and organs. Techniques such as stem cell therapy, gene editing, and tissue engineering are explored.</li>
-            
-            <li><strong>3D Bioprinting:</strong> The use of 3D printing technology to create complex biological structures, including tissues and organs. This field aims to advance personalized medicine and create custom implants and prosthetics.</li>
-            
-            <li><strong>Prosthetics:</strong> This includes the design and development of artificial limbs and other body parts. Emphasis is on improving functionality, comfort, and integration with the human body through advanced materials and technologies.</li>
-            
-            <li><strong>Nanorobotics:</strong> The study of tiny robots at the nanoscale that can perform tasks at a microscopic level. Applications include targeted drug delivery, cellular repairs, and advanced diagnostic tools.</li>
-            
-            <li><strong>Surgical Robotics:</strong> The integration of robotics into surgical procedures to enhance precision, reduce recovery times, and improve outcomes. This area covers robot-assisted surgeries and minimally invasive techniques.</li>
-        </ul>
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h1>WELCOME TO THE LEADING EDGE</h1>
+        <p>FutureTech Foundation offers Health Sciences and Technology education unlike any other.</p>
     </section>
 
-    <section>
-        <h2>BCI and Humanoid Robots Track</h2>
-        <p>The BCI and Humanoid Robots Track at FutureTech Academy focuses on exploring the interface between human cognition and advanced robotics. This track delves into the frontier technologies that enable the digital preservation and transfer of human consciousness into humanoid robots. Students will learn about brain-computer interfaces (BCI), telepathy-based communication, neural networks, and the simulation of human brain functions. They will explore techniques for mind uploading, allowing individuals to inhabit robotic bodies, while studying the ethical implications and technical challenges. The curriculum also covers the development of humanoids that can mirror human movements, emotions, and thought processes, providing a hands-on experience in building and interacting with intelligent machines. This track is designed to push the boundaries of what it means to be human and to live beyond biological constraints.</p>
+    <!-- Main Content Section with Call to Action -->
+    <section class="main-content">
+        <h2>WE DO IT DIFFERENTLY TO DO IT BETTER</h2>
+        <p>In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p>
     </section>
 
-    <section>
-        <h2>Quantum and Space Tech</h2>
-        <p>Combining quantum technology allows for even more advanced, non-human vehicle and space technology including the potential for interdimensional travel. This process would involve digitizing a person’s thoughts, memories, and personality through brain-computer interface (BCI) technologies, and uploading them into the quantum-based systems of space vehicles. Once integrated, the mind would control the vehicle, allowing for exploration beyond human physical limits, such as high-speed travel, quantum manipulation, and accessing different dimensions. This offers a transformative way for humans to transcend their biological forms and experience the universe in entirely new ways.</p>
+    <!-- Call to Action - Apply Now -->
+    <section class="cta">
+        <h2>No Application Fee in October</h2>
+        <p>Pave your own path through the world of technology by applying to FutureTech Foundation for free this October!</p>
+        <a href="#apply" class="cta-button">Apply Now</a>
+        <a href="#careers" class="cta-button secondary">Explore Careers</a>
     </section>
 
-    <section id="myFutureTech">
-    <h2>MyFutureTech: Courses and Mentorship</h2>
-    <p>Access our program courses, customized by mentors to cater to different learning levels.</p>
-    <ul>
-        <li><a href="biotech_video_course.html">Biotechnology Course</a></li>
-        <li><a href="bci_intro.html">Introduction to Brain-Computer Interface</a></li>
-        <!-- Additional video links and mentor-specific content -->
-    </ul>
+    <!-- Testimonial Section -->
+    <section class="testimonial">
+        <blockquote>
+            "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
+        </blockquote>
+        <p>- Alex, Volunteer</p>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 FutureTech Foundation</p>
+        <p>Follow us on social media</p>
+        <div class="social-icons">
+            <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">LinkedIn</a>
+        </div>
+    </footer>
 
     <script>
-        // MetaMask login
-        document.getElementById('loginButton').addEventListener('click', async () => {
-            if (window.ethereum) {
-                try {
-                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    alert(`Connected with account: ${accounts[0]}`);
-                } catch (error) {
-                    alert('Failed to connect MetaMask');
-                }
-            } else {
-                alert('MetaMask is not installed');
-            }
-        });
-
-        // Chatbot functionality
-        document.getElementById('openChatbot').addEventListener('click', () => {
-            document.getElementById('chatbot').style.display = 'block';
-        });
-
-        function sendMessage() {
-            const question = document.getElementById('chatInput').value;
-            let response = "I'm here to help!";  // Basic response for now
-            if (question.toLowerCase().includes('mission')) {
-                response = "Our mission is to foster the next generation of leaders by providing mentorship and hands-on learning.";
-            } else if (question.toLowerCase().includes('volunteer')) {
-                response = "You can volunteer by visiting the Volunteer page and signing up.";
-            }
-            document.getElementById('chatResponse').innerText = response;
+        function toggleMenu() {
+            alert("Menu button clicked - Implement toggle functionality here.");
         }
     </script>
-    <footer>
-    <div>
-        <a href="contact.html">Contact Us</a> |
-        <a href="careers.html">Careers</a> |
-        <a href="volunteer.html">Volunteer</a> |
-        <a href="give.html">Give</a> |
-        <a href="membership.html">Membership</a>
-    </div>
-</footer>
-    <style>
-    /* Enhanced styling for chatbot */
-#chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fff;
-    display: none;
-    z-index: 1000;
-    </style>
-    <script>
-}// Chatbot toggle visibility on all pages
-    
-document.getElementById('openChatbot').addEventListener('click', () => {
-    const chatbot = document.getElementById('chatbot');
-    chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
-});
-    </script>     
 </body>
-</html>
-
-
-
+            </html>
