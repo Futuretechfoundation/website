@@ -32,7 +32,7 @@
         }
 
         .logo {
-            height: 50px;
+            height: 60px;
         }
 
         .menu-button {
@@ -43,84 +43,111 @@
             cursor: pointer;
         }
 
-        /* Welcome Section */
-        .welcome {
+        /* Menu Sidebar */
+        .menu-sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
             background-color: #f4f4f4;
-            text-align: center;
-            padding: 60px 20px;
+            padding: 20px;
+            box-shadow: -2px 0px 5px rgba(0,0,0,0.5);
+            overflow-y: auto;
+            z-index: 1000;
         }
 
-        .welcome h1 {
+        .menu-sidebar h2 {
+            font-size: 1.5em;
             color: #7c0017;
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .welcome p {
-            font-size: 1.2em;
-        }
-
-        /* Main Content Section */
-        .main-content {
-            background-color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .main-content h2 {
-            color: #7c0017;
-            font-size: 2em;
-            font-weight: bold;
             margin-bottom: 20px;
         }
 
-        /* Call to Action Section */
-        .cta {
+        .menu-section h3 {
+            color: #007b7b;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .menu-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-section ul li {
+            margin: 10px 0;
+        }
+
+        .menu-section ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MetaMask Login Button */
+        .login-button {
+            background-color: #f39200;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Close Button */
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: #333;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Chatbot */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            display: none;
+            z-index: 1000;
+        }
+
+        #chatbot textarea {
+            width: 100%;
+            height: 70%;
+        }
+
+        #chatbot button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #openChatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background-color: #007b7b;
             color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .cta h2 {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .cta p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-
-        .cta-button {
-            background-color: #00bfae;
-            color: #fff;
-            padding: 15px 30px;
-            font-weight: bold;
-            text-decoration: none;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
             border-radius: 5px;
-            margin: 5px;
-            display: inline-block;
-        }
-
-        .cta-button.secondary {
-            background-color: #7c0017;
-        }
-
-        /* Testimonial Section */
-        .testimonial {
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .testimonial blockquote {
-            font-size: 1.5em;
-            font-style: italic;
-            color: #333;
-            margin-bottom: 10px;
+            cursor: pointer;
+            z-index: 1000;
         }
 
         /* Footer */
@@ -136,67 +163,112 @@
             text-decoration: none;
             margin: 0 10px;
         }
-
-        .social-icons a {
-            color: #fff;
-            margin: 0 10px;
-            text-decoration: none;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <img src="logo.png" alt="FutureTech Foundation Logo" class="logo">
-            <nav>
-                <button onclick="toggleMenu()" class="menu-button">Menu</button>
-            </nav>
+            <!-- Logo -->
+            <img src="futuretech_logo.png" alt="FutureTech Foundation Logo" class="logo">
+            <button onclick="toggleMenu()" class="menu-button">Menu</button>
         </div>
     </header>
 
-    <!-- Welcome Section -->
-    <section class="welcome">
-        <h1>WELCOME TO THE LEADING EDGE</h1>
-        <p>FutureTech Foundation offers Health Sciences and Technology education unlike any other.</p>
-    </section>
+    <!-- Menu Sidebar -->
+    <div id="menuSidebar" class="menu-sidebar">
+        <button onclick="toggleMenu()" class="close-button">X</button>
+        <h2>Menu</h2>
+        
+        <!-- MetaMask Login Button -->
+        <button id="loginButton" class="login-button">Login with MetaMask</button>
+        
+        <div class="menu-section">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="mission.html">Our Mission</a></li>
+                <li><a href="accountability.html">Our Accountability</a></li>
+                <li><a href="newsroom.html">Newsroom</a></li>
+                <li><a href="events.html">Find Events</a></li>
+                <li><a href="academic_programs.html">Academic Programs</a></li>
+                <li><a href="research.html">Research</a></li>
+            </ul>
+        </div>
 
-    <!-- Main Content Section with Call to Action -->
-    <section class="main-content">
-        <h2>WE DO IT DIFFERENTLY TO DO IT BETTER</h2>
-        <p>In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p>
-    </section>
+        <div class="menu-section">
+            <h3>Connect</h3>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="volunteer.html">Volunteer</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="ethics.html">Ethics Helpline</a></li>
+            </ul>
+        </div>
 
-    <!-- Call to Action - Apply Now -->
-    <section class="cta">
-        <h2>No Application Fee in October</h2>
-        <p>Pave your own path through the world of technology by applying to FutureTech Foundation for free this October!</p>
-        <a href="#apply" class="cta-button">Apply Now</a>
-        <a href="#careers" class="cta-button secondary">Explore Careers</a>
-    </section>
+        <div class="menu-section">
+            <h3>Give</h3>
+            <ul>
+                <li><a href="donate.html">Donate Now</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="estate.html">Gift & Estate Planning</a></li>
+            </ul>
+        </div>
+    </div>
 
-    <!-- Testimonial Section -->
-    <section class="testimonial">
-        <blockquote>
-            "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
-        </blockquote>
-        <p>- Alex, Volunteer</p>
-    </section>
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <textarea id="chatInput" placeholder="Ask a question..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+        <p id="chatResponse"></p>
+    </div>
+    <button id="openChatbot" onclick="toggleChatbot()">Chat with Us</button>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 FutureTech Foundation</p>
-        <p>Follow us on social media</p>
         <div class="social-icons">
             <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">LinkedIn</a>
         </div>
     </footer>
 
     <script>
+        // Toggle Menu Sidebar
         function toggleMenu() {
-            alert("Menu button clicked - Implement toggle functionality here.");
+            const menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.style.display = menuSidebar.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // MetaMask Login
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    alert(`Connected with account: ${accounts[0]}`);
+                } catch (error) {
+                    alert('Failed to connect MetaMask');
+                }
+            } else {
+                alert('MetaMask is not installed');
+            }
+        });
+
+        // Toggle Chatbot Visibility
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Chatbot Message Handling
+        function sendMessage() {
+            const question = document.getElementById('chatInput').value;
+            let response = "I'm here to help!";
+            if (question.toLowerCase().includes('mission')) {
+                response = "Our mission is to foster the next generation of leaders by providing mentorship and hands-on learning.";
+            } else if (question.toLowerCase().includes('volunteer')) {
+                response = "You can volunteer by visiting the Volunteer page and signing up.";
+            }
+            document.getElementById('chatResponse').innerText = response;
         }
     </script>
 </body>
-            </html>
+    </html>
