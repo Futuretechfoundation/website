@@ -112,6 +112,14 @@
             right: 10px;
         }
 
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
         /* Chatbot */
         #chatbot {
             position: fixed;
@@ -215,6 +223,24 @@
         </div>
     </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <section>
+            <h1>WELCOME TO THE LEADING EDGE</h1>
+            <p>FutureTech Foundation offers Health Sciences and Technology education unlike any other.</p>
+        </section>
+
+        <section>
+            <h2>WE DO IT DIFFERENTLY TO DO IT BETTER</h2>
+            <p>In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p>
+        </section>
+
+        <section>
+            <blockquote>"FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."</blockquote>
+            <p>- Alex, Volunteer</p>
+        </section>
+    </div>
+
     <!-- Chatbot -->
     <div id="chatbot">
         <textarea id="chatInput" placeholder="Ask a question..."></textarea>
@@ -224,14 +250,44 @@
     <button id="openChatbot" onclick="toggleChatbot()">Chat with Us</button>
 
     <!-- Footer -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 FutureTech Foundation</p>
-        <div class="social-icons">
-            <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">LinkedIn</a>
+        <!-- Address Section -->
+        <div class="address">
+            <p>FutureTech Foundation</p>
+            <p>1529 12th St. SE, #200, #129</p>
+            <p>Rochester, MN 55904</p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-media">
+            <a href="#" aria-label="Facebook"><img src="facebook_icon.png" alt="Facebook" style="width:24px; height:24px;"></a>
+            <a href="#" aria-label="Instagram"><img src="instagram_icon.png" alt="Instagram" style="width:24px; height:24px;"></a>
+            <a href="#" aria-label="YouTube"><img src="youtube_icon.png" alt="YouTube" style="width:24px; height:24px;"></a>
+            <a href="#" aria-label="Podcast"><img src="podcast_icon.png" alt="Podcast" style="width:24px; height:24px;"></a>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="visit.html">Visit Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="giving.html">Giving to FutureTech</a>
+            <a href="one_stop.html">One Stop</a>
+            <a href="directories.html">Directories</a>
+            <a href="employment.html">Employment Opportunities</a>
+            <a href="campus_map.html">Campus Map</a>
+            <a href="parking.html">Parking & Transportation</a>
+            <a href="about.html">About FutureTech</a>
+            <a href="privacy.html">Privacy Statement</a>
+            <a href="accessibility.html">Report Web-Related Disability Issue</a>
+        </div>
+
+        <!-- Copyright Information -->
+        <div class="copyright">
+            <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+            <p>FutureTech Foundation is an equal opportunity educator and employer.</p>
         </div>
     </footer>
-
-    <script>
         // Toggle Menu Sidebar
         function toggleMenu() {
             const menuSidebar = document.getElementById('menuSidebar');
@@ -255,20 +311,3 @@
         // Toggle Chatbot Visibility
         function toggleChatbot() {
             const chatbot = document.getElementById('chatbot');
-            chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Chatbot Message Handling
-        function sendMessage() {
-            const question = document.getElementById('chatInput').value;
-            let response = "I'm here to help!";
-            if (question.toLowerCase().includes('mission')) {
-                response = "Our mission is to foster the next generation of leaders by providing mentorship and hands-on learning.";
-            } else if (question.toLowerCase().includes('volunteer')) {
-                response = "You can volunteer by visiting the Volunteer page and signing up.";
-            }
-            document.getElementById('chatResponse').innerText = response;
-        }
-    </script>
-</body>
-    </html>
