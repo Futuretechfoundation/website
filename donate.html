@@ -11,7 +11,48 @@
     </header>
     <section>
         <p>Support FutureTech Foundation’s mission by making a donation.</p>
+        
+        <h2>Donation Methods</h2>
+        
+        <!-- Credit Card Donation -->
+        <h3>Donate with Credit Card</h3>
+        <form action="/submit-donation" method="post">
+            <label for="name">Name on Card:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+            <br>
+            <label for="expiry">Expiry Date:</label>
+            <input type="text" id="expiry" name="expiry" required placeholder="MM/YY">
+            <br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+            <br>
+            <button type="submit">Donate</button>
+        </form>
+
+        <!-- PayPal Donation -->
+        <h3>Donate with PayPal</h3>
+        <p>Click the button below to donate through PayPal:</p>
+        <form action="https://www.paypal.com/donate" method="post" target="_blank">
+            <button type="submit">Donate with PayPal</button>
+        </form>
+
+        <!-- Cryptocurrency Donation -->
+        <h3>Donate with Cryptocurrency</h3>
+        <p>FutureTech Foundation accepts cryptocurrency donations. Please send to the following address:</p>
+        <p><strong>Bitcoin (BTC):</strong> 1A2b3C4d5E6f7G8h9I0JkLmNoP</p>
+        <p><strong>Ethereum (ETH):</strong> 0x1A2b3C4d5E6f7G8h9I0JkLmNoP</p>
+
+        <!-- Mail-in Donation -->
+        <h3>Mail-in Donation</h3>
+        <p>If you prefer to send a check, please make it payable to "FutureTech Foundation" and mail it to:</p>
+        <p>FutureTech Foundation<br>
+        1234 Innovation Way<br>
+        Tech City, TC 12345</p>
     </section>
+    
     <footer>
         <p><a href="index.html">Back to Home</a></p>
     </footer>
