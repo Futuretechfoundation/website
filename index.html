@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies.">
     <title>FutureTech Foundation</title>
-    
+
     <!-- CSS Styling -->
     <style>
         /* General Reset */
@@ -164,12 +164,39 @@
             color: #fff;
             text-align: center;
             padding: 20px;
+            font-size: 0.9em;
         }
 
-        footer a {
-            color: #00bfae;
-            text-decoration: none;
+        footer .address, footer .social-media, footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        footer .address p {
+            margin: 5px 0;
+        }
+
+        footer .social-media a {
             margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        footer .footer-links a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        footer .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        footer .copyright {
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -177,8 +204,7 @@
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <!-- Logo -->
-            <img src="futuretech_logo.png" alt="FutureTech Foundation Logo" class="logo">
+            <img src="path/to/futuretech_logo.png" alt="FutureTech Foundation Logo" class="logo"> <!-- Make sure to replace 'path/to/' with the correct path -->
             <button onclick="toggleMenu()" class="menu-button">Menu</button>
         </div>
     </header>
@@ -250,24 +276,21 @@
     <button id="openChatbot" onclick="toggleChatbot()">Chat with Us</button>
 
     <!-- Footer -->
-    <!-- Footer -->
     <footer>
-        <!-- Address Section -->
         <div class="address">
             <p>FutureTech Foundation</p>
             <p>1529 12th St. SE, #200, #129</p>
             <p>Rochester, MN 55904</p>
         </div>
 
-        <!-- Social Media Section -->
         <div class="social-media">
-            <a href="#" aria-label="Facebook"><img src="facebook_icon.png" alt="Facebook" style="width:24px; height:24px;"></a>
+            <a
+                href="#" aria-label="Facebook"><img src="facebook_icon.png" alt="Facebook" style="width:24px; height:24px;"></a>
             <a href="#" aria-label="Instagram"><img src="instagram_icon.png" alt="Instagram" style="width:24px; height:24px;"></a>
             <a href="#" aria-label="YouTube"><img src="youtube_icon.png" alt="YouTube" style="width:24px; height:24px;"></a>
             <a href="#" aria-label="Podcast"><img src="podcast_icon.png" alt="Podcast" style="width:24px; height:24px;"></a>
         </div>
 
-        <!-- Footer Links -->
         <div class="footer-links">
             <a href="visit.html">Visit Us</a>
             <a href="contact.html">Contact Us</a>
@@ -282,12 +305,13 @@
             <a href="accessibility.html">Report Web-Related Disability Issue</a>
         </div>
 
-        <!-- Copyright Information -->
         <div class="copyright">
             <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
             <p>FutureTech Foundation is an equal opportunity educator and employer.</p>
         </div>
     </footer>
+
+    <script>
         // Toggle Menu Sidebar
         function toggleMenu() {
             const menuSidebar = document.getElementById('menuSidebar');
@@ -311,3 +335,15 @@
         // Toggle Chatbot Visibility
         function toggleChatbot() {
             const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Send Message in Chatbot
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput').value;
+            const chatResponse = document.getElementById('chatResponse');
+            chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
+        }
+    </script>
+</body>
+</html>
