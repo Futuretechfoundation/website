@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myFuturetech Academy - Student Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script> <!-- ethers.js library -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to myFuturetech Academy</h1>
+        <p>Connect your Web3 wallet to access courses and learn about the future of technology!</p>
+    </header>
+
+    <!-- Wallet Connect Button -->
+    <section id="auth-section">
+        <button id="connect-wallet">Connect Wallet</button>
+        <div id="user-info" style="display:none;">
+            <p>Welcome, <span id="wallet-address"></span>!</p>
+        </div>
+    </section>
+
+    <!-- Course Content Section -->
+    <section id="courses" style="display:none;">
+        <h2>Programs and Courses</h2>
+
+        <!-- Future of Humans Track -->
+        <div id="future-of-humans">
+            <h3>Future of Humans Track</h3>
+            <ul>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Biotechnology - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Regenerative Biotherapeutics - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">3D Bioprinting - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+            </ul>
+        </div>
+
+        <!-- Mind Uploading into Humanoids Track -->
+        <div id="mind-uploading-humanoids">
+            <h3>Mind Uploading into Humanoids Track</h3>
+            <ul>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Humanoids - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Brain-Computer Interface (BCI) - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Neural Networks - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+            </ul>
+        </div>
+
+        <!-- UAP Technology Track -->
+        <div id="uap-technology">
+            <h3>UAP Technology Track</h3>
+            <ul>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Quantum Materials Engineering - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Warp Drive - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+                <li><a href="https://youtube.com/your-course-link" target="_blank">Mind Uploading into a UAP - YouTube</a> | <a href="https://rise.articulate.com/your-course-link" target="_blank">Rise Articulate</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Futuretech Academy. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Wallet Authentication -->
+    <script>
+        // Function to connect to the wallet
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Request wallet connection
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    const walletAddress = accounts[0];
+
+                    // Store the wallet address in local storage
+                    localStorage.setItem('walletAddress', walletAddress);
+
+                    // Update UI: show wallet address and course content
+                    displayUserInfo(walletAddress);
+                    showCourses();
+                } catch (error) {
+                    console.error("Connection to wallet failed:", error);
+                }
+            } else {
+                alert("MetaMask is not installed. Please install it to connect.");
+            }
+        }
+
+        // Function to display user info and hide the connect button
+        function displayUserInfo(walletAddress) {
+            document.getElementById('wallet-address').textContent = walletAddress;
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('connect-wallet').style.display = 'none';
+        }
+
+        // Function to reveal courses section
+        function showCourses() {
+            document.getElementById('courses').style.display = 'block';
+        }
+
+        // Event listener for the "Connect Wallet" button
+        document.getElementById('connect-wallet').addEventListener('click', connectWallet);
+
+        // Auto-check if wallet is already connected on page load
+        window.addEventListener('load', () => {
+            const walletAddress = localStorage.getItem('walletAddress');
+            if (walletAddress) {
+                displayUserInfo(walletAddress);
+                showCourses();
+            }
+        });
+    </script>
+</body>
+</html>
