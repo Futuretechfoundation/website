@@ -120,6 +120,38 @@
             text-align: center;
         }
 
+        /* Quote Section */
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #555;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: bold;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            text-align: center;
+            line-height: 200px;
+            color: #666;
+            font-size: 1.2em;
+            margin: 20px 0;
+            border: 2px dashed #ccc;
+        }
+
         /* Chatbot */
         #chatbot {
             position: fixed;
@@ -204,7 +236,7 @@
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo"> <!-- Make sure to replace 'path/to/' with the correct path -->
+            <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
             <button onclick="toggleMenu()" class="menu-button">Menu</button>
         </div>
     </header>
@@ -263,12 +295,32 @@
         </section>
 
         <section>
-            <blockquote>"FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."</blockquote>
-            <p>- Alex, Volunteer</p>
+            <div class="quote">
+                "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
+            </div>
+            <div class="quote-author">- Alex, Volunteer</div>
         </section>
 
         <section>
-            FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing mentorship, hands-on learning experiences, and community engagement in fields such as nanorobotics, 3D bioprinting, biotechnology, artificial intelligence, and space technology. Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational tools and resources that inspire curiosity and empower learners to explore the future of human potential. FutureTech Foundation strives to bridge the gap between cutting-edge technology and real-world impact, nurturing a global network of innovators committed to making a difference.
+            <h2>About Us</h2>
+            <p>FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing
+                mentorship, hands-on learning experiences, and community engagement in fields such as:</p>
+            <ul>
+                <li>Nanorobotics</li>
+                <li>3D Bioprinting</li>
+                <li>Biotechnology</li>
+                <li>Artificial Intelligence</li>
+                <li>Space Technology</li>
+            </ul>
+            <p>Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational resources that inspire curiosity and empower learners to explore the future of human potential.</p>
+        </section>
+
+        <section>
+            <h2>Explore Our Focus Areas</h2>
+            <div class="image-placeholder">3D Bioprinting Image Here</div>
+            <div class="image-placeholder">Nanorobotics Image Here</div>
+            <div class="image-placeholder">Humanoids Image Here</div>
+            <div class="image-placeholder">Space Technology Image Here</div>
         </section>
     </div>
 
@@ -288,18 +340,17 @@
             <p>Rochester, MN 55904</p>
         </div>
 
-        
-    <div class="social-media">
-        <a href="https://facebook.com" target="_blank">
-            <img src="images/facebook.png" alt="Facebook" style="width:24px; height:24px;">
-        </a>
-        <a href="https://https://x.com/futuretechfound" target="_blank">
-            <img src="images/x.jpg" alt="X" style="width:24px; height:24px;">
-        </a>
-        <a href="https://youtube.com" target="_blank">
-            <img src="images/youtube.jpg" alt="YouTube" style="width:24px; height:24px;">
-        </a>
-    </div>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank">
+                <img src="images/facebook.png" alt="Facebook" style="width:24px; height:24px;">
+            </a>
+            <a href="https://x.com/futuretechfound" target="_blank">
+                <img src="images/x.jpg" alt="X" style="width:24px; height:24px;">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img src="images/youtube.jpg" alt="YouTube" style="width:24px; height:24px;">
+            </a>
+        </div>
 
         <div class="footer-links">
             <a href="visit.html">Visit Us</a>
@@ -356,4 +407,4 @@
         }
     </script>
 </body>
-</html>
+                                                        </html>
