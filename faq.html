@@ -3,17 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
+    <title>FAQ - Futuretech Foundation & Academy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .faq {
+            margin-bottom: 20px;
+        }
+        .faq h2 {
+            color: #0066cc;
+            cursor: pointer;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .faq-content {
+            display: none;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>FAQ</h1>
-    </header>
-    <section>
-        <p>Find answers to frequently asked questions about FutureTech Foundation.</p>
-    </section>
+
+<div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">What is the mission of Futuretech Foundation?</h2>
+        <div class="faq-content">
+            <p>Futuretech Foundation is a community-based organization focused on volunteering, technological education, and future technology mentorship. We aim to inspire innovation through technology in diverse communities.</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">What types of courses do you offer?</h2>
+        <div class="faq-content">
+            <p>We offer courses in various future-focused fields such as VR and AR, quantum programming, 3D bioprinting, nanorobotics, humanoid robotics, regenerative biotherapeutics, and more.</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">How can I get involved as a volunteer?</h2>
+        <div class="faq-content">
+            <p>We welcome volunteers in various roles, including teaching, mentorship, and community outreach. For those interested, please contact our volunteer coordinator for more information.</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">Is Futuretech Foundation a registered nonprofit organization?</h2>
+        <div class="faq-content">
+            <p>Yes, Futuretech Foundation is a registered 501(c)(3) nonprofit organization and is enrolled in E-Verify.</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">Are Futuretech Foundation and Futuretech Academy the same entity?</h2>
+        <div class="faq-content">
+            <p>No, Futuretech Foundation is a nonprofit organization, while Futuretech Academy operates as a for-profit entity. Both work collaboratively to provide educational and technological resources to our community.</p>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 onclick="toggleFaq(this)">How can students access Futuretech courses?</h2>
+        <div class="faq-content">
+            <p>Our courses are available online, with login management handled by web3 wallets. The courses cover topics in VR/AR, quantum computing, biotechnology, and more, accessible through our web3-compatible platform.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFaq(element) {
+        var content = element.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+</script>
+</body>
     <footer>
         <p><a href="index.html">Back to Home</a></p>
     </footer>
-</body>
 </html>
