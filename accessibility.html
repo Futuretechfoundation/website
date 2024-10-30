@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Accessibility Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .issue {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .issue h3 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+        .recommendation {
+            color: #006400;
+        }
+        .severity {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Web Accessibility Report</h1>
+    <p>This report highlights accessibility issues on the website and provides recommendations to improve accessibility for users with disabilities.</p>
+
+    <h2>Summary of Issues</h2>
+    <ul>
+        <li>Total Issues: 5</li>
+        <li>High Severity: 2</li>
+        <li>Moderate Severity: 2</li>
+        <li>Low Severity: 1</li>
+    </ul>
+
+    <h2>Detailed Issues</h2>
+
+    <div class="issue">
+        <h3>Issue 1: Missing Alternative Text on Images</h3>
+        <p><strong>Severity:</strong> <span class="severity">High</span></p>
+        <p><strong>Description:</strong> Images on the homepage and product pages lack alternative text, making them inaccessible to screen readers.</p>
+        <p><strong>Impact:</strong> Users with visual impairments cannot interpret the content or purpose of images without alternative text.</p>
+        <p><strong>Recommendation:</strong> <span class="recommendation">Add descriptive alternative text to all images, especially those conveying critical information.</span></p>
+    </div>
+
+    <div class="issue">
+        <h3>Issue 2: Lack of Keyboard Navigation Support</h3>
+        <p><strong>Severity:</strong> <span class="severity">High</span></p>
+        <p><strong>Description:</strong> Some interactive elements, such as dropdown menus and modal dialogs, cannot be accessed using a keyboard.</p>
+        <p><strong>Impact:</strong> Users with mobility impairments who rely on keyboard navigation cannot fully interact with the site.</p>
+        <p><strong>Recommendation:</strong> <span class="recommendation">Ensure all interactive elements can be accessed and operated via keyboard controls.</span></p>
+    </div>
+
+    <div class="issue">
+        <h3>Issue 3: Insufficient Color Contrast</h3>
+        <p><strong>Severity:</strong> <span class="severity">Moderate</span></p>
+        <p><strong>Description:</strong> Text on buttons and links lacks sufficient contrast against the background, making it difficult to read.</p>
+        <p><strong>Impact:</strong> Users with low vision or color blindness may struggle to read text with low contrast.</p>
+        <p><strong>Recommendation:</strong> <span class="recommendation">Adjust the color contrast of text and background to meet WCAG 2.1 AA standards.</span></p>
+    </div>
+
+    <div class="issue">
+        <h3>Issue 4: Missing ARIA Labels for Form Fields</h3>
+        <p><strong>Severity:</strong> <span class="severity">Moderate</span></p>
+        <p><strong>Description:</strong> Several form fields do not have ARIA labels, which makes them inaccessible to screen readers.</p>
+        <p><strong>Impact:</strong> Users with visual impairments may not understand the purpose of these fields when filling out forms.</p>
+        <p><strong>Recommendation:</strong> <span class="recommendation">Add ARIA labels to all form fields to provide context to screen readers.</span></p>
+    </div>
+
+    <div class="issue">
+        <h3>Issue 5: Small Clickable Areas on Links</h3>
+        <p><strong>Severity:</strong> <span class="severity">Low</span></p>
+        <p><strong>Description:</strong> Some links, particularly on the footer, have small clickable areas, making it difficult for users to click them.</p>
+        <p><strong>Impact:</strong> Users with motor impairments may struggle to interact with these small targets.</p>
+        <p><strong>Recommendation:</strong> <span class="recommendation">Increase the size of clickable areas for better accessibility.</span></p>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>Addressing these issues will improve the accessibility and usability of the website, ensuring an inclusive experience for users with disabilities. For further assistance, please refer to the WCAG guidelines or contact an accessibility expert.</p>
+
+</body>
+                            </html>
