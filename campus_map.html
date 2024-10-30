@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 0;
+            font-size: 1.5em;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+        .nav {
+            padding: 15px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+        }
+        .nav a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .location {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+    <div class="header">Campus Map</div>
+    <div class="nav">
+        <a href="#" onclick="goToLocation('Building A')">Building A</a>
+        <a href="#" onclick="goToLocation('Library')">Library</a>
+        <a href="#" onclick="goToLocation('Sports Complex')">Sports Complex</a>
+        <a href="#" onclick="goToLocation('Cafeteria')">Cafeteria</a>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        let map;
+        const locations = {
+            'Building A': { lat: 40.712776, lng: -74.005974 },
+            'Library': { lat: 40.712216, lng: -74.004500 },
+            'Sports Complex': { lat: 40.713776, lng: -74.006974 },
+            'Cafeteria': { lat: 40.713216, lng: -74.003500 }
+        };
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.712776, lng: -74.005974 },
+                zoom: 16,
+            });
+            Object.keys(locations).forEach(location => {
+                new google.maps.Marker({
+                    position: locations[location],
+                    map: map,
+                    title: location
+                });
+            });
+        }
+
+        function goToLocation(location) {
+            const { lat, lng } = locations[location];
+            map.setCenter({ lat, lng });
+            map.setZoom(18);
+            alert(`Navigating to: ${location}`);
+        }
+    </script>
+</body>
+</html>
