@@ -27,10 +27,10 @@
   <!-- VR Scene -->
   <a-scene>
     <!-- Background Environment -->
-    <a-sky color="#E0E0E0"></a-sky>
+    <a-sky color="#FFFFFF"></a-sky>
 
     <!-- Lab Floor -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#CCCCCC"></a-plane>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#F0F0F0"></a-plane>
 
     <!-- 3D Bioprinter Frame -->
     <a-box 
@@ -38,7 +38,7 @@
       depth="1" 
       height="2" 
       width="2"
-      color="#4B4B4B">
+      color="#666666">
     </a-box>
 
     <!-- Printing Bed -->
@@ -51,16 +51,17 @@
     </a-box>
 
     <!-- Heart Model (Printing Object) -->
-    <a-entity id="heart" position="0 1.1 -3" scale="0.2 0.2 0.2">
-      <!-- Using a basic shape to represent the heart -->
+    <a-entity id="heart" position="0 1.1 -3" scale="0.4 0.4 0.4">
+      <!-- Main part of the heart using a larger sphere -->
       <a-sphere 
         color="#FF5555" 
-        radius="0.2"
-        animation="property: scale; from: 0.01 0.01 0.01; to: 0.2 0.2 0.2; dur: 8000; easing: linear; loop: false">
+        radius="0.15"
+        position="0 0.15 0"
+        animation="property: scale; from: 0.1 0.1 0.1; to: 0.4 0.4 0.4; dur: 8000; easing: linear; loop: false">
       </a-sphere>
-      <!-- Smaller spheres to give a more organic heart shape -->
-      <a-sphere color="#FF5555" radius="0.1" position="0.15 0.2 0"></a-sphere>
-      <a-sphere color="#FF5555" radius="0.1" position="-0.15 0.2 0"></a-sphere>
+      <!-- Additional smaller spheres to resemble a heart shape -->
+      <a-sphere color="#FF5555" radius="0.1" position="0.1 0.25 0"></a-sphere>
+      <a-sphere color="#FF5555" radius="0.1" position="-0.1 0.25 0"></a-sphere>
     </a-entity>
 
     <!-- Printer Head (Moving Component) -->
@@ -84,7 +85,7 @@
     <a-text 
       value="Status: Printing Heart\nMaterial: Bio-ink\nProgress: 50%"
       position="1.2 1.2 -2.95"
-      scale="1 1 1"
+      scale="0.8 0.8 0.8"
       color="#FFFFFF">
     </a-text>
 
