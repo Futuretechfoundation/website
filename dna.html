@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA Helix Visualization in WebGL</title>
+    <title>DNA Helix Visualization in WebXR</title>
     <style>
-        body { margin: 0; }
-        canvas { display: block; width: 100vw; height: 100vh; }
+        body, html { margin: 0; overflow: hidden; height: 100%; }
+        canvas { width: 100%; height: 100%; display: block; }
+        #enter-vr { position: absolute; top: 10px; left: 10px; padding: 10px; background: #00ADEF; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
 <canvas id="glCanvas"></canvas>
+<button id="enter-vr">Enter VR</button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script>
-    // Basic WebGL Setup
     const canvas = document.getElementById("glCanvas");
     const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-
     if (!gl) {
-        alert("WebGL is not supported on this browser.");
+        alert("Unable to initialize WebGL. Your browser or machine may not support it.");
     }
 
-    // Vertex Shader
+    // Set up shaders and WebGL program
     const vertexShaderSource = `
         attribute vec4 aVertexPosition;
         uniform mat4 uModelViewMatrix;
@@ -30,115 +31,113 @@
             gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
         }
     `;
-
-    // Fragment Shader
     const fragmentShaderSource = `
         precision mediump float;
         void main() {
-            gl_FragColor = vec4(0.0, 0.5, 1.0, 1.0); // Set color to blue for DNA strand
+            gl_FragColor = vec4(0.0, 0.5, 1.0, 1.0); // Blue for DNA strand
         }
     `;
-
-    // Initialize Shader Program
-    function initShaderProgram(gl, vsSource, fsSource) {
-        const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
-        const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
-
-        const shaderProgram = gl.createProgram();
-        gl.attachShader(shaderProgram, vertexShader);
-        gl.attachShader(shaderProgram, fragmentShader);
-        gl.linkProgram(shaderProgram);
-
-        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-            console.error("Unable to initialize shader program:", gl.getProgramInfoLog(shaderProgram));
-            return null;
-        }
-        return shaderProgram;
-    }
 
     function loadShader(gl, type, source) {
         const shader = gl.createShader(type);
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
-
         if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-            console.error("An error occurred compiling the shaders:", gl.getShaderInfoLog(shader));
+            console.error("Shader compile error:", gl.getShaderInfoLog(shader));
             gl.deleteShader(shader);
             return null;
         }
         return shader;
     }
 
+    function initShaderProgram(gl, vsSource, fsSource) {
+        const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+        const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+        const shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertexShader);
+        gl.attachShader(shaderProgram, fragmentShader);
+        gl.linkProgram(shaderProgram);
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+            console.error("Shader program link error:", gl.getProgramInfoLog(shaderProgram));
+            return null;
+        }
+        return shaderProgram;
+    }
+
     const shaderProgram = initShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
     const programInfo = {
         program: shaderProgram,
-        attribLocations: {
-            vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-        },
+        attribLocations: { vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition') },
         uniformLocations: {
             projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
             modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
         },
     };
 
-    // DNA Helix Data
     const positions = [];
     const twists = 200;
     const radius = 0.1;
     const height = 4.0;
-
-    // Generate points for the helix
     for (let i = 0; i < twists; i++) {
         const angle = i * 0.3;
         const x = radius * Math.cos(angle);
         const y = i * (height / twists) - height / 2;
         const z = radius * Math.sin(angle);
-        
         positions.push(x, y, z);
     }
 
-    // Initialize buffer for DNA positions
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
-    // Draw Scene
-    function drawScene(gl, programInfo, buffers) {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black
-        gl.clearDepth(1.0);                 // Clear everything
-        gl.enable(gl.DEPTH_TEST);           // Enable depth testing
-        gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+    // WebXR Setup
+    let xrSession = null;
+    const button = document.getElementById("enter-vr");
+    button.addEventListener("click", async () => {
+        if (!navigator.xr) {
+            alert("WebXR not supported");
+            return;
+        }
+        xrSession = await navigator.xr.requestSession("immersive-vr");
+        xrSession.updateRenderState({ baseLayer: new XRWebGLLayer(xrSession, gl) });
+        xrSession.requestReferenceSpace("local").then((refSpace) => {
+            const onXRFrame = (time, frame) => {
+                const session = frame.session;
+                const pose = frame.getViewerPose(refSpace);
+                if (pose) {
+                    drawScene(pose);
+                }
+                session.requestAnimationFrame(onXRFrame);
+            };
+            xrSession.requestAnimationFrame(onXRFrame);
+        });
+    });
+
+    // Draw the scene with WebXR
+    function drawScene(pose) {
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        const fieldOfView = 45 * Math.PI / 180;   // in radians
-        const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
-        const zNear = 0.1;
-        const zFar = 100.0;
-        const projectionMatrix = mat4.create();
-        mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
+        for (const view of pose.views) {
+            const viewport = xrSession.renderState.baseLayer.getViewport(view);
+            gl.viewport(viewport.x, viewport.y, viewport.width, viewport.height);
 
-        const modelViewMatrix = mat4.create();
-        mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6.0]); // Move back
-        mat4.rotate(modelViewMatrix, modelViewMatrix, 0.01, [0, 1, 0]);      // Rotate
+            const projectionMatrix = view.projectionMatrix;
+            const modelViewMatrix = mat4.create();
+            mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -2.0]);
+            mat4.rotate(modelViewMatrix, modelViewMatrix, 0.01 * Date.now() / 1000, [0, 1, 0]);
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 3, gl.FLOAT, false, 0, 0);
-        gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 3, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
 
-        gl.useProgram(programInfo.program);
-        gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
-        gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
+            gl.useProgram(programInfo.program);
+            gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
+            gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
 
-        gl.drawArrays(gl.LINE_STRIP, 0, positions.length / 3);  // Draw helix
+            gl.drawArrays(gl.LINE_STRIP, 0, positions.length / 3);
+        }
     }
-
-    function render() {
-        drawScene(gl, programInfo, { position: positionBuffer });
-        requestAnimationFrame(render);
-    }
-    requestAnimationFrame(render);
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/gl-matrix@2.8.1/dist/gl-matrix-min.js"></script>
 </body>
 </html>
