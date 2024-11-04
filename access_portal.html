@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Biologic Access Platform</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: #fff;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background: #ffffff1a;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .login-container p {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            color: #ffffffb3;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00b4db;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #0083b0;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            margin-top: 1.5rem;
+            color: #ffffffb3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Access Future Tech</h1>
+    <p>Log in to explore our range of biologics, 3D bioprinted tissues, regenerative therapies, implants, nanobots, and more.</p>
+
+    <!-- MetaMask Login Button -->
+    <button class="login-button" onclick="connectMetaMask()">Log In with MetaMask</button>
+
+    <p class="disclaimer">By logging in, you agree to our terms of service and privacy policy.</p>
+</div>
+
+<script>
+    // Function to connect to MetaMask
+    async function connectMetaMask() {
+        if (typeof window.ethereum !== 'undefined') {
+            try {
+                // Request account access
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const userAddress = accounts[0];
+                console.log("Connected account:", userAddress);
+
+                // Redirect or show access page (replace with your own page or backend handling)
+                alert(`Logged in with MetaMask address: ${userAddress}`);
+                // Redirect to request page
+                window.location.href = "/request.html"; // Change to the actual path
+            } catch (error) {
+                console.error("User denied account access:", error);
+                alert("MetaMask login failed. Please try again.");
+            }
+        } else {
+            alert("MetaMask is not installed. Please install MetaMask to log in.");
+        }
+    }
+</script>
+
+</body>
+</html>
