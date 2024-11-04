@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Biologic Access Platform</title>
+    <title>Access Future Tech | Biologic Access Platform</title>
     <style>
         /* General Reset */
         * {
@@ -22,7 +22,7 @@
             color: #fff;
         }
 
-        .login-container {
+        .login-container, .access-container {
             width: 100%;
             max-width: 400px;
             padding: 2rem;
@@ -30,9 +30,10 @@
             border-radius: 8px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             text-align: center;
+            transition: opacity 0.3s ease;
         }
 
-        .login-container h1 {
+        .login-container h1, .access-container h1 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             color: #ffffff;
@@ -65,6 +66,10 @@
             margin-top: 1.5rem;
             color: #ffffffb3;
         }
+
+        .access-container {
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
@@ -79,6 +84,20 @@
     <p class="disclaimer">By logging in, you agree to our terms of service and privacy policy.</p>
 </div>
 
+<!-- Hidden Access Content -->
+<div class="access-container" id="accessContent">
+    <h1>Welcome to the Access Hub</h1>
+    <p>You now have access to our full range of future technology resources.</p>
+    <ul>
+        <li>3D Bioprinted Organ Tissue</li>
+        <li>Regenerative Biotherapeutics</li>
+        <li>Orthopedic Implants</li>
+        <li>Stem Cell Therapy Options</li>
+        <li>Nanobots & Surgical Assistance</li>
+        <li>Prosthetic Devices and More</li>
+    </ul>
+</div>
+
 <script>
     // Function to connect to MetaMask
     async function connectMetaMask() {
@@ -89,10 +108,10 @@
                 const userAddress = accounts[0];
                 console.log("Connected account:", userAddress);
 
-                // Redirect or show access page (replace with your own page or backend handling)
-                alert(`Logged in with MetaMask address: ${userAddress}`);
-                // Redirect to request page
-                window.location.href = "/request.html"; // Change to the actual path
+                // Hide the login container and show the access content
+                document.querySelector('.login-container').style.display = 'none';
+                document.getElementById('accessContent').style.display = 'block';
+
             } catch (error) {
                 console.error("User denied account access:", error);
                 alert("MetaMask login failed. Please try again.");
