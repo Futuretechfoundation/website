@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTechFoundation Clinical Trials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            color: #007BFF;
+        }
+        .content {
+            margin-top: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        .form-section input, .form-section textarea, .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .form-section button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-section button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FutureTechFoundation Clinical Trials</h1>
+</header>
+
+<div class="content">
+    <h2>About FutureTechFoundation</h2>
+    <p>
+        FutureTechFoundation is committed to advancing medical science through innovative research. Our clinical trials aim to improve treatments, introduce new technologies, and elevate patient care across a range of medical conditions.
+    </p>
+
+    <h2>Types of Clinical Trials We Conduct</h2>
+    <ul>
+        <li><strong>Drug Trials:</strong> Testing the effectiveness and safety of new medications.</li>
+        <li><strong>Device Trials:</strong> Assessing the functionality of new medical devices.</li>
+        <li><strong>Preventative Trials:</strong> Exploring prevention methods for various diseases.</li>
+        <li><strong>Treatment Trials:</strong> Evaluating new therapies for effectiveness and safety.</li>
+        <li><strong>Quality of Life Trials:</strong> Improving patient comfort in chronic conditions.</li>
+    </ul>
+
+    <h2>Benefits of Participating</h2>
+    <p>By joining our clinical trials, you may gain early access to treatments, contribute to impactful research, and receive medical care from experienced professionals.</p>
+
+    <h2>Sign Up for a Clinical Trial</h2>
+    <p>If you’re interested in participating in one of FutureTechFoundation’s clinical trials, please fill out the form below. Our team will contact you with more information and help match you to suitable studies.</p>
+
+    <div class="form-section">
+        <form action="#" method="POST">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name">
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address">
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+            <label for="x-account">X (formerly Twitter) Account Handle</label>
+            <input type="text" id="x-account" name="x-account" placeholder="Enter your X handle (e.g., @username)">
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="18" placeholder="Enter your age">
+
+            <label for="medical-condition">Relevant Medical Condition(s)</label>
+            <textarea id="medical-condition" name="medical-condition" rows="3" placeholder="List any relevant medical conditions"></textarea>
+
+            <label for="trial-type">Preferred Type of Clinical Trial</label>
+            <select id="trial-type" name="trial-type">
+                <option value="">Select a trial type</option>
+                <option value="drug">Drug Trial</option>
+                <option value="device">Device Trial</option>
+                <option value="preventative">Preventative Trial</option>
+                <option value="treatment">Treatment Trial</option>
+                <option value="quality-of-life">Quality of Life Trial</option>
+            </select>
+
+            <label for="questions">Questions or Additional Information</label>
+            <textarea id="questions" name="questions" rows="3" placeholder="Any questions or additional information you'd like to share"></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 FutureTechFoundation. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
