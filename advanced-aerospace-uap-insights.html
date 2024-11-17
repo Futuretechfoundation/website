@@ -4,134 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Aerospace Engineering: UAP Insights</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
         }
         header {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
             text-align: center;
+            padding: 15px;
         }
         nav {
+            background-color: #495057;
             display: flex;
             justify-content: center;
-            background: #444;
         }
         nav a {
-            color: #fff;
+            color: white;
             padding: 10px 20px;
             text-decoration: none;
+            display: block;
         }
         nav a:hover {
-            background: #555;
+            background-color: #6c757d;
         }
         main {
             padding: 20px;
         }
-        .lesson {
+        .tab {
+            display: none;
+        }
+        .tab.active {
+            display: block;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
             margin-bottom: 20px;
-            background: #fff;
-            border: 1px solid #ccc;
+        }
+        .tab-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .tab-buttons button.active {
+            background-color: #343a40;
+        }
+        .card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
             padding: 15px;
-            border-radius: 5px;
-        }
-        .lesson h2 {
-            color: #333;
-        }
-        .quiz {
-            background: #f9f9f9;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
+            margin: 15px 0;
         }
         footer {
-            background: #333;
-            color: #fff;
+            background-color: #343a40;
+            color: white;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 10px;
+        }
+        .quiz {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .certificate {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #343a40;
+            border-radius: 10px;
+            background-color: #ffffff;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Advanced Aerospace Engineering: UAP Insights</h1>
-        <p>Comprehensive lessons on UAP technology, metamaterials, and quantum phenomena.</p>
+        <p>Complete the course and pass the quizzes to earn your certificate!</p>
     </header>
     <nav>
-        <a href="#lesson1">Lesson 1: Metamaterial Design</a>
-        <a href="#lesson2">Lesson 2: UAP Technology</a>
-        <a href="#lesson3">Lesson 3: Quantum Foam</a>
-        <a href="#lesson4">Lesson 4: Electromagnetic Fields</a>
-        <a href="#lesson5">Lesson 5: Measurement Techniques</a>
+        <a href="#lesson1">Lesson 1</a>
+        <a href="#lesson2">Lesson 2</a>
+        <a href="#lesson3">Lesson 3</a>
+        <a href="#lesson4">Lesson 4</a>
+        <a href="#lesson5">Lesson 5</a>
     </nav>
     <main>
-        <div id="lesson1" class="lesson">
+        <!-- Lesson 1 -->
+        <div id="lesson1" class="tab active">
             <h2>Lesson 1: Metamaterial Design for UAPs</h2>
-            <p>Metamaterials allow groundbreaking manipulation of electromagnetic properties, such as:</p>
-            <ul>
-                <li><strong>Permeability Control:</strong> Precise manipulation of magnetic permeability for specific frequencies.</li>
-                <li><strong>Permittivity Adjustment:</strong> Engineering dielectric substrates to enhance electric field responses.</li>
-                <li><strong>Magnetoelectric Coupling:</strong> Interaction between magnetic and electric fields for added control.</li>
-                <li><strong>Field Distribution Asymmetries:</strong> Creating localized spacetime distortions with tailored gradients.</li>
-            </ul>
-            <p>Fabrication techniques include:</p>
-            <ol>
-                <li>Photolithography: Patterning substrates for nanoscale structures.</li>
-                <li>Self-Assembly: Leveraging molecular organization for uniform designs.</li>
-                <li>3D Printing: Additive manufacturing for intricate geometries.</li>
-                <li>MEMS Actuators: Real-time tuning of resonator gaps for dynamic responses.</li>
-            </ol>
+            <p>
+                Metamaterials are a groundbreaking innovation in the field of material science, enabling precise manipulation of electromagnetic properties beyond the natural limitations of traditional materials. By designing structures with sub-wavelength components, engineers can tailor electromagnetic responses such as permeability, permittivity, and magnetoelectric coupling to meet specific requirements. The potential applications of metamaterials span fields as diverse as telecommunications, defense, and aerospace engineering. For example, they can be used to create cloaking devices, improve antenna performance, or even manipulate spacetime distortions for advanced propulsion systems. This makes metamaterials a critical component in the study of UAPs (Unidentified Aerial Phenomena). A key feature of metamaterials is their ability to achieve dynamic tuning through technologies such as MEMS (Micro-Electromechanical Systems) actuators. These actuators adjust the gaps in split-ring resonators or modify the alignment of wire arrays in real-time, enabling engineers to control electromagnetic properties on demand. Fabrication methods like photolithography, self-assembly, and 3D printing allow for the precise creation of these intricate structures. Photolithography, for instance, uses light to pattern designs onto a substrate, creating the nanoscale components essential for tailoring electromagnetic properties. Self-assembly leverages the natural tendencies of molecules to organize into ordered structures, while 3D printing offers the flexibility to prototype complex geometries. Together, these techniques push the boundaries of what is possible in material science and aerospace engineering. As researchers continue to refine the design and fabrication of metamaterials, new avenues for controlling physical phenomena, including localized spacetime distortions, will emerge. This not only advances the field of aerospace engineering but also provides valuable insights into the technologies observed in UAP encounters.
+            </p>
+            <div class="quiz">
+                <h3>Quiz:</h3>
+                <p>What is a key feature of metamaterials?</p>
+                <button onclick="checkAnswer(1, true)">Dynamic tuning of electromagnetic properties</button>
+                <button onclick="checkAnswer(1, false)">Stable electromagnetic fields</button>
+            </div>
         </div>
-        <div id="lesson2" class="lesson">
+        <!-- Lesson 2 -->
+        <div id="lesson2" class="tab">
             <h2>Lesson 2: Introduction to UAP Technology</h2>
-            <p>Explore UAPs across history, from ancient sightings to modern research:</p>
-            <ul>
-                <li>Early sightings in ancient texts and artworks (e.g., Egyptians, Mayans).</li>
-                <li>Cold War-era reports tied to advancements in aerospace technology.</li>
-                <li>Modern-era investigations fueled by military and credible sources.</li>
-            </ul>
-            <p>Metamaterials play a pivotal role in UAP technology, potentially enabling advanced propulsion and cloaking through electromagnetic manipulation.</p>
+            <p>
+                Unidentified Aerial Phenomena (UAPs) have fascinated humans for centuries, with evidence of sightings found in ancient texts, artworks, and oral traditions. Early civilizations, such as the Egyptians and Mayans, often depicted strange objects in the sky, which some interpret as UAP encounters. These historical records provide an intriguing glimpse into humanity's long-standing curiosity about the unknown. In the modern era, the Cold War heightened interest in UAPs due to the rapid advancements in aerospace technology and the global atmosphere of competition. Reports of unidentified flying objects surged, with some incidents, such as the Roswell event, sparking widespread speculation about extraterrestrial origins. While many sightings were later explained as military experiments or natural phenomena, others remain unexplained, fueling ongoing research. A critical focus of current UAP studies is understanding the potential technologies that could explain their extraordinary capabilities, such as sudden acceleration, hovering without visible means of propulsion, and radar evasion. Metamaterials play a pivotal role in this research. These engineered materials exhibit unique electromagnetic properties that could enable advanced propulsion and cloaking technologies. By manipulating electromagnetic fields in ways that natural materials cannot, metamaterials open up new possibilities for replicating or understanding UAP technologies. Modern research also benefits from advanced observational tools, including high-resolution cameras, radar systems, and spectroscopy, which provide detailed data on UAP encounters. Governments worldwide have begun to declassify UAP-related documents, encouraging scientists and engineers to explore these phenomena with renewed vigor. As we continue to investigate UAPs with rigorous scientific methods, we are not only expanding our understanding of these mysterious occurrences but also driving innovation in materials science and aerospace engineering.
+            </p>
+            <div class="quiz">
+                <h3>Quiz:</h3>
+                <p>What is a focus of modern UAP research?</p>
+                <button onclick="checkAnswer(2, true)">Metamaterials</button>
+                <button onclick="checkAnswer(2, false)">Historical records</button>
+            </div>
         </div>
-        <div id="lesson3" class="lesson">
+        <!-- Lesson 3 -->
+        <div id="lesson3" class="tab">
             <h2>Lesson 3: Interactions with Quantum Foam</h2>
-            <p>Quantum foam represents spacetime's fluctuating nature at the smallest scales. Key concepts include:</p>
-            <ul>
-                <li><strong>Vacuum Fluctuations:</strong> Temporary energy changes that can be harnessed via metamaterials.</li>
-                <li><strong>Metamaterial Interactions:</strong> Tailored responses to amplify quantum effects.</li>
-                <li><strong>Field Asymmetry Effects:</strong> Inducing spacetime distortions through engineered electromagnetic gradients.</li>
-            </ul>
+            <p>
+                Quantum foam, also known as spacetime foam, is a concept in quantum mechanics that describes the dynamic and fluctuating nature of spacetime at the smallest scales. Proposed by physicist John Wheeler, quantum foam is thought to arise due to the uncertainty principle, which allows for temporary violations of energy conservation at extremely small scales. These fluctuations result in the continuous appearance and disappearance of virtual particles, creating a frothy, ever-changing structure of spacetime. This phenomenon occurs at the Planck scale, where quantum gravitational effects dominate. Understanding quantum foam is crucial for exploring the fundamental nature of spacetime and its potential applications in advanced technologies. Metamaterials offer an exciting avenue for interacting with quantum foam. By precisely engineering their electromagnetic properties, metamaterials can resonate with the fluctuations of quantum foam, potentially amplifying or dampening these effects. This interaction could lead to new methods of controlling spacetime distortions, enabling advanced propulsion systems or even the creation of artificial wormholes. Researchers are also exploring the role of vacuum fluctuations—temporary changes in the amount of energy at a point in space—in quantum foam dynamics. Metamaterials can be designed to harness these fluctuations, shaping them in ways that could unlock new physical phenomena. For instance, tailored electromagnetic fields within metamaterials might influence the behavior of virtual particles, creating localized spacetime distortions. As our understanding of quantum foam grows, it holds promise for revolutionizing fields such as aerospace engineering, quantum computing, and theoretical physics.
+            </p>
+            <div class="quiz">
+                <h3>Quiz:</h3>
+                <p>What property of quantum foam makes it essential for aerospace research?</p>
+                <button onclick="checkAnswer(3, true)">Fluctuating nature</button>
+                <button onclick="checkAnswer(3, false)">Stability</button>
+            </div>
         </div>
-        <div id="lesson4" class="lesson">
+        <!-- Lesson 4 -->
+        <div id="lesson4" class="tab">
             <h2>Lesson 4: Tailoring Electromagnetic Fields</h2>
-            <p>Learn to create and manipulate field asymmetries and gradients:</p>
-            <ul>
-                <li>Split ring resonators for asymmetric field distributions.</li>
-                <li>Wire arrays for electromagnetic gradient control.</li>
-                <li>Applications in spacetime distortion and propulsion systems.</li>
-            </ul>
+            <p>
+                Tailoring electromagnetic fields is a cornerstone of advanced aerospace engineering and UAP technology research. By carefully manipulating electromagnetic gradients and field asymmetries, researchers can explore new methods for propulsion, cloaking, and spacetime distortion. Electromagnetic fields are characterized by their intensity, direction, and interaction with materials. When these fields are engineered using advanced techniques, they can influence the behavior of waves and particles in ways that natural fields cannot. One of the primary tools for tailoring electromagnetic fields is the split-ring resonator. These small, loop-shaped structures are designed to resonate at specific frequencies, enabling the generation of localized electromagnetic effects. Split-ring resonators can create strong magnetic responses, which are essential for manipulating field gradients. By adjusting the design of these resonators, including their size, shape, and material composition, engineers can fine-tune their electromagnetic properties. Another critical tool is the wire array, which controls electric field responses. Wire arrays can be arranged in patterns that enhance permittivity and create non-uniform field distributions. The combination of split-ring resonators and wire arrays forms the basis of many metamaterial designs, allowing for precise control over electromagnetic phenomena. Field asymmetries are particularly important in the context of UAP technology. These asymmetries refer to the uneven distribution of electromagnetic fields, which can induce unique physical effects. For example, chiral asymmetries in split-ring resonators can create rotational field patterns, while asymmetric gradients can generate hotspots of electromagnetic activity. Such effects have potential applications in propulsion systems, where controlled asymmetries might produce thrust without the need for conventional fuel. Furthermore, dynamic tuning mechanisms, such as those enabled by MEMS actuators, provide real-time control over electromagnetic fields. This capability is essential for adapting to changing conditions in aerospace applications. For instance, dynamic tuning could allow a craft to respond to variations in atmospheric density or electromagnetic interference. As researchers continue to refine these techniques, the ability to tailor electromagnetic fields will unlock new possibilities for exploration and innovation in aerospace engineering. This includes the potential for achieving localized spacetime distortions, which could pave the way for advanced propulsion technologies or even interdimensional travel.
+            </p>
+            <div class="quiz">
+                <h3>Quiz:</h3>
+                <p>What tool is used to manipulate electromagnetic gradients?</p>
+                <button onclick="checkAnswer(4, true)">Split ring resonators</button>
+                <button onclick="checkAnswer(4, false)">Atomic clocks</button>
+            </div>
         </div>
-        <div id="lesson5" class="lesson">
+        <!-- Lesson 5 -->
+        <div id="lesson5" class="tab">
             <h2>Lesson 5: Measurement Techniques for UAPs</h2>
-            <p>Advanced measurement tools include:</p>
-            <ul>
-                <li><strong>Atomic and Optical Clocks:</strong> Precision timekeeping to detect spacetime distortions.</li>
-                <li><strong>Matter Wave Interferometry:</strong> Measuring gravitational fields and electromagnetic phenomena.</li>
-                <li><strong>Sagnac Interferometry:</strong> Detecting minute spacetime anomalies through rotating electromagnetic fields.</li>
-            </ul>
+            <p>
+                Precision measurement is fundamental to understanding and advancing UAP technologies. Measurement techniques such as atomic clocks, optical clocks, matter wave interferometry, and Sagnac interferometry provide invaluable insights into the nature of spacetime distortions and electromagnetic phenomena. Atomic and optical clocks are among the most precise timekeeping instruments available. Atomic clocks rely on the consistent frequency of microwave radiation emitted by atoms as they change energy levels, providing extraordinary accuracy. Optical clocks take this precision further by using the higher frequency of light waves, making them less susceptible to quantum fluctuations. These clocks are essential for detecting minute variations in time caused by spacetime distortions, a phenomenon predicted by Einstein's theory of general relativity. For example, atomic clocks placed at different altitudes will experience slight differences in timekeeping due to gravitational time dilation. Matter wave interferometry is another critical measurement tool. This technique exploits the wave-like nature of particles to measure gravitational fields, electromagnetic phenomena, and other physical properties with high precision. By splitting a wave into multiple paths and analyzing their interference patterns, researchers can detect minute differences in the environment traversed by these waves. Matter wave interferometry has applications in detecting gravitational waves, exploring the limits of quantum mechanics, and advancing aerospace engineering. Sagnac interferometry, named after the physicist Georges Sagnac, is a specialized form of interferometry used to measure rotational motion and spacetime anomalies. By rotating electromagnetic fields within a system, Sagnac interferometry can reveal hidden anomalies and expand our understanding of the quantum realm. This technique is particularly valuable for exploring the effects of frame dragging, where spacetime is twisted by a rotating mass. As measurement techniques become more sophisticated, they provide the data necessary to refine our theoretical models and practical applications of UAP technologies. These tools not only advance our understanding of the universe but also drive innovation in aerospace engineering, enabling the exploration of phenomena once considered purely theoretical.
+            </p>
+            <div class="quiz">
+                <h3>Quiz:</h3>
+                <p>Which tool measures spacetime distortions with high precision?</p>
+                <button onclick="checkAnswer(5, true)">Atomic clocks</button>
+                <button onclick="checkAnswer(5, false)">Split ring resonators</button>
+            </div>
+        </div>
+        <div class="tab-buttons">
+            <button onclick="showTab(0)" class="active">Lesson 1</button>
+            <button onclick="showTab(1)">Lesson 2</button>
+            <button onclick="showTab(2)">Lesson 3</button>
+            <button onclick="showTab(3)">Lesson 4</button>
+            <button onclick="showTab(4)">Lesson 5</button>
+        </div>
+        <div id="certificate" class="certificate">
+            <h2>Certificate of Completion</h2>
+            <p>Congratulations! You have successfully completed the course.</p>
+            <p><strong>Advanced Aerospace Engineering: UAP Insights</strong></p>
         </div>
     </main>
     <footer>
         <p>Advanced Aerospace Engineering: UAP Insights | Designed by Jon X</p>
     </footer>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const buttons = document.querySelectorAll('.tab-buttons button');
+        let score = 0;
+        const passingScore = 5; // All questions must be answered correctly
+
+        function showTab(index) {
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            buttons.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
+        }
+
+        function checkAnswer(lesson, isCorrect) {
+            if (isCorrect) {
+                alert("Correct!");
+                score++;
+            } else {
+                alert("Incorrect. Try reviewing the material again.");
+            }
+            // Disable the quiz button after answering
+            document.querySelectorAll(`#lesson${lesson} .quiz button`).forEach(button => {
+                button.disabled = true;
+            });
+            // Show certificate if all lessons are correct
+            if (score >= passingScore) {
+                document.getElementById('certificate').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
