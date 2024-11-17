@@ -238,6 +238,10 @@
     </style>
 </head>
 <body>
+    <!-- Chatbot Button -->
+<button id="openChatbot" onclick="toggleChatbot()" style="position: fixed; bottom: 20px; right: 20px; background-color: #007b7b; color: white; border: none; padding: 10px 15px; font-size: 1em; border-radius: 5px; cursor: pointer;">
+    Chat with Afiba
+</button>
     <!-- Header -->
     <header>
         <div class="top-bar">
@@ -426,6 +430,32 @@
             const chatResponse = document.getElementById('chatResponse');
             chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
         }
+    </script>
+    <!-- Chatbot Window -->
+<div id="chatbot" style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; border: 1px solid #ccc; padding: 10px; background-color: white; z-index: 1000;">
+    <h3>Chat with Afiba</h3>
+    <textarea id="chatInput" placeholder="Ask me anything..." style="width: 100%; height: 70%;"></textarea>
+    <button onclick="sendMessage()" style="width: 100%; margin-top: 10px; padding: 10px; background-color: #007b7b; color: white; border: none; cursor: pointer;">
+        Send
+    </button>
+</div>
+    <script>
+    // Toggle visibility of the chatbot window
+    function toggleChatbot() {
+        const chatbot = document.getElementById("chatbot");
+        chatbot.style.display = (chatbot.style.display === "block") ? "none" : "block";
+    }
+
+    // Placeholder function to handle sending messages
+    function sendMessage() {
+        const chatInput = document.getElementById("chatInput");
+        const message = chatInput.value.trim();
+
+        if (message !== "") {
+            alert("Message sent: " + message); // Placeholder action for sending message
+            chatInput.value = ""; // Clear the input after sending
+        }
+    }
     </script>
 </body>
     </html>
