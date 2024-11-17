@@ -419,27 +419,25 @@
         });
 
         // Toggle Chatbot Visibility
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
-        }
+        <!-- Chatbot Button -->
+<button id="openChatbot" onclick="toggleChatbot()" style="position: fixed; bottom: 20px; right: 20px; background-color: #007b7b; color: white; border: none; padding: 10px 15px; font-size: 1em; border-radius: 5px; cursor: pointer;">
+    Chat with Afiba
+</button>
 
-        // Send Message in Chatbot
-        function sendMessage() {
-            const chatInput = document.getElementById('chatInput').value;
-            const chatResponse = document.getElementById('chatResponse');
-            chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
-        }
-    </script>
-    <!-- Chatbot Window -->
+<!-- Chatbot Window -->
 <div id="chatbot" style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; border: 1px solid #ccc; padding: 10px; background-color: white; z-index: 1000;">
     <h3>Chat with Afiba</h3>
-    <textarea id="chatInput" placeholder="Ask me anything..." style="width: 100%; height: 70%;"></textarea>
+    
+    <!-- Afiba's Image -->
+    <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.jpg" alt="Afiba" style="width: 100%; border-radius: 10px; margin-bottom: 10px;"/>
+
+    <textarea id="chatInput" placeholder="Ask Afiba anything..." style="width: 100%; height: 50%;"></textarea>
     <button onclick="sendMessage()" style="width: 100%; margin-top: 10px; padding: 10px; background-color: #007b7b; color: white; border: none; cursor: pointer;">
         Send
     </button>
 </div>
-    <script>
+
+<script>
     // Toggle visibility of the chatbot window
     function toggleChatbot() {
         const chatbot = document.getElementById("chatbot");
@@ -452,11 +450,11 @@
         const message = chatInput.value.trim();
 
         if (message !== "") {
-            alert("Message sent: " + message); // Placeholder action for sending message
+            alert("Message sent to Afiba: " + message); // Placeholder action for sending message
             chatInput.value = ""; // Clear the input after sending
         }
     }
-    </script>
+</script>
 </body>
     </html>
                                                                                                                                                                
