@@ -124,6 +124,26 @@
             flex-grow: 1;
         }
 
+        /* Quote Section */
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #555;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-weight: bold;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
         .image-placeholder {
             width: 100%;
             height: 200px;
@@ -211,209 +231,202 @@
         }
 
         footer .copyright {
-            border-top: 1px solid #444;
+            border-top: 1px solid #ccc;
             padding-top: 10px;
-            font-size: 0.8em;
-            color: #ccc;
+            margin-top: 10px;
         }
-
     </style>
 </head>
 <body>
-
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <img class="logo" src="logo.png" alt="FutureTech Foundation Logo">
-        <button class="menu-button" onclick="toggleMenu()">Menu</button>
-    </div>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
+            <button onclick="toggleMenu()" class="menu-button">Menu</button>
+        </div>
+    </header>
 
     <!-- Menu Sidebar -->
     <div id="menuSidebar" class="menu-sidebar">
-        <button class="close-button" onclick="toggleMenu()">×</button>
+        <button onclick="toggleMenu()" class="close-button">X</button>
         <h2>Menu</h2>
+        
+        <!-- MetaMask Login Button -->
+        <button id="loginButton" class="login-button">Login with MetaMask</button>
+        
         <div class="menu-section">
-            <h3>About</h3>
+            <h3>Explore</h3>
             <ul>
-                <li><a href="#">Mission</a></li>
-                <li><a href="#">Vision</a></li>
+                <li><a href="mission.html">Our Mission</a></li>
+                <li><a href="accountability.html">Our Accountability</a></li>
+                <li><a href="newsroom.html">Newsroom</a></li>
+                <li><a href="events.html">Find Events</a></li>
+                <li><a href="academic_programs.html">Academic Programs</a></li>
+                <li><a href="research.html">Research</a></li>
             </ul>
         </div>
+
         <div class="menu-section">
-            <h3>Resources</h3>
+            <h3>Connect</h3>
             <ul>
-                <li><a href="#">Publications</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="volunteer.html">Volunteer</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="ethics.html">Ethics Helpline</a></li>
+                <li><a href="myFuturetech.html">MyFutureTech</a></li>
+                <li><a href="vr_sample.html">VR Sample</a></li>
+                <li><a href="clinical_trials.html">Clinical Trials</a></li>
+                <li><a href="access_portal.html">Access Portal</a></li>
             </ul>
         </div>
+
         <div class="menu-section">
-            <h3>Get Involved</h3>
+            <h3>Give</h3>
             <ul>
-                <li><a href="#">Donate</a></li>
-                <li><a href="#">Volunteer</a></li>
+                <li><a href="donate.html">Donate Now</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="estate.html">Gift & Estate Planning</a></li>
             </ul>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>Welcome to FutureTech Foundation</h1>
-        <p>We are a nonprofit organization focused on advancing education and innovation in emerging technologies.</p>
+        <section>
+            <h1>EMBRACING THE FUTURE OF TECHNOLOGY</h1>
+            <p>FutureTech Foundation: Shaping Tomorrow Through Innovation.</p>
+        </section>
+        <section>
+            <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Futuretechacademy.webp" alt="FutureTechAcademy" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+        </section>
+        <section>
+            <h2>INNOVATION THAT REDEFINES POSSIBILITY.</h2>
+            <p>In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p</section>
 
-        <!-- Image Placeholder (for dynamic content) -->
-        <div class="image-placeholder">Images will be displayed here</div>
+        <section>
+            <div class="quote">
+                "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
+            </div>
+            <div class="quote-author">- Alex, Volunteer</div>
+        </section>
 
-        <div class="section">
-            <h2>Join Us</h2>
-            <p>Get involved with FutureTech Foundation by donating or volunteering!</p>
-            <button class="login-button" onclick="loginWithMetaMask()">Login with MetaMask</button>
-        </div>
+        <section>
+            <h2>About Us</h2>
+            <p>FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing mentorship, hands-on learning experiences, and community engagement in fields such as:</p>
+            <ul>
+                <li>Nanorobotics</li>
+                <li>3D Bioprinting</li>
+                <li>Biotechnology</li>
+                <li>Artificial Intelligence</li>
+                <li>Space Technology</li>
+            </ul>
+            <p>Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational resources that inspire curiosity and empower learners to explore the future of human potential.</p>
+        </section>
+
+        <section>
+            <h2>Explore Our Focus Areas</h2>
+            <div>
+                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/bioprinting%20.webp" alt="3D Bioprinting" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+            </div>
+            <div>
+                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/nanobot.webp" alt="Nanorobotics" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+            </div>
+            <div>
+                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/humanoid%20.webp" alt="Humanoids" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+            </div>
+            <div>
+                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/uap.webp" alt="UAP Technology" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+            </div>
+        </section>
     </div>
 
     <!-- Chatbot -->
     <div id="chatbot">
-        <div id="chatbot-header">
-            <h3>Ask Afiba</h3>
-            <button onclick="toggleChatbot()">X</button>
-        </div>
-        <div id="chatbot-body">
-            <textarea id="chatbot-input" placeholder="Type your question here..."></textarea>
-            <button onclick="sendMessage()">Send</button>
-        </div>
+        <textarea id="chatInput" placeholder="Ask a question..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+        <p id="chatResponse"></p>
     </div>
-
-    <!-- Chatbot Open Button -->
-    <button id="openChatbot" onclick="toggleChatbot()">Ask Afiba</button>
-
-    <!-- Footer -->
-    <footer>
-        <div class="address">
-            <p>123 FutureTech Ave, Tech City</p>
-        </div>
-        <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
-        </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Toggle Menu Sidebar
-        function toggleMenu() {
-            const menuSidebar = document.getElementById('menuSidebar');
-            menuSidebar.style.display = (menuSidebar.style.display === 'block') ? 'none' : 'block';
-        }
-
-        // Toggle Chatbot
-        function toggleChatbot()
-        <!-- Top Bar -->
-    <div class="top-bar">
-        <img src="https://via.placeholder.com/150" alt="Logo" class="logo">
-        <button class="menu-button" onclick="toggleMenu()">Menu</button>
-    </div>
-
-    <!-- Menu Sidebar -->
-    <div class="menu-sidebar" id="menuSidebar">
-        <button class="close-button" onclick="toggleMenu()">×</button>
-        <h2>Menu</h2>
-        <div class="menu-section">
-            <h3>About Us</h3>
-            <ul>
-                <li><a href="#">Mission</a></li>
-                <li><a href="#">Vision</a></li>
-                <li><a href="#">Team</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Get Involved</h3>
-            <ul>
-                <li><a href="#">Volunteer</a></li>
-                <li><a href="#">Donate</a></li>
-                <li><a href="#">Events</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Resources</h3>
-            <ul>
-                <li><a href="#">Tech Articles</a></li>
-                <li><a href="#">Workshops</a></li>
-                <li><a href="#">Grants</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Contact</h3>
-            <ul>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Partnerships</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>Welcome to FutureTech Foundation</h1>
-        <p>We are committed to advancing education and innovation in emerging technologies.</p>
-        
-        <div class="image-placeholder">
-            <p>Image Placeholder</p>
-        </div>
-
-        <!-- Chatbot -->
-        <div id="chatbot">
-            <textarea id="chatInput" placeholder="Ask me anything..."></textarea>
-            <button onclick="sendMessage()">Send</button>
-        </div>
-
-        <button id="openChatbot" onclick="toggleChatbot()">Chat with Afiba</button>
-    </div>
+    <button id="openChatbot" onclick="toggleChatbot()">Chat with Us</button>
 
     <!-- Footer -->
     <footer>
         <div class="address">
             <p>FutureTech Foundation</p>
-            <p>123 Tech Street, Silicon Valley</p>
+            <p>1529 12th St. SE, #200, #129</p>
+            <p>Rochester, MN 55904</p>
         </div>
+
         <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
+            <a href="https://facebook.com" target="_blank">
+                <img src="images/facebook.png" alt="Facebook" style="width:24px; height:24px;">
+            </a>
+            <a href="https://x.com/futuretechfound" target="_blank">
+                <img src="images/x.jpg" alt="X" style="width:24px; height:24px;">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img src="images/youtube.jpg" alt="YouTube" style="width:24px; height:24px;">
+            </a>
         </div>
+
         <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="visit.html">Visit Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="giving.html">Giving to FutureTech</a>
+            <a href="onestop.html">One Stop</a>
+            <a href="directories.html">Directories</a>
+            <a href="employment.html">Employment Opportunities</a>
+            <a href="campus_map.html">Campus Map</a>
+            <a href="parking.html">Parking & Transportation</a>
+            <a href="about.html">About FutureTech</a>
+            <a href="privacy.html">Privacy Statement</a>
+            <a href="accessibility.html">Report Web-Related Disability Issue</a>
         </div>
+
         <div class="copyright">
             <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+            <p>FutureTech Foundation is an equal opportunity educator and employer.</p>
+        </div>
+        
+        <div style="font-size: 0.9em; color: #555; padding: 20px; text-align: center; border-top: 1px solid #ddd; margin-top: 30px;">
+            <p><strong>Disclaimer:</strong><br>
+            This website provides information that reflects our goals and aspirations in the field of technology and innovation. While we strive for accuracy, some information may be subject to change, and certain links are intended to showcase future objectives rather than current achievements. Please use discretion and consult official sources when needed.</p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
+        // Toggle Menu Sidebar
         function toggleMenu() {
-            const menuSidebar = document.getElementById("menuSidebar");
-            menuSidebar.style.display = (menuSidebar.style.display === "block") ? "none" : "block";
+            const menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.style.display = menuSidebar.style.display === 'block' ? 'none' : 'block';
         }
 
-        function toggleChatbot() {
-            const chatbot = document.getElementById("chatbot");
-            chatbot.style.display = (chatbot.style.display === "block") ? "none" : "block";
-        }
-
-        function sendMessage() {
-            const chatInput = document.getElementById("chatInput");
-            const message = chatInput.value;
-            if (message.trim() !== "") {
-                alert("Message sent: " + message); // Placeholder for sending messages
-                chatInput.value = "";
+        // MetaMask Login
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    alert(`Connected with account: ${accounts[0]}`);
+                } catch (error) {
+                    alert('Failed to connect MetaMask');
+                }
+            } else {
+                alert('MetaMask is not installed');
             }
+        });
+
+        // Toggle Chatbot Visibility
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Send Message in Chatbot
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput').value;
+            const chatResponse = document.getElementById('chatResponse');
+            chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
         }
     </script>
 </body>
-</html>
+    </html>
+                                                                                                                                                               
