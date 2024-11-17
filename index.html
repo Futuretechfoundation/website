@@ -124,26 +124,6 @@
             flex-grow: 1;
         }
 
-        /* Quote Section */
-        .quote {
-            font-style: italic;
-            font-size: 1.2em;
-            color: #555;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .quote-author {
-            text-align: right;
-            font-weight: bold;
-            font-size: 1em;
-            color: #555;
-        }
-
-        .section {
-            margin: 40px 0;
-        }
-
         .image-placeholder {
             width: 100%;
             height: 200px;
@@ -157,168 +137,39 @@
         }
 
         /* Chatbot */
-        #chat-window {
-            position: fixed;
-            bottom: 110px;
-            right: 20px;
-            width: 300px;
-            max-height: 400px;
-            background: #fff;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: none;
-            flex-direction: column;
-        }
-
-        #chat-header {
-            background: #4CAF50;
-            color: #fff;
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-        }
-
-        #chat-messages {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-        }
-
-        #chat-input {
-            display: flex;
-            border-top: 1px solid #ccc;
-        }
-
-        #chat-input textarea {
-            flex: 1;
-            border: none;
-            padding: 10px;
-            border-radius: 0 0 0 8px;
-        }
-
-        #chat-input button {
-            background: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 0 0 8px 0;
-            cursor: pointer;
-        }
-
         #chatbot {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 80px;
-            height: 80px;
-            background: url('https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.jpg') no-repeat center center;
-            background-size: cover;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 999;
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            display: none;
+            z-index: 1000;
         }
 
-        /* Footer */
-        footer {
-            background-color: #333;
+        #chatbot textarea {
+            width: 100%;
+            height: 70%;
+        }
+
+        #chatbot button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #openChatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007b7b;
             color: #fff;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            margin-top: auto;
-        }
-
-        footer .address, footer .social-media, footer .footer-links {
-            margin-bottom: 20px;
-        }
-
-        footer .address p {
-            margin: 5px 0;
-        }
-
-        footer .social-media a {
-            margin: 0 10px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-
-        footer .footer-links a {
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            margin: 5px 0;
-        }
-
-        footer .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        footer .copyright {
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Top Bar with Logo and Menu -->
-    <div class="top-bar">
-        <img src="logo.png" alt="FutureTech Foundation" class="logo">
-        <button class="menu-button" id="menuBtn">☰</button>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>Welcome to FutureTech Foundation</h1>
-        <p>We are advancing education and innovation in emerging technologies.</p>
-        <div class="section">
-            <h2>Quote of the Day</h2>
-            <p class="quote">"The future is now, and it's waiting for you to shape it." <span class="quote-author">- FutureTech Foundation</span></p>
-        </div>
-    </div>
-
-    <!-- Chatbot Trigger Button -->
-    <div id="chatbot"></div>
-    
-    <!-- Chatbot Window -->
-    <div id="chat-window">
-        <div id="chat-header">Afiba - Chatbot</div>
-        <div id="chat-messages"></div>
-        <div id="chat-input">
-            <textarea id="user-input" placeholder="Type your message here..."></textarea>
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="address">
-            <p>1234 Tech Avenue, City, Country</p>
-        </div>
-        <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
-        </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-        </div>
-        <div class="copyright">
-            &copy; 2024 FutureTech Foundation. All Rights Reserved.
-        </div>
-    </footer>
-
-    <!-- JavaScript for Chatbot Functionality -->
-    <script>
-        // Chatbot Elements
-        const chatbot = document.getElementById("chatbot");
-        const chatWindow = document.getElementById("chat-window");
-        const chatMessages = document.getElementById("chat-messages");
-        const userInput = document.getElementById("user-input");
-        const background: url('https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.jpg') no-repeat center center;
-            background-size: cover;
-            border-radius: 50%;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
             cursor: pointer;
             z-index: 1000;
         }
@@ -362,94 +213,207 @@
         footer .copyright {
             border-top: 1px solid #444;
             padding-top: 10px;
-            margin-top: 20px;
+            font-size: 0.8em;
+            color: #ccc;
         }
+
     </style>
 </head>
 <body>
 
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <img class="logo" src="logo.png" alt="FutureTech Foundation Logo">
+        <button class="menu-button" onclick="toggleMenu()">Menu</button>
+    </div>
+
+    <!-- Menu Sidebar -->
+    <div id="menuSidebar" class="menu-sidebar">
+        <button class="close-button" onclick="toggleMenu()">×</button>
+        <h2>Menu</h2>
+        <div class="menu-section">
+            <h3>About</h3>
+            <ul>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Vision</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Publications</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Get Involved</h3>
+            <ul>
+                <li><a href="#">Donate</a></li>
+                <li><a href="#">Volunteer</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="main-content">
-        <h1>Welcome to the FutureTech Foundation</h1>
-        <p>Your one-stop solution for innovative technological advancement and education.</p>
+        <h1>Welcome to FutureTech Foundation</h1>
+        <p>We are a nonprofit organization focused on advancing education and innovation in emerging technologies.</p>
+
+        <!-- Image Placeholder (for dynamic content) -->
+        <div class="image-placeholder">Images will be displayed here</div>
+
+        <div class="section">
+            <h2>Join Us</h2>
+            <p>Get involved with FutureTech Foundation by donating or volunteering!</p>
+            <button class="login-button" onclick="loginWithMetaMask()">Login with MetaMask</button>
+        </div>
     </div>
 
     <!-- Chatbot -->
     <div id="chatbot">
-        <button id="openChatbot">Talk to Afiba</button>
+        <div id="chatbot-header">
+            <h3>Ask Afiba</h3>
+            <button onclick="toggleChatbot()">X</button>
+        </div>
+        <div id="chatbot-body">
+            <textarea id="chatbot-input" placeholder="Type your question here..."></textarea>
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
 
-    <div id="chat-window">
-        <div id="chat-header">
-            <h3>Afiba</h3>
-            <button id="closeChat">X</button>
-        </div>
-        <div id="chat-messages">
-            <!-- Chat messages will appear here -->
-        </div>
-        <div id="chat-input">
-            <textarea id="user-input" placeholder="Type a message..."></textarea>
-            <button id="sendMessage">Send</button>
-        </div>
-    </div>
+    <!-- Chatbot Open Button -->
+    <button id="openChatbot" onclick="toggleChatbot()">Ask Afiba</button>
 
     <!-- Footer -->
     <footer>
-        <p class="address">123 FutureTech Ave, Tech City</p>
+        <div class="address">
+            <p>123 FutureTech Ave, Tech City</p>
+        </div>
         <div class="social-media">
-            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
         </div>
         <div class="footer-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
         </div>
-        <p class="copyright">&copy; 2024 FutureTech Foundation. All Rights Reserved.</p>
+        <div class="copyright">
+            <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // Open and Close Chatbot
-        document.getElementById('openChatbot').addEventListener('click', function() {
-            document.getElementById('chat-window').style.display = 'flex';
-        });
+        // Toggle Menu Sidebar
+        function toggleMenu() {
+            const menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.style.display = (menuSidebar.style.display === 'block') ? 'none' : 'block';
+        }
 
-        document.getElementById('closeChat').addEventListener('click', function() {
-            document.getElementById('chat-window').style.display = 'none';
-        });
+        // Toggle Chatbot
+        function toggleChatbot()
+        <!-- Top Bar -->
+    <div class="top-bar">
+        <img src="https://via.placeholder.com/150" alt="Logo" class="logo">
+        <button class="menu-button" onclick="toggleMenu()">Menu</button>
+    </div>
 
-        // Send message to chatbot
-        document.getElementById('sendMessage').addEventListener('click', function() {
-            const userMessage = document.getElementById('user-input').value;
-            if (userMessage.trim() === "") return;
+    <!-- Menu Sidebar -->
+    <div class="menu-sidebar" id="menuSidebar">
+        <button class="close-button" onclick="toggleMenu()">×</button>
+        <h2>Menu</h2>
+        <div class="menu-section">
+            <h3>About Us</h3>
+            <ul>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Vision</a></li>
+                <li><a href="#">Team</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Get Involved</h3>
+            <ul>
+                <li><a href="#">Volunteer</a></li>
+                <li><a href="#">Donate</a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Tech Articles</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li><a href="#">Grants</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Contact</h3>
+            <ul>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Partnerships</a></li>
+            </ul>
+        </div>
+    </div>
 
-            const chatMessages = document.getElementById('chat-messages');
-            const userMessageElement = document.createElement('div');
-            userMessageElement.textContent = "You: " + userMessage;
-            chatMessages.appendChild(userMessageElement);
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome to FutureTech Foundation</h1>
+        <p>We are committed to advancing education and innovation in emerging technologies.</p>
+        
+        <div class="image-placeholder">
+            <p>Image Placeholder</p>
+        </div>
 
-            // Responding from Afiba (chatbot)
-            const botMessageElement = document.createElement('div');
-            botMessageElement.textContent = "Afiba: I'm here to assist you!";
-            chatMessages.appendChild(botMessageElement);
+        <!-- Chatbot -->
+        <div id="chatbot">
+            <textarea id="chatInput" placeholder="Ask me anything..."></textarea>
+            <button onclick="sendMessage()">Send</button>
+        </div>
 
-            // Scroll to the bottom of the chat
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        <button id="openChatbot" onclick="toggleChatbot()">Chat with Afiba</button>
+    </div>
 
-            // Clear input
-            document.getElementById('user-input').value = "";
+    <!-- Footer -->
+    <footer>
+        <div class="address">
+            <p>FutureTech Foundation</p>
+            <p>123 Tech Street, Silicon Valley</p>
+        </div>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+        </div>
+    </footer>
 
-            // Use voice to respond
-            speak("I'm here to assist you!");
-        });
+    <!-- JavaScript -->
+    <script>
+        function toggleMenu() {
+            const menuSidebar = document.getElementById("menuSidebar");
+            menuSidebar.style.display = (menuSidebar.style.display === "block") ? "none" : "block";
+        }
 
-        // Function to speak out text
-        function speak(text) {
-            const speech = new SpeechSynthesisUtterance();
-            speech.text = text;
-            speech.lang = 'en-US';
-            window.speechSynthesis.speak(speech);
+        function toggleChatbot() {
+            const chatbot = document.getElementById("chatbot");
+            chatbot.style.display = (chatbot.style.display === "block") ? "none" : "block";
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById("chatInput");
+            const message = chatInput.value;
+            if (message.trim() !== "") {
+                alert("Message sent: " + message); // Placeholder for sending messages
+                chatInput.value = "";
+            }
         }
     </script>
-
 </body>
 </html>
