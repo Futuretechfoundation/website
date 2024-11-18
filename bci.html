@@ -222,45 +222,55 @@
             Download Certificate
         </button>
     </div>
-    </section>
-    <footer>
-        <p>FutureTech Academy - Empowering Minds for the Future</p>
-    </footer>
+</section>
     <script>
-        let totalQuestions = 5;
-        let correctAnswers = 0;
+    let totalQuestions = 5; // Total number of questions in the course
+    let correctAnswers = 0; // Counter for correct answers
 
-        function checkAnswer(button, isCorrect) {
-            const feedback = button.nextElementSibling;
+    // Function to check answers
+    function checkAnswer(button, isCorrect) {
+        const feedback = button.nextElementSibling;
 
-            if (button.classList.contains("correct") || button.classList.contains("incorrect")) return;
+        // Prevent multiple clicks on the same button
+        if (button.classList.contains("correct") || button.classList.contains("incorrect")) return;
 
-            if (isCorrect) {
-                button.classList.add("correct");
-                feedback.textContent = "Correct!";
-                feedback.classList.add("correct");
-                correctAnswers++;
-            } else {
-                button.classList.add("incorrect");
-                feedback.textContent = "Not Correct!";
-                feedback.classList.add("incorrect");
-            }
-
-            if (document.querySelectorAll(".correct, .incorrect").length === totalQuestions) {
-                showResults();
-            }
+        // Update feedback and answer tracking
+        if (isCorrect) {
+            button.classList.add("correct");
+            feedback.textContent = "Correct!";
+            feedback.classList.add("correct");
+            correctAnswers++;
+        } else {
+            button.classList.add("incorrect");
+            feedback.textContent = "Not Correct!";
+            feedback.classList.add("incorrect");
         }
 
-        function showResults() {
-            const certificate = document.getElementById("certificate");
-            const resultsSummary = document.getElementById("results-summary");
-
-            resultsSummary.textContent = `You answered ${correctAnswers} out of ${totalQuestions} questions correctly.`;
-
-            if (correctAnswers === totalQuestions) {
-                certificate.style.display = "block";
-            }
+        // If all questions are answered, show results
+        if (document.querySelectorAll(".correct, .incorrect").length === totalQuestions) {
+            showResults();
         }
+    }
+
+    // Function to show results and display certificate
+    function showResults() {
+        const certificate = document.querySelector(".certificate");
+        const resultsSummary = document.getElementById("results-summary");
+
+        // Update results summary
+        resultsSummary.textContent = `You answered ${correctAnswers} out of ${totalQuestions} questions correctly.`;
+
+        // Show certificate only if all answers are correct
+        if (correctAnswers === totalQuestions) {
+            document.getElementById("issue-date").textContent = new Date().toLocaleDateString();
+            certificate.style.display = "block";
+        }
+    }
+
+    // Mock certificate download function
+    function downloadCertificate() {
+        alert("Your certificate download has started!");
+    }
     </script>
 </body>
 </html>
