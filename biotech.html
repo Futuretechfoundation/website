@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biotechnology Course</title>
+    <title>Comprehensive Biotechnology Course</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        // JavaScript for Quiz Scoring and Certificate
+        // JavaScript for Quiz Scoring and Certificate Generation
         function calculateScore() {
             let score = 0;
-            const totalQuestions = 6;
+            const totalQuestions = 10;
 
-            // Retrieve all answers
+            // Correct answers (update for actual questions)
+            const correctAnswers = ["q1a", "q2c", "q3b", "q4a", "q5c", "q6a", "q7b", "q8a", "q9c", "q10a"];
+
             const answers = document.querySelectorAll('input[type="radio"]:checked');
-
-            // Correct answers (example: adjust based on quiz)
-            const correctAnswers = ["q1a", "q2c", "q3b", "q4a", "q5c", "q6a"];
-
             answers.forEach(answer => {
                 if (correctAnswers.includes(answer.value)) {
                     score++;
@@ -36,8 +34,9 @@
 </head>
 <body>
     <header>
-        <h1>Biotechnology Course</h1>
-        <p>A comprehensive guide to biotechnology, covering principles, applications, and the future of the field.</p>
+        <h1>Comprehensive Biotechnology Course</h1>
+        <p>Explore biotechnology in depth, including principles, applications, and ethical considerations.</p>
+        <button onclick="scrollToContent()">Start Learning</button>
     </header>
 
     <nav>
@@ -52,77 +51,159 @@
     </nav>
 
     <main>
-        <!-- Chapter 7 -->
-        <section id="emerging_areas">
-            <h2>Chapter 7: Emerging and Interdisciplinary Areas</h2>
+        <!-- Section: Genomics and Genetic Engineering -->
+        <section id="genomics">
+            <h2>Genomics and Genetic Engineering</h2>
             <article>
-                <h3>7.1 Artificial Intelligence in Biotechnology</h3>
                 <p>
-                    Artificial intelligence (AI) has revolutionized biotechnology by enabling predictive modeling, drug discovery, 
-                    and personalized medicine. AI algorithms analyze complex datasets to identify trends and develop innovative solutions.
+                    Genomics and genetic engineering have transformed modern science, enabling profound insights into the 
+                    genetic basis of life and the manipulation of genetic material for various applications. Genomics is 
+                    the study of an organism’s entire genome, including its structure, function, evolution, and mapping. 
+                    By understanding the role of individual genes and their interactions, scientists can uncover the genetic 
+                    underpinnings of diseases, develop targeted therapies, and improve agricultural yields. The field of genomics 
+                    has been accelerated by technologies like next-generation sequencing (NGS), which allows for rapid and 
+                    cost-effective sequencing of entire genomes.
                 </p>
-
-                <h3>7.2 Nanobiotechnology and Biosensors</h3>
                 <p>
-                    Nanobiotechnology applies nanotechnology to biological systems, resulting in advancements such as biosensors, 
-                    targeted drug delivery systems, and nanoparticle-based imaging techniques.
+                    Genetic engineering, on the other hand, involves the direct manipulation of an organism’s DNA to modify 
+                    its characteristics. CRISPR-Cas9, a revolutionary genome-editing tool, has brought genetic engineering into 
+                    mainstream research and applications. This tool uses a guide RNA to target specific DNA sequences, enabling 
+                    precise edits that can introduce, delete, or replace genetic material. CRISPR has been employed in correcting 
+                    genetic disorders like sickle cell anemia, creating disease-resistant crops, and even developing bioengineered 
+                    organisms that produce pharmaceuticals or biofuels.
                 </p>
-
-                <h3>7.3 Systems Biology</h3>
                 <p>
-                    Systems biology integrates biological data from various scales to create a holistic understanding of complex 
-                    biological networks. It plays a crucial role in identifying drug targets and understanding disease mechanisms.
+                    Beyond CRISPR, gene therapy is a rapidly evolving field that uses genetic modification to treat or prevent 
+                    diseases. This involves delivering therapeutic genes to a patient’s cells using viral or non-viral vectors. 
+                    Recent advancements have led to successful gene therapies for inherited conditions like spinal muscular 
+                    atrophy and certain types of blindness. These breakthroughs highlight the potential of gene therapy to cure 
+                    previously untreatable conditions.
                 </p>
-
-                <h3>7.4 Biomaterials and Tissue Engineering</h3>
                 <p>
-                    Biomaterials are engineered for medical applications, including tissue scaffolds, implants, and prosthetics. 
-                    Tissue engineering combines these materials with cellular components to create functional tissues and organs.
+                    Synthetic biology represents another frontier in genetic engineering. This interdisciplinary field combines 
+                    biology, engineering, and computer science to design and construct new biological parts, devices, and systems. 
+                    Applications include creating synthetic organisms for environmental remediation, engineering bacteria to produce 
+                    bio-based chemicals, and developing biosensors for detecting diseases.
                 </p>
-
-                <h3>7.5 Biomedical Devices and Drug Delivery Systems</h3>
                 <p>
-                    Innovative drug delivery systems, such as microneedles and hydrogels, enhance the efficiency and precision of 
-                    therapeutic interventions. Biomedical devices, including wearable monitors, aid in real-time health tracking.
+                    However, these advancements also raise ethical, legal, and social challenges. Concerns about gene editing 
+                    in human embryos, the environmental impact of genetically modified organisms (GMOs), and the potential misuse 
+                    of genetic information highlight the need for robust regulatory frameworks and public engagement. Addressing 
+                    these issues will be crucial to ensuring that genetic engineering and genomics are developed and deployed 
+                    responsibly.
                 </p>
-
-                <h3>7.6 Ethical, Legal, and Social Implications of Biotechnology</h3>
                 <p>
-                    As biotechnology advances, ethical and legal challenges arise. Issues include privacy in genomic data, access to 
-                    therapies, and balancing innovation with regulation to ensure public trust.
+                    Looking forward, the integration of AI and machine learning with genomics is expected to further accelerate 
+                    discoveries. These technologies can analyze vast datasets to identify patterns, predict outcomes, and optimize 
+                    genetic modifications. Additionally, the convergence of genomics with other “omics” fields—such as transcriptomics, 
+                    proteomics, and metabolomics—will provide a more comprehensive understanding of biological systems. This 
+                    holistic approach will undoubtedly lead to innovative solutions for global challenges in healthcare, agriculture, 
+                    and beyond.
                 </p>
             </article>
         </section>
 
-        <!-- Chapter 8 -->
-        <section id="policy">
-            <h2>Chapter 8: Biotechnology Policy and Regulation</h2>
-            <article>
-                <h3>8.1 Regulatory Frameworks for Biotech Products</h3>
-                <p>
-                    Regulatory bodies like the FDA and EMA oversee the development, testing, and approval of biotechnology products 
-                    to ensure safety and efficacy.
-                </p>
+<!-- Expand Molecular Biology and Biochemistry (500 words) -->
+<section id="molecular_biology">
+    <h2>Molecular Biology and Biochemistry</h2>
+    <article>
+        Molecular biology and biochemistry are critical fields of science that focus on understanding the molecular mechanisms within living organisms. These disciplines examine the structure, function, and interactions of biomolecules, including proteins, nucleic acids, lipids, and carbohydrates. They provide insights into cellular processes such as metabolism, replication, transcription, translation, and signal transduction, and are foundational to advancements in biotechnology, medicine, and agriculture.
 
-                <h3>8.2 Bioethics and Public Perception</h3>
-                <p>
-                    Bioethics addresses the societal impacts of biotechnology, from genetic editing to cloning. Public perception plays 
-                    a vital role in shaping policy and acceptance of new technologies.
-                </p>
+        At the heart of molecular biology is the study of DNA, RNA, and protein synthesis. DNA holds the genetic blueprint for life, encoding instructions for building and maintaining cells. The central dogma of molecular biology, which involves the transcription of DNA into RNA and the translation of RNA into protein, forms the basis for understanding how genetic information is expressed in living systems. Researchers use techniques such as PCR (polymerase chain reaction), gel electrophoresis, and DNA sequencing to manipulate and study genes, facilitating advancements in genomics and gene therapy.
 
-                <h3>8.3 Intellectual Property in Biotechnology</h3>
-                <p>
-                    Intellectual property rights protect biotech innovations, encouraging research investment while raising debates about 
-                    accessibility and ethical considerations.
-                </p>
+        Biochemistry, on the other hand, delves into the chemical processes within cells. It explores the structures and properties of biomolecules and how they interact to drive metabolic pathways. Enzymes, which act as biological catalysts, are essential in regulating the rate of biochemical reactions. Metabolic pathways, such as glycolysis and the citric acid cycle, are vital for energy production, while signal transduction pathways help cells respond to external stimuli. The study of enzyme kinetics and metabolic regulation has broad implications for drug design, disease prevention, and understanding metabolic disorders.
 
-                <h3>8.4 Clinical Trials and Biotech Product Approval</h3>
-                <p>
-                    Clinical trials assess the safety and effectiveness of biotech products. Approval processes vary globally but share 
-                    common goals of ensuring patient safety and product quality.
-                </p>
-            </article>
-        </section>
+        Advances in molecular biology and biochemistry are closely tied to technological innovations. High-throughput sequencing technologies have revolutionized genomics, allowing for the rapid sequencing of entire genomes. Proteomics, the large-scale study of proteins, relies on techniques such as mass spectrometry and two-dimensional gel electrophoresis to identify and characterize proteins in complex samples. These tools are critical for understanding diseases at the molecular level, discovering biomarkers for early detection, and developing targeted therapies.
+
+        Additionally, the growing field of synthetic biology, which combines principles from molecular biology, engineering, and computer science, is enabling the creation of novel organisms and systems with tailored functions. Researchers are designing synthetic genes and metabolic pathways to produce valuable products such as biofuels, pharmaceuticals, and specialty chemicals. This interdisciplinary approach holds the promise of revolutionizing industrial biotechnology and environmental sustainability.
+
+        In conclusion, molecular biology and biochemistry are intertwined fields that provide a deeper understanding of life at the molecular level. They drive innovation in healthcare, agriculture, and industry, offering new solutions to pressing global challenges. By continuing to explore the molecular foundations of life, researchers can unlock new therapeutic strategies, improve biotechnological processes, and pave the way for groundbreaking discoveries in science and medicine.
+    </article>
+</section>
+
+<!-- Expand Medical Biotechnology (500 words) -->
+<section id="medical_biotech">
+    <h2>Medical Biotechnology</h2>
+    <article>
+        Medical biotechnology is an innovative field that uses biological systems, organisms, or derivatives to develop products and therapies that improve human health. It merges principles from molecular biology, biochemistry, genetics, and pharmaceutical sciences to create groundbreaking medical treatments, diagnostics, and prevention strategies. Over the years, medical biotechnology has transformed the healthcare landscape by introducing novel therapies for diseases that were once considered untreatable.
+
+        One of the most prominent applications of medical biotechnology is in the development of biopharmaceuticals. These are drugs derived from living organisms, as opposed to traditional small-molecule drugs. Biopharmaceuticals include monoclonal antibodies, recombinant proteins, and vaccines, which have revolutionized treatments for various diseases, including cancer, autoimmune disorders, and infectious diseases. For instance, monoclonal antibodies such as trastuzumab (Herceptin) have become critical in the treatment of breast cancer, while vaccines, such as the mRNA COVID-19 vaccines, have played a pivotal role in combating the global pandemic.
+
+        Gene therapy is another promising aspect of medical biotechnology. It involves modifying or replacing defective genes within a patient's cells to treat or prevent diseases. This approach holds great potential for treating genetic disorders, such as cystic fibrosis and muscular dystrophy, by directly addressing the underlying cause of the disease. Recent advances in CRISPR-Cas9 gene-editing technology have significantly improved the precision and efficiency of gene therapies, allowing for more targeted treatments and reducing the risks of off-target effects.
+
+        Regenerative medicine, which includes stem cell therapy and tissue engineering, is another critical area of medical biotechnology. Stem cells, which have the ability to differentiate into various cell types, offer the potential to repair or replace damaged tissues and organs. Stem cell-based therapies are being explored for the treatment of conditions such as heart disease, spinal cord injuries, and neurodegenerative disorders. Additionally, tissue engineering aims to create functional tissues and organs in the laboratory, providing a solution to the shortage of organ donors and offering new possibilities for personalized medicine.
+
+        Diagnostics is another vital area within medical biotechnology. Biotechnology-based diagnostic tools, such as PCR, enzyme-linked immunosorbent assays (ELISA), and next-generation sequencing (NGS), have revolutionized the early detection and diagnosis of diseases. These technologies enable the identification of genetic mutations, pathogens, and biomarkers, allowing for earlier and more accurate diagnoses. Precision medicine, which tailors treatments based on an individual's genetic makeup, is also made possible by advancements in biotechnology and genomics, offering more personalized and effective treatment options.
+
+        In addition to these therapies, biotechnology plays a key role in drug development and pharmaceutical manufacturing. The production of biopharmaceuticals often requires complex processes, including fermentation, cell culture, and purification. Biotechnology also facilitates the development of biosimilars, which are biologically similar versions of already-approved drugs, offering more affordable alternatives to expensive treatments.
+
+        In summary, medical biotechnology is at the forefront of transforming healthcare, offering groundbreaking treatments and diagnostic tools that improve patient outcomes. The continued advancements in this field hold the promise of curing previously untreatable diseases, enhancing personalized medicine, and improving global health. By harnessing the power of biological systems and cutting-edge technologies, medical biotechnology is shaping the future of medicine and healthcare.
+    </article>
+</section>
+
+<!-- Expand Emerging and Interdisciplinary Areas (500 words) -->
+<section id="emerging_areas">
+    <h2>Emerging and Interdisciplinary Areas</h2>
+    <article>
+        Emerging and interdisciplinary areas in biotechnology are rapidly reshaping the field, blending traditional biological sciences with new technologies and methodologies to tackle complex global challenges. These areas not only drive scientific discovery but also open up new avenues for innovation in medicine, agriculture, environmental sustainability, and industry.
+
+        One of the most exciting emerging areas is synthetic biology, which combines principles from molecular biology, engineering, and computer science to design and construct new biological parts, devices, and systems. Synthetic biology allows researchers to create custom-designed organisms with specific functions, such as bacteria that can produce biofuels, pharmaceuticals, or biodegradable plastics. By redesigning the genetic code of microorganisms, synthetic biology holds the potential to revolutionize industries such as energy, materials science, and waste management.
+
+        Another promising interdisciplinary field is bioinformatics, which applies computational tools and techniques to analyze biological data, particularly large datasets generated by genomics, proteomics, and other high-throughput technologies. Bioinformatics plays a crucial role in the interpretation of genomic data, enabling the identification of genetic variants associated with diseases, understanding the molecular mechanisms of drug action, and discovering new drug targets. As the amount of biological data continues to grow, bioinformatics will become even more essential in advancing personalized medicine and improving healthcare outcomes.
+
+        Precision medicine, which tailors medical treatments based on an individual's genetic profile, is an area where emerging technologies are making a profound impact. Advances in genomics, bioinformatics, and data science are enabling clinicians to make more informed decisions about treatment plans, optimizing therapeutic outcomes for patients. By analyzing an individual's genetic makeup, lifestyle, and environmental factors, precision medicine offers the potential to move away from the one-size-fits-all approach to healthcare and toward more personalized, effective treatments.
+
+        Another exciting development is the convergence of biotechnology and artificial intelligence (AI). AI and machine learning are increasingly being used to analyze vast amounts of biological and medical data, uncovering hidden patterns that may not be apparent to human researchers. AI algorithms can predict the structure of proteins, identify new drug candidates, and assist in the design of novel therapies. In drug discovery, AI is speeding up the identification of potential drug compounds and optimizing clinical trial designs, ultimately reducing the time and cost associated with developing new drugs.
+
+        Environmental biotechnology is also gaining momentum, with innovations in bioremediation and waste management becoming increasingly important in addressing environmental challenges. Bioremediation utilizes microorganisms to degrade or transform pollutants in soil, water, and air, offering an environmentally friendly alternative to traditional methods of waste disposal. Additionally, biotechnology-based solutions are being developed to tackle issues such as plastic pollution, carbon capture, and sustainable agriculture, providing tools for a more sustainable future.
+
+        Lastly, organ-on-a-chip technology is an emerging field that simulates human organ systems on microfluidic chips. This technology offers a more accurate and ethical alternative to traditional animal testing, allowing researchers to study drug interactions, disease models, and toxicology in a controlled, human-relevant environment. Organ-on-a-chip systems are paving the way for more effective and personalized drug testing, as well as advancements in disease modeling and regenerative medicine.
+
+        In conclusion, emerging and interdisciplinary areas in biotechnology are opening new frontiers in science and technology. By combining diverse fields of research and cutting-edge technologies, these areas are addressing some of the most pressing challenges of our time, from healthcare and environmental sustainability to industrial innovation. As these fields continue to evolve, they hold the promise of transforming industries, improving quality of life, and creating a more sustainable future.
+    </article>
+</section>
+
+<!-- Expand Biotechnology Policy and Regulation 
+
+        <!-- Expand Emerging and Interdisciplinary Areas (500 words) -->
+<section id="emerging_areas">
+    <h2>Emerging and Interdisciplinary Areas</h2>
+    <article>
+        The field of biotechnology is rapidly evolving, with emerging areas and interdisciplinary research expanding the boundaries of what is possible. These areas not only enhance our understanding of biological systems but also open up new frontiers in medicine, environmental sustainability, and industrial applications. The integration of fields such as bioinformatics, nanotechnology, and artificial intelligence (AI) with traditional biotechnological approaches is catalyzing innovation and paving the way for novel solutions to complex global challenges.
+
+        One of the most exciting interdisciplinary areas is synthetic biology, which blends biology, engineering, and computer science to design and build new biological systems. Synthetic biologists create novel DNA sequences, pathways, and organisms with specific functions, often with the goal of producing valuable compounds or addressing environmental issues. For example, synthetic biology has led to advancements in biofuel production, enabling the development of microorganisms that can convert waste materials into renewable energy. Similarly, synthetic organisms could be designed to capture carbon dioxide or break down pollutants, offering solutions to climate change and pollution.
+
+        Another emerging area with significant potential is personalized medicine, which tailors medical treatment to an individual’s genetic makeup, lifestyle, and environmental factors. The integration of genomics, bioinformatics, and data analytics is enabling the development of therapies that are more effective and have fewer side effects. Genomic sequencing technologies allow for the identification of genetic variants that influence disease susceptibility, treatment responses, and drug metabolism. With advancements in AI and machine learning, researchers can analyze large-scale datasets to uncover patterns and develop precision treatments for conditions ranging from cancer to rare genetic disorders.
+
+        The field of bioprinting, an innovative application of 3D printing technology, is also gaining momentum. Bioprinting involves the creation of three-dimensional structures using living cells, biomaterials, and growth factors. This technology holds the potential to revolutionize tissue engineering by enabling the creation of complex tissues and even organs. While bioprinting is still in the early stages of development, researchers are optimistic that it could one day lead to personalized organ transplants, helping to address the global shortage of organ donors. Moreover, bioprinting can also be used for drug testing and disease modeling, providing more accurate platforms for understanding disease mechanisms and evaluating therapeutic options.
+
+        AI and machine learning are becoming increasingly important in biotechnology, particularly in drug discovery and development. AI algorithms can analyze vast amounts of biological and chemical data to identify potential drug candidates, predict their effectiveness, and optimize their design. This has the potential to accelerate the drug development process, which traditionally takes years and is costly. AI can also assist in diagnostics by analyzing medical imaging, genomic data, and patient records to identify disease patterns and recommend treatments. These technologies are also crucial for understanding the vast amounts of biological data generated by high-throughput sequencing and proteomics, enabling more efficient and accurate analysis.
+
+        Additionally, the fusion of biotechnology with nanotechnology is yielding significant advancements in medical applications. Nanotechnology involves the manipulation of materials at the nanoscale (1 to 100 nanometers) and has numerous applications in drug delivery, diagnostics, and imaging. Nanoparticles can be engineered to deliver drugs directly to targeted tissues, improving the precision of treatments and minimizing side effects. Nanomaterials can also be used in biosensors to detect disease markers or pathogens at ultra-low concentrations, offering highly sensitive diagnostic tools. Moreover, nanotechnology holds promise in creating advanced materials for medical devices, wound healing, and tissue regeneration.
+
+        In the environmental sector, biotechnology is contributing to sustainability through the development of bio-based solutions for waste management, pollution control, and renewable energy. Microorganisms engineered to break down pollutants or recycle waste materials are being used to clean up environmental contaminants, while algae and bacteria are being explored for biofuel production. Biotechnology is also playing a key role in the development of sustainable agriculture practices, such as genetically modified crops that are resistant to pests, diseases, and environmental stressors, ensuring food security in the face of climate change.
+
+        In conclusion, emerging and interdisciplinary areas of biotechnology are expanding the horizons of what is possible in healthcare, environmental sustainability, and industrial applications. By combining biological knowledge with cutting-edge technologies such as AI, nanotechnology, and synthetic biology, researchers are creating new solutions to address some of the most pressing global challenges. As these fields continue to evolve, the potential for innovation and discovery is vast, offering exciting prospects for the future of biotechnology and its role in shaping a more sustainable and healthier world.
+    </article>
+</section>
+
+<!-- Expand Biotechnology Policy and Regulation (500 words) -->
+<section id="policy">
+    <h2>Biotechnology Policy and Regulation</h2>
+    <article>
+        Biotechnology policy and regulation are crucial components of ensuring the safe, ethical, and effective development and application of biotechnological innovations. As biotechnology continues to advance and intersect with various aspects of society, from healthcare to agriculture and environmental management, it is essential to have clear guidelines and regulations in place to govern its use. Biotechnology policy shapes the direction of research, development, and commercialization of biotechnological products, while regulations provide the framework for safety, efficacy, and ethical considerations.
+
+        One of the primary concerns in biotechnology policy is the safe use of genetically modified organisms (GMOs). As genetic engineering techniques, such as CRISPR-Cas9, have made it easier to modify the genetic makeup of plants, animals, and microorganisms, governments around the world have established regulations to assess the risks and benefits of GMOs. These regulations typically involve a thorough review process that evaluates the potential environmental and health impacts of GMOs before they are approved for commercial release. International organizations, such as the World Health Organization (WHO) and the Food and Agriculture Organization (FAO), provide guidelines for the safe use of GMOs and promote the sharing of information and best practices among countries.
+
+        In the field of medical biotechnology, regulatory agencies such as the U.S. Food and Drug Administration (FDA) and the European Medicines Agency (EMA) play a critical role in ensuring the safety and efficacy of biopharmaceuticals and medical devices. Before a new drug or medical treatment can be marketed, it must undergo rigorous clinical trials to assess its safety and effectiveness. These trials are governed by strict ethical standards, including informed consent and the protection of participants' rights. The regulatory process also includes the approval of manufacturing processes, labeling, and post-market surveillance to monitor the safety of approved products.
+
+        Ethical considerations are central to biotechnology policy, particularly when it comes to issues such as gene editing, cloning, and stem cell research. The use of gene-editing technologies to modify human embryos, for example, raises significant ethical concerns regarding consent, genetic diversity, and potential unintended consequences. Many countries have implemented laws to regulate or ban certain genetic interventions, while others have adopted more permissive policies. Biotechnology policy must also address the ethical implications of personalized medicine, which involves tailoring medical treatments to an individual's genetic profile. Issues such as data privacy, access to healthcare, and potential discrimination based on genetic information are important areas of concern.
+
+        Additionally, biotechnology policy is influenced by public opinion, which can vary significantly across regions and cultures. In some countries, there is strong public support for the use of biotechnology to address issues such as food security, climate change, and disease prevention. In others, there is greater concern about the potential risks of GMOs and the ethical implications of genetic manipulation. Policymakers must balance scientific advancements with public perception and ensure that regulations reflect both the potential benefits and the concerns of society.
+
+        In conclusion, biotechnology policy and regulation play a crucial role in ensuring that the benefits of biotechnological innovations are realized safely and ethically. As the field continues to advance, it is essential to have a robust framework in place to address the various challenges and opportunities that arise. By fostering collaboration between policymakers, scientists, industry stakeholders, and the public, biotechnology can continue to thrive and contribute to the well-being of society while safeguarding human health and the environment.
+    </article>
+</section>
 
         <!-- Quiz -->
         <section id="quiz">
@@ -130,27 +211,17 @@
             <form onsubmit="event.preventDefault(); calculateScore();">
                 <p>1. What is CRISPR-Cas9 primarily used for?</p>
                 <label><input type="radio" name="q1" value="q1a"> Editing DNA</label><br>
-                <label><input type="radio" name="q1" value="q1b"> Protein folding</label><br>
+                <label><input type="radio" name="q1" value="q1b"> Analyzing protein structures</label><br>
 
-                <p>2. Which field combines nanotechnology with biology?</p>
-                <label><input type="radio" name="q2" value="q2a"> Genomics</label><br>
-                <label><input type="radio" name="q2" value="q2c"> Nanobiotechnology</label><br>
+                <p>2. Which technology aids in personalized medicine?</p>
+                <label><input type="radio" name="q2" value="q2a"> Synthetic biology</label><br>
+                <label><input type="radio" name="q2" value="q2c"> Genomics</label><br>
 
-                <p>3. What does systems biology focus on?</p>
-                <label><input type="radio" name="q3" value="q3b"> Holistic understanding of biological networks</label><br>
-                <label><input type="radio" name="q3" value="q3a"> Isolating individual proteins</label><br>
+                <p>3. What does bioinformatics focus on?</p>
+                <label><input type="radio" name="q3" value="q3b"> Analyzing large biological datasets</label><br>
+                <label><input type="radio" name="q3" value="q3a"> Studying ecosystem dynamics</label><br>
 
-                <p>4. Which technology enhances vaccine development?</p>
-                <label><input type="radio" name="q4" value="q4a"> mRNA technology</label><br>
-                <label><input type="radio" name="q4" value="q4b"> DNA synthesis</label><br>
-
-                <p>5. What role does intellectual property play in biotechnology?</p>
-                <label><input type="radio" name="q5" value="q5c"> Protecting biotech innovations</label><br>
-                <label><input type="radio" name="q5" value="q5b"> Regulating clinical trials</label><br>
-
-                <p>6. Which device mimics organ functions on a microchip?</p>
-                <label><input type="radio" name="q6" value="q6a"> Organ-on-chip</label><br>
-                <label><input type="radio" name="q6" value="q6b"> Wearable monitors</label><br>
+                <!-- Add remaining questions -->
 
                 <button type="submit">Submit Quiz</button>
             </form>
@@ -158,8 +229,8 @@
 
         <!-- Certificate -->
         <section id="certificate" style="display:none;">
-            <h2>Congratulations!</h2>
-            <p>You have successfully passed the Biotechnology Course.</p>
+            <h2>Certificate of Completion</h2>
+            <p>Congratulations on successfully completing the Comprehensive Biotechnology Course!</p>
             <button onclick="window.print()">Print Certificate</button>
         </section>
     </main>
@@ -168,4 +239,4 @@
         <p>&copy; 2024 FutureTech Academy. All rights reserved.</p>
     </footer>
 </body>
-  </html>
+</html>
