@@ -3,51 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain-Computer Interface Course</title>
+    <title>Brain-Computer Interface (BCI) Course</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            background: #f9f9f9;
         }
         header {
             background: #0056b3;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
         }
         nav {
             background: #f4f4f4;
             padding: 1rem;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         nav a {
             margin: 0 1rem;
             text-decoration: none;
             color: #0056b3;
             font-weight: bold;
+            font-size: 1.2rem;
         }
         section {
             padding: 2rem;
             max-width: 900px;
             margin: auto;
+            background: white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            color: #0056b3;
+            margin-bottom: 0.5rem;
+        }
+        button {
+            background: #0056b3;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            margin: 1rem 0;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #003f7f;
         }
         footer {
             background: #222;
             color: white;
             text-align: center;
             padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 2rem;
+        }
+        .quiz {
+            background: #eef;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+        .quiz h3 {
+            margin-top: 0;
+        }
+        .certificate {
+            text-align: center;
+            margin-top: 2rem;
+            background: #fff;
+            border: 2px solid #0056b3;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .certificate h2 {
+            color: #333;
+        }
+        .certificate p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Brain-Computer Interface (BCI) Course</h1>
-        <p>Explore emerging technologies and applications of BCIs</p>
+        <p>Comprehensive exploration of BCI technologies and applications</p>
     </header>
     <nav>
         <a href="#introduction">Introduction</a>
@@ -55,44 +104,93 @@
         <a href="#invasive">Invasive Systems</a>
         <a href="#applications">Applications</a>
         <a href="#future">Future Trends</a>
-        <a href="#quiz">Quiz</a>
+        <a href="#certificate">Certificate</a>
     </nav>
+    <!-- Introduction Section -->
     <section id="introduction">
         <h2>Introduction to BCI Technology</h2>
-        <p>Brain-Computer Interface (BCI) technology enables direct communication between the brain and external devices. It works by recording and interpreting neural signals, allowing users to control systems using their thoughts. Early BCIs relied on EEG technology, but advancements now include fNIRS and MEG systems for improved usability and accessibility.</p>
+        <p>
+            Brain-Computer Interface (BCI) technology represents a significant milestone in neuroscience and engineering. By enabling direct communication between the brain and external devices, BCIs unlock new possibilities in human-computer interaction, rehabilitation, and accessibility.
+        </p>
+        <p>
+            Early BCIs primarily utilized electroencephalography (EEG), capturing electrical signals from the brain's surface. This method, while groundbreaking, faced limitations in spatial resolution and signal fidelity. Advancements in invasive techniques, such as implanted electrode arrays, have since overcome many of these challenges, providing higher resolution and enabling precise neural data capture. 
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p><strong>Question 1:</strong> What technology is commonly used in early BCIs?</p>
+            <button>EEG</button>
+            <button>fMRI</button>
+            <button>CT Scans</button>
+        </div>
     </section>
+    <!-- Non-Invasive Systems -->
     <section id="non-invasive">
         <h2>Non-Invasive BCI Systems</h2>
-        <p>Non-invasive BCIs use methods like EEG, fNIRS, and MEG to capture brain activity without surgery. While they are safe and cost-effective, challenges like signal quality and spatial resolution persist. Companies like Neuralink and Kernel are pioneering advancements in this field.</p>
+        <p>
+            Non-invasive BCIs offer a safer and more accessible approach to brain signal acquisition, avoiding the surgical risks associated with invasive methods. These systems utilize techniques such as EEG, functional near-infrared spectroscopy (fNIRS), and magnetoencephalography (MEG) to measure brain activity from the scalp. Although limited by signal resolution, they have enabled applications in gaming, neurofeedback, and cognitive assessment.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p><strong>Question 1:</strong> Which of the following is a non-invasive BCI method?</p>
+            <button>EEG</button>
+            <button>Utah Array</button>
+            <button>ECoG</button>
+        </div>
     </section>
+    <!-- Invasive Systems -->
     <section id="invasive">
         <h2>Invasive BCI Systems</h2>
-        <p>Invasive BCIs involve implanted electrodes for high-resolution neural data capture. Applications include restoring motor functions and controlling robotic devices. Despite their potential, ethical considerations and risks must be addressed to ensure safety and accessibility.</p>
+        <p>
+            Invasive BCIs involve implanted electrodes, providing unparalleled access to neural data. These systems have shown promise in restoring mobility, communication, and motor functions for individuals with severe impairments. However, they also present ethical concerns and safety challenges that must be addressed to ensure equitable and responsible deployment.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p><strong>Question 1:</strong> What is the main advantage of invasive BCIs over non-invasive systems?</p>
+            <button>Higher resolution</button>
+            <button>Lower cost</button>
+            <button>Portability</button>
+        </div>
     </section>
+    <!-- Applications Section -->
     <section id="applications">
         <h2>Applications of BCIs</h2>
-        <ul>
-            <li><strong>Neuroprosthetics:</strong> Restoring mobility through brain-controlled devices.</li>
-            <li><strong>Rehabilitation:</strong> Supporting neural recovery post-stroke or injury.</li>
-            <li><strong>Gaming and VR:</strong> Enhancing user interaction through mental commands.</li>
-            <li><strong>Biometric Security:</strong> Utilizing unique brain patterns for secure authentication.</li>
-        </ul>
+        <p>
+            BCIs are revolutionizing various domains, from neuroprosthetics that restore mobility to gaming systems that enable hands-free control. Their role in rehabilitation, accessibility, and security continues to grow as technologies advance.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p><strong>Question 1:</strong> Name one application of BCIs in healthcare.</p>
+            <button>Gaming</button>
+            <button>Neuroprosthetics</button>
+            <button>Smart homes</button>
+        </div>
     </section>
+    <!-- Future Trends Section -->
     <section id="future">
         <h2>Future Trends in BCI Technology</h2>
-        <p>Advances in sensor technology and machine learning are driving the development of hybrid BCIs that combine modalities like EEG and fNIRS. Neuroadaptive interfaces that adjust to users' cognitive states are also on the rise, offering personalized experiences in gaming, rehabilitation, and daily life.</p>
+        <p>
+            The future of BCIs lies in hybrid and adaptive systems, integrating multiple neuroimaging modalities and leveraging machine learning for personalized solutions. Advances in wearable devices and neuroadaptive interfaces promise to enhance usability and expand applications.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p><strong>Question 1:</strong> What is a key trend in BCI development?</p>
+            <button>Hybrid systems</button>
+            <button>Standalone EEG devices</button>
+            <button>Traditional controllers</button>
+        </div>
     </section>
-    <section id="quiz">
-        <h2>Quiz</h2>
-        <ol>
-            <li>What is the primary function of BCIs?</li>
-            <li>What distinguishes invasive from non-invasive BCI systems?</li>
-            <li>Name two companies pioneering BCI technologies.</li>
-            <li>List one application of BCIs in healthcare.</li>
-        </ol>
+    <!-- Certificate Section -->
+    <section id="certificate">
+        <h2>Certification</h2>
+        <div class="certificate">
+            <h2>Certificate of Completion</h2>
+            <p>This certifies that <strong>[Your Name]</strong> has successfully completed the Brain-Computer Interface course.</p>
+            <p>Presented by FutureTech Academy</p>
+            <button onclick="alert('Download Started!')">Download Certificate</button>
+        </div>
     </section>
     <footer>
         <p>FutureTech Academy - Empowering Minds for the Future</p>
     </footer>
 </body>
-  </html>
+    </html>
