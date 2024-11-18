@@ -52,28 +52,28 @@
             border: none;
             padding: 0.7rem 1.2rem;
             cursor: pointer;
-            margin: 1rem 0;
+            margin: 0.5rem 0;
             font-size: 1rem;
             border-radius: 5px;
         }
         button:hover {
             background: #003f7f;
         }
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
+        button.correct {
+            background: #28a745;
         }
-        .quiz {
-            background: #eef;
-            padding: 1rem;
-            border-radius: 5px;
+        button.incorrect {
+            background: #dc3545;
+        }
+        .quiz-feedback {
             margin-top: 1rem;
+            font-weight: bold;
         }
-        .quiz h3 {
-            margin-top: 0;
+        .quiz-feedback.correct {
+            color: #28a745;
+        }
+        .quiz-feedback.incorrect {
+            color: #dc3545;
         }
         .certificate {
             text-align: center;
@@ -83,6 +83,7 @@
             border-radius: 10px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
         }
         .certificate h2 {
             color: #333;
@@ -90,6 +91,19 @@
         .certificate p {
             font-size: 1.2rem;
             margin: 1rem 0;
+        }
+        .results {
+            padding: 1rem;
+            background: #eef;
+            margin-top: 1rem;
+            border-radius: 5px;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -103,94 +117,138 @@
         <a href="#non-invasive">Non-Invasive Systems</a>
         <a href="#invasive">Invasive Systems</a>
         <a href="#applications">Applications</a>
+        <a href="#neuralink">Neuralink & Synchron</a>
         <a href="#future">Future Trends</a>
         <a href="#certificate">Certificate</a>
     </nav>
     <!-- Introduction Section -->
     <section id="introduction">
         <h2>Introduction to BCI Technology</h2>
-        <p>
-            Brain-Computer Interface (BCI) technology represents a significant milestone in neuroscience and engineering. By enabling direct communication between the brain and external devices, BCIs unlock new possibilities in human-computer interaction, rehabilitation, and accessibility.
-        </p>
-        <p>
-            Early BCIs primarily utilized electroencephalography (EEG), capturing electrical signals from the brain's surface. This method, while groundbreaking, faced limitations in spatial resolution and signal fidelity. Advancements in invasive techniques, such as implanted electrode arrays, have since overcome many of these challenges, providing higher resolution and enabling precise neural data capture. 
-        </p>
+        <p>Brain-Computer Interface (BCI) technology is one of the most groundbreaking developments in neuroscience and engineering. BCIs provide the capability for direct communication between the brain and external devices. This interaction opens up a world of possibilities for patients with physical disabilities, those in rehabilitation, and individuals looking to enhance their cognitive abilities. Traditionally, BCIs relied on technologies like electroencephalography (EEG), which measures electrical activity on the scalp, making it possible to interpret brain signals and use them to control computers, robotic devices, and other equipment. Despite its potential, EEG had limitations in spatial resolution and signal clarity, which led researchers to explore invasive BCI systems that could bypass some of these challenges. Invasive BCIs, such as implanted electrode arrays, allow for better resolution and more reliable signal capture from neurons directly within the brain. These systems can offer solutions for patients who have lost motor or sensory functions, such as individuals suffering from paralysis, allowing them to control prosthetics or even regain limited movement. As the field progresses, non-invasive BCIs, which are less intrusive and more accessible, are beginning to emerge as viable alternatives to their surgical counterparts. These systems aim to strike a balance between usability and safety, allowing for a broader range of applications in areas like communication, rehabilitation, and entertainment.</p>
         <div class="quiz">
             <h3>Quiz</h3>
-            <p><strong>Question 1:</strong> What technology is commonly used in early BCIs?</p>
-            <button>EEG</button>
-            <button>fMRI</button>
-            <button>CT Scans</button>
+            <p><strong>Question:</strong> What technology is commonly used in early BCIs?</p>
+            <button onclick="checkAnswer(this, true)">EEG</button>
+            <button onclick="checkAnswer(this, false)">fMRI</button>
+            <button onclick="checkAnswer(this, false)">CT Scans</button>
+            <p class="quiz-feedback"></p>
         </div>
     </section>
-    <!-- Non-Invasive Systems -->
+    <!-- Non-Invasive Systems Section -->
     <section id="non-invasive">
         <h2>Non-Invasive BCI Systems</h2>
-        <p>
-            Non-invasive BCIs offer a safer and more accessible approach to brain signal acquisition, avoiding the surgical risks associated with invasive methods. These systems utilize techniques such as EEG, functional near-infrared spectroscopy (fNIRS), and magnetoencephalography (MEG) to measure brain activity from the scalp. Although limited by signal resolution, they have enabled applications in gaming, neurofeedback, and cognitive assessment.
-        </p>
+        <p>Non-invasive brain-computer interfaces (BCIs) represent an area of intense research aimed at providing the advantages of BCIs while avoiding the risks and complications associated with surgical procedures. These systems acquire brain signals from the surface of the scalp using a variety of methods, such as EEG, functional near-infrared spectroscopy (fNIRS), and magnetoencephalography (MEG). Each method has its own strengths and limitations, but they all allow for the monitoring and interpretation of brain activity without the need for implantation. One of the main advantages of non-invasive BCIs is their safety and ease of use. They can be used in a wide variety of settings, including at home or in clinical environments, without the need for recovery time or surgical intervention. However, non-invasive systems are often limited by lower spatial resolution and signal quality compared to their invasive counterparts. As a result, researchers are working on improving signal processing techniques, developing more sophisticated algorithms, and creating better sensors to overcome these limitations. Despite these challenges, non-invasive BCIs have already made significant strides in areas such as neurofeedback, cognitive training, and virtual reality applications, and they are expected to play a key role in the future of BCIs. Their ability to provide real-time feedback and adapt to individual users’ needs makes them an exciting tool for everything from improving mental health to enhancing gaming and user experience applications.</p>
         <div class="quiz">
             <h3>Quiz</h3>
-            <p><strong>Question 1:</strong> Which of the following is a non-invasive BCI method?</p>
-            <button>EEG</button>
-            <button>Utah Array</button>
-            <button>ECoG</button>
+            <p><strong>Question:</strong> Which of the following is a non-invasive BCI method?</p>
+            <button onclick="checkAnswer(this, true)">EEG</button>
+            <button onclick="checkAnswer(this, false)">Utah Array</button>
+            <button onclick="checkAnswer(this, false)">ECoG</button>
+            <p class="quiz-feedback"></p>
         </div>
     </section>
-    <!-- Invasive Systems -->
+    <!-- Invasive Systems Section -->
     <section id="invasive">
         <h2>Invasive BCI Systems</h2>
-        <p>
-            Invasive BCIs involve implanted electrodes, providing unparalleled access to neural data. These systems have shown promise in restoring mobility, communication, and motor functions for individuals with severe impairments. However, they also present ethical concerns and safety challenges that must be addressed to ensure equitable and responsible deployment.
-        </p>
+        <p>Invasive BCIs are at the cutting edge of BCI research, providing highly detailed and accurate brain signal acquisition by implanting electrodes directly into the brain. These systems are typically used for applications where the resolution of brain signal capture is of utmost importance, such as in the control of prosthetic limbs, the restoration of motor function, or enabling communication for patients who are paralyzed or suffering from neurological diseases. One of the most well-known invasive BCI technologies is the Utah electrode array, which consists of a matrix of microelectrodes implanted directly into the brain’s cortical surface. This method allows for high-resolution data collection, enabling users to control robotic arms or communicate with external devices simply by thinking. However, invasive BCIs come with a set of challenges, particularly in terms of safety and long-term effectiveness. Implantation of electrodes requires surgery, which carries inherent risks such as infection, bleeding, and damage to surrounding brain tissue. Additionally, the body’s immune response to foreign objects can lead to the gradual degradation of the system over time. Despite these challenges, invasive BCIs hold tremendous promise for restoring lost functions and enhancing quality of life for individuals with severe disabilities. Ongoing research is focused on improving the biocompatibility of implants, increasing their lifespan, and developing technologies that allow for less invasive procedures.</p>
         <div class="quiz">
             <h3>Quiz</h3>
-            <p><strong>Question 1:</strong> What is the main advantage of invasive BCIs over non-invasive systems?</p>
-            <button>Higher resolution</button>
-            <button>Lower cost</button>
-            <button>Portability</button>
+            <p><strong>Question:</
+                <strong>Question:</strong> What is the main advantage of invasive BCIs over non-invasive systems?</p>
+            <button onclick="checkAnswer(this, true)">Higher resolution</button>
+            <button onclick="checkAnswer(this, false)">Lower cost</button>
+            <button onclick="checkAnswer(this, false)">Portability</button>
+            <p class="quiz-feedback"></p>
         </div>
     </section>
-    <!-- Applications Section -->
-    <section id="applications">
-        <h2>Applications of BCIs</h2>
+    <!-- Neuralink & Synchron Section -->
+    <section id="neuralink">
+        <h2>Neuralink & Synchron</h2>
         <p>
-            BCIs are revolutionizing various domains, from neuroprosthetics that restore mobility to gaming systems that enable hands-free control. Their role in rehabilitation, accessibility, and security continues to grow as technologies advance.
+            Neuralink and Synchron are two of the most prominent companies driving advancements in BCI technology. Neuralink, founded by Elon Musk, aims to develop high-bandwidth brain-machine interfaces that can enable seamless communication between humans and computers. Its approach involves the use of flexible, thread-like electrodes implanted into the brain to record and stimulate neural activity with minimal damage to surrounding tissue. Neuralink's system is designed to be implanted via a robot-assisted surgical procedure, which ensures precision and reduces risks. The company envisions applications in treating neurological disorders, restoring mobility in paralyzed individuals, and enhancing human cognitive capabilities.
+        </p>
+        <p>
+            Synchron, on the other hand, is focused on minimally invasive brain-computer interfaces. Its flagship technology, the Stentrode, is implanted into the brain's blood vessels using an endovascular approach, eliminating the need for open-brain surgery. This method significantly reduces surgical risks and recovery times, making it a promising option for widespread clinical use. Synchron's systems are designed to help patients with conditions such as amyotrophic lateral sclerosis (ALS) regain the ability to communicate and control devices using their thoughts.
+        </p>
+        <p>
+            Both companies face technical and ethical challenges in their pursuit of advanced BCIs. Neuralink is pushing the boundaries of electrode design and signal decoding, while Synchron is advancing minimally invasive techniques. Ethical considerations, such as data privacy and long-term effects of brain implants, are critical areas of focus for both organizations. Despite these challenges, the technologies being developed by Neuralink and Synchron hold transformative potential for medicine, communication, and human enhancement.
         </p>
         <div class="quiz">
             <h3>Quiz</h3>
-            <p><strong>Question 1:</strong> Name one application of BCIs in healthcare.</p>
-            <button>Gaming</button>
-            <button>Neuroprosthetics</button>
-            <button>Smart homes</button>
+            <p><strong>Question:</strong> What is Synchron's main advantage over Neuralink?</p>
+            <button onclick="checkAnswer(this, true)">Minimally invasive approach</button>
+            <button onclick="checkAnswer(this, false)">Higher data bandwidth</button>
+            <button onclick="checkAnswer(this, false)">Non-invasive EEG systems</button>
+            <p class="quiz-feedback"></p>
         </div>
     </section>
     <!-- Future Trends Section -->
     <section id="future">
         <h2>Future Trends in BCI Technology</h2>
         <p>
-            The future of BCIs lies in hybrid and adaptive systems, integrating multiple neuroimaging modalities and leveraging machine learning for personalized solutions. Advances in wearable devices and neuroadaptive interfaces promise to enhance usability and expand applications.
+            The future of BCI technology is focused on hybrid systems, neuroadaptive interfaces, and the integration of artificial intelligence (AI). Hybrid BCIs combine multiple neuroimaging modalities, such as EEG and functional near-infrared spectroscopy (fNIRS), to leverage the strengths of each technology. This approach improves signal accuracy and usability, making BCIs more practical for real-world applications. Neuroadaptive interfaces, which adapt to the user's cognitive and emotional states in real time, are expected to revolutionize gaming, mental health, and education by providing personalized experiences.
+        </p>
+        <p>
+            Advances in wearable electronics and wireless communication are also driving the development of portable BCIs that seamlessly integrate into daily life. These systems could be used for applications ranging from health monitoring to immersive virtual reality experiences. As machine learning algorithms become more sophisticated, BCIs will be able to decode brain signals with greater accuracy and adapt to individual users' needs, further enhancing their capabilities.
+        </p>
+        <p>
+            Ethical considerations remain a critical aspect of BCI development. Ensuring data privacy, accessibility, and affordability will be essential for the widespread adoption of these technologies. Developers and researchers are working to address these challenges while advancing the technical aspects of BCIs, paving the way for a future where brain-computer interfaces are an integral part of daily life.
         </p>
         <div class="quiz">
             <h3>Quiz</h3>
-            <p><strong>Question 1:</strong> What is a key trend in BCI development?</p>
-            <button>Hybrid systems</button>
-            <button>Standalone EEG devices</button>
-            <button>Traditional controllers</button>
+            <p><strong>Question:</strong> What is a key future trend in BCI technology?</p>
+            <button onclick="checkAnswer(this, true)">Hybrid systems</button>
+            <button onclick="checkAnswer(this, false)">Standalone EEG devices</button>
+            <button onclick="checkAnswer(this, false)">Traditional controllers</button>
+            <p class="quiz-feedback"></p>
         </div>
     </section>
     <!-- Certificate Section -->
     <section id="certificate">
-        <h2>Certification</h2>
+        <h2>Certificate of Completion</h2>
         <div class="certificate">
-            <h2>Certificate of Completion</h2>
-            <p>This certifies that <strong>[Your Name]</strong> has successfully completed the Brain-Computer Interface course.</p>
-            <p>Presented by FutureTech Academy</p>
-            <button onclick="alert('Download Started!')">Download Certificate</button>
+            <h2>Congratulations!</h2>
+            <p>You have successfully completed the Brain-Computer Interface course by passing all quizzes.</p>
         </div>
     </section>
     <footer>
         <p>FutureTech Academy - Empowering Minds for the Future</p>
     </footer>
+    <script>
+        let totalQuestions = 5;
+        let correctAnswers = 0;
+
+        function checkAnswer(button, isCorrect) {
+            const feedback = button.nextElementSibling;
+
+            if (button.classList.contains("correct") || button.classList.contains("incorrect")) return;
+
+            if (isCorrect) {
+                button.classList.add("correct");
+                feedback.textContent = "Correct!";
+                feedback.classList.add("correct");
+                correctAnswers++;
+            } else {
+                button.classList.add("incorrect");
+                feedback.textContent = "Not Correct!";
+                feedback.classList.add("incorrect");
+            }
+
+            if (document.querySelectorAll(".correct, .incorrect").length === totalQuestions) {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const certificate = document.getElementById("certificate");
+            const resultsSummary = document.getElementById("results-summary");
+
+            resultsSummary.textContent = `You answered ${correctAnswers} out of ${totalQuestions} questions correctly.`;
+
+            if (correctAnswers === totalQuestions) {
+                certificate.style.display = "block";
+            }
+        }
+    </script>
 </body>
-    </html>
+</html>
