@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biotechnology Course</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript for Quiz Scoring and Certificate
+        function calculateScore() {
+            let score = 0;
+            const totalQuestions = 6;
+
+            // Retrieve all answers
+            const answers = document.querySelectorAll('input[type="radio"]:checked');
+
+            // Correct answers (example: adjust based on quiz)
+            const correctAnswers = ["q1a", "q2c", "q3b", "q4a", "q5c", "q6a"];
+
+            answers.forEach(answer => {
+                if (correctAnswers.includes(answer.value)) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / totalQuestions) * 100;
+
+            if (percentage >= 70) {
+                alert(`Congratulations! You scored ${percentage}%. Your certificate is ready!`);
+                document.getElementById("certificate").style.display = "block";
+            } else {
+                alert(`You scored ${percentage}%. Unfortunately, this is below the passing threshold.`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Biotechnology Course</h1>
+        <p>A comprehensive guide to biotechnology, covering principles, applications, and the future of the field.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#genomics">Genomics and Genetic Engineering</a></li>
+            <li><a href="#molecular_biology">Molecular Biology and Biochemistry</a></li>
+            <li><a href="#medical_biotech">Medical Biotechnology</a></li>
+            <li><a href="#emerging_areas">Emerging and Interdisciplinary Areas</a></li>
+            <li><a href="#policy">Biotechnology Policy and Regulation</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Chapter 7 -->
+        <section id="emerging_areas">
+            <h2>Chapter 7: Emerging and Interdisciplinary Areas</h2>
+            <article>
+                <h3>7.1 Artificial Intelligence in Biotechnology</h3>
+                <p>
+                    Artificial intelligence (AI) has revolutionized biotechnology by enabling predictive modeling, drug discovery, 
+                    and personalized medicine. AI algorithms analyze complex datasets to identify trends and develop innovative solutions.
+                </p>
+
+                <h3>7.2 Nanobiotechnology and Biosensors</h3>
+                <p>
+                    Nanobiotechnology applies nanotechnology to biological systems, resulting in advancements such as biosensors, 
+                    targeted drug delivery systems, and nanoparticle-based imaging techniques.
+                </p>
+
+                <h3>7.3 Systems Biology</h3>
+                <p>
+                    Systems biology integrates biological data from various scales to create a holistic understanding of complex 
+                    biological networks. It plays a crucial role in identifying drug targets and understanding disease mechanisms.
+                </p>
+
+                <h3>7.4 Biomaterials and Tissue Engineering</h3>
+                <p>
+                    Biomaterials are engineered for medical applications, including tissue scaffolds, implants, and prosthetics. 
+                    Tissue engineering combines these materials with cellular components to create functional tissues and organs.
+                </p>
+
+                <h3>7.5 Biomedical Devices and Drug Delivery Systems</h3>
+                <p>
+                    Innovative drug delivery systems, such as microneedles and hydrogels, enhance the efficiency and precision of 
+                    therapeutic interventions. Biomedical devices, including wearable monitors, aid in real-time health tracking.
+                </p>
+
+                <h3>7.6 Ethical, Legal, and Social Implications of Biotechnology</h3>
+                <p>
+                    As biotechnology advances, ethical and legal challenges arise. Issues include privacy in genomic data, access to 
+                    therapies, and balancing innovation with regulation to ensure public trust.
+                </p>
+            </article>
+        </section>
+
+        <!-- Chapter 8 -->
+        <section id="policy">
+            <h2>Chapter 8: Biotechnology Policy and Regulation</h2>
+            <article>
+                <h3>8.1 Regulatory Frameworks for Biotech Products</h3>
+                <p>
+                    Regulatory bodies like the FDA and EMA oversee the development, testing, and approval of biotechnology products 
+                    to ensure safety and efficacy.
+                </p>
+
+                <h3>8.2 Bioethics and Public Perception</h3>
+                <p>
+                    Bioethics addresses the societal impacts of biotechnology, from genetic editing to cloning. Public perception plays 
+                    a vital role in shaping policy and acceptance of new technologies.
+                </p>
+
+                <h3>8.3 Intellectual Property in Biotechnology</h3>
+                <p>
+                    Intellectual property rights protect biotech innovations, encouraging research investment while raising debates about 
+                    accessibility and ethical considerations.
+                </p>
+
+                <h3>8.4 Clinical Trials and Biotech Product Approval</h3>
+                <p>
+                    Clinical trials assess the safety and effectiveness of biotech products. Approval processes vary globally but share 
+                    common goals of ensuring patient safety and product quality.
+                </p>
+            </article>
+        </section>
+
+        <!-- Quiz -->
+        <section id="quiz">
+            <h2>Quiz</h2>
+            <form onsubmit="event.preventDefault(); calculateScore();">
+                <p>1. What is CRISPR-Cas9 primarily used for?</p>
+                <label><input type="radio" name="q1" value="q1a"> Editing DNA</label><br>
+                <label><input type="radio" name="q1" value="q1b"> Protein folding</label><br>
+
+                <p>2. Which field combines nanotechnology with biology?</p>
+                <label><input type="radio" name="q2" value="q2a"> Genomics</label><br>
+                <label><input type="radio" name="q2" value="q2c"> Nanobiotechnology</label><br>
+
+                <p>3. What does systems biology focus on?</p>
+                <label><input type="radio" name="q3" value="q3b"> Holistic understanding of biological networks</label><br>
+                <label><input type="radio" name="q3" value="q3a"> Isolating individual proteins</label><br>
+
+                <p>4. Which technology enhances vaccine development?</p>
+                <label><input type="radio" name="q4" value="q4a"> mRNA technology</label><br>
+                <label><input type="radio" name="q4" value="q4b"> DNA synthesis</label><br>
+
+                <p>5. What role does intellectual property play in biotechnology?</p>
+                <label><input type="radio" name="q5" value="q5c"> Protecting biotech innovations</label><br>
+                <label><input type="radio" name="q5" value="q5b"> Regulating clinical trials</label><br>
+
+                <p>6. Which device mimics organ functions on a microchip?</p>
+                <label><input type="radio" name="q6" value="q6a"> Organ-on-chip</label><br>
+                <label><input type="radio" name="q6" value="q6b"> Wearable monitors</label><br>
+
+                <button type="submit">Submit Quiz</button>
+            </form>
+        </section>
+
+        <!-- Certificate -->
+        <section id="certificate" style="display:none;">
+            <h2>Congratulations!</h2>
+            <p>You have successfully passed the Biotechnology Course.</p>
+            <button onclick="window.print()">Print Certificate</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FutureTech Academy. All rights reserved.</p>
+    </footer>
+</body>
+  </html>
