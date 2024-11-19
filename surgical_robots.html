@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surgical Robotics Course</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Surgical Robotics: Current Landscape and Future Frontiers</h1>
+        <p>A comprehensive course on the innovations, applications, and future of surgical robotics.</p>
+    </header>
+    <main>
+        <!-- Section 1 -->
+        <section id="section1">
+            <h2>Introduction to Surgical Robotics</h2>
+            <p>
+                Surgical robotics integrates advanced robotic systems into surgical practices to enhance precision, control, and visualization. The field gained momentum in the 1990s with the introduction of the da Vinci Surgical System, which transformed minimally invasive procedures by offering surgeons improved dexterity and high-definition 3D imaging. Robotic systems aim to overcome traditional surgical limitations, offering benefits like reduced tremors, smaller incisions, and faster patient recovery times.
+                <br><br>
+                While these systems provide unparalleled advantages, they also come with challenges such as high costs, the need for specialized training, and regulatory hurdles. Ongoing research focuses on making surgical robotics more accessible and effective. This section explores the field's evolution, highlighting both its milestones and obstacles.
+            </p>
+            <button onclick="startQuiz(1)">Take Quiz</button>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section2">
+            <h2>Robotic Surgical Systems</h2>
+            <p>
+                Robotic surgical systems are categorized into three types: master-slave systems like da Vinci, supervisory-controlled systems like RAVEN, and collaborative robots designed to work with surgeons. These systems consist of robotic arms, high-definition imaging, master consoles, and motion tracking, enabling precise control.
+                <br><br>
+                Integration with surgical navigation systems enhances outcomes in complex procedures like neurosurgery. Advanced imaging and augmented reality are being incorporated into these systems, further improving precision. Despite their benefits, challenges like cost, training, and system limitations remain critical considerations.
+            </p>
+            <button onclick="startQuiz(2)">Take Quiz</button>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section3">
+            <h2>The da Vinci Surgical System</h2>
+            <p>
+                The da Vinci Surgical System by Intuitive Surgical revolutionized minimally invasive surgery. With features like ergonomic consoles, high-definition 3D imaging, and precise robotic arms, it enables complex procedures in specialties like urology, gynecology, and cardiothoracic surgery. Despite its advantages, including reduced recovery times, challenges such as high costs and a lack of haptic feedback persist. Future developments aim to address these issues by incorporating technologies like AI, augmented reality, and haptic feedback for better performance.
+            </p>
+            <button onclick="startQuiz(3)">Take Quiz</button>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section4">
+            <h2>Other Prominent Systems</h2>
+            <p>
+                Beyond the da Vinci system, other robotic platforms like Stryker's Mako for orthopedics, Titan Medical's Enos for single-incision abdominal surgery, and Medtronic's Hugo focus on specific applications. These systems aim to expand robotic-assisted surgery's reach while addressing cost and flexibility. Collaborative efforts and modular designs are key features that differentiate these platforms, making robotic surgery accessible to more healthcare settings.
+            </p>
+            <button onclick="startQuiz(4)">Take Quiz</button>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="section5">
+            <h2>Humanoid Surgical Robots</h2>
+            <p>
+                Humanoid robots represent the next frontier in surgical robotics, designed to mimic human dexterity and cognitive capabilities. Projects like the RAVEN and SMAR aim to combine AI, advanced vision systems, and haptic feedback to achieve autonomous and adaptive surgical capabilities. Despite promising advancements, challenges such as cost, safety, and integration into current workflows remain significant hurdles.
+            </p>
+            <button onclick="startQuiz(5)">Take Quiz</button>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="section6">
+            <h2>Clinical Applications and Specialties</h2>
+            <p>
+                Robotic surgical systems are applied across multiple specialties, including urology, gynecology, cardiology, orthopedics, and neurosurgery. Examples include prostatectomy, hysterectomy, and coronary artery bypass grafting. Their precision and minimally invasive nature improve outcomes and recovery times, but further innovation is needed to expand their scope and address unique challenges in each specialty.
+            </p>
+            <button onclick="startQuiz(6)">Take Quiz</button>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="section7">
+            <h2>Regulatory Landscape</h2>
+            <p>
+                Regulatory approval for robotic surgical systems involves stringent processes, such as the FDA’s premarket approval in the US and CE marking in Europe. Challenges include ensuring safety, addressing ethical concerns, and managing high development costs. Collaboration between manufacturers and regulators is crucial to streamline approvals and foster innovation.
+            </p>
+            <button onclick="startQuiz(7)">Take Quiz</button>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="section8">
+            <h2>Training and Education</h2>
+            <p>
+                Comprehensive training programs, including simulation-based and hands-on methods, are critical for robotic surgery adoption. Virtual reality simulators, augmented reality tools, and structured curricula ensure surgeons develop the necessary skills for safe and effective system operation. As robotic technologies evolve, continuous education is essential to keep healthcare professionals updated.
+            </p>
+            <button onclick="startQuiz(8)">Take Quiz</button>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="section9">
+            <h2>Costs and Reimbursement</h2>
+            <p>
+                Robotic surgical systems require significant financial investment, including acquisition, maintenance, and training costs. Reimbursement models vary, with some tied to procedure-based or value-based payments. Strategies like increasing procedural volume and exploring alternative financing models can improve cost-effectiveness and accessibility.
+            </p>
+            <button onclick="startQuiz(9)">Take Quiz</button>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="section10">
+            <h2>Cutting-Edge Technology</h2>
+            <p>
+                Innovations like AI, augmented reality, and flexible robotics are shaping the future of surgical systems. AI supports preoperative planning, intraoperative guidance, and outcome predictions. Augmented reality enhances visualization, while flexible robotics expands access to complex anatomy. These advancements promise to further revolutionize robotic surgery and improve patient care.
+            </p>
+            <button onclick="startQuiz(10)">Take Quiz</button>
+        </section>
+    </main>
+    <footer>
+        <p>© FutureTech Academy</p>
+    </footer>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <h3>Quiz</h3>
+            <div id="quizQuestions"></div>
+            <button onclick="submitQuiz()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certificateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCertificate()">&times;</span>
+            <h3>Congratulations!</h3>
+            <p>You have completed the course.</p>
+            <p>Your Certificate:</p>
+            <p id="certificate">[Generated Certificate]</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
