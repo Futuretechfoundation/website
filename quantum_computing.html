@@ -46,11 +46,7 @@
             font-size: 20px;
             margin-top: 20px;
         }
-        .quiz {
-            margin: 20px 0;
-        }
         .quiz-question {
-            font-size: 16px;
             margin-bottom: 10px;
         }
         .quiz-options {
@@ -58,7 +54,7 @@
             padding: 0;
         }
         .quiz-options li {
-            margin: 10px 0;
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -71,25 +67,22 @@
         <!-- Section 1: Introduction to Quantum Computing -->
         <div class="section" id="section1">
             <h2>Introduction to Quantum Computing</h2>
-            <p>Quantum computing is an emerging field that combines principles of quantum mechanics with computer science to create a new generation of powerful computational systems. Unlike classical computers, which use bits as the smallest unit of information, quantum computers use quantum bits, or qubits. A qubit can exist in multiple states simultaneously due to the phenomenon of superposition, which allows quantum computers to process exponentially more information than classical systems.</p>
-            <p>Quantum computers have the potential to revolutionize industries ranging from pharmaceuticals to artificial intelligence. They can solve problems that are currently infeasible for classical computers, such as simulating complex molecules or optimizing large systems. In this course, we will dive deeper into the various components of quantum computing and its potential future applications.</p>
-            <p>One of the most exciting aspects of quantum computing is quantum entanglement. This is a phenomenon where qubits become interconnected, meaning the state of one qubit is dependent on the state of another, regardless of the distance between them. This enables faster communication and more efficient algorithms.</p>
-            <p>In the upcoming sections, we will explore the various key principles of quantum computing, such as superposition, entanglement, and quantum gates. We'll also look at how quantum computers can be used for tasks like cryptography, optimization, and simulations.</p>
+            <p>Quantum computing is an emerging field that combines principles of quantum mechanics with computer science to create a new generation of powerful computational systems...</p>
             <button class="quiz-btn" onclick="startQuiz(1)">Start Quiz</button>
             <div class="quiz" id="quiz1" style="display: none;">
                 <h3>Section 1 Quiz: Introduction to Quantum Computing</h3>
                 <div class="quiz-question">What is a qubit?</div>
                 <ul class="quiz-options">
-                    <li><input type="radio" name="q1" value="1"> A bit that can only be 0 or 1</li>
-                    <li><input type="radio" name="q1" value="2"> A bit that can exist in multiple states simultaneously</li>
-                    <li><input type="radio" name="q1" value="3"> A physical object that can perform calculations</li>
+                    <li><input type="radio" name="q1" value="1"> A unit of classical information</li>
+                    <li><input type="radio" name="q1" value="2"> A quantum bit that can exist in multiple states</li>
+                    <li><input type="radio" name="q1" value="3"> A type of quantum gate</li>
                 </ul>
 
-                <div class="quiz-question">What is quantum entanglement?</div>
+                <div class="quiz-question">What is superposition in quantum computing?</div>
                 <ul class="quiz-options">
-                    <li><input type="radio" name="q2" value="1"> A phenomenon where two qubits are interconnected</li>
-                    <li><input type="radio" name="q2" value="2"> A process of generating quantum bits from classical bits</li>
-                    <li><input type="radio" name="q2" value="3"> A method of measuring quantum states</li>
+                    <li><input type="radio" name="q2" value="1"> A property where a qubit exists in one state at a time</li>
+                    <li><input type="radio" name="q2" value="2"> A property where a qubit can exist in multiple states simultaneously</li>
+                    <li><input type="radio" name="q2" value="3"> A quantum algorithm for optimization</li>
                 </ul>
                 <button class="quiz-btn" onclick="submitQuiz(1)">Submit Quiz</button>
                 <div id="quiz1-done" style="display: none;">Quiz 1 Completed!</div>
@@ -99,43 +92,7 @@
         <!-- Section 2: Quantum Algorithms and Cryptography -->
         <div class="section" id="section2">
             <h2>Quantum Algorithms and Cryptography</h2>
-            <p>Quantum algorithms are essential for harnessing the full power of quantum computers. These algorithms are designed to leverage the unique properties of quantum mechanics to solve problems more efficiently than classical algorithms.</p>
-            <p>One of the most well-known quantum algorithms is Shor's Algorithm, which provides an efficient way to factor large integers. This has important implications for cryptography, as most modern encryption techniques rely on the difficulty of factoring large numbers. If quantum computers can perform this task efficiently, current encryption methods could be broken, leading to a need for new forms of quantum-resistant cryptography.</p>
-            <p>Another key quantum algorithm is Grover's Algorithm, which provides a quadratic speedup for unstructured search problems. This algorithm has potential applications in fields such as database searching and optimization.</p>
-            <p>Quantum cryptography, particularly Quantum Key Distribution (QKD), is an exciting application of quantum principles. QKD uses quantum mechanics to securely exchange encryption keys, ensuring that any attempt to intercept the communication is detectable. This could lead to virtually unbreakable encryption systems in the future.</p>
-            <button class="quiz-btn" onclick="startQuiz(2)">Start Quiz</button>
-            <div class="quiz" id="quiz2" style="display: none;">
-                <h3>Section 2 Quiz: Quantum Algorithms and Cryptography</h3>
-                <div class="quiz-question">What is Shor's Algorithm used for?</div>
-                <ul class="quiz-options">
-                    <li><input type="radio" name="q3" value="1"> Solving large integer factorization</li>
-                    <li><input type="radio" name="q3" value="2"> Finding prime numbers</li>
-                    <li><input type="radio" name="q3" value="3"> Performing quantum encryption</li>
-                </ul>
-
-                <div class="quiz-question">What is Grover's Algorithm used for?</div>
-                <ul class="quiz-options">
-                    <li><input type="radio" name="q4" value="1"> Solving unstructured search problems</li>
-                    <li><input type="radio" name="q4" value="2"> Performing encryption</li>
-                    <li><input type="radio" name="q4" value="3"> Sorting data efficiently</li>
-                </ul>
-                <button class="quiz-btn" onclick="submitQuiz(2)">Submit Quiz</button>
-                <div id="quiz2-done" style="display: none;">Quiz 2 Completed!</div>
-            </div>
-        </div>
-
-        <!-- Section 3: The Future of Quantum Computing -->
-        <div class="section" id="section3">
-            <h2>The Future of Quantum Computing</h2>
-            <p>The future of quantum computing is both promising and challenging. Although quantum computers have made significant progress in recent years, there are still several hurdles to overcome before they can reach their full potential. One of the biggest challenges is improving the reliability of quantum systems.</p>
-            <p>Quantum error correction is a major area of research. Because quantum bits are highly susceptible to noise and decoherence, it’s crucial to develop techniques that can detect and correct errors in quantum computations. Advancements in error correction codes will be key to building large-scale quantum computers.</p>
-            <p>In the coming years, we expect quantum computers to become more powerful, with many companies and governments investing heavily in quantum research and development. However, the widespread use of quantum computers for practical applications will depend on solving issues related to qubit stability and the scalability of quantum systems.</p>
-            <button class="quiz-btn" onclick="startQuiz(3)">Start Quiz</button>
-            <div class="quiz" id="quiz3" style="display: none;">
-                <h3>Section 3 Quiz: The Future of Quantum Computing</h3>
-                <div class
-                    <p>applications in cryptography, as many cryptographic protocols rely on the difficulty of factoring large numbers. Another important quantum algorithm is Grover's Algorithm, which offers a faster way to search through unsorted databases.</p>
-            <p>Quantum cryptography uses the principles of quantum mechanics to secure communication in a way that is fundamentally different from classical cryptographic methods. Quantum key distribution (QKD) allows two parties to securely share encryption keys by using quantum properties like superposition and entanglement. Even if an eavesdropper attempts to intercept the key, quantum mechanics ensures that any attempt to measure the key will disturb the system, alerting the parties involved.</p>
+            <p>Quantum algorithms are essential for harnessing the full power of quantum computers...</p>
             <button class="quiz-btn" onclick="startQuiz(2)">Start Quiz</button>
             <div class="quiz" id="quiz2" style="display: none;">
                 <h3>Section 2 Quiz: Quantum Algorithms and Cryptography</h3>
@@ -160,8 +117,7 @@
         <!-- Section 3: Material Science and Nanotechnology -->
         <div class="section" id="section3">
             <h2>Material Science and Nanotechnology</h2>
-            <p>Quantum computing has a profound impact on material science and nanotechnology. Quantum computers can simulate the behavior of materials at the atomic level, which is impossible for classical computers due to the complexity of these interactions. This ability to simulate and predict molecular properties opens up new possibilities for developing advanced materials, from better batteries to stronger and lighter metals.</p>
-            <p>Nanotechnology also benefits from quantum computing in the design and manipulation of nanostructures. Quantum simulations can help engineers create more efficient solar cells, improve drug delivery systems, and create materials with unprecedented properties. These advances could revolutionize industries like healthcare, energy, and electronics.</p>
+            <p>Quantum computing has a profound impact on material science and nanotechnology...</p>
             <button class="quiz-btn" onclick="startQuiz(3)">Start Quiz</button>
             <div class="quiz" id="quiz3" style="display: none;">
                 <h3>Section 3 Quiz: Material Science and Nanotechnology</h3>
@@ -186,8 +142,7 @@
         <!-- Section 4: Quantum Computing in Healthcare -->
         <div class="section" id="section4">
             <h2>Quantum Computing in Healthcare</h2>
-            <p>Quantum computing has the potential to revolutionize healthcare by enabling faster and more accurate simulations of biological processes. This can accelerate drug discovery and personalized medicine. By simulating the interactions of molecules and proteins, quantum computers can identify potential drug candidates more efficiently than traditional methods.</p>
-            <p>Quantum computing also holds promise for improving diagnostics, as quantum algorithms can be used to analyze large datasets, helping doctors identify patterns and predict health outcomes. Quantum-enhanced medical imaging and gene sequencing techniques could lead to breakthroughs in detecting diseases at earlier stages, improving patient outcomes.</p>
+            <p>Quantum computing has the potential to revolutionize healthcare by enabling faster and more accurate simulations of biological processes...</p>
             <button class="quiz-btn" onclick="startQuiz(4)">Start Quiz</button>
             <div class="quiz" id="quiz4" style="display: none;">
                 <h3>Section 4 Quiz: Quantum Computing in Healthcare</h3>
@@ -200,45 +155,107 @@
 
                 <div class="quiz-question">What can quantum computing do for diagnostics?</div>
                 <ul class="quiz-options">
-                    <li><input type="radio" name="q8" value="1"> Improve medical imaging</li>
-                    <li><input type="radio" name="q8" value="2"> Analyze large health datasets</li>
-                    <li><input type="radio" name="q8" value="3"> Replace traditional medical tests</li>
+                    <li><input type="radio" name="q8" value="1"> By analyzing large datasets to detect patterns</li>
+                    <li><input type="radio" name="q8" value="2"> By developing quantum medical imaging tools</li>
+                    <li><input type="radio" name="q8" value="3"> By reducing the need for medical tests</li>
                 </ul>
                 <button class="quiz-btn" onclick="submitQuiz(4)">Submit Quiz</button>
-                <div id="quiz4-done" style="display: none;">Quiz 4 Completed!</div>
+                <div id="quiz4-done
+                    <!-- Section 3: The Future of Quantum Computing -->
+        <div class="section" id="section3">
+            <h2>The Future of Quantum Computing</h2>
+            <p>The future of quantum computing is both promising and challenging. Although quantum computers have made significant progress in recent years, there are still several hurdles to overcome before they can reach their full potential...</p>
+            <button class="quiz-btn" onclick="startQuiz(3)">Start Quiz</button>
+            <div class="quiz" id="quiz3" style="display: none;">
+                <h3>Section 3 Quiz: The Future of Quantum Computing</h3>
+                <div class="quiz-question">What is one of the biggest challenges facing quantum computing?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q5" value="1"> The development of classical algorithms</li>
+                    <li><input type="radio" name="q5" value="2"> Improving the reliability of quantum systems</li>
+                    <li><input type="radio" name="q5" value="3"> The high cost of traditional computer hardware</li>
+                </ul>
+
+                <div class="quiz-question">What is quantum error correction?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q6" value="1"> A technique to enhance the speed of quantum processors</li>
+                    <li><input type="radio" name="q6" value="2"> A method to detect and correct errors in quantum computations</li>
+                    <li><input type="radio" name="q6" value="3"> A system that reduces the need for classical computers</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(3)">Submit Quiz</button>
+                <div id="quiz3-done" style="display: none;">Quiz 3 Completed!</div>
             </div>
         </div>
 
-        <!-- Certificate of Completion -->
+        <!-- Certificate -->
         <div id="certificate">
             <h2>Congratulations!</h2>
-            <p>You have completed all the quizzes and successfully finished the Quantum Computing course!</p>
-            <p>Your certificate is now ready to be downloaded.</p>
+            <p>You have successfully completed the Quantum Computing Course.</p>
+            <p>Your certificate is ready!</p>
         </div>
-
     </div>
 
     <script>
-        let completedQuizzes = 0;
+        var quiz1Completed = false;
+        var quiz2Completed = false;
+        var quiz3Completed = false;
 
-        function startQuiz(quizNumber) {
-            document.getElementById("quiz" + quizNumber).style.display = "block";
+        function startQuiz(section) {
+            document.getElementById("quiz" + section).style.display = "block";
         }
 
-        function submitQuiz(quizNumber) {
-            let questions = document.querySelectorAll(`#quiz${quizNumber} input[type="radio"]:checked`);
-            if (questions.length === 2) { // Ensure both questions are answered
-                document.getElementById(`quiz${quizNumber}-done`).style.display = "block";
-                completedQuizzes++;
+        function submitQuiz(section) {
+            var correctAnswers = 0;
+            
+            // Check answers for quiz1
+            if (section === 1) {
+                if (document.querySelector('input[name="q1"]:checked') && document.querySelector('input[name="q1"]:checked').value === "2") {
+                    correctAnswers++;
+                }
+                if (document.querySelector('input[name="q2"]:checked') && document.querySelector('input[name="q2"]:checked').value === "2") {
+                    correctAnswers++;
+                }
+            }
+            // Check answers for quiz2
+            else if (section === 2) {
+                if (document.querySelector('input[name="q3"]:checked') && document.querySelector('input[name="q3"]:checked').value === "1") {
+                    correctAnswers++;
+                }
+                if (document.querySelector('input[name="q4"]:checked') && document.querySelector('input[name="q4"]:checked').value === "1") {
+                    correctAnswers++;
+                }
+            }
+            // Check answers for quiz3
+            else if (section === 3) {
+                if (document.querySelector('input[name="q5"]:checked') && document.querySelector('input[name="q5"]:checked').value === "2") {
+                    correctAnswers++;
+                }
+                if (document.querySelector('input[name="q6"]:checked') && document.querySelector('input[name="q6"]:checked').value === "2") {
+                    correctAnswers++;
+                }
+            }
 
-                if (completedQuizzes === 4) {
+            // Mark the quiz as done
+            if (correctAnswers === 2) {
+                document.getElementById("quiz" + section + "-done").style.display = "block";
+                if (section === 1) {
+                    quiz1Completed = true;
+                } else if (section === 2) {
+                    quiz2Completed = true;
+                } else if (section === 3) {
+                    quiz3Completed = true;
+                }
+                // Check if all quizzes are completed
+                if (quiz1Completed && quiz2Completed && quiz3Completed) {
                     document.getElementById("certificate").style.display = "block";
                 }
             } else {
-                alert("Please answer all the questions before submitting.");
+                alert("You did not answer all questions correctly. Please try again.");
             }
+
+            // Hide the quiz after submission
+            document.getElementById("quiz" + section).style.display = "none";
         }
     </script>
-
 </body>
-                        </html>
+        </html>
+            
