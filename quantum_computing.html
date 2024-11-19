@@ -46,6 +46,20 @@
             font-size: 20px;
             margin-top: 20px;
         }
+        .quiz {
+            margin: 20px 0;
+        }
+        .quiz-question {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .quiz-options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .quiz-options li {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -57,183 +71,174 @@
         <!-- Section 1: Introduction to Quantum Computing -->
         <div class="section" id="section1">
             <h2>Introduction to Quantum Computing</h2>
-            <p>
-                Quantum computing is an emerging field that combines principles of quantum mechanics with computer science to create a new generation of powerful computational systems. Unlike classical computers, which use bits as the smallest unit of information, quantum computers use quantum bits, or qubits. A qubit can exist in multiple states simultaneously due to the phenomenon of superposition, which allows quantum computers to process exponentially more information than classical systems.
-            </p>
-            <p>
-                Quantum computers have the potential to revolutionize industries ranging from pharmaceuticals to artificial intelligence. They can solve problems that are currently infeasible for classical computers, such as simulating complex molecules or optimizing large systems. In this course, we will dive deeper into the various components of quantum computing and its potential future applications.
-            </p>
-            <p>
-                One of the most exciting aspects of quantum computing is quantum entanglement. This is a phenomenon where qubits become interconnected, meaning the state of one qubit is dependent on the state of another, regardless of the distance between them. This enables faster communication and more efficient algorithms.
-            </p>
-            <p>
-                In the upcoming sections, we will explore the various key principles of quantum computing, such as superposition, entanglement, and quantum gates. We'll also look at how quantum computers can be used for tasks like cryptography, optimization, and simulations.
-            </p>
+            <p>Quantum computing is an emerging field that combines principles of quantum mechanics with computer science to create a new generation of powerful computational systems. Unlike classical computers, which use bits as the smallest unit of information, quantum computers use quantum bits, or qubits. A qubit can exist in multiple states simultaneously due to the phenomenon of superposition, which allows quantum computers to process exponentially more information than classical systems.</p>
+            <p>Quantum computers have the potential to revolutionize industries ranging from pharmaceuticals to artificial intelligence. They can solve problems that are currently infeasible for classical computers, such as simulating complex molecules or optimizing large systems. In this course, we will dive deeper into the various components of quantum computing and its potential future applications.</p>
+            <p>One of the most exciting aspects of quantum computing is quantum entanglement. This is a phenomenon where qubits become interconnected, meaning the state of one qubit is dependent on the state of another, regardless of the distance between them. This enables faster communication and more efficient algorithms.</p>
+            <p>In the upcoming sections, we will explore the various key principles of quantum computing, such as superposition, entanglement, and quantum gates. We'll also look at how quantum computers can be used for tasks like cryptography, optimization, and simulations.</p>
             <button class="quiz-btn" onclick="startQuiz(1)">Start Quiz</button>
+            <div class="quiz" id="quiz1" style="display: none;">
+                <h3>Section 1 Quiz: Introduction to Quantum Computing</h3>
+                <div class="quiz-question">What is a qubit?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q1" value="1"> A bit that can only be 0 or 1</li>
+                    <li><input type="radio" name="q1" value="2"> A bit that can exist in multiple states simultaneously</li>
+                    <li><input type="radio" name="q1" value="3"> A physical object that can perform calculations</li>
+                </ul>
+
+                <div class="quiz-question">What is quantum entanglement?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q2" value="1"> A phenomenon where two qubits are interconnected</li>
+                    <li><input type="radio" name="q2" value="2"> A process of generating quantum bits from classical bits</li>
+                    <li><input type="radio" name="q2" value="3"> A method of measuring quantum states</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(1)">Submit Quiz</button>
+                <div id="quiz1-done" style="display: none;">Quiz 1 Completed!</div>
+            </div>
         </div>
 
         <!-- Section 2: Quantum Algorithms and Cryptography -->
         <div class="section" id="section2">
             <h2>Quantum Algorithms and Cryptography</h2>
-            <p>
-                Quantum algorithms are essential for harnessing the full power of quantum computers. These algorithms are designed to leverage the unique properties of quantum mechanics to solve problems more efficiently than classical algorithms.
-            </p>
-            <p>
-                One of the most well-known quantum algorithms is Shor's Algorithm, which provides an efficient way to factor large integers. This has important implications for cryptography, as most modern encryption techniques rely on the difficulty of factoring large numbers. If quantum computers can perform this task efficiently, current encryption methods could be broken, leading to a need for new forms of quantum-resistant cryptography.
-            </p>
-            <p>
-                Another key quantum algorithm is Grover's Algorithm, which provides a quadratic speedup for unstructured search problems. This algorithm has potential applications in fields such as database searching and optimization.
-            </p>
-            <p>
-                Quantum cryptography, particularly Quantum Key Distribution (QKD), is an exciting application of quantum principles. QKD uses quantum mechanics to securely exchange encryption keys, ensuring that any attempt to intercept the communication is detectable. This could lead to virtually unbreakable encryption systems in the future.
-            </p>
+            <p>Quantum algorithms are essential for harnessing the full power of quantum computers. These algorithms are designed to leverage the unique properties of quantum mechanics to solve problems more efficiently than classical algorithms.</p>
+            <p>One of the most well-known quantum algorithms is Shor's Algorithm, which provides an efficient way to factor large integers. This has important implications for cryptography, as most modern encryption techniques rely on the difficulty of factoring large numbers. If quantum computers can perform this task efficiently, current encryption methods could be broken, leading to a need for new forms of quantum-resistant cryptography.</p>
+            <p>Another key quantum algorithm is Grover's Algorithm, which provides a quadratic speedup for unstructured search problems. This algorithm has potential applications in fields such as database searching and optimization.</p>
+            <p>Quantum cryptography, particularly Quantum Key Distribution (QKD), is an exciting application of quantum principles. QKD uses quantum mechanics to securely exchange encryption keys, ensuring that any attempt to intercept the communication is detectable. This could lead to virtually unbreakable encryption systems in the future.</p>
             <button class="quiz-btn" onclick="startQuiz(2)">Start Quiz</button>
+            <div class="quiz" id="quiz2" style="display: none;">
+                <h3>Section 2 Quiz: Quantum Algorithms and Cryptography</h3>
+                <div class="quiz-question">What is Shor's Algorithm used for?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q3" value="1"> Solving large integer factorization</li>
+                    <li><input type="radio" name="q3" value="2"> Finding prime numbers</li>
+                    <li><input type="radio" name="q3" value="3"> Performing quantum encryption</li>
+                </ul>
+
+                <div class="quiz-question">What is Grover's Algorithm used for?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q4" value="1"> Solving unstructured search problems</li>
+                    <li><input type="radio" name="q4" value="2"> Performing encryption</li>
+                    <li><input type="radio" name="q4" value="3"> Sorting data efficiently</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(2)">Submit Quiz</button>
+                <div id="quiz2-done" style="display: none;">Quiz 2 Completed!</div>
+            </div>
         </div>
 
         <!-- Section 3: The Future of Quantum Computing -->
         <div class="section" id="section3">
             <h2>The Future of Quantum Computing</h2>
-            <p>
-                The future of quantum computing is both promising and challenging. Although quantum computers have made significant progress in recent years, there are still several hurdles to overcome before they can reach their full potential. One of the biggest challenges is improving the reliability of quantum systems.
-            </p>
-            <p>
-                Quantum error correction is a major area of research. Because quantum bits are highly susceptible to noise and decoherence, it’s crucial to develop techniques that can detect and correct errors in quantum computations. Advancements in error correction codes will be key to building large-scale quantum computers.
-            </p>
-            <p>
-                In the coming years, we expect quantum computers to become more powerful, with many companies and governments investing heavily in quantum research and development. However, the widespread use of quantum computers for practical applications will depend on solving issues related to qubit stability and the scalability of quantum systems.
-            </p>
-
-            <h3>1. Quantum Computing in Cryptography</h3>
-            <p>Quantum computing can significantly impact the field of cryptography, especially in public-key cryptosystems such as RSA. Quantum computers have the potential to break current cryptographic methods by efficiently factoring large numbers and solving the discrete logarithm problem. For example, Shor’s Algorithm could solve these problems exponentially faster than classical computers, leading to the development of new quantum-resistant cryptographic methods.</p>
-
-            <h3>2. Quantum Computing in Drug Discovery and Healthcare</h3>
-            <p>One of the most promising applications of quantum computing is in the pharmaceutical industry. Quantum computers can model complex molecules and simulate chemical reactions at a level of detail that classical computers cannot achieve. This ability could lead to breakthroughs in drug discovery, particularly in the development of personalized medicine, faster vaccine development, and more efficient treatment strategies for diseases such as cancer and Alzheimer’s.</p>
-
-            <h3>3. Quantum Computing in Artificial Intelligence (AI)</h3>
-            <p>Quantum computing has the potential to greatly enhance artificial intelligence by accelerating machine learning algorithms. Quantum machine learning could improve the efficiency of algorithms like support vector machines, optimization, and clustering, leading to better data analysis and decision-making. Quantum computing can help tackle problems in natural language processing, computer vision, and other AI domains where large datasets are involved.</p>
-
-            <h3>4. Quantum Computing in Optimization Problems</h3>
-            <p>Many industries, such as logistics, finance, and manufacturing, face complex optimization problems that can take classical computers a long time to solve. Quantum computing can potentially provide exponential speedups in solving such problems. Quantum algorithms like the Quantum Approximate Optimization Algorithm (QAOA) can be applied to problems like route planning, inventory management, and resource allocation to improve efficiency and reduce costs.</p>
-
-            <h3>5. Quantum Computing in Climate Modeling and Environmental Science</h3>
-            <p>Quantum computing can be used to simulate complex systems that are difficult to model on classical computers, such as climate change models, atmospheric simulations, and ocean currents. These simulations could provide insights into environmental changes, the effects of carbon emissions, and the development of sustainable energy solutions. Quantum computers could also assist in modeling the behavior of materials for renewable energy technologies like solar cells and batteries.</p>
-
-            <h3>6. Quantum Computing in Financial Services</h3>
-            <p>The financial industry is poised to benefit from quantum computing in a variety of ways. Quantum computers could enhance portfolio optimization, risk analysis, and fraud detection. By simulating complex market dynamics and providing faster, more accurate predictions, quantum algorithms could revolutionize the way financial institutions make investment decisions, manage risks, and detect fraudulent activities.</p>
-
-            <h3>7. Quantum Computing in Material Science and Nanotechnology</h3>
-            <p>The development of new materials with desirable properties for use in electronics, energy storage, and manufacturing could be significantly accelerated by quantum computing. Quantum simulations could help scientists design materials with specific characteristics, such as superconductivity or improved battery performance, leading to faster innovations in the electronics and energy sectors. Quantum computing can also enhance our understanding of nanomaterials, which are critical in fields like drug delivery, nanoelectronics, and quantum dot technology.</p>
-
-            <h3>8. Quantum Computing in Cybersecurity</h3>
-            <p>As quantum computing advances, the need for stronger cybersecurity measures grows. Quantum computing could be used to develop highly secure quantum computers for practical applications will depend on solving issues related to qubit stability and the scalability of quantum systems. As these issues are addressed, quantum computing could revolutionize industries, leading to faster computations and solutions to currently unsolvable problems.
-            </p>
-            <h3>1. Quantum Computing in Healthcare</h3>
-            <p>
-                Quantum computing holds the potential to drastically improve the healthcare industry. With its ability to process vast amounts of data, quantum computers could help simulate complex biological systems, optimize drug discovery, and personalize treatments for patients. Quantum algorithms could also aid in improving the accuracy of medical imaging and analyzing genetic data to find new treatments for diseases like cancer.
-            </p>
-            <h3>2. Quantum Computing in Artificial Intelligence</h3>
-            <p>
-                Quantum computing can significantly enhance artificial intelligence by enabling faster and more powerful machine learning algorithms. The combination of quantum computing and AI could lead to breakthroughs in areas such as natural language processing, predictive analytics, and autonomous systems. Quantum AI could also assist in improving decision-making, allowing for better and faster predictions in fields like finance and logistics.
-            </p>
-            <h3>3. Quantum Computing in Finance</h3>
-            <p>
-                In the finance industry, quantum computers could revolutionize risk analysis, portfolio optimization, and fraud detection. Quantum algorithms can perform complex simulations and analyze large datasets in real-time, enabling financial institutions to make more informed decisions. Quantum computing also has the potential to optimize the trading process, making markets more efficient and reducing costs for investors.
-            </p>
-            <h3>4. Quantum Computing in Climate Change and Environmental Science</h3>
-            <p>
-                Quantum computing can play a pivotal role in tackling climate change by simulating the complex interactions in the environment. It could help design more efficient energy systems, develop new sustainable materials, and optimize processes for reducing carbon emissions. Additionally, quantum algorithms could help with modeling and predicting climate change patterns, enabling more accurate forecasts and better-informed policy decisions.
-            </p>
-            <h3>5. Quantum Computing in Optimization Problems</h3>
-            <p>
-                Quantum computing excels in solving optimization problems. These problems, which involve finding the best solution from a set of possible solutions, are common in fields like logistics, transportation, and manufacturing. Quantum algorithms, such as the Quantum Approximate Optimization Algorithm (QAOA), can solve large-scale optimization problems more efficiently than classical algorithms, leading to cost savings and improved operational efficiency.
-            </p>
-            <h3>6. Quantum Computing in Drug Discovery</h3>
-            <p>
-                Quantum computing could revolutionize the pharmaceutical industry by accelerating the process of drug discovery. Quantum simulations could model the interactions between molecules with high precision, enabling researchers to discover new drugs and treatments much faster than current methods. This could significantly reduce the time and cost of developing new medications, especially for diseases that currently lack effective treatments.
-            </p>
-            <h3>7. Quantum Computing in Material Science and Nanotechnology</h3>
-            <p>
-                The development of new materials with desirable properties for use in electronics, energy storage, and manufacturing could be significantly accelerated by quantum computing. Quantum simulations could help scientists design materials with specific characteristics, such as superconductivity or improved battery performance, leading to faster innovations in the electronics and energy sectors. Quantum computing can also enhance our understanding of nanomaterials, which are critical in fields like drug delivery, nanoelectronics, and quantum dot technology.
-            </p>
-            <h3>8. Quantum Computing in Aerospace and Defense</h3>
-            <p>
-                Quantum computing has the potential to revolutionize the aerospace and defense industries by improving encryption systems, optimizing flight paths, and enabling more accurate simulations of complex systems. Quantum algorithms could enhance missile defense systems, cybersecurity, and autonomous navigation for aircraft and drones. The ability to process vast amounts of data quickly and efficiently will be crucial for advancements in these industries.
-            </p>
-            <h3>9. Quantum Computing in Telecommunications</h3>
-            <p>
-                Quantum computing could significantly enhance telecommunications by improving data transmission speeds, reducing latency, and ensuring secure communication channels. Quantum key distribution (QKD) and quantum encryption can offer unbreakable security for communication networks, making them highly secure against potential cyberattacks. This could lead to the development of ultra-secure communication systems that are vital for government and military applications.
-            </p>
-            <h3>10. Quantum Computing in Education</h3>
-            <p>
-                Quantum computing could transform education by offering new ways to solve complex problems and simulate scientific phenomena. In particular, quantum simulations could aid in teaching advanced subjects like quantum physics and chemistry, making these topics more accessible to students. Moreover, the integration of quantum computing into the curriculum could prepare the next generation of scientists and engineers to take advantage of this groundbreaking technology.
-            </p>
+            <p>The future of quantum computing is both promising and challenging. Although quantum computers have made significant progress in recent years, there are still several hurdles to overcome before they can reach their full potential. One of the biggest challenges is improving the reliability of quantum systems.</p>
+            <p>Quantum error correction is a major area of research. Because quantum bits are highly susceptible to noise and decoherence, it’s crucial to develop techniques that can detect and correct errors in quantum computations. Advancements in error correction codes will be key to building large-scale quantum computers.</p>
+            <p>In the coming years, we expect quantum computers to become more powerful, with many companies and governments investing heavily in quantum research and development. However, the widespread use of quantum computers for practical applications will depend on solving issues related to qubit stability and the scalability of quantum systems.</p>
             <button class="quiz-btn" onclick="startQuiz(3)">Start Quiz</button>
+            <div class="quiz" id="quiz3" style="display: none;">
+                <h3>Section 3 Quiz: The Future of Quantum Computing</h3>
+                <div class
+                    <p>applications in cryptography, as many cryptographic protocols rely on the difficulty of factoring large numbers. Another important quantum algorithm is Grover's Algorithm, which offers a faster way to search through unsorted databases.</p>
+            <p>Quantum cryptography uses the principles of quantum mechanics to secure communication in a way that is fundamentally different from classical cryptographic methods. Quantum key distribution (QKD) allows two parties to securely share encryption keys by using quantum properties like superposition and entanglement. Even if an eavesdropper attempts to intercept the key, quantum mechanics ensures that any attempt to measure the key will disturb the system, alerting the parties involved.</p>
+            <button class="quiz-btn" onclick="startQuiz(2)">Start Quiz</button>
+            <div class="quiz" id="quiz2" style="display: none;">
+                <h3>Section 2 Quiz: Quantum Algorithms and Cryptography</h3>
+                <div class="quiz-question">What is Shor's Algorithm used for?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q3" value="1"> Solving large integer factorization</li>
+                    <li><input type="radio" name="q3" value="2"> Finding prime numbers</li>
+                    <li><input type="radio" name="q3" value="3"> Performing quantum encryption</li>
+                </ul>
+
+                <div class="quiz-question">What does Grover's Algorithm help with?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q4" value="1"> Searching unsorted databases</li>
+                    <li><input type="radio" name="q4" value="2"> Factoring large integers</li>
+                    <li><input type="radio" name="q4" value="3"> Generating encryption keys</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(2)">Submit Quiz</button>
+                <div id="quiz2-done" style="display: none;">Quiz 2 Completed!</div>
+            </div>
         </div>
 
+        <!-- Section 3: Material Science and Nanotechnology -->
+        <div class="section" id="section3">
+            <h2>Material Science and Nanotechnology</h2>
+            <p>Quantum computing has a profound impact on material science and nanotechnology. Quantum computers can simulate the behavior of materials at the atomic level, which is impossible for classical computers due to the complexity of these interactions. This ability to simulate and predict molecular properties opens up new possibilities for developing advanced materials, from better batteries to stronger and lighter metals.</p>
+            <p>Nanotechnology also benefits from quantum computing in the design and manipulation of nanostructures. Quantum simulations can help engineers create more efficient solar cells, improve drug delivery systems, and create materials with unprecedented properties. These advances could revolutionize industries like healthcare, energy, and electronics.</p>
+            <button class="quiz-btn" onclick="startQuiz(3)">Start Quiz</button>
+            <div class="quiz" id="quiz3" style="display: none;">
+                <h3>Section 3 Quiz: Material Science and Nanotechnology</h3>
+                <div class="quiz-question">How can quantum computing benefit material science?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q5" value="1"> By simulating molecular interactions</li>
+                    <li><input type="radio" name="q5" value="2"> By creating new quantum particles</li>
+                    <li><input type="radio" name="q5" value="3"> By calculating energy levels</li>
+                </ul>
+
+                <div class="quiz-question">How does quantum computing affect nanotechnology?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q6" value="1"> By simulating atomic structures</li>
+                    <li><input type="radio" name="q6" value="2"> By enhancing laser technologies</li>
+                    <li><input type="radio" name="q6" value="3"> By creating quantum computers on a nanoscopic scale</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(3)">Submit Quiz</button>
+                <div id="quiz3-done" style="display: none;">Quiz 3 Completed!</div>
+            </div>
+        </div>
+
+        <!-- Section 4: Quantum Computing in Healthcare -->
+        <div class="section" id="section4">
+            <h2>Quantum Computing in Healthcare</h2>
+            <p>Quantum computing has the potential to revolutionize healthcare by enabling faster and more accurate simulations of biological processes. This can accelerate drug discovery and personalized medicine. By simulating the interactions of molecules and proteins, quantum computers can identify potential drug candidates more efficiently than traditional methods.</p>
+            <p>Quantum computing also holds promise for improving diagnostics, as quantum algorithms can be used to analyze large datasets, helping doctors identify patterns and predict health outcomes. Quantum-enhanced medical imaging and gene sequencing techniques could lead to breakthroughs in detecting diseases at earlier stages, improving patient outcomes.</p>
+            <button class="quiz-btn" onclick="startQuiz(4)">Start Quiz</button>
+            <div class="quiz" id="quiz4" style="display: none;">
+                <h3>Section 4 Quiz: Quantum Computing in Healthcare</h3>
+                <div class="quiz-question">How can quantum computing benefit drug discovery?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q7" value="1"> By simulating molecular interactions</li>
+                    <li><input type="radio" name="q7" value="2"> By creating new synthetic drugs</li>
+                    <li><input type="radio" name="q7" value="3"> By analyzing patient data</li>
+                </ul>
+
+                <div class="quiz-question">What can quantum computing do for diagnostics?</div>
+                <ul class="quiz-options">
+                    <li><input type="radio" name="q8" value="1"> Improve medical imaging</li>
+                    <li><input type="radio" name="q8" value="2"> Analyze large health datasets</li>
+                    <li><input type="radio" name="q8" value="3"> Replace traditional medical tests</li>
+                </ul>
+                <button class="quiz-btn" onclick="submitQuiz(4)">Submit Quiz</button>
+                <div id="quiz4-done" style="display: none;">Quiz 4 Completed!</div>
+            </div>
+        </div>
+
+        <!-- Certificate of Completion -->
         <div id="certificate">
             <h2>Congratulations!</h2>
-            <p>You have successfully completed the Quantum Computing Course!</p>
-            <p>Certificate of Completion</p>
+            <p>You have completed all the quizzes and successfully finished the Quantum Computing course!</p>
+            <p>Your certificate is now ready to be downloaded.</p>
         </div>
 
     </div>
 
     <script>
-        let quizzesCompleted = 0;
+        let completedQuizzes = 0;
 
-        function startQuiz(section) {
-            let correctAnswers = 0;
-            
-            // Section 1 quiz
-            if (section === 1) {
-                // Example quiz for section 1
-                const answer1 = prompt("What does a qubit do? (Answer: It can exist in multiple states simultaneously)");
-                if (answer1.toLowerCase().includes("multiple states")) {
-                    correctAnswers++;
+        function startQuiz(quizNumber) {
+            document.getElementById("quiz" + quizNumber).style.display = "block";
+        }
+
+        function submitQuiz(quizNumber) {
+            let questions = document.querySelectorAll(`#quiz${quizNumber} input[type="radio"]:checked`);
+            if (questions.length === 2) { // Ensure both questions are answered
+                document.getElementById(`quiz${quizNumber}-done`).style.display = "block";
+                completedQuizzes++;
+
+                if (completedQuizzes === 4) {
+                    document.getElementById("certificate").style.display = "block";
                 }
-
-                const answer2 = prompt("What is quantum entanglement? (Answer: Qubits become interconnected)");
-                if (answer2.toLowerCase().includes("interconnected")) {
-                    correctAnswers++;
-                }
-            }
-
-            // Section 2 quiz
-            if (section === 2) {
-                // Example quiz for section 2
-                const answer1 = prompt("What is Shor's Algorithm used for? (Answer: Factoring large integers)");
-                if (answer1.toLowerCase().includes("factoring")) {
-                    correctAnswers++;
-                }
-
-                const answer2 = prompt("What is Quantum Key Distribution? (Answer: Secure exchange of encryption keys)");
-                if (answer2.toLowerCase().includes("secure exchange")) {
-                    correctAnswers++;
-                }
-            }
-
-            // Section 3 quiz
-            if (section === 3) {
-                // Example quiz for section 3
-                const answer1 = prompt("What is one potential application of quantum computing in healthcare? (Answer: Drug discovery, medical imaging)");
-                if (answer1.toLowerCase().includes("drug discovery")) {
-                    correctAnswers++;
-                }
-
-                const answer2 = prompt("How can quantum computing help with optimization problems? (Answer: By solving large-scale problems more efficiently)");
-                if (answer2.toLowerCase().includes("efficiently")) {
-                    correctAnswers++;
-                }
-            }
-
-            quizzesCompleted++;
-
-            // Show certificate if all quizzes are passed
-            if (quizzesCompleted === 3 && correctAnswers >= 4) {
-                document.getElementById('certificate').style.display = 'block';
+            } else {
+                alert("Please answer all the questions before submitting.");
             }
         }
     </script>
 
 </body>
-</html>
+                        </html>
