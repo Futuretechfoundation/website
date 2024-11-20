@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosthetics and Bionics Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-container input {
+            margin-right: 10px;
+        }
+        .quiz-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .quiz-container button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .quiz-container button:hover {
+            background-color: #218838;
+        }
+        .certificate {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Prosthetics and Bionics Course</h1>
+    
+    <!-- Topic 1 -->
+    <section>
+        <h2>Defining Bionics, Prosthetics, and Cybernetics</h2>
+        <p>Prosthetics, bionics, and cybernetics are revolutionary fields that focus on integrating technology with human biology. Prosthetics refer to artificial devices designed to replace or augment missing body parts, such as limbs, hands, or eyes. These devices are typically controlled through mechanical or electronic means and aim to restore functionality.</p>
+        <p>Bionics extends the concept of prosthetics, where biological systems are enhanced by incorporating technology. For example, bionic limbs use both mechanical components and sensors to mimic the natural movement of human limbs more effectively.</p>
+        <p>Cybernetics is a broader field that includes the study of communication and control in living organisms and machines. It deals with how biological systems and mechanical systems can interact in an integrated manner. Cybernetics often looks at feedback loops, where systems adapt to changes in their environment. This concept is widely applied in the development of advanced prosthetics, neural interfaces, and robotics.</p>
+    </section>
+    
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz1">
+            <label>
+                1. What is the main difference between prosthetics and bionics?
+                <input type="radio" name="q1" value="A"> A) Prosthetics are made of metal, while bionics are made of plastic.
+                <input type="radio" name="q1" value="B"> B) Prosthetics replace missing body parts, while bionics enhance biological functions.
+                <input type="radio" name="q1" value="C"> C) Bionics are not used for limb replacements.
+                <input type="radio" name="q1" value="D"> D) None of the above.
+            </label>
+            <label>
+                2. Which field studies feedback loops between biological systems and machines?
+                <input type="radio" name="q2" value="A"> A) Robotics
+                <input type="radio" name="q2" value="B"> B) Cybernetics
+                <input type="radio" name="q2" value="C"> C) Material Science
+                <input type="radio" name="q2" value="D"> D) Bioengineering
+            </label>
+            <button type="button" onclick="checkQuiz1()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 2 -->
+    <section>
+        <h2>Material Science and Design Innovations</h2>
+        <p>The development of prosthetics heavily relies on advances in material science. Innovations in materials have significantly improved the comfort, functionality, and durability of prosthetic devices. These materials are designed to mimic the look and feel of human skin, muscle, and bone structures while maintaining strength and flexibility.</p>
+        <p>Materials such as carbon fiber, titanium, and advanced polymers have revolutionized prosthetics by making them lighter, stronger, and more responsive. For example, carbon fiber is commonly used in prosthetic limbs for its strength-to-weight ratio. Advanced polymers allow prosthetics to be flexible and durable, making them ideal for use in high-stress areas like joints.</p>
+        <p>Another critical area of design innovation in prosthetics is the integration of smart materials that adapt to different environments. For example, thermochromic materials change color based on temperature, and shape-memory alloys can change their shape in response to heat or electricity.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz2">
+            <label>
+                1. Which material is commonly used in prosthetics for its strength-to-weight ratio?
+                <input type="radio" name="q1" value="A"> A) Wood
+                <input type="radio" name="q1" value="B"> B) Carbon Fiber
+                <input type="radio" name="q1" value="C"> C) Rubber
+                <input type="radio" name="q1" value="D"> D) Plastic
+            </label>
+            <label>
+                2. What property of shape-memory alloys makes them ideal for prosthetics?
+                <input type="radio" name="q2" value="A"> A) Their ability to change color
+                <input type="radio" name="q2" value="B"> B) Their ability to change shape in response to heat or electricity
+                <input type="radio" name="q2" value="C"> C) Their transparency
+                <input type="radio" name="q2" value="D"> D) None of the above
+            </label>
+            <button type="button" onclick="checkQuiz2()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 3 -->
+    <section>
+        <h2>Control Systems and Neural Mechanics</h2>
+        <p>Control systems in prosthetics are responsible for translating the user's intentions into actions performed by the prosthetic. These systems rely heavily on neural mechanics, the study of how signals from the brain are processed and communicated to external devices. Prosthetics today use sophisticated sensors and motors that interpret electrical signals from the user’s muscles or nerves.</p>
+        <p>Myoelectric prosthetics, for example, detect electrical signals generated by muscle contractions. These signals are then translated into movements by the prosthetic device. More advanced systems, such as brain-computer interfaces (BCIs), can directly translate neural impulses into prosthetic actions, enabling users to control their prosthetics with their thoughts.</p>
+        <p>Neural control systems often employ machine learning algorithms to adapt to the user’s specific movements, making the prosthetic more intuitive over time. This learning process improves the precision and natural feel of the prosthetic.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz3">
+            <label>
+                1. What type of prosthetic uses muscle signals to control movement?
+                <input type="radio" name="q1" value="A"> A) Myoelectric Prosthetics
+                <input type="radio" name="q1" value="B"> B) Brain-Computer Interface Prosthetics
+                <input type="radio" name="q1" value="C"> C) Mechanical Prosthetics
+                <input type="radio" name="q1" value="D"> D) None of the above
+            </label>
+            <label>
+                2. Which technology enables direct brain control of prosthetic devices?
+                <input type="radio" name="q2" value="A"> A) Myoelectric sensors
+                <input type="radio" name="q2" value="B"> B) Brain-Computer Interfaces (BCIs)
+                <input type="radio" name="q2" value="C"> C) Artificial Intelligence
+                <input type="radio" name="q2" value="D"> D) Hydraulic Systems
+            </label>
+            <button type="button" onclick="checkQuiz3()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Placeholder for Other Topics -->
+    <section>
+        <h2>Sensory Feedback and Augmented Reality Integration</h2>
+        <p>...</p>
+    </section>
+
+    <div class="quiz-container">
+      <input type="radio" name="q1" value="B"> B) Carbon Fiber
+                <input type="radio" name="q1" value="C"> C) Rubber
+                <input type="radio" name="q1" value="D"> D) Plastic
+            </label>
+            <label>
+                2. What property of shape-memory alloys makes them ideal for prosthetics?
+                <input type="radio" name="q2" value="A"> A) Their ability to change color
+                <input type="radio" name="q2" value="B"> B) Their ability to change shape in response to heat or electricity
+                <input type="radio" name="q2" value="C"> C) Their transparency
+                <input type="radio" name="q2" value="D"> D) None of the above
+            </label>
+            <button type="button" onclick="checkQuiz2()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 3 -->
+    <section>
+        <h2>Control Systems and Neural Mechanics</h2>
+        <p>Control systems in prosthetics are responsible for translating the user's intentions into actions performed by the prosthetic. These systems rely heavily on neural mechanics, the study of how signals from the brain are processed and communicated to external devices. Prosthetics today use sophisticated sensors and motors that interpret electrical signals from the user’s muscles or nerves.</p>
+        <p>Myoelectric prosthetics, for example, detect electrical signals generated by muscle contractions. These signals are then translated into movements by the prosthetic device. More advanced systems, such as brain-computer interfaces (BCIs), can directly translate neural impulses into prosthetic actions, enabling users to control their prosthetics with their thoughts.</p>
+        <p>Neural control systems often employ machine learning algorithms to adapt to the user’s specific movements, making the prosthetic more intuitive over time. This learning process improves the precision and natural feel of the prosthetic.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz3">
+            <label>
+                1. What type of prosthetic uses muscle signals to control movement?
+                <input type="radio" name="q1" value="A"> A) Myoelectric Prosthetics
+                <input type="radio" name="q1" value="B"> B) Brain-Computer Interface Prosthetics
+                <input type="radio" name="q1" value="C"> C) Mechanical Prosthetics
+                <input type="radio" name="q1" value="D"> D) None of the above
+            </label>
+            <label>
+                2. Which technology enables direct brain control of prosthetic devices?
+                <input type="radio" name="q2" value="A"> A) Myoelectric sensors
+                <input type="radio" name="q2" value="B"> B) Brain-Computer Interfaces (BCIs)
+                <input type="radio" name="q2" value="C"> C) Artificial Intelligence
+                <input type="radio" name="q2" value="D"> D) Hydraulic Systems
+            </label>
+            <button type="button" onclick="checkQuiz3()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 4 -->
+    <section>
+        <h2>Sensory Feedback and Augmented Reality Integration</h2>
+        <p>One of the major challenges in prosthetics is providing sensory feedback to users, such as touch and proprioception (the sense of body position). Sensory feedback enhances the user's ability to interact with their environment and improve control of the prosthetic.</p>
+        <p>Augmented reality (AR) is increasingly being integrated with prosthetics to provide real-time sensory feedback. AR can simulate the sensation of touch or pressure, helping the user feel more connected to their prosthetic. For example, AR glasses or displays could show visual cues or feedback on how the prosthetic is interacting with objects in the environment.</p>
+        <p>Researchers are also exploring the use of sensory feedback through neural interfaces, where the prosthetic sends signals directly to the nervous system, allowing users to "feel" sensations like pressure or temperature through their prosthetic limbs.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz4">
+            <label>
+                1. What does augmented reality provide in the context of prosthetics?
+                <input type="radio" name="q1" value="A"> A) A way to make prosthetics lighter
+                <input type="radio" name="q1" value="B"> B) Visual cues or feedback on the prosthetic's interaction with objects
+                <input type="radio" name="q1" value="C"> C) An alternative to brain control
+                <input type="radio" name="q1" value="D"> D) None of the above
+            </label>
+            <label>
+                2. Which of the following is a benefit of neural interfaces for prosthetics?
+                <input type="radio" name="q2" value="A"> A) They improve the prosthetic's appearance
+                <input type="radio" name="q2" value="B"> B) They provide real-time sensory input, like touch or pressure
+                <input type="radio" name="q2" value="C"> C) They are cheaper to produce
+                <input type="radio" name="q2" value="D"> D) None of the above
+            </label>
+            <button type="button" onclick="checkQuiz4()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Additional topics go here, same format as above -->
+
+
+
+    <!-- Topic 5 -->
+    <section>
+        <h2>Adaptive and Learning Prosthetics</h2>
+        <p>Adaptive and learning prosthetics represent a significant advancement in the field of prosthetic devices. These systems are designed to learn and adapt to the user's movements over time. Through machine learning algorithms and artificial intelligence, these prosthetics can continuously refine their control systems to match the user’s natural movements.</p>
+        <p>For example, a learning prosthetic might start with basic movements but gradually improve over time based on the user's input. By analyzing the user’s neural signals and muscle movements, the system can predict and respond more accurately, offering a more natural and responsive prosthetic experience.</p>
+        <p>Such technologies also help to increase user confidence and control, making it easier for people with prosthetics to perform a wide range of tasks. Adaptive prosthetics can adjust their response to different situations and environments, providing better performance in various settings.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz5">
+            <label>
+                1. How do adaptive and learning prosthetics help users?
+                <input type="radio" name="q1" value="A"> A) They only provide cosmetic enhancements
+                <input type="radio" name="q1" value="B"> B) They can help improve control and match natural movements over time
+                <input type="radio" name="q1" value="C"> C) They do not actually help users at all
+                <input type="radio" name="q1" value="D"> D) They are used for simple tasks only
+            </label>
+            <label>
+                2. What technology is primarily used in adaptive prosthetics to learn user movements?
+                <input type="radio" name="q2" value="A"> A) Biofeedback
+                <input type="radio" name="q2" value="B"> B) Machine Learning Algorithms
+                <input type="radio" name="q2" value="C"> C) Visual Processing Systems
+                <input type="radio" name="q2" value="D"> D) Augmented Reality
+            </label>
+            <button type="button" onclick="checkQuiz5()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 6 -->
+    <section>
+        <h2>Regenerative Biotherapeutics and Tissue Engineering for Prosthetics</h2>
+        <p>Regenerative medicine and tissue engineering are crucial for the development of more advanced prosthetic devices. These technologies focus on creating biological materials and structures that can integrate into the human body, providing more realistic and functional prosthetics.</p>
+        <p>Regenerative biotherapeutics aim to stimulate the body’s own cells to repair or grow tissues, such as muscles, bones, and nerves. For example, researchers have been working on developing prosthetics that can be attached directly to nerves or muscle tissue, providing a more natural control interface. This method involves using stem cells, growth factors, and biomaterials to create living tissues that can be used in prosthetics.</p>
+        <p>Tissue engineering combines biology with advanced materials science to create structures that mimic the look and function of biological tissues. These structures are used in prosthetic devices to provide a more realistic appearance and feel, improving user acceptance and functionality.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz6">
+            <label>
+                1. What does regenerative medicine focus on in prosthetics?
+                <input type="radio" name="q1" value="A"> A) Creating purely mechanical components
+                <input type="radio" name="q1" value="B"> B) Growing tissues and repairing body parts
+                <input type="radio" name="q1" value="C"> C) Providing simple control interfaces
+                <input type="radio" name="q1" value="D"> D) Reducing costs
+            </label>
+            <label>
+                2. Which technology is used to help prosthetics integrate into the body?
+                <input type="radio" name="q2" value="A"> A) Traditional Metals
+                <input type="radio" name="q2" value="B"> B) Bioengineering and Biomaterials
+                <input type="radio" name="q2" value="C"> C) Only Visual Processing Systems
+                <input type="radio" name="q2" value="D"> D) Augmented Reality
+            </label>
+            <button type="button" onclick="checkQuiz6()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 7 -->
+    <section>
+        <h2>Neuroprosthetics and Brain-Computer Interfaces (BCI)</h2>
+        <p>Neuroprosthetics are an exciting development in the field of prosthetics. These devices work by directly interfacing with the nervous system—particularly the brain—allowing individuals to control their prosthetic limbs, devices, or machines using only their thoughts. Brain-Computer Interfaces (BCIs) are essential for enabling this technology, allowing the translation of brain signals into digital instructions for prosthetics.</p>
+        <p>For instance, a BCI-equipped prosthetic can interpret neural activity related to a person's intention to move their arm or hand, then translate that information into an action in the physical prosthetic. This technology provides a new level of control and interaction for people with disabilities.</p>
+        <p>Neuroprosthetics are becoming more sophisticated with each new advancement, offering new possibilities for those who have lost limb functions or other abilities due to injury, disease, or disability.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz7">
+            <label>
+                1. What do neuroprosthetics allow individuals to do?
+                <input type="radio" name="q1" value="A"> A) Control their prosthetic devices with thought
+                <input type="radio" name="q1" value="B"> B) Only control electronic devices, not prosthetics
+                <input type="radio" name="q1" value="C"> C) Provide visual feedback only
+                <input type="radio" name="q1" value="D"> D) Work in combination with other control systems
+            </label>
+            <label>
+                2. What is essential for neuroprosthetics to function properly?
+                <input type="radio" name="q2" value="A"> A) Batteries
+                <input type="radio" name="q2" value="B"> B) Brain-Computer Interfaces (BCIs)
+                <input type="radio" name="q2" value="C"> C) Simple microchips
+                <input type="radio" name="q2" value="D"> D) Augmented Reality
+            </label>
+            <button type="button" onclick="checkQuiz7()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 8 -->
+    <section>
+        <h2>Advanced Manufacturing and Customization</h2>
+        <p>Advanced manufacturing techniques are revolutionizing the field of prosthetics. Customization is now more accessible than ever, allowing prosthetic devices to be made to perfectly fit each individual user's anatomy and needs. With the help of 3D printing, digital design tools, and other technologies, prosthetics can be tailored in a matter of hours rather than weeks or months.</p>
+        <p>These technologies allow for precise control over the design and fabrication of each prosthetic component, ensuring a perfect match with the user's specific requirements. This customization capability means that prosthetics can be more functional, comfortable, and aesthetically pleasing, improving user satisfaction and acceptance.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz8">
+            <label>
+                1. How does advanced manufacturing benefit prosthetics?
+                <input type="radio" name="q1" value="A"> A) Prosthetics can be produced more quickly and cheaply
+                <input type="radio" name="q1" value="B"> B) Prosthetics only need to be made in large quantities
+                <input type="radio" name="q1" value="C"> C) Prosthetics become more comfortable and functional
+                <input type="radio" name="q1" value="D"> D) Prosthetics are only for cosmetic purposes
+            </label>
+            <label>
+                2. What technology is used for custom-made prosthetic components?
+                <input type="radio" name="q2" value="A"> A) Hand-Carved Wooden Prosthetics
+                <input type="radio" name="q2" value="B"> B) 3D Printing and Digital Design Tools
+                <input type="radio" name="q2" value="C"> C) Augmented Reality Systems
+                <input type="radio" name="q2" value="D"> D) Basic Metal Prosthetics
+            </label>
+            <button type="button" onclick="checkQuiz8()">Submit Quiz</button>
+  
+
+    <!-- Topic 9 -->
+    <section>
+        <h2>Technological Cost and Accessibility</h2>
+        <p>The cost of advanced prosthetics remains a significant challenge for many people. While the technology has advanced rapidly in recent years, many of the most cutting-edge prosthetics are prohibitively expensive. The cost of the materials, customization, and the manufacturing process can make prosthetics unaffordable for a large portion of the population.</p>
+        <p>However, efforts are being made to make these technologies more accessible. Advances in 3D printing, open-source prosthetics, and public-private partnerships are driving down costs. Additionally, insurance coverage and healthcare policies are being adjusted to include more comprehensive support for prosthetics.</p>
+        <p>Making prosthetics more affordable and accessible is a key step toward ensuring that everyone, regardless of economic status, can benefit from these life-changing devices.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz9">
+            <label>
+                1. What is a significant challenge in the development of advanced prosthetics?
+                <input type="radio" name="q1" value="A"> A) They are too simple in design
+                <input type="radio" name="q1" value="B"> B) They are too cheap to manufacture
+                <input type="radio" name="q1" value="C"> C) The cost makes them inaccessible to many people
+                <input type="radio" name="q1" value="D"> D) They are not customizable
+            </label>
+            <label>
+                2. Which of the following is an effort to make prosthetics more accessible?
+                <input type="radio" name="q2" value="A"> A) Limiting customization options
+                <input type="radio" name="q2" value="B"> B) Advancements in 3D printing and open-source designs
+                <input type="radio" name="q2" value="C"> C) Reducing the quality of materials used
+                <input type="radio" name="q2" value="D"> D) Eliminating insurance coverage for prosthetics
+            </label>
+            <button type="button" onclick="checkQuiz9()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 10 -->
+    <section>
+        <h2>Performance Metrics and Superhuman Abilities</h2>
+        <p>In recent years, performance metrics have become increasingly important in the field of prosthetics. These metrics help researchers and manufacturers evaluate the effectiveness and functionality of prosthetics. Metrics include factors such as the prosthetic’s range of motion, speed, accuracy, and the energy required to move it. Superhuman abilities, such as enhanced strength, speed, or precision, are becoming a focus in some areas of prosthetic design, particularly in the military and athletics.</p>
+        <p>Performance-enhancing prosthetics can provide athletes and military personnel with significant advantages. For example, running blades for amputees can offer better agility and speed than a natural leg, and advanced robotic prosthetics can allow users to lift heavier objects or perform more complex tasks with precision.</p>
+        <p>As prosthetics evolve, the idea of superhuman abilities has expanded, with some thinking beyond functional replacement to the enhancement of human capabilities, potentially revolutionizing fields such as sports, labor, and even space exploration.</p>
+    </section>
+
+    <div class="quiz-container">
+        <h3>Quiz:</h3>
+        <form id="quiz10">
+            <label>
+                1. What is a key performance metric used to evaluate prosthetics?
+                <input type="radio" name="q1" value="A"> A) The color of the prosthetic
+                <input type="radio" name="q1" value="B"> B) Range of motion, speed, and energy required
+                <input type="radio" name="q1" value="C"> C) The amount of time spent on manufacturing
+                <input type="radio" name="q1" value="D"> D) The weight of the prosthetic only
+            </label>
+            <label>
+                2. What is a potential benefit of performance-enhancing prosthetics?
+                <input type="radio" name="q2" value="A"> A) Decreased strength and speed
+                <input type="radio" name="q2" value="B"> B) Enhanced strength, speed, or precision
+                <input type="radio" name="q2" value="C"> C) Reduces range of motion
+                <input type="radio" name="q2" value="D"> D) Simplified control mechanisms
+            </label>
+            <button type="button" onclick="checkQuiz10()">Submit Quiz</button>
+        </form>
+    </div>
+
+    <!-- Topic 11 -->
+    <section>
+        <h2>Applications Beyond Human Enhancement</h2>
+        <p>While much of prosthetics development focuses on human enhancement, the technologies used in these devices also have applications in various fields beyond human augmentation. For example, prosthetic technology is being applied in robotics, assistive devices for animals, and even environmental applications. Some of the same principles that improve prosthetics are being adapted for use in machines that can perform tasks in dangerous environments, such as deep-sea exploration or space missions.</p>
+        <p>Additionally, prosthetics research is influencing the development of assistive devices for animals, where similar biomechanical challenges arise. These technologies also offer the potential to aid in environmental tasks, such as cleanup or agricultural improvements,
+
+<script>
+    function checkQuiz1() {
+        const quiz1Answers = document.forms['quiz1'];
+        const answer1 = quiz1Answers.q1.value;
+        const answer2 = quiz1Answers.q2.value;
+
+        if (answer1 === 'B' && answer2 === 'B') {
+            alert("Quiz 1 Correct!");
+            document.getElementById('certificate').style.display = 'block';
+        } else {
+            alert("Quiz 1 Incorrect, please try again.");
+        }
+    }
+
+    function checkQuiz2() {
+        const quiz2Answers = document.forms['quiz2'];
+        const answer1 = quiz2Answers.q1.value;
+        const answer2 = quiz2Answers.q2.value;
+
+        if (answer1 === 'B' && answer2 === 'B') {
+            alert("Quiz 2 Correct!");
+        } else {
+            alert("Quiz 2 Incorrect, please try again.");
+        }
+    }
+
+    function checkQuiz3() {
+        const quiz3Answers = document.forms['quiz3'];
+        const answer1 = quiz3Answers.q1.value;
+        const answer2 = quiz3Answers.q2.value;
+
+        if (answer1 === 'A' && answer2 === 'B') {
+            alert("Quiz 3 Correct!");
+        } else {
+            alert("Quiz 3 Incorrect, please try again.");
+        }
+    }
+
+    function checkQuiz4() {
+        const quiz4Answers = document.forms['quiz4'];
+        const answer1 = quiz4Answers.q1.value;
+        const answer2 = quiz4Answers.q2.value;
+
+        if (answer1 === 'B' && answer2 === 'B') {
+            alert("Quiz 4 Correct!");
+        } else {
+            alert("Quiz 4 Incorrect, please try again.");
+              }
+    }
+    function checkQuiz5() {
+        let correctAnswers = ["B", "B"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 5!`);
+    }
+
+    function checkQuiz6() {
+        let correctAnswers = ["B", "B"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 6!`);
+    }
+
+    function checkQuiz7() {
+        let correctAnswers = ["B", "B"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 7!`);
+    }
+
+    function checkQuiz8() {
+        let correctAnswers = ["B", "A"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 8!`);
+    }
+
+    function checkQuiz9() {
+        let correctAnswers = ["C", "B"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 9!`);
+    }
+
+    function checkQuiz10() {
+        let correctAnswers = ["B", "B"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 10!`);
+    }
+
+    function checkQuiz11() {
+        let correctAnswers = ["D", "C"];
+        let userAnswers = [
+            document.querySelector('input[name="q1"]:checked')?.value,
+            document.querySelector('input[name="q2"]:checked')?.value
+        ];
+        if (!userAnswers[0] || !userAnswers[1]) {
+            alert("Please answer all questions.");
+            return;
+        }
+        let score = userAnswers.filter((ans, index) => ans === correctAnswers[index]).length;
+        alert(`You scored ${score} out of 2 on Quiz 11!`);
+    }
+</script>
+<div id="certificate" class="certificate">
+        <h2>Congratulations!</h2>
+        <p>You have successfully completed the course and passed all quizzes.</p>
+        <p>Your certificate will appear here once you finish all sections!</p>
+</div>
+</body>
+  </html>
