@@ -84,8 +84,8 @@
         <div class="quiz">
             <h3>Quiz: Organoids and Organ-on-a-Chip Models</h3>
             <label><input type="radio" name="q2" value="a"> Organoids are small, simplified models of organs used in research.</label>
-            <label><input type="radio" name="q2" value="b"> Organoids have no potential in regenerative medicine.</label>
-            <label><input type="radio" name="q2" value="c"> Organ-on-a-chip models are irrelevant to personalized medicine.</label>
+            <label><input type="radio" name="q2" value="b"> Organ-on-a-chip models are irrelevant to personalized medicine.</label>
+            <label><input type="radio" name="q2" value="c"> Organoids have no potential in regenerative medicine.</label>
             <button class="btn" onclick="checkAnswer('q2', 'a')">Submit Answer</button>
         </div>
     </div>
@@ -97,8 +97,8 @@
         <div class="quiz">
             <h3>Quiz: Exosome-based Therapies</h3>
             <label><input type="radio" name="q3" value="a"> Exosomes can be used to deliver healing factors between cells.</label>
-            <label><input type="radio" name="q3" value="b"> Exosomes have no therapeutic potential.</label>
-            <label><input type="radio" name="q3" value="c"> Exosomes are only used in cancer treatment.</label>
+            <label><input type="radio" name="q3" value="b"> Exosomes are only used in cancer treatment.</label>
+            <label><input type="radio" name="q3" value="c"> Exosomes have no therapeutic potential.</label>
             <button class="btn" onclick="checkAnswer('q3', 'a')">Submit Answer</button>
         </div>
     </div>
@@ -109,30 +109,34 @@
         <p>The development of advanced biomaterials, such as hydrogels, scaffolds, and nanomaterials, is crucial in supporting cell growth and differentiation, providing structural support, and facilitating tissue regeneration.</p>
         <div class="quiz">
             <h3>Quiz: Biomaterials for Regeneration</h3>
-            <label><input type="radio" name="q4" value="a"> Biomaterials can be used as scaffolds to support tissue regeneration.</label>
-            <label><input type="radio" name="q4" value="b"> Biomaterials are not important in regenerative therapies.</label>
-            <label><input type="radio" name="q4" value="c"> Hydrogels are only used for cosmetic purposes.</label>
+            <label><input type="radio" name="q4" value="a"> Biomaterials like hydrogels are essential for cell growth and tissue regeneration.</label>
+            <label><input type="radio" name="q4" value="b"> Biomaterials are only used in cosmetic surgery.</label>
+            <label><input type="radio" name="q4" value="c"> Biomaterials have no application in regenerative therapies.</label>
             <button class="btn" onclick="checkAnswer('q4', 'a')">Submit Answer</button>
         </div>
     </div>
 
+
     <!-- Section 5: Personalized Regenerative Therapy -->
     <div class="section" id="section5">
         <h2>5. Personalized Regenerative Therapy</h2>
-        <p>With CRISPR, it’s possible to edit a patient’s own cells to correct genetic defects or enhance their regenerative capabilities. These edited cells could then be used in bioprinting to create personalized tissues that are more likely to be accepted by the body without rejection. This could lead to customized, genetically-aligned tissues or even organs for patients.</p>
+        <p>With CRISPR and other gene-editing tools, it’s now possible to edit a patient’s own cells to correct genetic defects or enhance their regenerative capabilities. These edited cells could then be used in bioprinting to create personalized tissues that are more likely to be accepted by the body without rejection.</p>
         <div class="quiz">
             <h3>Quiz: Personalized Regenerative Therapy</h3>
-            <label><input type="radio" name="q5" value="a"> CRISPR can edit a patient’s cells to improve regenerative outcomes.</label>
-            <label><input type="radio" name="q5" value="b"> Personalized regenerative therapy involves only generic stem cells.</label>
-            <label><input type="radio" name="q5" value="c"> Personalized therapies are irrelevant in regenerative medicine.</label>
+            <label><input type="radio" name="q5" value="a"> Gene editing can help create personalized tissues for regeneration.</label>
+            <label><input type="radio" name="q5" value="b"> Personalized regenerative therapy uses random genetic sequences.</label>
+            <label><input type="radio" name="q5" value="c"> Gene editing does not play a role in regenerative medicine.</label>
             <button class="btn" onclick="checkAnswer('q5', 'a')">Submit Answer</button>
         </div>
     </div>
 
+    <!-- Certificate Section -->
     <div class="certificate" id="certificate">
         <h2>Congratulations!</h2>
-        <p>You have completed the course on Regenerative Biotherapeutics. You have earned your certificate!</p>
+        <p>You have successfully completed the Regenerative Biotherapeutics Course and passed all quizzes.</p>
+        <p><strong>Certificate of Completion</strong></p>
     </div>
+
 </div>
 
 <script>
@@ -143,20 +147,34 @@
         q4: 'a',
         q5: 'a'
     };
+    let answersGiven = {
+        q1: false,
+        q2: false,
+        q3: false,
+        q4: false,
+        q5: false
+    };
     
-    function checkAnswer(question, answer) {
-        if (correctAnswers[question] === answer) {
-            document.getElementById(question).style.backgroundColor = '#2ecc71'; // Green for correct answer
-        } else {
-            document.getElementById(question).style.backgroundColor = '#e74c3c'; // Red for incorrect answer
-        }
+    function checkAnswer(question, correctAnswer) {
+        const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
         
-        // Check if all quizzes are passed
-        if (document.querySelectorAll('[style="background-color: rgb(46, 204, 113);"]').length === 5) {
-            document.getElementById('certificate').style.display = 'block';
+        if (selectedAnswer) {
+            if (selectedAnswer.value === correctAnswer) {
+                answersGiven[question] = true;
+            } else {
+                answersGiven[question] = false;
+            }
+            
+            // Check if all quizzes are passed
+            if (Object.values(answersGiven).every(val => val === true)) {
+                document.getElementById("certificate").style.display = "block";
+            }
+        } else {
+            alert("Please select an answer.");
         }
     }
 </script>
 
 </body>
 </html>
+
