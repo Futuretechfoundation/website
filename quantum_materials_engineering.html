@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Materials Engineering Course</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    section {
+      padding: 2rem;
+      margin: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .quiz {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .quiz label {
+      margin-bottom: 0.5rem;
+    }
+    .certificate {
+      display: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      border-radius: 8px;
+    }
+    .btn {
+      background-color: #333;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    .btn:disabled {
+      background-color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Quantum Materials Engineering Course</h1>
+  <p>Learn about the fascinating world of quantum materials and their applications</p>
+</header>
+
+<section id="introduction">
+  <h2>Introduction</h2>
+  <p>Welcome to the Quantum Materials Engineering course. In this course, we will explore the following topics:</p>
+  <ul>
+    <li>Quantum Dots and Nanomaterials</li>
+    <li>Topological Materials and Quantum States</li>
+    <li>Metamaterials and Quantum Optics</li>
+    <li>Quantum Transport Phenomena</li>
+    <li>2D Materials and Van der Waals Heterostructures</li>
+    <li>Strongly Correlated Electron Systems</li>
+  </ul>
+  <p>Each section will include a quiz to test your knowledge, and upon completing all sections successfully, you will receive a certificate of completion!</p>
+  <button class="btn" id="start-btn">Start Course</button>
+</section>
+
+<!-- Topic 1: Quantum Dots and Nanomaterials -->
+<section id="topic1" class="hidden">
+  <h2>Quantum Dots and Nanomaterials</h2>
+  <p>Quantum dots are small semiconductor particles that exhibit quantum mechanical properties. Due to their size, quantum dots behave differently than bulk materials, and this behavior has important applications in electronics and photonics.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: Quantum Dots and Nanomaterials</h3>
+    <label>
+      <input type="radio" name="quiz1" value="wrong"> Quantum dots are primarily used for their <em>size-dependent</em> optical properties.
+    </label>
+    <label>
+      <input type="radio" name="quiz1" value="correct"> Quantum dots have unique electronic and optical properties due to quantum confinement.
+    </label>
+    <label>
+      <input type="radio" name="quiz1" value="wrong"> Quantum dots can only be used for optical purposes, not electronics.
+    </label>
+    <button class="btn" id="quiz1-btn" disabled>Submit</button>
+  </div>
+</section>
+
+<!-- Topic 2: Topological Materials -->
+<section id="topic2" class="hidden">
+  <h2>Topological Materials and Quantum States</h2>
+  <p>Topological materials, such as topological insulators, have surface states that are protected from disorder, making them useful in quantum computing and spintronics.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: Topological Materials</h3>
+    <label>
+      <input type="radio" name="quiz2" value="wrong"> Topological materials have surface states that are easily disrupted by impurities.
+    </label>
+    <label>
+      <input type="radio" name="quiz2" value="correct"> Topological materials are robust to impurities and defects.
+    </label>
+    <label>
+      <input type="radio" name="quiz2" value="wrong"> Topological materials are only useful in classical computing.
+    </label>
+    <button class="btn" id="quiz2-btn" disabled>Submit</button>
+  </div>
+</section>
+
+<!-- Topic 3: Metamaterials -->
+<section id="topic3" class="hidden">
+  <h2>Metamaterials and Quantum Optics</h2>
+  <p>Metamaterials are engineered materials with properties not found in nature. When combined with quantum principles, they can lead to unique quantum behaviors for light and matter interactions.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: Metamaterials</h3>
+    <label>
+      <input type="radio" name="quiz3" value="wrong"> Metamaterials only affect classical waves, not quantum phenomena.
+    </label>
+    <label>
+      <input type="radio" name="quiz3" value="correct"> Metamaterials can manipulate both classical and quantum waves.
+    </label>
+    <label>
+      <input type="radio" name="quiz3" value="wrong"> Metamaterials are used only for optical properties, not quantum systems.
+    </label>
+    <button class="btn" id="quiz3-btn" disabled>Submit</button>
+  </div>
+</section>
+
+<!-- Topic 4: Quantum Transport Phenomena -->
+<section id="topic4" class="hidden">
+  <h2>Quantum Transport Phenomena</h2>
+  <p>Quantum transport phenomena such as tunneling and conductance quantization are fundamental to understanding how electrons move in materials at the quantum level, impacting electronics, energy conversion, and quantum devices.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: Quantum Transport Phenomena</h3>
+    <label>
+      <input type="radio" name="quiz4" value="wrong"> Quantum transport is unaffected by temperature and material properties.
+    </label>
+    <label>
+      <input type="radio" name="quiz4" value="correct"> Quantum transport phenomena are influenced by material properties, temperature, and quantum effects.
+    </label>
+    <label>
+      <input type="radio" name="quiz4" value="wrong"> Quantum tunneling only happens in high-temperature conditions.
+    </label>
+    <button class="btn" id="quiz4-btn" disabled>Submit</button>
+  </div>
+</section>
+
+<!-- Topic 5: 2D Materials and Van der Waals Heterostructures -->
+<section id="topic5" class="hidden">
+  <h2>2D Materials and Van der Waals Heterostructures</h2>
+  <p>2D materials like graphene and transition metal dichalcogenides (TMDs) exhibit extraordinary electronic and mechanical properties. By stacking these materials into heterostructures, new quantum behaviors emerge that are useful for quantum devices.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: 2D Materials and Van der Waals Heterostructures</h3>
+    <label>
+      <input type="radio" name="quiz5" value="wrong"> 2D materials only exist in theoretical models, not in reality.
+    </label>
+    <label>
+      <input type="radio" name="quiz5" value="correct"> 2D materials have unique properties like high conductivity and flexibility.
+    </label>
+    <label>
+      <input type="radio" name="quiz5" value="wrong"> 2D materials have no applications in quantum computing.
+    </label>
+    <button class="btn" id="quiz5-btn" disabled>Submit</button>
+  </div>
+</section>
+
+      <input type="radio" name="quiz3" value="wrong"> Metamaterials are only useful for optical purposes, not in quantum computing.
+    </label>
+    <button class="btn" id="quiz3-btn" disabled>Submit</button>
+  </div>
+</section>
+ 
+<!-- Topic 6: Strongly Correlated Electron Systems -->
+<section id="topic6" class="hidden">
+  <h2>Strongly Correlated Electron Systems</h2>
+  <p>Strongly correlated electron systems exhibit phenomena like high-temperature superconductivity and metal-insulator transitions. These behaviors arise due to the complex interactions between electrons, and are crucial for understanding quantum materials and developing new quantum devices.</p>
+  
+  <div class="quiz">
+    <h3>Quiz: Strongly Correlated Electron Systems</h3>
+    <label>
+      <input type="radio" name="quiz6" value="wrong"> Strongly correlated electron systems are unaffected by electron-electron interactions.
+    </label>
+    <label>
+      <input type="radio" name="quiz6" value="correct"> Strongly correlated electron systems exhibit behaviors that cannot be explained by single-particle approximations.
+    </label>
+    <label>
+      <input type="radio" name="quiz6" value="wrong"> High-temperature superconductivity is a result of electron-electron interactions in strongly correlated systems.
+    </label>
+    <button class="btn" id="quiz6-btn" disabled>Submit</button>
+  </div>
+</section>
+
+<!-- Certificate Section -->
+<section id="certificate" class="certificate">
+  <h2>Congratulations!</h2>
+  <p>You have successfully completed the Quantum Materials Engineering Course.</p>
+  <p>Your certificate is now ready to download.</p>
+  <button class="btn" onclick="downloadCertificate()">Download Certificate</button>
+</section>
+
+<script>
+  // Start the course
+  document.getElementById('start-btn').addEventListener('click', function() {
+    document.getElementById('introduction').style.display = 'none';
+    document.getElementById('topic1').style.display = 'block';
+  });
+
+  // Enable submit buttons after quiz answers are selected
+  function enableSubmitButton(quizNumber) {
+    let quizOptions = document.getElementsByName(`quiz${quizNumber}`);
+    let submitButton = document.getElementById(`quiz${quizNumber}-btn`);
+    let isAnyOptionSelected = Array.from(quizOptions).some(option => option.checked);
+    submitButton.disabled = !isAnyOptionSelected;
+  }
+
+  // Handle quiz submission
+  function handleQuizSubmission(quizNumber) {
+    let quizOptions = document.getElementsByName(`quiz${quizNumber}`);
+    let selectedValue = null;
+    for (let option of quizOptions) {
+      if (option.checked) {
+        selectedValue = option.value;
+        break;
+      }
+    }
+    
+    if (selectedValue === 'correct') {
+      alert("Correct! Moving to the next topic.");
+      document.getElementById(`topic${quizNumber}`).style.display = 'none';
+      if (quizNumber < 6) {
+        document.getElementById(`topic${quizNumber + 1}`).style.display = 'block';
+      } else {
+        showCertificate();
+      }
+    } else {
+      alert("Incorrect. Try again.");
+    }
+  }
+
+  // Show the certificate after all quizzes are passed
+  function showCertificate() {
+    document.getElementById('certificate').style.display = 'block';
+  }
+
+  // Function to download the certificate (mock function for demo)
+  function downloadCertificate() {
+    alert("Certificate downloaded!");
+  }
+
+  // Event listeners for each quiz
+  document.querySelectorAll('input[type=radio]').forEach(input => {
+    input.addEventListener('change', function() {
+      let quizNumber = this.name.replace('quiz', '');
+      enableSubmitButton(quizNumber);
+    });
+  });
+
+  // Event listeners for quiz submissions
+  document.getElementById('quiz1-btn').addEventListener('click', function() {
+    handleQuizSubmission(1);
+  });
+  document.getElementById('quiz2-btn').addEventListener('click', function() {
+    handleQuizSubmission(2);
+  });
+  document.getElementById('quiz3-btn').addEventListener('click', function() {
+    handleQuizSubmission(3);
+  });
+  document.getElementById('quiz4-btn').addEventListener('click', function() {
+    handleQuizSubmission(4);
+  });
+  document.getElementById('quiz5-btn').addEventListener('click', function() {
+    handleQuizSubmission(5);
+  });
+  document.getElementById('quiz6-btn').addEventListener('click', function() {
+    handleQuizSubmission(6);
+  });
+</script>
+
+</body>
+</html>
