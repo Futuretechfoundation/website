@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanoid Robotics Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        .quiz {
+            display: none;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 10px;
+        }
+        #certificate {
+            display: none;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sections and Quizzes -->
+
+    <section id="section1">
+        <h2>1. Introduction to Humanoid Robotics</h2>
+        <p>
+            Humanoid robots are designed to resemble and replicate human behaviors, making them suitable for a variety of tasks in both industrial and domestic settings. These robots can move, perform tasks, and engage in communication. In this section, we will explore the fundamentals of humanoid robotics, including the technologies used to create them and the various applications.
+        </p>
+        <button onclick="showQuiz('quiz1')">Take Quiz</button>
+    </section>
+
+    <section id="quiz1" class="quiz">
+        <h2>Quiz: Introduction to Humanoid Robotics</h2>
+        <form onsubmit="return checkQuiz(this, 'section1')">
+            <p>1. What is the main goal of humanoid robotics?</p>
+            <label><input type="radio" name="q1" value="A"> To replicate human behavior</label><br>
+            <label><input type="radio" name="q1" value="B"> To create robots for military applications</label><br>
+            <label><input type="radio" name="q1" value="C"> To create robots for only industrial tasks</label><br><br>
+
+            <p>2. Humanoid robots are primarily designed for which of the following?</p>
+            <label><input type="radio" name="q2" value="A"> To replace humans in all tasks</label><br>
+            <label><input type="radio" name="q2" value="B"> To perform tasks that require human-like actions</label><br>
+            <label><input type="radio" name="q2" value="C"> To function as pets</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section2">
+        <h2>2. AI and Machine Learning for Robotics</h2>
+        <p>
+            AI and machine learning are central to the evolution of humanoid robots. With AI, robots can learn and adapt to new tasks autonomously. In this section, we will discuss how AI is integrated into robotics, covering topics such as computer vision, object recognition, and autonomous decision-making.
+        </p>
+        <button onclick="showQuiz('quiz2')">Take Quiz</button>
+    </section>
+
+    <section id="quiz2" class="quiz">
+        <h2>Quiz: AI and Machine Learning for Robotics</h2>
+        <form onsubmit="return checkQuiz(this, 'section2')">
+            <p>1. What role does AI play in humanoid robotics?</p>
+            <label><input type="radio" name="q1" value="A"> Enabling robots to learn and adapt</label><br>
+            <label><input type="radio" name="q1" value="B"> Limiting robot capabilities</label><br>
+            <label><input type="radio" name="q1" value="C"> Providing robots with only pre-defined tasks</label><br><br>
+
+            <p>2. Which AI technology helps robots recognize objects?</p>
+            <label><input type="radio" name="q2" value="A"> Machine learning</label><br>
+            <label><input type="radio" name="q2" value="B"> Quantum computing</label><br>
+            <label><input type="radio" name="q2" value="C"> Voice recognition</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section3">
+        <h2>3. Robotics for Healthcare Applications</h2>
+        <p>
+            Humanoid robots are becoming integral to the healthcare industry. They can assist in surgeries, provide rehabilitation, and even help elderly patients with daily tasks. In this section, we will explore the role of humanoid robots in healthcare, including the ethical considerations and challenges involved.
+        </p>
+        <button onclick="showQuiz('quiz3')">Take Quiz</button>
+    </section>
+
+    <section id="quiz3" class="quiz">
+        <h2>Quiz: Robotics for Healthcare Applications</h2>
+        <form onsubmit="return checkQuiz(this, 'section3')">
+            <p>1. What is a primary application of humanoid robots in healthcare?</p>
+            <label><input type="radio" name="q1" value="A"> Assisting in surgeries</label><br>
+            <label><input type="radio" name="q1" value="B"> Taking patients’ blood pressure</label><br>
+            <label><input type="radio" name="q1" value="C"> Teaching medical students</label><br><br>
+
+            <p>2. What challenge do humanoid robots face in healthcare?</p>
+            <label><input type="radio" name="q2" value="A"> Handling sensitive data</label><br>
+            <label><input type="radio" name="q2" value="B"> Performing surgeries autonomously</label><br>
+            <label><input type="radio" name="q2" value="C"> Integrating with human emotions</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section4">
+        <h2>4. Advanced Robotics Engineering</h2>
+        <p>
+            This section delves deeper into the advanced engineering principles used to create humanoid robots. Topics include kinematics, dynamics, and control systems. Students will also explore robotics software tools such as Gazebo and V-REP for simulation and testing.
+        </p>
+        <button onclick="showQuiz('quiz4')">Take Quiz</button>
+    </section>
+
+    <section id="quiz4" class="quiz">
+        <h2>Quiz: Advanced Robotics Engineering</h2>
+        <form onsubmit="return checkQuiz(this, 'section4')">
+            <p>1. Which of the following is an important consideration in humanoid robotics engineering?</p>
+            <label><input type="radio" name="q1" value="A"> Kinematics and dynamics</label><br>
+            <label><input type="radio" name="q1" value="B"> Power consumption</label><br>
+            <label><input type="radio" name="q1" value="C"> Robot color schemes</label><br><br>
+
+            <p>2. What is the role of simulation software in robotics?</p>
+            <label><input type="radio" name="q2" value="A"> To test hardware prototypes only</label><br>
+            <label><input type="radio" name="q2" value="B"> To simulate and test control algorithms</label><br>
+            <label><input type="radio" name="q2" value="C"> To manufacture robots</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section5">
+        <h2>5. Human-Robot Interaction (HRI)</h2>
+        <p>
+            Human-Robot Interaction (HRI) is a field of study focused on how humans and robots can communicate and collaborate effectively. This section explores user experience (UX) design for robots, as well as technologies like natural language processing (NLP) and emotion recognition that enable robots to interact with humans.
+        </p>
+        <button onclick="showQuiz('quiz5')">Take Quiz</button>
+    </section>
+
+    <section id="quiz5" class="quiz">
+        <h2>Quiz: Human-Robot Interaction (HRI)</h2>
+        <form onsubmit="return checkQuiz(this, 'section5')">
+            <p>1. What is an important component of HRI?</p>
+            <label><input type="radio" name="q1" value="A"> Emotion recognition</label><br>
+            <label><input type="radio" name="q1" value="B"> Image processing</label><br>
+            <label><input type="radio" name="q1" value="C"> Task automation</label><br><br>
+          <section id="section6">
+        <h2>6. Ethics and Policy in Robotics</h2>
+        <p>
+            As robots become more integrated into society, ethical and legal considerations become increasingly important. This section explores the ethical dilemmas surrounding robotics, including privacy concerns, AI bias, and the potential impact of automation on the workforce. It also covers the development of laws and regulations to ensure the safe and responsible use of robotics.
+        </p>
+        <button onclick="showQuiz('quiz6')">Take Quiz</button>
+    </section>
+
+    <section id="quiz6" class="quiz">
+        <h2>Quiz: Ethics and Policy in Robotics</h2>
+        <form onsubmit="return checkQuiz(this, 'section6')">
+            <p>1. What ethical concern is related to the widespread use of AI in robotics?</p>
+            <label><input type="radio" name="q1" value="A"> Privacy and data security</label><br>
+            <label><input type="radio" name="q1" value="B"> Human job displacement</label><br>
+            <label><input type="radio" name="q1" value="C"> Both A and B</label><br><br>
+
+            <p>2. Which of the following is a potential challenge when implementing robotics in everyday life?</p>
+            <label><input type="radio" name="q2" value="A"> Ensuring that robots are free of bias</label><br>
+            <label><input type="radio" name="q2" value="B"> Making robots smarter than humans</label><br>
+            <label><input type="radio" name="q2" value="C"> The rapid pace of technological change</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section7">
+        <h2>7. Robotics and IoT Integration</h2>
+        <p>
+            The Internet of Things (IoT) allows devices to connect and communicate over the internet. In robotics, IoT integration enables robots to interact with smart home devices, sensors, and other connected technologies. In this section, we explore how robots can be integrated into IoT systems, enabling them to be part of a larger network of smart devices that can be controlled and monitored remotely.
+        </p>
+        <button onclick="showQuiz('quiz7')">Take Quiz</button>
+    </section>
+
+    <section id="quiz7" class="quiz">
+        <h2>Quiz: Robotics and IoT Integration</h2>
+        <form onsubmit="return checkQuiz(this, 'section7')">
+            <p>1. How does IoT integration benefit humanoid robots?</p>
+            <label><input type="radio" name="q1" value="A"> Allows robots to control other devices remotely</label><br>
+            <label><input type="radio" name="q1" value="B"> Enables robots to understand human language better</label><br>
+            <label><input type="radio" name="q1" value="C"> Makes robots physically stronger</label><br><br>
+
+            <p>2. Which communication protocol is commonly used for IoT devices?</p>
+            <label><input type="radio" name="q2" value="A"> MQTT</label><br>
+            <label><input type="radio" name="q2" value="B"> FTP</label><br>
+            <label><input type="radio" name="q2" value="C"> HTTP</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section8">
+        <h2>8. Robotics for Space Exploration</h2>
+        <p>
+            Humanoid robots have potential applications in space exploration. They can be used for tasks such as operating rovers, conducting experiments, and maintaining equipment on space stations or other planets. This section explores how robotics is applied to space missions, focusing on autonomous systems, AI, and the challenges of working in harsh environments like space.
+        </p>
+        <button onclick="showQuiz('quiz8')">Take Quiz</button>
+    </section>
+
+    <section id="quiz8" class="quiz">
+        <h2>Quiz: Robotics for Space Exploration</h2>
+        <form onsubmit="return checkQuiz(this, 'section8')">
+            <p>1. What role do humanoid robots play in space exploration?</p>
+            <label><input type="radio" name="q1" value="A"> They are used to perform human-like tasks in space</label><br>
+            <label><input type="radio" name="q1" value="B"> They only assist astronauts with entertainment</label><br>
+            <label><input type="radio" name="q1" value="C"> They replace astronauts completely</label><br><br>
+
+            <p>2. What is a key challenge for robots operating in space?</p>
+            <label><input type="radio" name="q2" value="A"> Harsh environmental conditions</label><br>
+            <label><input type="radio" name="q2" value="B"> Low energy consumption</label><br>
+            <label><input type="radio" name="q2" value="C"> Communication speed with Earth</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section9">
+        <h2>9. Robot Programming and Control</h2>
+        <p>
+            Programming robots involves writing code that allows them to perform tasks. This section covers the basics of robot programming, focusing on control algorithms, real-time systems, and sensor integration. You'll also learn about various programming languages, including Python, C++, and the Robot Operating System (ROS), which are widely used in robotics.
+        </p>
+        <button onclick="showQuiz('quiz9')">Take Quiz</button>
+    </section>
+
+    <section id="quiz9" class="quiz">
+        <h2>Quiz: Robot Programming and Control</h2>
+        <form onsubmit="return checkQuiz(this, 'section9')">
+            <p>1. What programming language is commonly used in robotics?</p>
+            <label><input type="radio" name="q1" value="A"> Python</label><br>
+            <label><input type="radio" name="q1" value="B"> JavaScript</label><br>
+            <label><input type="radio" name="q1" value="C"> HTML</label><br><br>
+
+            <p>2. What is the purpose of control algorithms in robotics?</p>
+            <label><input type="radio" name="q2" value="A"> To manage a robot's movement and interactions</label><br>
+            <label><input type="radio" name="q2" value="B"> To enable a robot to make decisions based on sensors</label><br>
+            <label><input type="radio" name="q2" value="C"> To determine the shape of the robot's body</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <section id="section10">
+        <h2>10. Robotics in Augmented and Virtual Reality</h2>
+        <p>
+            Augmented Reality (AR) and Virtual Reality (VR) are powerful technologies that enhance the interaction between humans and robots. This section explores how AR and VR are used in robotics, such as through simulations for robot design, training, and operations. By using AR and VR, we can create virtual environments for robots to operate in or test scenarios in a controlled digital space.
+        </p>
+        <button onclick="showQuiz('quiz10')">Take Quiz</button>
+    </section>
+
+    <section id="quiz10" class="quiz">
+        <h2>Quiz: Robotics in Augmented and Virtual Reality</h2>
+        <form onsubmit="return checkQuiz(this, 'section10')">
+            <p>1. How does AR benefit robot programming?</p>
+            <label><input type="radio" name="q1" value="A"> By allowing robots to interact with digital elements in real-time</label><br>
+            <label><input type="radio" name="q1" value="B"> By reducing the robot's power consumption</label><br>
+            <label><input type="radio" name="q1" value="C"> By creating robots that can only operate in virtual environments</label><br><br>
+
+            <p>2. What is one common use of VR in robotics?</p>
+            <label><input type="radio" name="q2" value="A"> Robot design and simulation</label><br>
+            <label><input type="radio" name="q2" value="B"> Storing robot code</label><br>
+            <label><input type="radio" name="q2" value="C"> Reducing the robot's hardware</label><br><br>
+
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <!-- Certificate Section -->
+    <section id="certificate">
+        <h2>Certificate of Completion</h2>
+        <p>Congratulations on completing the Humanoid Robotics Course!</p>
+        <button onclick="generateCertificate()">Generate Certificate</button>
+        <div id="certificateContent" style="display:none;">
+            <h3>Certificate of Completion</h3>
+            <p>This certifies that <span id="userName"></span> has completed the Humanoid Robotics Course.</p>
+            <p>Date of Completion: <span id="completionDate"></span></p>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        function showQuiz(quizId) {
+            const quiz = document.getElementById(quizId);
+            quiz.style.display = 'block';
+        }
+
+        function checkQuiz(form, sectionId) {
+            let score = 0;
+            const section = document.getElementById(sectionId);
+            const questions = form.querySelectorAll('input[type="radio"]:checked');
+            if (sectionId === 'section1') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'B') score++;
+            } else if (sectionId === 'section2') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section3') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section4') {
+                if (form.q1.value === 'B') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section5') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section6') {
+                if (form.q1.value === 'C') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section7') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section8') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            } else if (sectionId === 'section9') {
+                if (form.q1.value === 'A') score++;
+                if (form.q2.value === 'A') score++;
+            }
+
+            if (score >= 3) {
+                alert("Great job! You've passed this section.");
+            } else {
+                alert("Oops! You need more correct answers to pass.");
+            }
+
+            return false;
+        }
+
+        function generateCertificate() {
+            const userName = prompt("Enter your name:");
+            if (userName) {
+                const today = new Date();
+                const completionDate = today.toLocaleDateString();
+                document.getElementById('userName').textContent = userName;
+                document.getElementById('completionDate').textContent = completionDate;
+                document.getElementById('certificateContent').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+    </html>
