@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regenerative Biotherapeutics Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .quiz {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .quiz label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .quiz input {
+            margin-right: 10px;
+        }
+        .certificate {
+            display: none;
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #2ecc71;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Regenerative Biotherapeutics Course</h1>
+    <p>Welcome to the course on regenerative biotherapeutics. In this course, we will explore the key topics in the rapidly advancing field of regenerative medicine. After completing each section and passing the quiz, you will receive a certificate of completion at the end. Let’s begin!</p>
+
+    <!-- Section 1: Stem Cell Therapy -->
+    <div class="section" id="section1">
+        <h2>1. Stem Cell Therapy</h2>
+        <p>Stem cells are used to regenerate damaged tissues by either differentiating into the required cell types or by releasing factors that promote healing. Induced pluripotent stem cells (iPSCs) and mesenchymal stem cells (MSCs) are two significant areas of focus.</p>
+        <div class="quiz">
+            <h3>Quiz: Stem Cell Therapy</h3>
+            <label><input type="radio" name="q1" value="a"> Stem cells can differentiate into specific cell types to aid in tissue regeneration.</label>
+            <label><input type="radio" name="q1" value="b"> Stem cells only work to regenerate muscle tissue.</label>
+            <label><input type="radio" name="q1" value="c"> Stem cells are not useful for organ repair.</label>
+            <button class="btn" onclick="checkAnswer('q1', 'a')">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- Section 2: Organoids and Organ-on-a-Chip Models -->
+    <div class="section" id="section2">
+        <h2>2. Organoids and Organ-on-a-Chip Models</h2>
+        <p>Advances in creating miniaturized models of organs, known as organoids, or "organ-on-a-chip" systems, are transforming drug testing, disease modeling, and regenerative therapies. These models allow for personalized medicine approaches and testing therapies in a controlled, in vivo-like environment before clinical trials.</p>
+        <div class="quiz">
+            <h3>Quiz: Organoids and Organ-on-a-Chip Models</h3>
+            <label><input type="radio" name="q2" value="a"> Organoids are small, simplified models of organs used in research.</label>
+            <label><input type="radio" name="q2" value="b"> Organoids have no potential in regenerative medicine.</label>
+            <label><input type="radio" name="q2" value="c"> Organ-on-a-chip models are irrelevant to personalized medicine.</label>
+            <button class="btn" onclick="checkAnswer('q2', 'a')">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- Section 3: Exosome-based Therapies -->
+    <div class="section" id="section3">
+        <h2>3. Exosome-based Therapies</h2>
+        <p>Exosomes are small vesicles released by cells that can carry proteins, lipids, and RNA, playing a role in cell-to-cell communication. Their use in regenerative medicine is gaining attention for their potential to promote tissue repair and reduce inflammation.</p>
+        <div class="quiz">
+            <h3>Quiz: Exosome-based Therapies</h3>
+            <label><input type="radio" name="q3" value="a"> Exosomes can be used to deliver healing factors between cells.</label>
+            <label><input type="radio" name="q3" value="b"> Exosomes have no therapeutic potential.</label>
+            <label><input type="radio" name="q3" value="c"> Exosomes are only used in cancer treatment.</label>
+            <button class="btn" onclick="checkAnswer('q3', 'a')">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- Section 4: Biomaterials for Regeneration -->
+    <div class="section" id="section4">
+        <h2>4. Biomaterials for Regeneration</h2>
+        <p>The development of advanced biomaterials, such as hydrogels, scaffolds, and nanomaterials, is crucial in supporting cell growth and differentiation, providing structural support, and facilitating tissue regeneration.</p>
+        <div class="quiz">
+            <h3>Quiz: Biomaterials for Regeneration</h3>
+            <label><input type="radio" name="q4" value="a"> Biomaterials can be used as scaffolds to support tissue regeneration.</label>
+            <label><input type="radio" name="q4" value="b"> Biomaterials are not important in regenerative therapies.</label>
+            <label><input type="radio" name="q4" value="c"> Hydrogels are only used for cosmetic purposes.</label>
+            <button class="btn" onclick="checkAnswer('q4', 'a')">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- Section 5: Personalized Regenerative Therapy -->
+    <div class="section" id="section5">
+        <h2>5. Personalized Regenerative Therapy</h2>
+        <p>With CRISPR, it’s possible to edit a patient’s own cells to correct genetic defects or enhance their regenerative capabilities. These edited cells could then be used in bioprinting to create personalized tissues that are more likely to be accepted by the body without rejection. This could lead to customized, genetically-aligned tissues or even organs for patients.</p>
+        <div class="quiz">
+            <h3>Quiz: Personalized Regenerative Therapy</h3>
+            <label><input type="radio" name="q5" value="a"> CRISPR can edit a patient’s cells to improve regenerative outcomes.</label>
+            <label><input type="radio" name="q5" value="b"> Personalized regenerative therapy involves only generic stem cells.</label>
+            <label><input type="radio" name="q5" value="c"> Personalized therapies are irrelevant in regenerative medicine.</label>
+            <button class="btn" onclick="checkAnswer('q5', 'a')">Submit Answer</button>
+        </div>
+    </div>
+
+    <div class="certificate" id="certificate">
+        <h2>Congratulations!</h2>
+        <p>You have completed the course on Regenerative Biotherapeutics. You have earned your certificate!</p>
+    </div>
+</div>
+
+<script>
+    let correctAnswers = {
+        q1: 'a',
+        q2: 'a',
+        q3: 'a',
+        q4: 'a',
+        q5: 'a'
+    };
+    
+    function checkAnswer(question, answer) {
+        if (correctAnswers[question] === answer) {
+            document.getElementById(question).style.backgroundColor = '#2ecc71'; // Green for correct answer
+        } else {
+            document.getElementById(question).style.backgroundColor = '#e74c3c'; // Red for incorrect answer
+        }
+        
+        // Check if all quizzes are passed
+        if (document.querySelectorAll('[style="background-color: rgb(46, 204, 113);"]').length === 5) {
+            document.getElementById('certificate').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
