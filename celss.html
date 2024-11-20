@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closed Ecological Life Support Systems (CELSS) Course</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .quiz-section {
+      margin-bottom: 30px;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    .quiz-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .quiz-button:hover {
+      background-color: #45a049;
+    }
+    .certificate {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffeb3b;
+      text-align: center;
+      border: 2px solid #333;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Closed Ecological Life Support Systems (CELSS) Course</h1>
+
+  <p><strong>Introduction:</strong></p>
+  <p>Closed Ecological Life Support Systems (CELSS) are designed to support human life in isolated environments, such as space or remote areas. These systems mimic Earth's natural cycles, recycling air, water, and nutrients, and providing food, shelter, and energy with minimal external input. The development of CELSS is crucial for long-term space exploration, colonization of other planets, and advancing sustainability on Earth. The course will cover both current and future advancements in CELSS that enhance system efficiency, sustainability, and adaptability, with a focus on innovations for space exploration and long-term sustainability.</p>
+
+  <h2>1. Autonomous Monitoring and Control</h2>
+  <p>AI and machine learning systems will automate CELSS operation, ensuring optimal environmental conditions with minimal human intervention.</p>
+  <p class="question">What is the role of AI in CELSS?</p>
+  <ul>
+    <li><input type="radio" name="q1" value="a"> Managing oxygen levels</li>
+    <li><input type="radio" name="q1" value="b"> Monitoring and controlling system components</li>
+    <li><input type="radio" name="q1" value="c"> Recycling water</li>
+  </ul>
+  <button class="quiz-button" onclick="checkAnswer('q1', 'b')">Submit Answer</button>
+
+  <div class="quiz-section">
+    <h2>2. Advanced Artificial Photosynthesis</h2>
+    <p>Artificial photosynthesis improves oxygen production and food growth efficiency in CELSS.</p>
+    <p class="question">What does artificial photosynthesis primarily improve in CELSS?</p>
+    <ul>
+      <li><input type="radio" name="q2" value="a"> Oxygen production and food growth</li>
+      <li><input type="radio" name="q2" value="b"> Water recycling</li>
+      <li><input type="radio" name="q2" value="c"> Energy generation</li>
+    </ul>
+    <button class="quiz-button" onclick="checkAnswer('q2', 'a')">Submit Answer</button>
+  </div>
+
+  <div class="quiz-section">
+    <h2>3. Synthetic Biology for Life Support</h2>
+    <p>Synthetic biology involves designing organisms to optimize resource recycling and food production in CELSS.</p>
+    <p class="question">What is synthetic biology used for in CELSS?</p>
+    <ul>
+      <li><input type="radio" name="q3" value="a"> Designing organisms to optimize food production</li>
+      <li><input type="radio" name="q3" value="b"> Water filtration</li>
+      <li><input type="radio" name="q3" value="c"> Generating renewable energy</li>
+    </ul>
+    <button class="quiz-button" onclick="checkAnswer('q3', 'a')">Submit Answer</button>
+  </div>
+
+  <div class="quiz-section">
+    <h2>4. Bio-Hybrid Systems</h2>
+    <p>Bio-hybrid systems combine living organisms with robotic technologies to optimize CELSS functions.</p>
+    <p class="question">What is the purpose of bio-hybrid systems in CELSS?</p>
+    <ul>
+      <li><input type="radio" name="q4" value="a"> To enhance efficiency by combining robotics and biology</li>
+      <li><input type="radio" name="q4" value="b"> To generate energy</li>
+      <li><input type="radio" name="q4" value="c"> To manage waste</li>
+    </ul>
+    <button class="quiz-button" onclick="checkAnswer('q4', 'a')">Submit Answer</button>
+  </div>
+
+  <div class="quiz-section">
+    <h2>5. Space-Based 3D Printing of Food and Materials</h2>
+    <p>3D printing allows food and tools to be made directly in space from local resources, reducing reliance on Earth.</p>
+    <p class="question">How does 3D printing benefit CELSS?</p>
+    <ul>
+      <li><input type="radio" name="q5" value="a"> It reduces the need for resupply missions from Earth</li>
+      <li><input type="radio" name="q5" value="b"> It improves oxygen production</li>
+      <li><input type="radio" name="q5" value="c"> It generates energy</li>
+    </ul>
+    <button class="quiz-button" onclick="checkAnswer('q5', 'a')">Submit Answer</button>
+  </div>
+
+  <div class="quiz-section">
+    <h2>6. Interconnected CELSS Networks</h2>
+    <p>Multiple CELSS habitats working together can share resources and ensure sustainability over long durations.</p>
+    <p class="question">What is the benefit of interconnected CELSS networks?</p>
+    <ul>
+      <li><input type="radio" name="q6" value="a"> They share resources and improve sustainability</li>
+      <li><input type="radio" name="q6" value="b"> They reduce the need for artificial photosynthesis</li>
+      <li><input type="radio" name="q6" value="c"> They optimize waste management</li>
+    </ul>
+    <button class="quiz-button" onclick="checkAnswer('q6', 'a')">Submit Answer</button>
+  </div>
+
+  <div class="certificate" id="certificate">
+    <h2>Congratulations!</h2>
+    <p>You have successfully completed the Closed Ecological Life Support Systems course!</p>
+  </div>
+
+  <script>
+    let correctAnswers = {
+      q1: 'b',
+      q2: 'a',
+      q3: 'a',
+      q4: 'a',
+      q5: 'a',
+      q6: 'a'
+    };
+
+    function checkAnswer(questionId, correctAnswer) {
+      let selectedAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
+      if (selectedAnswer && selectedAnswer.value === correctAnswer) {
+        selectedAnswer.disabled = true;
+        alert("Correct!");
+      } else {
+        alert("Incorrect. Try again.");
+      }
+
+      // Check if all answers are correct
+      if (checkAllAnswers()) {
+        document.getElementById("certificate").style.display = "block";
+      }
+    }
+
+    function checkAllAnswers() {
+      let allCorrect = true;
+      for (let questionId in correctAnswers) {
+        let selectedAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
+        if (!selectedAnswer || selectedAnswer.value !== correctAnswers[questionId]) {
+          allCorrect = false;
+        }
+      }
+      return allCorrect;
+    }
+  </script>
+
+</body>
+  </html>
