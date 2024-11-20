@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTech Nanorobotics: Exploring the Quantum Frontier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0073e6;
+        }
+        .quiz {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .certificate {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #0073e6;
+            border-radius: 10px;
+            background-color: #e6f7ff;
+            text-align: center;
+            display: none; /* Hidden until quizzes are passed */
+        }
+        button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to FutureTech Nanorobotics: Exploring the Quantum Frontier</h1>
+        <p>An interactive course on the cutting-edge field of nanorobotics</p>
+    </header>
+
+    <section id="section-1">
+        <h2>1. Medical Nanorobots for Targeted Drug Delivery</h2>
+        <p>
+            Nanorobots are transforming healthcare by delivering drugs directly to specific cells or tissues, 
+            reducing side effects and increasing treatment efficiency. Learn about stimuli-responsive nanobots 
+            that activate under certain conditions like pH, temperature, or magnetic fields.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>What is the primary benefit of targeted drug delivery by nanorobots?</p>
+            <button onclick="checkAnswer('section-1', true)">A. Minimizes side effects</button>
+            <button onclick="checkAnswer('section-1', false)">B. Slows drug effectiveness</button>
+        </div>
+    </section>
+
+    <section id="section-2">
+        <h2>2. Nanorobots for Minimally Invasive Surgery</h2>
+        <p>
+            Learn how nanorobots perform minimally invasive surgeries by reaching delicate or hard-to-access areas of the body, 
+            such as repairing tissues or clearing blocked arteries. These advancements aim to reduce recovery time and complications.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>Which benefit is associated with nanorobots in surgery?</p>
+            <button onclick="checkAnswer('section-2', true)">A. Reduces invasiveness</button>
+            <button onclick="checkAnswer('section-2', false)">B. Increases hospital stays</button>
+        </div>
+    </section>
+
+    <section id="section-3">
+        <h2>3. Personalized Medicine Nanorobotics</h2>
+        <p>
+            Personalized nanorobots adapt to an individual’s unique genetic and physiological profile for precision treatment. 
+            They enable real-time health monitoring and deliver customized therapies.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>How do personalized nanorobots benefit healthcare?</p>
+            <button onclick="checkAnswer('section-3', true)">A. Provide tailored treatments</button>
+            <button onclick="checkAnswer('section-3', false)">B. Offer generalized drugs</button>
+        </div>
+    </section>
+
+    <section id="section-4">
+        <h2>4. DNA Origami Nanorobotics</h2>
+        <p>
+            DNA origami is a technique that uses DNA strands to create precise nanostructures. 
+            These nanorobots have applications in drug delivery, nanoscale sensing, and molecular computation.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>What is the main principle of DNA origami nanorobotics?</p>
+            <button onclick="checkAnswer('section-4', true)">A. DNA folding</button>
+            <button onclick="checkAnswer('section-4', false)">B. Protein folding</button>
+        </div>
+    </section>
+
+    <section id="section-5">
+        <h2>5. Nanorobotics Design and Simulation</h2>
+        <p>
+            Advanced design tools and simulations optimize nanorobots' performance, material selection, and control systems. 
+            AI-driven models improve efficiency and reliability in applications like healthcare and manufacturing.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>How does AI assist in nanorobotics design?</p>
+            <button onclick="checkAnswer('section-5', true)">A. Predicts performance</button>
+            <button onclick="checkAnswer('section-5', false)">B. Randomly tests designs</button>
+        </div>
+    </section>
+
+    <section id="section-6">
+        <h2>6. Energy Harvesting and Self-Powered Nanorobots</h2>
+        <p>
+            Learn how self-powered nanorobots harvest energy from light, biofuels, or body fluids to sustain long-term operations 
+            without external power sources. These innovations enable nanobots to perform tasks autonomously in complex environments.
+        </p>
+        <div class="quiz">
+            <h3>Quiz</h3>
+            <p>Which energy source can be used by self-powered nanorobots?</p>
+            <button onclick="checkAnswer('section-6', true)">A. Light</button>
+            <button onclick="checkAnswer('section-6', false)">B. Only electrical charge</button>
+        </div>
+    </section>
+
+    <div class="certificate" id="certificate">
+        <h2>Congratulations!</h2>
+        <p>You have successfully completed the FutureTech Nanorobotics course!</p>
+        <p><strong>Your certificate is ready!</strong></p>
+    </div>
+
+    <script>
+        var quizResults = {
+            'section-1': false,
+            'section-2': false,
+            'section-3': false,
+            'section-4': false,
+            'section-5': false,
+            'section-6': false
+        };
+
+        function checkAnswer(section, correct) {
+            if (correct) {
+                quizResults[section] = true;
+            }
+
+            // Check if all quizzes are passed
+            var allPassed = Object.values(quizResults).every(result => result);
+            if (allPassed) {
+                document.getElementById('certificate').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
