@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryonics Course</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2, h3 { color: #2c3e50; }
+        .section { margin-bottom: 40px; }
+        .quiz { margin-top: 20px; }
+        .certificate { display: none; border: 2px solid #2c3e50; padding: 20px; text-align: center; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Introduction to Cryonics</h1>
+        <p>Welcome to the Cryonics Course! This course will explore cryopreservation techniques, legal and ethical considerations, biological challenges of revival, and much more. Complete the quizzes at the end of each section to earn your certificate!</p>
+    </header>
+
+    <main>
+        <!-- Introduction -->
+        <section class="section" id="introduction">
+            <h2>Introduction</h2>
+            <p>
+                Cryonics is the science of preserving individuals at extremely low temperatures after death, with the hope of future revival. 
+                Key areas include:
+            </p>
+            <ul>
+                <li>Advances in vitrification and cryoprotectants.</li>
+                <li>Neuropreservation versus whole-body preservation.</li>
+                <li>Legal and ethical considerations, including the definition of death and consent.</li>
+                <li>Biological challenges of tissue repair and neuron viability.</li>
+                <li>Future technologies like nanomedicine and AI.</li>
+                <li>Social and philosophical implications, including identity and resource allocation.</li>
+                <li>Organizations like Alcor and Cryonics Institute, and the cost of preservation.</li>
+            </ul>
+        </section>
+
+        <!-- Main Topics -->
+        <section class="section" id="reversible-cryopreservation">
+            <h2>Reversible Cryopreservation</h2>
+            <p>Learn about technologies that allow freezing and thawing of complex organs, enabling organ transplantation and whole-body revival.</p>
+            <div class="quiz">
+                <h3>Quiz</h3>
+                <p>Q1: What is the primary goal of reversible cryopreservation?</p>
+                <label><input type="radio" name="q1" value="1"> To create glass-like structures.</label><br>
+                <label><input type="radio" name="q1" value="2"> To enable thawing and revival of tissues.</label>
+            </div>
+        </section>
+
+        <section class="section" id="advancements-cryoprotectants">
+            <h2>Advancements in Cryoprotectants</h2>
+            <p>Explore non-toxic cryoprotectant solutions that prevent freezing damage, ensuring better preservation of cells and tissues.</p>
+            <div class="quiz">
+                <h3>Quiz</h3>
+                <p>Q2: What do cryoprotectants aim to prevent?</p>
+                <label><input type="radio" name="q2" value="1"> Ice crystal formation.</label><br>
+                <label><input type="radio" name="q2" value="2"> Cellular decay in heat.</label>
+            </div>
+        </section>
+
+        <!-- Additional Sections -->
+        <section class="section" id="aging-research">
+            <h2>Cryonics and Aging Research</h2>
+            <p>Discover how cryonics integrates with anti-aging and regenerative medicine to extend lifespans.</p>
+        </section>
+
+        <section class="section" id="global-standards">
+            <h2>Global Collaboration and Standards</h2>
+            <p>Learn about efforts to establish international cryonics standards for procedures and safety.</p>
+        </section>
+
+        <section class="section" id="space-cryonics">
+            <h2>Space Cryonics</h2>
+            <p>Explore the use of cryonics in long-term space travel and preserving humans for interstellar missions.</p>
+        </section>
+
+        <section class="section" id="quantum-biology">
+            <h2>Cryonics and Quantum Biology</h2>
+            <p>Investigate the role of quantum effects in preserving consciousness during cryopreservation.</p>
+        </section>
+
+        <section class="section" id="medy">
+            <h2>Future Technology: MEDY</h2>
+            <p>
+                Fudan University's researchers achieved a breakthrough with MEDY (Molecular Electro-Dynamic Yielding), reviving a human brain frozen for 18 months. 
+                This innovation preserves neural cells and opens pathways for neurological advancements and reliable preservation techniques.
+            </p>
+        </section>
+    </main>
+
+    <!-- Certificate Section -->
+    <section id="certificate" class="certificate">
+        <h2>Certificate of Completion</h2>
+        <p>Congratulations! You have successfully completed the Cryonics Course.</p>
+    </section>
+
+    <script>
+        const quizzes = document.querySelectorAll('.quiz');
+        quizzes.forEach(quiz => {
+            const inputs = quiz.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    if (Array.from(inputs).some(input => input.checked)) {
+                        quiz.style.backgroundColor = '#d4edda';
+                    }
+                });
+            });
+        });
+
+        function checkCompletion() {
+            const allCompleted = Array.from(quizzes).every(quiz => quiz.style.backgroundColor === 'rgb(212, 237, 218)');
+            if (allCompleted) {
+                document.getElementById('certificate').style.display = 'block';
+            }
+        }
+
+        document.body.addEventListener('change', checkCompletion);
+    </script>
+</body>
+</html>
