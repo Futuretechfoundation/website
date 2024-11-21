@@ -10,6 +10,8 @@
         .section { margin-bottom: 40px; }
         .quiz { margin-top: 20px; }
         .certificate { display: none; border: 2px solid #2c3e50; padding: 20px; text-align: center; margin-top: 40px; }
+        .question { margin-bottom: 15px; }
+        .question input { margin-right: 10px; }
     </style>
 </head>
 <body>
@@ -22,10 +24,7 @@
         <!-- Introduction -->
         <section class="section" id="introduction">
             <h2>Introduction</h2>
-            <p>
-                Cryonics is the science of preserving individuals at extremely low temperatures after death, with the hope of future revival. 
-                Key areas include:
-            </p>
+            <p>Cryonics is the science of preserving individuals at extremely low temperatures after death, with the hope of future revival. Key areas include:</p>
             <ul>
                 <li>Advances in vitrification and cryoprotectants.</li>
                 <li>Neuropreservation versus whole-body preservation.</li>
@@ -35,88 +34,208 @@
                 <li>Social and philosophical implications, including identity and resource allocation.</li>
                 <li>Organizations like Alcor and Cryonics Institute, and the cost of preservation.</li>
             </ul>
+            <div class="quiz">
+                <h3>Quiz: Introduction</h3>
+                <div class="question">
+                    <p>Q1: What is the primary goal of cryonics?</p>
+                    <label><input type="radio" name="q1" value="1"> To preserve individuals at low temperatures with the hope of revival.</label><br>
+                    <label><input type="radio" name="q1" value="2"> To experiment with low-temperature physics.</label><br>
+                    <label><input type="radio" name="q1" value="3"> To preserve bodies for scientific research only.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What is one major challenge in cryonics?</p>
+                    <label><input type="radio" name="q2" value="1"> Preventing ice crystal formation during preservation.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Deciding which individuals should be preserved.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Determining the future cost of cryonics.</label><br>
+                </div>
+            </div>
         </section>
 
-        <!-- Main Topics -->
+        <!-- Reversible Cryopreservation -->
         <section class="section" id="reversible-cryopreservation">
             <h2>Reversible Cryopreservation</h2>
             <p>Learn about technologies that allow freezing and thawing of complex organs, enabling organ transplantation and whole-body revival.</p>
             <div class="quiz">
-                <h3>Quiz</h3>
-                <p>Q1: What is the primary goal of reversible cryopreservation?</p>
-                <label><input type="radio" name="q1" value="1"> To create glass-like structures.</label><br>
-                <label><input type="radio" name="q1" value="2"> To enable thawing and revival of tissues.</label>
+                <h3>Quiz: Reversible Cryopreservation</h3>
+                <div class="question">
+                    <p>Q1: What does reversible cryopreservation allow for?</p>
+                    <label><input type="radio" name="q1" value="1"> Freezing and thawing complex organs without damage.</label><br>
+                    <label><input type="radio" name="q1" value="2"> Freezing individuals for indefinite preservation without thawing.</label><br>
+                    <label><input type="radio" name="q1" value="3"> Storing organs without any temperature-related issues.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What is one key challenge in reversible cryopreservation?</p>
+                    <label><input type="radio" name="q2" value="1"> Preventing cellular damage during freezing and thawing.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Keeping the temperature constant during preservation.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Avoiding the use of cryoprotectants.</label><br>
+                </div>
             </div>
         </section>
 
+        <!-- Advancements in Cryoprotectants -->
         <section class="section" id="advancements-cryoprotectants">
             <h2>Advancements in Cryoprotectants</h2>
             <p>Explore non-toxic cryoprotectant solutions that prevent freezing damage, ensuring better preservation of cells and tissues.</p>
             <div class="quiz">
-                <h3>Quiz</h3>
-                <p>Q2: What do cryoprotectants aim to prevent?</p>
-                <label><input type="radio" name="q2" value="1"> Ice crystal formation.</label><br>
-                <label><input type="radio" name="q2" value="2"> Cellular decay in heat.</label>
+                <h3>Quiz: Advancements in Cryoprotectants</h3>
+                <div class="question">
+                    <p>Q1: What is the primary function of cryoprotectants in cryonics?</p>
+                    <label><input type="radio" name="q1" value="1"> To prevent ice crystal formation that can damage cells.</label><br>
+                    <label><input type="radio" name="q1" value="2"> To speed up the freezing process.</label><br>
+                    <label><input type="radio" name="q1" value="3"> To prevent loss of consciousness during preservation.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What is a key challenge when developing cryoprotectants?</p>
+                    <label><input type="radio" name="q2" value="1"> Ensuring they are non-toxic and effective in preserving tissues.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Making them inexpensive for use in medical settings.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Making them available for use in cryonics facilities.</label><br>
+                </div>
             </div>
         </section>
 
-        <!-- Additional Sections -->
+        <!-- Cryonics and Aging Research -->
         <section class="section" id="aging-research">
             <h2>Cryonics and Aging Research</h2>
             <p>Discover how cryonics integrates with anti-aging and regenerative medicine to extend lifespans.</p>
+            <div class="quiz">
+                <h3>Quiz: Cryonics and Aging Research</h3>
+                <div class="question">
+                    <p>Q1: How might cryonics help with aging research?</p>
+                    <label><input type="radio" name="q1" value="1"> By preserving tissues for future regenerative treatments.</label><br>
+                    <label><input type="radio" name="q1" value="2"> By halting the aging process entirely.</label><br>
+                    <label><input type="radio" name="q1" value="3"> By eliminating aging-related diseases during preservation.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What is one way cryonics might integrate with anti-aging therapies?</p>
+                    <label><input type="radio" name="q2" value="1"> Cryopreserving organs for future rejuvenation.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Offering a permanent solution to aging diseases.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Using cryonics to stop aging during life.</label><br>
+                </div>
+            </div>
         </section>
 
+        <!-- Global Collaboration and Standards -->
         <section class="section" id="global-standards">
             <h2>Global Collaboration and Standards</h2>
             <p>Learn about efforts to establish international cryonics standards for procedures and safety.</p>
+            <div class="quiz">
+                <h3>Quiz: Global Collaboration and Standards</h3>
+                <div class="question">
+                    <p>Q1: Why is collaboration between cryonics organizations important?</p>
+                    <label><input type="radio" name="q1" value="1"> To establish credible, safe, and effective standards.</label><br>
+                    <label><input type="radio" name="q1" value="2"> To ensure cryonics becomes universally accepted.</label><br>
+                    <label><input type="radio" name="q1" value="3"> To reduce the cost of cryonics.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What could international standards in cryonics help improve?</p>
+                    <label><input type="radio" name="q2" value="1"> Safety, effectiveness, and consistency across organizations.</label
+        <!-- Advancements in Cryoprotectants -->
+        <section class="section" id="advancements-cryoprotectants">
+            <h2>Advancements in Cryoprotectants</h2>
+            <p>Explore non-toxic cryoprotectant solutions that prevent freezing damage, ensuring better preservation of cells and tissues.</p>
+            <div class="quiz">
+                <h3>Quiz: Advancements in Cryoprotectants</h3>
+                <div class="question">
+                    <p>Q1: What is the primary function of cryoprotectants?</p>
+                    <label><input type="radio" name="q1" value="1"> To prevent ice crystal formation during freezing.</label><br>
+                    <label><input type="radio" name="q1" value="2"> To increase freezing speed in tissues.</label><br>
+                    <label><input type="radio" name="q1" value="3"> To replace blood with antifreeze agents.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What is an ideal property of advanced cryoprotectants?</p>
+                    <label><input type="radio" name="q2" value="1"> Non-toxic to biological tissues.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Able to instantly thaw frozen tissues.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Highly reactive with organic materials.</label><br>
+                </div>
+            </div>
         </section>
 
+        <!-- Cryonics and Aging Research -->
+        <section class="section" id="cryonics-and-aging-research">
+            <h2>Cryonics and Aging Research</h2>
+            <p>Discover how cryonics complements anti-aging and regenerative medicine, aiming to extend life pre- and post-preservation.</p>
+            <div class="quiz">
+                <h3>Quiz: Cryonics and Aging Research</h3>
+                <div class="question">
+                    <p>Q1: What is the connection between cryonics and aging research?</p>
+                    <label><input type="radio" name="q1" value="1"> Both aim to extend human lifespan.</label><br>
+                    <label><input type="radio" name="q1" value="2"> Cryonics is only for preserving the elderly.</label><br>
+                    <label><input type="radio" name="q1" value="3"> Aging research supports freezing techniques.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: How can regenerative medicine enhance cryonics?</p>
+                    <label><input type="radio" name="q2" value="1"> By repairing damaged tissues post-preservation.</label><br>
+                    <label><input type="radio" name="q2" value="2"> By increasing the freezing efficiency.</label><br>
+                    <label><input type="radio" name="q2" value="3"> By preventing freezing altogether.</label><br>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Collaboration and Standards -->
+        <section class="section" id="global-collaboration-standards">
+            <h2>Global Collaboration and Standards</h2>
+            <p>Understand the importance of international standards and collaboration among cryonics organizations, governments, and research institutions.</p>
+            <div class="quiz">
+                <h3>Quiz: Global Collaboration and Standards</h3>
+                <div class="question">
+                    <p>Q1: Why are global standards in cryonics important?</p>
+                    <label><input type="radio" name="q1" value="1"> To ensure safe and reliable preservation procedures.</label><br>
+                    <label><input type="radio" name="q1" value="2"> To encourage more people to invest in cryonics.</label><br>
+                    <label><input type="radio" name="q1" value="3"> To reduce the cost of preservation services.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: What role do governments play in cryonics?</p>
+                    <label><input type="radio" name="q2" value="1"> Regulating and overseeing cryonics facilities.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Funding cryonics organizations.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Running cryopreservation programs themselves.</label><br>
+                </div>
+            </div>
+        </section>
+
+        <!-- Space Cryonics -->
         <section class="section" id="space-cryonics">
             <h2>Space Cryonics</h2>
-            <p>Explore the use of cryonics in long-term space travel and preserving humans for interstellar missions.</p>
+            <p>Learn about using cryonics for long-term space travel and its role in interstellar exploration and planetary preservation.</p>
+            <div class="quiz">
+                <h3>Quiz: Space Cryonics</h3>
+                <div class="question">
+                    <p>Q1: What is one potential application of cryonics in space?</p>
+                    <label><input type="radio" name="q1" value="1"> Allowing astronauts to "hibernate" during long journeys.</label><br>
+                    <label><input type="radio" name="q1" value="2"> Freezing satellites for future use.</label><br>
+                    <label><input type="radio" name="q1" value="3"> Preserving spacecraft engines.</label><br>
+                </div>
+                <div class="question">
+                    <p>Q2: How could cryonics help in planetary preservation?</p>
+                    <label><input type="radio" name="q2" value="1"> Preserving humans on other planets in case of Earth disasters.</label><br>
+                    <label><input type="radio" name="q2" value="2"> Freezing planetary atmospheres for study.</label><br>
+                    <label><input type="radio" name="q2" value="3"> Cooling down extreme temperatures on planets.</label><br>
+                </div>
+            </div>
         </section>
 
-        <section class="section" id="quantum-biology">
-            <h2>Cryonics and Quantum Biology</h2>
-            <p>Investigate the role of quantum effects in preserving consciousness during cryopreservation.</p>
-        </section>
-
-        <section class="section" id="medy">
-            <h2>Future Technology: MEDY</h2>
-            <p>
-                Fudan University's researchers achieved a breakthrough with MEDY (Molecular Electro-Dynamic Yielding), reviving a human brain frozen for 18 months. 
-                This innovation preserves neural cells and opens pathways for neurological advancements and reliable preservation techniques.
-            </p>
+        <!-- Certificate -->
+        <section class="certificate" id="certificate">
+            <h2>Congratulations!</h2>
+            <p>You have successfully completed the Cryonics Course.</p>
+            <p>Your personalized certificate is below:</p>
+            <p><strong>Cryonics Course Certificate of Completion</strong></p>
         </section>
     </main>
 
-    <!-- Certificate Section -->
-    <section id="certificate" class="certificate">
-        <h2>Certificate of Completion</h2>
-        <p>Congratulations! You have successfully completed the Cryonics Course.</p>
-    </section>
-
     <script>
-        const quizzes = document.querySelectorAll('.quiz');
-        quizzes.forEach(quiz => {
-            const inputs = quiz.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.addEventListener('change', () => {
-                    if (Array.from(inputs).some(input => input.checked)) {
-                        quiz.style.backgroundColor = '#d4edda';
-                    }
-                });
-            });
+        // Script to check quizzes and unlock certificate
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', checkCompletion);
         });
 
         function checkCompletion() {
-            const allCompleted = Array.from(quizzes).every(quiz => quiz.style.backgroundColor === 'rgb(212, 237, 218)');
-            if (allCompleted) {
+            const totalQuestions = document.querySelectorAll('.question input').length;
+            const answered = document.querySelectorAll('.question input:checked').length;
+
+            if (answered === totalQuestions) {
                 document.getElementById('certificate').style.display = 'block';
             }
         }
-
-        document.body.addEventListener('change', checkCompletion);
     </script>
 </body>
 </html>
