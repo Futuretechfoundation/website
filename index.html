@@ -340,14 +340,150 @@
         </section>
     </div>
 
-    <!-- Chatbot -->
-    <div id="chatbot">
-        <textarea id="chatInput" placeholder="Ask a question..."></textarea>
-        <button onclick="sendMessage()">Send</button>
-        <p id="chatResponse"></p>
-    </div>
-    <button id="openChatbot" onclick="toggleChatbot()">Chat with Us</button>
 
+<!-- Button to Trigger Chatbot -->
+<button id="showChatbotBtn">Talk to Afiba</button>
+
+<!-- Chatbot Section (Initially Hidden) -->
+<div class="chatbot-container" id="chatbot" style="display: none;">
+    <!-- Replace with the actual path to Afiba's image -->
+    <img src="path-to-your-image/afiba-avatar.png" alt="Afiba" class="avatar" />
+    <div class="welcome-message">
+        <strong>Hello, I'm Afiba!</strong><br>
+        Your guide to the FutureTechFoundation.
+    </div>
+    <div class="chatbox" id="chatbox">
+        <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
+    </div>
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your question here..." />
+        <button onclick="respond()">Ask Afiba</button>
+        <button onclick="startSpeechRecognition()">🎤 Speak to Afiba</button>
+    </div>
+</div>
+
+<!-- Styling for Chatbot Section -->
+<style>
+    .chatbot-container {
+        text-align: center;
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        border-radius: 10px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        width: 60%;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .welcome-message {
+        font-size: 1.2rem;
+        color: #333;
+    }
+    .chatbox {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #ffffff;
+    }
+    .input-area {
+        margin-top: 10px;
+    }
+    .input-area input {
+        width: 70%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+    .input-area button {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .input-area button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<!-- Chatbot JavaScript for Interaction, Speech Recognition, and Synthesis -->
+<script>
+    // Function to display the chatbot when the button is clicked
+    document.getElementById('showChatbotBtn').onclick = function() {
+        document.getElementById('chatbot').style.display = 'block';
+        document.getElementById('showChatbotBtn').style.display = 'none'; // Hide the button once clicked
+    };
+
+    // Function to handle user input (typing)
+    function respond() {
+        const userInput = document.getElementById('userInput').value;
+        const chatbox = document.getElementById('chatbox');
+        
+        let response;
+
+        // Add more responses based on different questions
+        if (userInput.toLowerCase().includes('mission')) {
+            response = "Our mission is to bridge humanity and technology by creating innovations that enhance shared virtual and real-world experiences.";
+        } else if (userInput.toLowerCase().includes('projects')) {
+            response = "We're currently working on groundbreaking projects like virtual-real integration and shared virtual memory systems.";
+        } else if (userInput.toLowerCase().includes('contact')) {
+            response = "You can contact us at info@futuretechfoundation.org.";
+        } else if (userInput.toLowerCase().includes('who are we')) {
+            response = "We are FutureTechFoundation, pioneers in integrating technology with human experiences. We aim to create smarter, connected worlds.";
+        } else if (userInput.toLowerCase().includes('where are we based')) {
+            response = "We are based in San Francisco, California, but we work globally with teams and projects in various countries.";
+        } else if (userInput.toLowerCase().includes('what is your goal')) {
+            response = "Our goal is to build sustainable technologies that improve human connection and enhance the digital experience.";
+        } else if (userInput.toLowerCase().includes('virtual reality')) {
+            response = "Virtual reality is one of our key areas. We are developing cutting-edge VR experiences that merge the digital and physical worlds.";
+        } else if (userInput.toLowerCase().includes('how can i help')) {
+            response = "We're always looking for passionate individuals to join our mission! Feel free to contact us and explore collaboration opportunities.";
+        } else {
+            response = "I'm not sure about that. Let me know if there's something else I can help with!";
+        }
+
+        chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+        chatbox.innerHTML += `<p><strong>Afiba:</strong> ${response}</p>`;
+        document.getElementById('userInput').value = "";
+
+        // Trigger speech synthesis to speak Afiba's response
+        speak(response);
+    }
+
+    // Function to start speech recognition (when the user clicks the microphone button)
+    function startSpeechRecognition() {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+
+        recognition.start();
+
+        recognition.onresult = function(event) {
+            const userSpeech = event.results[0][0].transcript;
+            document.getElementById('userInput').value = userSpeech;
+            respond(); // Process the speech as if it was typed
+        };
+
+        recognition.onerror = function(event) {
+            alert("Sorry, I couldn't understand that. Please try again.");
+        };
+    }
+
+    // Function to speak a message using speech synthesis
+    function speak(message) {
+        const speech = new SpeechSynthesisUtterance();
+        speech.text = message;
+        speech.lang = 'en-US';
+        window.speechSynthesis.speak(speech);
+    }
+</script>
+    
     <!-- Footer -->
     <footer>
         <div class="address">
@@ -414,11 +550,7 @@
             }
         });
 
-        // Toggle Chatbot Visibility
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
-        }
+
 
         // Send Message in Chatbot
         function sendMessage() {
