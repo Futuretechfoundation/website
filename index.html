@@ -340,7 +340,8 @@
         </section>
     </div>
 
-<!-- Persistent Chatbot Button (Darker Red Background) -->
+
+    <!-- Persistent Chatbot Button (Darker Red Background) -->
 <button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬</button>
 
 <!-- Chatbot Section (Initially Hidden) -->
@@ -358,15 +359,14 @@
     
     <!-- Chatbox Section -->
     <div class="chatbox" id="chatbox">
-        <div id="chatboxContent">
-            <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
-        </div>
+        <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
     </div>
     
-    <!-- Input Area for User Text -->
+    <!-- Input Area for User Text and Voice Input -->
     <div class="input-area">
         <input type="text" id="userInput" placeholder="Type your question here..." onkeydown="if(event.key === 'Enter') { respond(); }">
         <button onclick="respond()">Ask Afiba</button>
+        <button onclick="startSpeechRecognition()">🎤 Speak to Afiba</button>
     </div>
 </div>
 
@@ -436,7 +436,6 @@
         min-height: 150px;
         max-height: 150px;
         overflow-y: auto;
-        text-align: left;
     }
 
     /* Input Area Styling */
@@ -483,56 +482,47 @@
     }
 </style>
 
-<!-- JavaScript to Toggle, Send Messages, and Voice Input -->
+<!-- JavaScript to Toggle Chat, Respond, and Handle Speech -->
 <script>
-    // Toggle chat visibility
-    function openChat() {
-        document.getElementById('chatbot').style.display = 'block';
-    }
-    
+    // Toggle the chat visibility
+    document.getElementById("chatbotToggleBtn").onclick = function() {
+        document.getElementById("chatbot").style.display = "block";  // Show chatbot
+    };
+
+    // Close the chat window
     function closeChat() {
-        document.getElementById('chatbot').style.display = 'none';
+        document.getElementById("chatbot").style.display = "none";  // Hide chatbot
     }
 
-    // Respond to the user
+    // Simulate response (for now, just echoes back user input)
     function respond() {
-        var userInput = document.getElementById('userInput').value;
-        var chatboxContent = document.getElementById('chatboxContent');
+        let userInput = document.getElementById("userInput").value;
+        let chatbox = document.getElementById("chatbox");
         
-        if (userInput.trim() !== "") {
-            chatboxContent.innerHTML += "<p><strong>You:</strong> " + userInput + "</p>";
-            chatboxContent.innerHTML += "<p><strong>Afiba:</strong> " + generateResponse(userInput) + "</p>";
-            document.getElementById('userInput').value = ""; // Clear the input field
-            chatboxContent.scrollTop = chatboxContent.scrollHeight; // Scroll to the bottom
+        if (userInput) {
+            chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+            chatbox.innerHTML += `<p><strong>Afiba:</strong> That's a great question! Let me get back to you with an answer.</p>`;
+            document.getElementById("userInput").value = '';  // Clear input field
+            chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to bottom of chat
         }
     }
 
-    // Generate responses based on the user input
-    function generateResponse(input) {
-        input = input.toLowerCase();
-        if (input.includes('projects')) {
-            return "We are working on cutting-edge technology for the future, including AI, robotics, and sustainable energy solutions.";
-        } else if (input.includes('mission')) {
-            return "Our mission is to foster innovation and solve global challenges through advanced technology.";
-        } else if (input.includes('hello')) {
-            return "Hello! How can I assist you today?";
-        } else {
-            return "Sorry, I didn't quite understand that. Could you ask something else?";
-        }
-    }
-
-    // Start voice recognition
+    // Example of adding speech recognition functionality
     function startSpeechRecognition() {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        const recognition = new window.SpeechRecognition();
         recognition.start();
 
         recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript;
-            document.getElementById('userInput').value = transcript;
-            respond();
+            const speech = event.results[0][0].transcript;
+            document.getElementById("userInput").value = speech;  // Fill input with recognized speech
+            respond();  // Call respond() to process the speech
         };
     }
 </script>
+    
+
+    
+
     
     <!-- Footer -->
     <footer>
