@@ -340,8 +340,9 @@
         </section>
     </div>
 
-<!-- Persistent Chatbot Button (Red Background) -->
-<button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬 Chat with Afiba</button>
+
+    <!-- Persistent Chatbot Button (Darker Red Background) -->
+<button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬</button>
 
 <!-- Chatbot Section (Initially Hidden) -->
 <div class="chatbot-container" id="chatbot" style="display: none;">
@@ -371,12 +372,12 @@
 
 <!-- Styling for Chatbot Section -->
 <style>
-    /* Persistent Chatbot Button (Red Background) */
+    /* Persistent Chatbot Button (Darker Red Background) */
     .chatbot-toggle-btn {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #d70000;  /* Red color */
+        background-color: #b30000;  /* Darker red color */
         color: white;
         border: none;
         border-radius: 50%;
@@ -390,7 +391,7 @@
     }
 
     .chatbot-toggle-btn:hover {
-        background-color: #d70000;
+        background-color: #990000; /* Slightly darker on hover */
     }
 
     /* Chatbot Container */
@@ -399,15 +400,16 @@
         background: linear-gradient(145deg, #ffffff, #e6e6e6);
         border-radius: 10px;
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        width: 50%; /* Adjust width to fit screen */
+        width: 50%;
         padding: 20px;
         margin: auto;
         position: fixed;
-        bottom: 100px;  /* Moves it above the footer */
+        bottom: 100px;
         right: 20px;
         z-index: 999;
-        height: 400px;  /* Make sure the container is tall enough to fit the elements */
-        max-height: 80%; /* Prevents the chatbox from being too tall */
+        height: 400px;
+        max-height: 80%;
+        display: none; /* Hidden by default */
     }
 
     /* Image Styling */
@@ -432,10 +434,11 @@
         border-radius: 8px;
         background: #ffffff;
         min-height: 150px;
-        max-height: 150px;  /* Limit height to allow for scrolling */
+        max-height: 150px;
         overflow-y: auto;
     }
 
+    /* Input Area Styling */
     .input-area {
         margin-top: 10px;
         display: flex;
@@ -449,6 +452,7 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     .input-area button {
@@ -465,65 +469,61 @@
         background-color: #45a049;
     }
 
-    /* Close Button for Chat (Right-Hand Corner) */
+    /* Close Button for Chat (Top-Right Corner) */
     .close-chat-btn {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: 10px;
+        right: 10px;
         background-color: transparent;
         color: black;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
     }
-
-    .close-chat-btn:hover {
-        color: red;
-    }
 </style>
 
-<!-- Chatbot JavaScript -->
+<!-- JavaScript to Toggle Chat, Respond, and Handle Speech -->
 <script>
-    // Toggle Chatbot Visibility
-    document.getElementById('chatbotToggleBtn').onclick = function() {
-        const chatbot = document.getElementById('chatbot');
-        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-            chatbot.style.display = 'block';
-        } else {
-            chatbot.style.display = 'none';
-        }
+    // Toggle the chat visibility
+    document.getElementById("chatbotToggleBtn").onclick = function() {
+        document.getElementById("chatbot").style.display = "block";  // Show chatbot
     };
 
-    // Close Chatbox
+    // Close the chat window
     function closeChat() {
-        document.getElementById('chatbot').style.display = 'none';
+        document.getElementById("chatbot").style.display = "none";  // Hide chatbot
     }
 
-    // Handle User Response (Text or Speech)
+    // Simulate response (for now, just echoes back user input)
     function respond() {
-        var userInput = document.getElementById('userInput').value;
-        var chatbox = document.getElementById('chatbox');
-        chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
-        document.getElementById('userInput').value = '';  // Clear the input field
+        let userInput = document.getElementById("userInput").value;
+        let chatbox = document.getElementById("chatbox");
         
-        // Example of Afiba's response
-        chatbox.innerHTML += `<p><strong>Afiba:</strong> That's interesting! Tell me more.</p>`;
-        chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to the bottom
+        if (userInput) {
+            chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+            chatbox.innerHTML += `<p><strong>Afiba:</strong> That's a great question! Let me get back to you with an answer.</p>`;
+            document.getElementById("userInput").value = '';  // Clear input field
+            chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to bottom of chat
+        }
     }
 
-    // Start Speech Recognition (For Voice Input)
+    // Example of adding speech recognition functionality
     function startSpeechRecognition() {
-        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        const recognition = new window.SpeechRecognition();
         recognition.start();
 
         recognition.onresult = function(event) {
-            var transcript = event.results[0][0].transcript;
-            document.getElementById('userInput').value = transcript;
-            respond();
+            const speech = event.results[0][0].transcript;
+            document.getElementById("userInput").value = speech;  // Fill input with recognized speech
+            respond();  // Call respond() to process the speech
         };
     }
-    </script>
-        
+</script>
+    
+
+    
+
+    
     <!-- Footer -->
     <footer>
         <div class="address">
