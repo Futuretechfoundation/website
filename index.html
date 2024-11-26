@@ -340,7 +340,7 @@
         </section>
     </div>
 
-    <!-- Persistent Chatbot Button -->
+<!-- Persistent Chatbot Button -->
 <button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬 Chat with Afiba</button>
 
 <!-- Chatbot Section (Initially Hidden) -->
@@ -357,8 +357,9 @@
         <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
     </div>
     
+    <!-- Input Section with Text Field for User Input -->
     <div class="input-area">
-        <input type="text" id="userInput" placeholder="Type your question here..." />
+        <input type="text" id="userInput" placeholder="Type your question here..." onkeydown="if(event.key === 'Enter') { respond(); }">
         <button onclick="respond()">Ask Afiba</button>
         <button onclick="startSpeechRecognition()">🎤 Speak to Afiba</button>
     </div>
@@ -419,15 +420,18 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         background: #ffffff;
+        min-height: 150px; /* Ensure space for conversation */
+        overflow-y: auto;
     }
     .input-area {
-        margin-top: 10px;
+        margin-top: 20px;
     }
     .input-area input {
         width: 70%;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        font-size: 1rem;
     }
     .input-area button {
         padding: 10px 15px;
@@ -459,53 +463,52 @@
         const userInput = document.getElementById('userInput').value;
         const chatbox = document.getElementById('chatbox');
         
+        if (userInput.trim() === '') {
+            return; // Do nothing if input is empty
+        }
+
+        // Adding multiple responses based on user input
         let response;
 
-        // Adding multiple responses
         if (userInput.toLowerCase().includes('mission')) {
             response = "Our mission is to bridge humanity and technology by creating innovations that enhance shared virtual and real-world experiences.";
         } else if (userInput.toLowerCase().includes('projects')) {
             response = "We're currently working on groundbreaking projects like virtual-real integration and shared virtual memory systems.";
-        } else if (userInput.toLowerCase().includes('who are you')) {
-            response = "I am Afiba, your AI guide to the FutureTech Foundation, ready to assist you with any questions!";
-        } else if (userInput.toLowerCase().includes('foundation')) {
-            response = "The FutureTech Foundation aims to innovate technology for a better tomorrow, creating solutions that benefit all.";
-        } else if (userInput.toLowerCase().includes('about')) {
-            response = "We are a nonprofit organization focused on technology, innovation, and education, shaping the future through collaboration.";
-        } else if (userInput.toLowerCase().includes('contact')) {
-            response = "You can contact us via email at contact@futuretechfoundation.org or visit our 'Contact Us' page for more details.";
-        } else if (userInput.toLowerCase().includes('location')) {
-            response = "Our headquarters is located in Silicon Valley, California, but we work globally with partners around the world.";
-        } else if (userInput.toLowerCase().includes('how can i help')) {
-            response = "You can help by donating, volunteering, or sharing your expertise with us on various tech-related projects!";
-        } else if (userInput.toLowerCase().includes('future')) {
-            response = "The future of technology lies in the integration of virtual and real experiences, making them seamless and accessible to all.";
-        } else if (userInput.toLowerCase().includes('innovations')) {
-            response = "We focus on innovations such as AI-driven systems, virtual reality, augmented reality, and more to transform education and business.";
+        } else if (userInput.toLowerCase().includes('futuretech')) {
+            response = "FutureTech Foundation is focused on innovation in both virtual and real-world experiences to enhance education, communication, and technology.";
         } else {
-            response = "I'm not sure about that. Could you ask something else or give more details about your question?";
+            response = "Sorry, I didn't quite understand that. Could you rephrase your question?";
         }
 
+        // Display the user input and the response
         chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
         chatbox.innerHTML += `<p><strong>Afiba:</strong> ${response}</p>`;
+        
+        // Scroll to the bottom of the chatbox
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        // Clear the input field
         document.getElementById('userInput').value = '';
     }
 
-    // Voice Recognition (Optional - If supported by the browser)
+    // Function for Speech Recognition
     function startSpeechRecognition() {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Sorry, your browser does not support speech recognition');
+            return;
+        }
+        
+        const recognition = new webkitSpeechRecognition();
         recognition.lang = 'en-US';
-        recognition.start();
-
+        recognition.onstart = function() {
+            console.log('Speech recognition started');
+        };
         recognition.onresult = function(event) {
-            const spokenText = event.results[0][0].transcript;
-            document.getElementById('userInput').value = spokenText;
-            respond(); // Automatically respond with the recognition result
+            const speechResult = event.results[0][0].transcript;
+            document.getElementById('userInput').value = speechResult;
+            respond();
         };
-
-        recognition.onerror = function(event) {
-            alert("Sorry, I couldn't understand that. Please try again.");
-        };
+        recognition.start();
     }
 </script>
     
