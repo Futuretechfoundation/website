@@ -340,11 +340,14 @@
         </section>
     </div>
 
-<!-- Persistent Chatbot Button -->
+<!-- Persistent Chatbot Button (Red Background) -->
 <button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬 Chat with Afiba</button>
 
 <!-- Chatbot Section (Initially Hidden) -->
 <div class="chatbot-container" id="chatbot" style="display: none;">
+    <!-- Close Button to Toggle the Chat -->
+    <button class="close-chat-btn" onclick="closeChat()">X</button>
+    
     <!-- Afiba's Photo -->
     <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba" class="avatar" />
     
@@ -367,12 +370,12 @@
 
 <!-- Styling for Chatbot Section -->
 <style>
-    /* Persistent Button */
+    /* Persistent Chatbot Button (Red Background) */
     .chatbot-toggle-btn {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #4CAF50;
+        background-color: red;
         color: white;
         border: none;
         border-radius: 50%;
@@ -385,7 +388,7 @@
     }
 
     .chatbot-toggle-btn:hover {
-        background-color: #45a049;
+        background-color: #d70000;
     }
 
     /* Chatbot Container */
@@ -420,7 +423,7 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         background: #ffffff;
-        min-height: 150px; /* Ensure space for conversation */
+        min-height: 150px;
         overflow-y: auto;
     }
     .input-area {
@@ -444,6 +447,21 @@
     .input-area button:hover {
         background-color: #45a049;
     }
+
+    /* Close Button for Chat */
+    .close-chat-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: transparent;
+        color: black;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .close-chat-btn:hover {
+        color: red;
+    }
 </style>
 
 <!-- Chatbot JavaScript -->
@@ -457,6 +475,12 @@
             chatbot.style.display = 'none';
         }
     };
+
+    // Close the Chat
+    function closeChat() {
+        const chatbot = document.getElementById('chatbot');
+        chatbot.style.display = 'none';
+    }
 
     // Function to handle user input (typing)
     function respond() {
@@ -477,41 +501,26 @@
         } else if (userInput.toLowerCase().includes('futuretech')) {
             response = "FutureTech Foundation is focused on innovation in both virtual and real-world experiences to enhance education, communication, and technology.";
         } else {
-            response = "Sorry, I didn't quite understand that. Could you rephrase your question?";
+            response = "I'm not sure about that. Could you ask something else?";
         }
 
-        // Display the user input and the response
-        chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
-        chatbox.innerHTML += `<p><strong>Afiba:</strong> ${response}</p>`;
-        
-        // Scroll to the bottom of the chatbox
-        chatbox.scrollTop = chatbox.scrollHeight;
-
-        // Clear the input field
-        document.getElementById('userInput').value = '';
+        // Display the response
+        chatbox.innerHTML += "<br><strong>Afiba:</strong> " + response;
+        document.getElementById('userInput').value = ''; // Clear the input field
     }
 
-    // Function for Speech Recognition
+    // Function to handle speech recognition
     function startSpeechRecognition() {
-        if (!('webkitSpeechRecognition' in window)) {
-            alert('Sorry, your browser does not support speech recognition');
-            return;
-        }
-        
-        const recognition = new webkitSpeechRecognition();
-        recognition.lang = 'en-US';
-        recognition.onstart = function() {
-            console.log('Speech recognition started');
-        };
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.onresult = function(event) {
-            const speechResult = event.results[0][0].transcript;
-            document.getElementById('userInput').value = speechResult;
-            respond();
+            const userInput = event.results[0][0].transcript;
+            document.getElementById('userInput').value = userInput;
+            respond(); // Call respond function after recognizing speech
         };
         recognition.start();
     }
 </script>
-    
+        
     <!-- Footer -->
     <footer>
         <div class="address">
