@@ -486,17 +486,33 @@
         document.getElementById("chatbot").style.display = "none";
     }
 
-    // Respond Functionality
     function respond() {
-        const userInput = document.getElementById("userInput").value.trim();
-        if (userInput) {
-            const chatboxContent = document.getElementById("chatboxContent");
-            const userMessage = `<p><strong>You:</strong> ${userInput}</p>`;
-            const afibaResponse = `<p><strong>Afiba:</strong> Thank you for your question! I’ll get back to you on that.</p>`;
-            chatboxContent.innerHTML += userMessage + afibaResponse;
-            document.getElementById("userInput").value = ""; // Clear input
-            chatboxContent.scrollTop = chatboxContent.scrollHeight; // Auto-scroll
-        }
+    const userInput = document.getElementById('userInput').value.trim().toLowerCase();
+    const chatboxContent = document.getElementById('chatboxContent');
+
+    let response = "Thank you for your question! I'll get back to you on that.";
+
+    // Define FAQ responses
+    const faq = {
+        "mission": "The FutureTech Foundation's mission is to drive innovation by collaborating with experts and fostering groundbreaking technological advancements.",
+        "projects": "Our current projects include AI development, renewable energy solutions, and smart city infrastructure.",
+        "contact": "You can contact us via our email at info@futuretechfoundation.org or through the contact form on our website.",
+        "academics": "We collaborate with leading universities and researchers to promote STEM education and technological literacy worldwide.",
+        "events": "Our upcoming events include a Tech Expo in December and a webinar on AI ethics next month.",
+    };
+
+    // Match user input with FAQ
+    if (userInput in faq) {
+        response = faq[userInput];
+    }
+
+    // Append user input and Afiba's response to the chatbox
+    chatboxContent.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+    chatboxContent.innerHTML += `<p><strong>Afiba:</strong> ${response}</p>`;
+
+    // Clear input field and scroll to the bottom
+    document.getElementById('userInput').value = "";
+    chatboxContent.scrollTop = chatboxContent.scrollHeight;
     }
     </script>
     
