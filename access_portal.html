@@ -41,20 +41,53 @@
         .container ul li a:hover {
             text-decoration: underline;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to the Access Hub</h1>
-        <p>You now have access to our full range of future technology resources:</p>
-        <ul>
-            <li><a href="page-3d-bioprinted-organ-tissue.html">3D Bioprinted Organ Tissue</a></li>
-            <li><a href="page-regenerative-biotherapeutics.html">Regenerative Biotherapeutics</a></li>
-            <li><a href="page-orthopedic-implants.html">Orthopedic Implants</a></li>
-            <li><a href="page-stem-cell-therapy.html">Stem Cell Therapy Options</a></li>
-            <li><a href="page-nanobots-surgical-assistance.html">Nanobots & Surgical Assistance</a></li>
-            <li><a href="page-prosthetic-devices.html">Prosthetic Devices and More</a></li>
-        </ul>
+        <p id="connect-prompt">Please connect your MetaMask wallet to access our resources.</p>
+        <button id="connect-button">Connect Wallet</button>
+        <div id="content" class="hidden">
+            <p>You now have access to our full range of future technology resources:</p>
+            <ul>
+                <li><a href="page-3d-bioprinted-organ-tissue.html">3D Bioprinted Organ Tissue</a></li>
+                <li><a href="page-regenerative-biotherapeutics.html">Regenerative Biotherapeutics</a></li>
+                <li><a href="page-orthopedic-implants.html">Orthopedic Implants</a></li>
+                <li><a href="page-stem-cell-therapy.html">Stem Cell Therapy Options</a></li>
+                <li><a href="page-nanobots-surgical-assistance.html">Nanobots & Surgical Assistance</a></li>
+                <li><a href="page-prosthetic-devices.html">Prosthetic Devices and More</a></li>
+            </ul>
+        </div>
     </div>
+    <script>
+        const connectButton = document.getElementById('connect-button');
+        const content = document.getElementById('content');
+        const connectPrompt = document.getElementById('connect-prompt');
+
+        async function connectMetaMask() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Request account access
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    // If connected, display the content
+                    connectPrompt.textContent = `Wallet connected: ${accounts[0]}`;
+                    connectButton.classList.add('hidden');
+                    content.classList.remove('hidden');
+                } catch (error) {
+                    console.error("User denied account access", error);
+                    connectPrompt.textContent = "Please allow wallet access to continue.";
+                }
+            } else {
+                connectPrompt.textContent = "MetaMask is not installed. Please install MetaMask to use this feature.";
+                connectButton.classList.add('hidden');
+            }
+        }
+
+        connectButton.addEventListener('click', connectMetaMask);
+    </script>
 </body>
 </html>
