@@ -3,124 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Future Tech | Biologic Access Platform</title>
+    <title>Welcome to the Access Hub</title>
     <style>
-        /* General Reset */
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(to right, #00b4db, #0083b0);
-            color: #fff;
+            background: linear-gradient(to bottom, #0093E9, #80D0C7);
+            color: white;
         }
-
-        .login-container, .access-container {
-            width: 100%;
-            max-width: 400px;
-            padding: 2rem;
-            background: #ffffff1a;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        .container {
             text-align: center;
-            transition: opacity 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .login-container h1, .access-container h1 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
+        .container h1 {
+            margin-bottom: 20px;
         }
-
-        .login-container p {
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            color: #ffffffb3;
+        .container ul {
+            list-style-type: none;
+            padding: 0;
         }
-
-        .login-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #00b4db;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .container ul li {
+            margin: 10px 0;
         }
-
-        .login-button:hover {
-            background-color: #0083b0;
+        .container ul li a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
         }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            margin-top: 1.5rem;
-            color: #ffffffb3;
-        }
-
-        .access-container {
-            display: none; /* Initially hidden */
+        .container ul li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
-<div class="login-container">
-    <h1>Access Future Tech</h1>
-    <p>Log in to explore our range of biologics, 3D bioprinted tissues, regenerative therapies, implants, nanobots, and more.</p>
-
-    <!-- MetaMask Login Button -->
-    <button class="login-button" onclick="connectMetaMask()">Log In with MetaMask</button>
-
-    <p class="disclaimer">By logging in, you agree to our terms of service and privacy policy.</p>
-</div>
-
-<!-- Hidden Access Content -->
-<div class="access-container" id="accessContent">
-    <h1>Welcome to the Access Hub</h1>
-    <p>You now have access to our full range of future technology resources.</p>
-    <ul>
-        <li>3D Bioprinted Organ Tissue</li>
-        <li>Regenerative Biotherapeutics</li>
-        <li>Orthopedic Implants</li>
-        <li>Stem Cell Therapy Options</li>
-        <li>Nanobots & Surgical Assistance</li>
-        <li>Prosthetic Devices and More</li>
-    </ul>
-</div>
-
-<script>
-    // Function to connect to MetaMask
-    async function connectMetaMask() {
-        if (typeof window.ethereum !== 'undefined') {
-            try {
-                // Request account access
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                const userAddress = accounts[0];
-                console.log("Connected account:", userAddress);
-
-                // Hide the login container and show the access content
-                document.querySelector('.login-container').style.display = 'none';
-                document.getElementById('accessContent').style.display = 'block';
-
-            } catch (error) {
-                console.error("User denied account access:", error);
-                alert("MetaMask login failed. Please try again.");
-            }
-        } else {
-            alert("MetaMask is not installed. Please install MetaMask to log in.");
-        }
-    }
-</script>
-
+    <div class="container">
+        <h1>Welcome to the Access Hub</h1>
+        <p>You now have access to our full range of future technology resources:</p>
+        <ul>
+            <li><a href="page-3d-bioprinted-organ-tissue.html">3D Bioprinted Organ Tissue</a></li>
+            <li><a href="page-regenerative-biotherapeutics.html">Regenerative Biotherapeutics</a></li>
+            <li><a href="page-orthopedic-implants.html">Orthopedic Implants</a></li>
+            <li><a href="page-stem-cell-therapy.html">Stem Cell Therapy Options</a></li>
+            <li><a href="page-nanobots-surgical-assistance.html">Nanobots & Surgical Assistance</a></li>
+            <li><a href="page-prosthetic-devices.html">Prosthetic Devices and More</a></li>
+        </ul>
+    </div>
 </body>
 </html>
