@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTechFoundation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@veramo/browser/build/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.4.0/mqtt.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        .container {
+            margin: 2em;
+            padding: 2em;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 1em;
+            margin: 0.5em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FutureTechFoundation</h1>
+        <p>Integrating Web4 and Web5 Technologies</p>
+    </header>
+    <div class="container">
+        <h2>IoT Device Interaction (Web4)</h2>
+        <p>Monitor and control connected devices in real-time.</p>
+        <button id="checkDevices">Check Device Status</button>
+        <div id="deviceStatus"></div>
+        
+        <h2>Decentralized Identity (Web5)</h2>
+        <p>Log in securely using your decentralized identity wallet.</p>
+        <button id="loginDID">Login with DID</button>
+        <div id="userInfo"></div>
+    </div>
+
+    <script>
+        // Web4: IoT Device Interaction using MQTT
+        const mqttClient = mqtt.connect("wss://test.mosquitto.org:8081");
+        const deviceTopic = "futuretech/devices/status";
+
+        document.getElementById('checkDevices').addEventListener('click', () => {
+            mqttClient.publish(deviceTopic, JSON.stringify({ command: "checkStatus" }));
+            mqttClient.subscribe(deviceTopic, (err) => {
+                if (!err) {
+                    mqttClient.on("message", (topic, message) => {
+                        const status = JSON.parse(message.toString());
+                        document.getElementById('deviceStatus').innerHTML = `<p>Device Status: ${status.deviceState}</p>`;
+                    });
+                }
+            });
+        });
+
+        // Web5: Decentralized Identity using Veramo
+        document.getElementById('loginDID').addEventListener('click', async () => {
+            const agent = new Veramo.Agent({
+                plugins: [new Veramo.WebAuthn()]
+            });
+
+            try {
+                const identity = await agent.createIdentifier({ provider: 'did:web' });
+                document.getElementById('userInfo').innerHTML = `
+                    <p>Logged in as: ${identity.did}</p>
+                    <p>Key ID: ${identity.keys[0].kid}</p>
+                `;
+            } catch (error) {
+                console.error("Error logging in with DID:", error);
+                document.getElementById('userInfo').innerHTML = `<p>Failed to log in with DID.</p>`;
+            }
+        });
+    </script>
+</body>
+      </html>
