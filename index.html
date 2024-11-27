@@ -340,44 +340,45 @@
         </section>
     </div>
 
-
-    <!-- Persistent Chatbot Button (Darker Red Background) -->
+<!-- Persistent Chatbot Button (Darker Red Background) -->
 <button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬</button>
 
-<!-- Chatbot Section (Initially Hidden) -->
+<!-- Chatbot Section -->
 <div class="chatbot-container" id="chatbot" style="display: none;">
-    <!-- Close Button to Toggle the Chat (Placed in the Right Corner) -->
+    <!-- Close Button to Toggle the Chat -->
     <button class="close-chat-btn" onclick="closeChat()">X</button>
-    
+
     <!-- Afiba's Photo -->
     <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba" class="avatar" />
-    
+
+    <!-- Welcome Message -->
     <div class="welcome-message">
         <strong>Hello, I'm Afiba!</strong><br>
         Your guide to the FutureTechFoundation.
     </div>
-    
+
     <!-- Chatbox Section -->
     <div class="chatbox" id="chatbox">
-        <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
+        <div id="chatboxContent">
+            <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
+        </div>
     </div>
-    
-    <!-- Input Area for User Text and Voice Input -->
+
+    <!-- Input Area -->
     <div class="input-area">
-        <input type="text" id="userInput" placeholder="Type your question here..." onkeydown="if(event.key === 'Enter') { respond(); }">
+        <input type="text" id="userInput" placeholder="Type your question here..." />
         <button onclick="respond()">Ask Afiba</button>
-        <button onclick="startSpeechRecognition()">🎤 Speak to Afiba</button>
     </div>
 </div>
 
 <!-- Styling for Chatbot Section -->
 <style>
-    /* Persistent Chatbot Button (Darker Red Background) */
+    /* Persistent Chatbot Button */
     .chatbot-toggle-btn {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #b30000;  /* Darker red color */
+        background-color: #8B0000; /* Darker red color */
         color: white;
         border: none;
         border-radius: 50%;
@@ -390,140 +391,116 @@
         z-index: 1000;
     }
 
-    .chatbot-toggle-btn:hover {
-        background-color: #990000; /* Slightly darker on hover */
-    }
-
     /* Chatbot Container */
     .chatbot-container {
-        text-align: center;
-        background: linear-gradient(145deg, #ffffff, #e6e6e6);
-        border-radius: 10px;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        width: 50%;
-        padding: 20px;
-        margin: auto;
         position: fixed;
         bottom: 100px;
         right: 20px;
+        width: 300px;
+        background: white;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         z-index: 999;
-        height: 400px;
-        max-height: 80%;
-        display: none; /* Hidden by default */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
     }
 
-    /* Image Styling */
+    /* Close Button Styling */
+    .close-chat-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 1rem;
+        color: #333;
+        cursor: pointer;
+    }
+
+    /* Afiba's Photo */
     .avatar {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .welcome-message {
-        font-size: 1.2rem;
-        color: #333;
-    }
-
-    /* Chatbox Styling */
+    /* Chatbox Content */
     .chatbox {
-        margin-top: 20px;
-        padding: 10px;
+        flex: 1;
+        width: 100%;
+        overflow-y: auto;
         border: 1px solid #ccc;
         border-radius: 8px;
-        background: #ffffff;
-        min-height: 150px;
-        max-height: 150px;
-        overflow-y: auto;
+        padding: 10px;
+        background: #f9f9f9;
     }
 
-    /* Input Area Styling */
+    #chatboxContent {
+        font-size: 0.9rem;
+    }
+
+    /* Input Area */
     .input-area {
         margin-top: 10px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 100%;
     }
 
     .input-area input {
-        width: 80%;
-        padding: 10px;
+        flex: 1;
+        padding: 8px;
         border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-        margin-bottom: 10px;
+        border-radius: 5px 0 0 5px;
+        font-size: 0.9rem;
     }
 
     .input-area button {
-        padding: 10px 15px;
-        background-color: #4CAF50;
-        color: #fff;
+        background: #8B0000;
+        color: white;
         border: none;
-        border-radius: 8px;
+        padding: 8px;
+        border-radius: 0 5px 5px 0;
         cursor: pointer;
-        margin-top: 10px;
+        font-size: 0.9rem;
     }
 
     .input-area button:hover {
-        background-color: #45a049;
-    }
-
-    /* Close Button for Chat (Top-Right Corner) */
-    .close-chat-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: transparent;
-        color: black;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
+        background: #5A0000;
     }
 </style>
 
-<!-- JavaScript to Toggle Chat, Respond, and Handle Speech -->
+<!-- JavaScript for Chat Functionality -->
 <script>
-    // Toggle the chat visibility
-    document.getElementById("chatbotToggleBtn").onclick = function() {
-        document.getElementById("chatbot").style.display = "block";  // Show chatbot
-    };
+    // Toggle Chatbot Visibility
+    document.getElementById("chatbotToggleBtn").addEventListener("click", function () {
+        const chatbot = document.getElementById("chatbot");
+        chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+    });
 
-    // Close the chat window
     function closeChat() {
-        document.getElementById("chatbot").style.display = "none";  // Hide chatbot
+        document.getElementById("chatbot").style.display = "none";
     }
 
-    // Simulate response (for now, just echoes back user input)
+    // Respond Functionality
     function respond() {
-        let userInput = document.getElementById("userInput").value;
-        let chatbox = document.getElementById("chatbox");
-        
+        const userInput = document.getElementById("userInput").value.trim();
         if (userInput) {
-            chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
-            chatbox.innerHTML += `<p><strong>Afiba:</strong> That's a great question! Let me get back to you with an answer.</p>`;
-            document.getElementById("userInput").value = '';  // Clear input field
-            chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to bottom of chat
+            const chatboxContent = document.getElementById("chatboxContent");
+            const userMessage = `<p><strong>You:</strong> ${userInput}</p>`;
+            const afibaResponse = `<p><strong>Afiba:</strong> Thank you for your question! I’ll get back to you on that.</p>`;
+            chatboxContent.innerHTML += userMessage + afibaResponse;
+            document.getElementById("userInput").value = ""; // Clear input
+            chatboxContent.scrollTop = chatboxContent.scrollHeight; // Auto-scroll
         }
     }
-
-    // Example of adding speech recognition functionality
-    function startSpeechRecognition() {
-        const recognition = new window.SpeechRecognition();
-        recognition.start();
-
-        recognition.onresult = function(event) {
-            const speech = event.results[0][0].transcript;
-            document.getElementById("userInput").value = speech;  // Fill input with recognized speech
-            respond();  // Call respond() to process the speech
-        };
-    }
-</script>
+    </script>
     
-
-    
-
-    
+        
     <!-- Footer -->
     <footer>
         <div class="address">
