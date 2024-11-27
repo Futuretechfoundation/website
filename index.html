@@ -144,17 +144,33 @@
             margin: 40px 0;
         }
 
-        .image-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            text-align: center;
-            line-height: 200px;
-            color: #666;
-            font-size: 1.2em;
-            margin: 20px 0;
-            border: 2px dashed #ccc;
-        }
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+    }
+    .photo-container {
+        text-align: center;
+        cursor: pointer;
+    }
+    .image-placeholder {
+        width: 100%;
+        height: 200px;
+        background-color: #ddd;
+        text-align: center;
+        line-height: 200px;
+        color: #666;
+        font-size: 1.2em;
+        margin: 20px 0;
+        border: 2px dashed #ccc;
+        transition: transform 0.3s ease;
+    }
+    .photo-container:hover .image-placeholder {
+        transform: scale(1.05);
+        border-color: #888;
+    }
 
         /* Chatbot */
         #chatbot {
@@ -325,20 +341,38 @@
         </section>
 
         <section>
-            <h2>Explore Our Focus Areas</h2>
-            <div>
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/bioprinting%20.webp" alt="3D Bioprinting" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
-            </div>
-            <div>
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/nanobot.webp" alt="Nanorobotics" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
-            </div>
-            <div>
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/humanoid%20.webp" alt="Humanoids" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
-            </div>
-            <div>
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/uap.webp" alt="UAP Technology" style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
-            </div>
-        </section>
+    <h2>Explore Our Focus Areas</h2>
+
+    <div>
+        <a href="academic-programs.html#future-of-humans-track">
+            <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/bioprinting%20.webp" 
+                 alt="3D Bioprinting" 
+                 style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+        </a>
+    </div>
+    <div>
+        <a href="academic-programs.html#future-of-humans-track">
+            <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/nanobot.webp" 
+                 alt="Nanorobotics" 
+                 style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+        </a>
+    </div>
+    <div>
+        <a href="academic-programs.html#bci-humanoids-track">
+            <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/humanoid%20.webp" 
+                 alt="Humanoids" 
+                 style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+        </a>
+    </div>
+    <div>
+        <a href="academic-programs.html#quantum-space-track">
+            <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/uap.webp" 
+                 alt="UAP Technology" 
+                 style="width: 100%; max-width: 800px; height: 100%; margin: 20px 0; border: 2px dashed #ccc;">
+        </a>
+    </div>
+</section>
+        
     </div>
 
 <!-- Persistent Chatbot Button (Darker Red Background) -->
