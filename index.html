@@ -637,6 +637,18 @@
             chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
         }
     </script>
+
+    <!-- Dialogflow Messenger Script -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+<!-- Dialogflow Messenger Chat -->
+<df-messenger
+    chat-icon="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp"
+    intent="WELCOME"
+    chat-title="Afiba"
+    agent-id="c2c70f06-5b03-493f-8c74-d2096f7d676b"
+    language-code="en"
+></df-messenger>
 </body>
     </html>
                                                                                                                                                                
