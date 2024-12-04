@@ -3,171 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureTechFoundation</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FutureTech Foundation Device Management</title>
+    <!-- Link to a modern CSS framework (like Bootstrap for responsive layout) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for aesthetics -->
     <style>
         body {
+            background-color: #f8f9fa;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
         }
-        header {
-            background-color: #1a1a1a;
+        .header {
+            background-color: #343a40;
             color: white;
-            padding: 10px 20px;
+            padding: 20px;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
+        .device-dashboard {
+            margin-top: 30px;
         }
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-            background-color: #333;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px;
-        }
-        .hero {
-            background: url('hero-image.jpg') no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .hero h2 {
-            font-size: 2.5em;
-        }
-        .cta-button {
-            background-color: #00aaff;
-            color: white;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .section {
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .section h3 {
-            font-size: 2em;
-        }
-        .resource-cards {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            background-color: white;
+        .device-card {
+            background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 20px;
-            text-align: center;
         }
-        .card h4 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+        .device-status {
+            display: flex;
+            justify-content: space-between;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
+        .btn-action {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>FutureTechFoundation</h1>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#resources">Resources</a>
-            <a href="#research">Research</a>
-            <a href="#community">Community</a>
-            <a href="#contact">Contact</a>
-            <a href="#login">Login</a>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>FutureTech Foundation Device Control</h1>
+            <p>Monitor, manage, and control your cutting-edge devices remotely</p>
         </div>
-    </header>
 
-    <section class="hero">
-        <h2>Pioneering Tomorrow’s Technologies for a Better Future</h2>
-        <!-- Update the CTA button to link to web4.html -->
-        <a href="web4.html" class="cta-button">Explore Our Web4 Resources</a>
-    </section>
+        <!-- User Authentication Section -->
+        <div class="authentication">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div>
 
-    <section id="about" class="section">
-        <h3>About FutureTechFoundation</h3>
-        <p>We are dedicated to advancing humanity through cutting-edge technologies like 3D bioprinting, humanoids, brain-computer interfaces, and quantum computing. Join us in reshaping the future!</p>
-    </section>
+        <!-- Device Dashboard Section -->
+        <div class="device-dashboard">
+            <div class="row">
+                <!-- BCI Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Brain-Computer Interface (BCI)</h3>
+                        <div class="device-status">
+                            <span>Connection Status: <span id="bciStatus">Disconnected</span></span>
+                            <span>Signal Strength: <span id="bciSignal">0%</span></span>
+                        </div>
+                        <button id="connectBCI" class="btn btn-success btn-action">Connect BCI</button>
+                        <button id="disconnectBCI" class="btn btn-danger btn-action">Disconnect BCI</button>
+                    </div>
+                </div>
 
-    <section id="resources" class="section">
-        <h3>Our Key Resources</h3>
-        <div class="resource-cards">
-            <div class="card">
-                <h4>3D Bioprinters</h4>
-                <p>Access bioprinting technology for medical and research purposes.</p>
-                <a href="#bioprinter" class="cta-button">Request Access</a>
-            </div>
-            <div class="card">
-                <h4>Humanoids</h4>
-                <p>Collaborate on humanoid robotics projects to revolutionize industries.</p>
-                <a href="#humanoids" class="cta-button">Join the Project</a>
-            </div>
-            <div class="card">
-                <h4>Brain-Computer Interfaces</h4>
-                <p>Bridge the gap between the human brain and technology.</p>
-                <a href="#bcis" class="cta-button">Explore BCIs</a>
-            </div>
-            <div class="card">
-                <h4>Quantum Computing</h4>
-                <p>Unlock the power of quantum computing for solving complex problems.</p>
-                <a href="#quantum" class="cta-button">Access Tools</a>
+                <!-- Prosthetics Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Prosthetics Device</h3>
+                        <div class="device-status">
+                            <span>Status: <span id="prostheticsStatus">Offline</span></span>
+                            <span>Battery Level: <span id="prostheticsBattery">80%</span></span>
+                        </div>
+                        <button id="activateProsthetics" class="btn btn-success btn-action">Activate Prosthetics</button>
+                        <button id="deactivateProsthetics" class="btn btn-danger btn-action">Deactivate Prosthetics</button>
+                    </div>
+                </div>
+
+                <!-- Nanobots Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Nanobots Control</h3>
+                        <div class="device-status">
+                            <span>Nanobot Network Status: <span id="nanobotsStatus">Idle</span></span>
+                            <span>Active Nanobots: <span id="nanobotsActive">0</span></span>
+                        </div>
+                        <button id="deployNanobots" class="btn btn-primary btn-action">Deploy Nanobots</button>
+                        <button id="haltNanobots" class="btn btn-danger btn-action">Halt Nanobots</button>
+                    </div>
+                </div>
+
+                <!-- Humanoid Robot Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Humanoid Robot</h3>
+                        <div class="device-status">
+                            <span>Robot Status: <span id="humanoidStatus">Inactive</span></span>
+                            <span>Battery Level: <span id="humanoidBattery">75%</span></span>
+                        </div>
+                        <button id="activateHumanoid" class="btn btn-success btn-action">Activate Robot</button>
+                        <button id="deactivateHumanoid" class="btn btn-danger btn-action">Deactivate Robot</button>
+                    </div>
+                </div>
+
+                <!-- Quantum Computing Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Quantum Computing Processor</h3>
+                        <div class="device-status">
+                            <span>Processor Status: <span id="quantumStatus">Idle</span></span>
+                            <span>Quantum Operations: <span id="quantumOps">0</span></span>
+                        </div>
+                        <button id="startQuantum" class="btn btn-primary btn-action">Start Quantum Operations</button>
+                        <button id="stopQuantum" class="btn btn-danger btn-action">Stop Quantum Operations</button>
+                    </div>
+                </div>
+
+                <!-- Space Tech Device Card -->
+                <div class="col-md-4">
+                    <div class="device-card">
+                        <h3>Space Tech Device</h3>
+                        <div class="device-status">
+                            <span>Satellite Status: <span id="spaceTechStatus">Inactive</span></span>
+                            <span>Location: <span id="spaceTechLocation">Orbit</span></span>
+                        </div>
+                        <button id="launchSpaceTech" class="btn btn-success btn-action">Launch Space Tech</button>
+                        <button id="shutdownSpaceTech" class="btn btn-danger btn-action">Shutdown Space Tech</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section id="community" class="section">
-        <h3>Join Our Community</h3>
-        <p>Engage with like-minded innovators, researchers, and engineers. Share ideas, collaborate, and contribute to groundbreaking projects.</p>
-        <a href="#join" class="cta-button">Join the Community</a>
-    </section>
+        <!-- Real-time Data Streaming Section -->
+        <div class="real-time-data mt-5">
+            <h3>Real-Time Device Data</h3>
+            <div id="realTimeDataContainer">
+                <p>Awaiting real-time updates...</p>
+            </div>
+        </div>
 
-    <section id="research" class="section">
-        <h3>Research & Innovation</h3>
-        <p>Submit your research proposals and collaborate on innovative projects. Together, we can drive the next big breakthrough in technology.</p>
-        <a href="#submit-research" class="cta-button">Submit Your Research</a>
-    </section>
+    </div>
 
-    <section id="login" class="section">
-        <h3>Login to Your Account</h3>
-        <p>Secure your account and access exclusive resources.</p>
-        <a href="#login-form" class="cta-button">Log In</a>
-    </section>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <footer>
-        <p>&copy; 2024 FutureTechFoundation. All rights reserved.</p>
-        <p>
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#terms">Terms of Service</a> | 
-            <a href="#contact">Contact</a>
-        </p>
-    </footer>
+    <!-- Custom JS to handle device actions and real-time updates -->
+    <script>
+        $(document).ready(function() {
+            // Mock login process
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                if (username && password) {
+                    alert("Logged in as " + username);
+                    $('#loginForm').hide(); // Hide login after successful login
+                    $('.device-dashboard').show(); // Show device dashboard
+                }
+            });
 
-</body>
-</html>
+            // BCI Device control
+            $('#connectBCI').click(function() {
+                $('#bciStatus').text('Connected');
+                $('#bciSignal').text('95%');
+            });
+            $('#disconnectBCI').click(function() {
+                $('#bciStatus').text('Disconnected');
+                $('#bciSignal').text('0%');
+            });
+
+            // Prosthetics Device control
+            $('#activateProsthetics').click(function() {
+                $('#prostheticsStatus').text('Active');
+            });
+            $('#deactivateProsthetics').click(function() {
+                $('#prostheticsStatus').text('Offline');
+            });
+
+            // Nanobots control
+            $('#deployNanobots').click(function() {
+                $('#nanobotsStatus').text('Active');
+                $('#nanobotsActive').text('100');
+            });
+            $('#haltNanobots').click(function() {
+                $('#nanobotsStatus').text('Idle');
+                $('#nanobotsActive').text('0');
+            });
+
+            // Humanoid Robot control
+            $('#activateHumanoid').click(function() {
+                $('#humanoidStatus').text('Active');
+            });
+            $('#deactivateHumanoid').click(function() {
+                $('#humanoidStatus').text('Inactive');
+            });
+
+            // Quantum Computing control
+            $('#startQuantum').click(function() {
+                $('#quantumStatus').text('Processing');
+                $('#quantumOps').text('1000');
+            });
+            $('#stopQuantum').click(function() {
+                $('#quantumStatus').text
