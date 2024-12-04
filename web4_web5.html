@@ -4,93 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutureTechFoundation</title>
-    <script src="https://cdn.jsdelivr.net/npm/@veramo/browser/build/index.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.4.0/mqtt.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
         header {
-            background-color: #2c3e50;
+            background-color: #1a1a1a;
             color: white;
-            padding: 1em;
+            padding: 10px 20px;
             text-align: center;
         }
-        .container {
-            margin: 2em;
-            padding: 2em;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        header h1 {
+            margin: 0;
         }
-        button {
-            padding: 1em;
-            margin: 0.5em;
-            background-color: #3498db;
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+            background-color: #333;
+        }
+        .menu a {
             color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
         }
-        button:hover {
-            background-color: #2980b9;
+        .hero {
+            background: url('hero-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+        }
+        .cta-button {
+            background-color: #00aaff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .section h3 {
+            font-size: 2em;
+        }
+        .resource-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>FutureTechFoundation</h1>
-        <p>Integrating Web4 and Web5 Technologies</p>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#resources">Resources</a>
+            <a href="#research">Research</a>
+            <a href="#community">Community</a>
+            <a href="#contact">Contact</a>
+            <a href="#login">Login</a>
+        </div>
     </header>
-    <div class="container">
-        <h2>IoT Device Interaction (Web4)</h2>
-        <p>Monitor and control connected devices in real-time.</p>
-        <button id="checkDevices">Check Device Status</button>
-        <div id="deviceStatus"></div>
-        
-        <h2>Decentralized Identity (Web5)</h2>
-        <p>Log in securely using your decentralized identity wallet.</p>
-        <button id="loginDID">Login with DID</button>
-        <div id="userInfo"></div>
-    </div>
 
-    <script>
-        // Web4: IoT Device Interaction using MQTT
-        const mqttClient = mqtt.connect("wss://test.mosquitto.org:8081");
-        const deviceTopic = "futuretech/devices/status";
+    <section class="hero">
+        <h2>Pioneering Tomorrow’s Technologies for a Better Future</h2>
+        <!-- Update the CTA button to link to web4.html -->
+        <a href="web4.html" class="cta-button">Explore Our Web4 Resources</a>
+    </section>
 
-        document.getElementById('checkDevices').addEventListener('click', () => {
-            mqttClient.publish(deviceTopic, JSON.stringify({ command: "checkStatus" }));
-            mqttClient.subscribe(deviceTopic, (err) => {
-                if (!err) {
-                    mqttClient.on("message", (topic, message) => {
-                        const status = JSON.parse(message.toString());
-                        document.getElementById('deviceStatus').innerHTML = `<p>Device Status: ${status.deviceState}</p>`;
-                    });
-                }
-            });
-        });
+    <section id="about" class="section">
+        <h3>About FutureTechFoundation</h3>
+        <p>We are dedicated to advancing humanity through cutting-edge technologies like 3D bioprinting, humanoids, brain-computer interfaces, and quantum computing. Join us in reshaping the future!</p>
+    </section>
 
-        // Web5: Decentralized Identity using Veramo
-        document.getElementById('loginDID').addEventListener('click', async () => {
-            const agent = new Veramo.Agent({
-                plugins: [new Veramo.WebAuthn()]
-            });
+    <section id="resources" class="section">
+        <h3>Our Key Resources</h3>
+        <div class="resource-cards">
+            <div class="card">
+                <h4>3D Bioprinters</h4>
+                <p>Access bioprinting technology for medical and research purposes.</p>
+                <a href="#bioprinter" class="cta-button">Request Access</a>
+            </div>
+            <div class="card">
+                <h4>Humanoids</h4>
+                <p>Collaborate on humanoid robotics projects to revolutionize industries.</p>
+                <a href="#humanoids" class="cta-button">Join the Project</a>
+            </div>
+            <div class="card">
+                <h4>Brain-Computer Interfaces</h4>
+                <p>Bridge the gap between the human brain and technology.</p>
+                <a href="#bcis" class="cta-button">Explore BCIs</a>
+            </div>
+            <div class="card">
+                <h4>Quantum Computing</h4>
+                <p>Unlock the power of quantum computing for solving complex problems.</p>
+                <a href="#quantum" class="cta-button">Access Tools</a>
+            </div>
+        </div>
+    </section>
 
-            try {
-                const identity = await agent.createIdentifier({ provider: 'did:web' });
-                document.getElementById('userInfo').innerHTML = `
-                    <p>Logged in as: ${identity.did}</p>
-                    <p>Key ID: ${identity.keys[0].kid}</p>
-                `;
-            } catch (error) {
-                console.error("Error logging in with DID:", error);
-                document.getElementById('userInfo').innerHTML = `<p>Failed to log in with DID.</p>`;
-            }
-        });
-    </script>
+    <section id="community" class="section">
+        <h3>Join Our Community</h3>
+        <p>Engage with like-minded innovators, researchers, and engineers. Share ideas, collaborate, and contribute to groundbreaking projects.</p>
+        <a href="#join" class="cta-button">Join the Community</a>
+    </section>
+
+    <section id="research" class="section">
+        <h3>Research & Innovation</h3>
+        <p>Submit your research proposals and collaborate on innovative projects. Together, we can drive the next big breakthrough in technology.</p>
+        <a href="#submit-research" class="cta-button">Submit Your Research</a>
+    </section>
+
+    <section id="login" class="section">
+        <h3>Login to Your Account</h3>
+        <p>Secure your account and access exclusive resources.</p>
+        <a href="#login-form" class="cta-button">Log In</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 FutureTechFoundation. All rights reserved.</p>
+        <p>
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms of Service</a> | 
+            <a href="#contact">Contact</a>
+        </p>
+    </footer>
+
 </body>
-      </html>
+</html>
