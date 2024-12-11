@@ -39,40 +39,63 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Create a basic sphere to represent the chatbot
+    // Create a sphere to represent the chatbot
     const geometry = new THREE.SphereGeometry(1, 32, 32);
-    const material = new THREE.MeshBasicMaterial({ color: 0x0077ff });
+    const material = new THREE.MeshStandardMaterial({ color: 0x0077ff });
     const chatbot = new THREE.Mesh(geometry, material);
     scene.add(chatbot);
 
-    // Position the chatbot
-    chatbot.position.set(0, 0, -5);
-
-    // Add a light source
+    // Add lighting to enhance 3D effect
     const light = new THREE.PointLight(0xffffff, 1, 100);
     light.position.set(5, 5, 5);
     scene.add(light);
 
-    // Animate the scene
+    const ambientLight = new THREE.AmbientLight(0x404040); // Soft ambient light
+    scene.add(ambientLight);
+
+    // Position the camera and chatbot
+    camera.position.z = 5;
+
+    // Animate the chatbot (subtle rotation)
     function animate() {
       requestAnimationFrame(animate);
-      chatbot.rotation.y += 0.01; // Rotate the chatbot
+      chatbot.rotation.y += 0.01; // Rotate chatbot
       renderer.render(scene, camera);
     }
     animate();
 
-    // Chat handling
+    // Chat handling: Display messages as text bubbles
     const inputBox = document.getElementById('input-box');
     const sendButton = document.getElementById('send-button');
+
+    function createTextBubble(message, isUser) {
+      const textDiv = document.createElement('div');
+      textDiv.textContent = message;
+      textDiv.style.position = 'absolute';
+      textDiv.style.background = isUser ? '#0077ff' : '#ffffff';
+      textDiv.style.color = isUser ? '#ffffff' : '#000000';
+      textDiv.style.borderRadius = '10px';
+      textDiv.style.padding = '10px';
+      textDiv.style.maxWidth = '200px';
+      textDiv.style.top = `${Math.random() * 50 + 20}px`; // Randomize position for demo
+      textDiv.style.left = `${Math.random() * 300 + 50}px`; // Randomize position for demo
+      document.body.appendChild(textDiv);
+
+      // Remove after 3 seconds
+      setTimeout(() => document.body.removeChild(textDiv), 3000);
+    }
 
     sendButton.addEventListener('click', () => {
       const userMessage = inputBox.value.trim();
       if (userMessage) {
-        console.log(`User: ${userMessage}`);
-        // Simulate chatbot response
-        const response = `You said: ${userMessage}`;
-        console.log(`Chatbot: ${response}`);
+        createTextBubble(`You: ${userMessage}`, true);
         inputBox.value = '';
+
+        // Simulated chatbot response
+        setTimeout(() => {
+          const botResponse = `Chatbot: I heard "${userMessage}"`;
+          createTextBubble(botResponse, false);
+        }, 1000);
       }
     });
 
