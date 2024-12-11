@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Chatbot</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+    #chat-container {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+    #input-box {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+    #send-button {
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <input type="text" id="input-box" placeholder="Type your message..." />
+    <button id="send-button">Send</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="chatbot.js"></script>
+  // Initialize the Three.js scene
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Create a basic sphere to represent the chatbot
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0x0077ff });
+const chatbot = new THREE.Mesh(geometry, material);
+scene.add(chatbot);
+
+// Position the chatbot
+chatbot.position.set(0, 0, -5);
+
+// Add a light source
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(5, 5, 5);
+scene.add(light);
+
+// Animate the scene
+function animate() {
+  requestAnimationFrame(animate);
+  chatbot.rotation.y += 0.01; // Rotate the chatbot
+  renderer.render(scene, camera);
+}
+animate();
+
+// Chat handling
+const inputBox = document.getElementById('input-box');
+const sendButton = document.getElementById('send-button');
+
+sendButton.addEventListener('click', () => {
+  const userMessage = inputBox.value.trim();
+  if (userMessage) {
+    console.log(`User: ${userMessage}`);
+    // Simulate chatbot response
+    const response = `You said: ${userMessage}`;
+    console.log(`Chatbot: ${response}`);
+    inputBox.value = '';
+  }
+});
+
+// Resize handling
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</body>
+</html>
