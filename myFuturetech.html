@@ -33,7 +33,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="3dbioprinting.html">3D Bioprinting (High School)</a></li>
+                        <li><a href="3dbioprinting.html">High School (3D Bioprinting)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -42,7 +42,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="biotech.html">Biotech (High School)</a></li>
+                        <li><a href="biotech.html">High School (Biotech)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -51,7 +51,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="regenerative_biotherapeutics.html">Regenerative Biotherapeutics (High School)</a></li>
+                        <li><a href="regenerative_biotherapeutics.html">High School (Regenerative Biotherapeutics)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -60,7 +60,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="prosthetics.html">Prosthetics (High School)</a></li>
+                        <li><a href="prosthetics.html">High School (Prosthetics)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -69,7 +69,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="surgical_robots.html">Surgical Robots (High School)</a></li>
+                        <li><a href="surgical_robots.html">High School (Surgical Robots)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -78,7 +78,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="cryonics.html">Cryonics (High School)</a></li>
+                        <li><a href="cryonics.html">High School (Cryonics)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -87,7 +87,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="nanorobotics.html">Nanorobotics (High School)</a></li>
+                        <li><a href="nanorobotics.html">High School (Nanorobotics)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -96,7 +96,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="celss.html">Closed Ecological Life Support Systems (High School)</a></li>
+                        <li><a href="celss.html">High School (Closed Ecological Life Support Systems)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -105,7 +105,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="space_tech.html">Space Tech (High School)</a></li>
+                        <li><a href="space_tech.html">High School (Space Tech)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -121,7 +121,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="bci.html">Brain-Computer Interface (High School)</a></li>
+                        <li><a href="bci.html">High School (Brain-Computer Interface)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -137,7 +137,7 @@
                     <ul>
                         <li><a href="#">Elementary</a></li>
                         <li><a href="#">Middle School</a></li>
-                        <li><a href="quantum_computing.html">Quantum Computing (High School)</a></li>
+                        <li><a href="quantum_computing.html">High School (Quantum Computing)</a></li>
                         <li><a href="#">College</a></li>
                         <li><a href="#">Advanced College</a></li>
                     </ul>
@@ -149,5 +149,26 @@
     <footer>
         <p>&copy; 2024 Futuretech Academy. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Wallet Connection Logic
+        document.getElementById("connect-wallet").addEventListener("click", async () => {
+            if (typeof window.ethereum !== "undefined") {
+                try {
+                    // Request account access
+                    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+                    const walletAddress = accounts[0];
+                    document.getElementById("wallet-address").textContent = walletAddress;
+                    document.getElementById("auth-section").style.display = "none";
+                    document.getElementById("user-info").style.display = "block";
+                    document.getElementById("courses").style.display = "block";
+                } catch (error) {
+                    console.error("User denied wallet connection", error);
+                }
+            } else {
+                alert("MetaMask is not installed. Please install MetaMask to continue.");
+            }
+        });
+    </script>
 </body>
 </html>
