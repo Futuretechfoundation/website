@@ -2,202 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial="initial-scale=1.0">
-    <title>myFuturetech Academy - Student Portal</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script> <!-- ethers.js library -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuretech Academy Course Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            padding: 2em;
+        }
+        .track {
+            margin-bottom: 2em;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        h3 {
+            color: #444;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .course-list li {
+            padding: 0.5em 0;
+            font-size: 1.1em;
+        }
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to myFuturetech Academy</h1>
-        <p>Connect your Web3 wallet to access courses and learn about the future of technology!</p>
-    </header>
 
-    <!-- Wallet Connect Button -->
-    <section id="auth-section">
-        <button id="connect-wallet">Connect Wallet</button>
-        <div id="user-info" style="display:none;">
-            <p>Welcome, <span id="wallet-address"></span>!</p>
-        </div>
-    </section>
+<header>
+    <h1>Futuretech Academy Course Catalog</h1>
+    <p>Connect your Web3 wallet to access courses and learn about the future of technology!</p>
+    <p>Welcome, 0x99ed116d1278b4260b1cbbfb9cb4fe71fa4e14d8!</p>
+</header>
 
-    <!-- Course Content Section -->
-    <section id="courses" style="display:none;">
-        <h2>Programs and Courses</h2>
+<div class="container">
 
-        <!-- Future of Humans Track -->
-        <div id="future-of-humans">
-            <h3>Future of Humans Track</h3>
-            <ul>
-                <li><a href="elementary_3dbioprinting.html">3D Bioprinting (Elementary)</a></li>
-                <li><a href="middle_3dbioprinting.html">3D Bioprinting (Middle School)</a></li>
-                <li><a href="highschool_3dbioprinting.html">3D Bioprinting (High School)</a></li>
-                <li><a href="intro_college_3dbioprinting.html">3D Bioprinting (Introduction to College)</a></li>
-                <li><a href="advanced_college_3dbioprinting.html">3D Bioprinting (Advanced College)</a></li>
-                <li><a href="highschool_biotech.html">Biotech (High School)</a></li>
-                <li><a href="elementary_biotech.html">Biotech (Elementary)</a></li>
-                <li><a href="middle_biotech.html">Biotech (Middle School)</a></li>
-                <li><a href="intro_college_biotech.html">Biotech (Introduction to College)</a></li>
-                <li><a href="advanced_college_biotech.html">Biotech (Advanced College)</a></li>
-                <li><a href="highschool_regenerative_biotherapeutics.html">Regenerative Biotherapeutics (High School)</a></li>
-                <li><a href="elementary_regenerative_biotherapeutics.html">Regenerative Biotherapeutics (Elementary)</a></li>
-                <li><a href="middle_regenerative_biotherapeutics.html">Regenerative Biotherapeutics (Middle School)</a></li>
-                <li><a href="intro_college_regenerative_biotherapeutics.html">Regenerative Biotherapeutics (Introduction to College)</a></li>
-                <li><a href="advanced_college_regenerative_biotherapeutics.html">Regenerative Biotherapeutics (Advanced College)</a></li>
-                <li><a href="highschool_prosthetics.html">Prosthetics (High School)</a></li>
-                <li><a href="elementary_prosthetics.html">Prosthetics (Elementary)</a></li>
-                <li><a href="middle_prosthetics.html">Prosthetics (Middle School)</a></li>
-                <li><a href="intro_college_prosthetics.html">Prosthetics (Introduction to College)</a></li>
-                <li><a href="advanced_college_prosthetics.html">Prosthetics (Advanced College)</a></li>
-                <li><a href="highschool_surgical_robots.html">Surgical Robots (High School)</a></li>
-                <li><a href="elementary_surgical_robots.html">Surgical Robots (Elementary)</a></li>
-                <li><a href="middle_surgical_robots.html">Surgical Robots (Middle School)</a></li>
-                <li><a href="intro_college_surgical_robots.html">Surgical Robots (Introduction to College)</a></li>
-                <li><a href="advanced_college_surgical_robots.html">Surgical Robots (Advanced College)</a></li>
-                <li><a href="cryonics.html">Cryonics (High School)</a></li>
-                <li><a href="elementary_cryonics.html">Cryonics (Elementary)</a></li>
-                <li><a href="middle_cryonics.html">Cryonics (Middle School)</a></li>
-                <li><a href="intro_college_cryonics.html">Cryonics (Introduction to College)</a></li>
-                <li><a href="advanced_college_cryonics.html">Cryonics (Advanced College)</a></li>
-                <li><a href="highschool_nanorobotics.html">Nanorobotics (High School)</a></li>
-                <li><a href="elementary_nanorobotics.html">Nanorobotics (Elementary)</a></li>
-                <li><a href="middle_nanorobotics.html">Nanorobotics (Middle School)</a></li>
-                <li><a href="intro_college_nanorobotics.html">Nanorobotics (Introduction to College)</a></li>
-                <li><a href="advanced_college_nanorobotics.html">Nanorobotics (Advanced College)</a></li>
-                <li><a href="highschool_celss.html">Closed Ecological Life Support Systems (High School)</a></li>
-                <li><a href="elementary_celss.html">Closed Ecological Life Support Systems (Elementary)</a></li>
-                <li><a href="middle_celss.html">Closed Ecological Life Support Systems (Middle School)</a></li>
-                <li><a href="intro_college_celss.html">Closed Ecological Life Support Systems (Introduction to College)</a></li>
-                <li><a href="advanced_college_celss.html">Closed Ecological Life Support Systems (Advanced College)</a></li>
-                <li><a href="highschool_space_tech.html">Space Tech (High School)</a></li>
-                <li><a href="elementary_space_tech.html">Space Tech (Elementary)</a></li>
-                <li><a href="middle_space_tech.html">Space Tech (Middle School)</a></li>
-                <li><a href="intro_college_space_tech.html">Space Tech (Introduction to College)</a></li>
-                <li><a href="advanced_college_space_tech.html">Space Tech (Advanced College)</a></li>
-            </ul>
-        </div>
+    <div class="track">
+        <h2>Future of Humans Track</h2>
+        
+        <h3>Elementary Level</h3>
+        <ul class="course-list">
+            <li>FH 101: Introduction to 3D Bioprinting</li>
+            <li>FH 102: Exploring Biotech</li>
+            <li>FH 103: Basics of Regenerative Biotherapeutics</li>
+            <li>FH 104: Intro to Prosthetics</li>
+            <li>FH 105: What Are Surgical Robots?</li>
+            <li>FH 106: Cryonics: The Science of Preservation</li>
+            <li>FH 107: Introduction to Nanorobotics</li>
+            <li>FH 108: Creating a Closed Ecological Life Support System</li>
+            <li>FH 109: Exploring Space Tech Basics</li>
+        </ul>
 
-        <!-- BCI and Humanoids Track -->
-        <div id="bci-and-humanoids">
-            <h3>BCI and Humanoids Track</h3>
-            <ul>
-                <li><a href="elementary_bci.html">Brain Computer Interface (Elementary)</a></li>
-                <li><a href="middle_bci.html">Brain Computer Interface (Middle School)</a></li>
-                <li><a href="highschool_bci.html">Brain Computer Interface (High School)</a></li>
-                <li><a href="intro_college_bci.html">Brain Computer Interface (Introduction to College)</a></li>
-                <li><a href="advanced_college_bci.html">Brain Computer Interface (Advanced College)</a></li>
-                <li><a href="highschool_brain_simulation.html">Brain Simulation (High School)</a></li>
-                <li><a href="elementary_brain_simulation.html">Brain Simulation (Elementary)</a></li>
-                <li><a href="middle_brain_simulation.html">Brain Simulation (Middle School)</a></li>
-                <li><a href="intro_college_brain_simulation.html">Brain Simulation (Introduction to College)</a></li>
-                <li><a href="advanced_college_brain_simulation.html">Brain Simulation (Advanced College)</a></li>
-                <li><a href="highschool_humanoid_robotics.html">Humanoid Robotics (High School)</a></li>
-                <li><a href="elementary_humanoid_robotics.html">Humanoid Robotics (Elementary)</a></li>
-                <li><a href="middle_humanoid_robotics.html">Humanoid Robotics (Middle School)</a></li>
-                <li><a href="intro_college_humanoid_robotics.html">Humanoid Robotics (Introduction to College)</a></li>
-                <li><a href="advanced_college_humanoid_robotics.html">Humanoid Robotics (Advanced College)</a></li>
-                <li><a href="highschool_neural_communication.html">Neural Communication (High School)</a></li>
-                <li><a href="elementary_neural_communication.html">Neural Communication (Elementary)</a></li>
-                <li><a href="middle_neural_communication.html">Neural Communication (Middle School)</a></li>
-                <li><a href="intro_college_neural_communication.html">Neural Communication (Introduction to College)</a></li>
-                <li><a href="advanced_college_neural_communication.html">Neural Communication (Advanced College)</a></li>
-                <li><a href="highschool_neural_emulation.html">Neural Emulation and Consciousness Transfer (High School)</a></li>
-                <li><a href="elementary_neural_emulation.html">Neural Emulation and Consciousness Transfer (Elementary)</a></li>
-                <li><a href="middle_neural_emulation.html">Neural Emulation and Consciousness Transfer (Middle School)</a></li>
-                <li><a href="intro_college_neural_emulation.html">Neural Emulation and Consciousness Transfer (Introduction to College)</a></li>
-                <li><a href="advanced_college_neural_emulation.html">Neural Emulation and Consciousness Transfer (Advanced College)</a></li>
-                <li><a href="highschool_neural_networks.html">Neural Networks (High School)</a></li>
-                <li><a href="elementary_neural_networks.html">Neural Networks (Elementary)</a></li>
-                <li><a href="middle_neural_networks.html">Neural Networks (Middle School)</a></li>
-                <li><a href="intro_college_neural_networks.html">Neural Networks (Introduction to College)</a></li>
-                <li><a href="advanced_college_neural_networks.html">Neural Networks (Advanced College)</a></li>
-            </ul>
-        </div>
+        <h3>Middle School Level</h3>
+        <ul class="course-list">
+            <li>FH 201: 3D Bioprinting in Action</li>
+            <li>FH 202: Biotech: From Cells to Solutions</li>
+            <li>FH 203: The Science of Regenerative Biotherapeutics</li>
+            <li>FH 204: Designing Simple Prosthetics</li>
+            <li>FH 205: How Surgical Robots Help People</li>
+            <li>FH 206: Cryonics and the Future of Life Preservation</li>
+            <li>FH 207: Advanced Nanorobotics Concepts</li>
+            <li>FH 208: Designing Life Support Systems for Space</li>
+            <li>FH 209: Space Tech in the Real World</li>
+        </ul>
 
-        <!-- Quantum and Space Tech Track -->
-        <div id="quantum-and-space-tech">
-            <h3>Quantum and Space Tech Track</h3>
-            <ul>
-                <li><a href="elementary_quantum_computing.html">Quantum Computing (Elementary)</a></li>
-                <li><a href="middle_quantum_computing.html">Quantum Computing (Middle School)</a></li>
-                <li><a href="highschool_quantum_computing.html">Quantum Computing (High School)</a></li>
-                <li><a href="intro_college_quantum_computing.html">Quantum Computing (Introduction to College)</a></li>
-                <li><a href="advanced_college_quantum_computing.html">Quantum Computing (Advanced College)</a></li>
-                <li><a href="highschool_quantum_materials_engineering.html">Quantum Materials Engineering (High School)</a></li>
-                <li><a href="elementary_quantum_materials_engineering.html">Quantum Materials Engineering (Elementary)</a></li>
-                <li><a href="middle_quantum_materials_engineering.html">Quantum Materials Engineering (Middle School)</a></li>
-                <li><a href="intro_college_quantum_materials_engineering.html">Quantum Materials Engineering (Introduction to College)</a></li>
-                <li><a href="advanced_college_quantum_materials_engineering.html">Quantum Materials Engineering (Advanced College)</a></li>
-                <li><a href="highschool_advanced_aerospace_uap_insights.html">Advanced Conceptual Aerospace Engineering (High School)</a></li>
-                <li><a href="elementary_advanced_aerospace_uap_insights.html">Advanced Conceptual Aerospace Engineering (Elementary)</a></li>
-                <li><a href="middle_advanced_aerospace_uap_insights.html">Advanced Conceptual Aerospace Engineering (Middle School)</a></li>
-                <li><a href="intro_college_advanced_aerospace_uap_insights.html">Advanced Conceptual Aerospace Engineering (Introduction to College)</a></li>
-                <li><a href="advanced_college_advanced_aerospace_uap_insights.html">Advanced Conceptual Aerospace Engineering (Advanced College)</a></li>
-                <li><a href="highschool_breakthrough_propulsion.html">Breakthrough Propulsion Technologies (High School)</a></li>
-                <li><a href="elementary_breakthrough_propulsion.html">Breakthrough Propulsion Technologies (Elementary)</a></li>
-                <li><a href="middle_breakthrough_propulsion.html">Breakthrough Propulsion Technologies (Middle School)</a></li>
-                <li><a href="intro_college_breakthrough_propulsion.html">Breakthrough Propulsion Technologies (Introduction to College)</a></li>
-                <li><a href="advanced_college_breakthrough_propulsion.html">Breakthrough Propulsion Technologies (Advanced College)</a></li>
-                <li><a href="highschool_minduploading_advanced_aerospace.html">Mind Uploading to a Metamaterial-Based Advanced Conceptual Aerospace Vehicle (High School)</a></li>
-                <li><a href="elementary_minduploading_advanced_aerospace.html">Mind Uploading to a Metamaterial-Based Advanced Conceptual Aerospace Vehicle (Elementary)</a></li>
-                <li><a href="middle_minduploading_advanced_aerospace.html">Mind Uploading to a Metamaterial-Based Advanced Conceptual Aerospace Vehicle (Middle School)</a></li>
-                <li><a href="intro_college_minduploading_advanced_aerospace.html">Mind Uploading to a Metamaterial-Based Advanced Conceptual Aerospace Vehicle (Introduction to College)</a></li>
-                <li><a href="advanced_college_minduploading_advanced_aerospace.html">Mind Uploading to a Metamaterial-Based Advanced Conceptual Aerospace Vehicle (Advanced College)</a></li>
-            </ul>
-        </div>
-    </section>
+        <h3>High School Level</h3>
+        <ul class="course-list">
+            <li>FH 301: Advanced 3D Bioprinting</li>
+            <li>FH 302: Biotech and its Real-World Applications</li>
+            <li>FH 303: The Future of Regenerative Biotherapeutics</li>
+            <li>FH 304: Prosthetics Design and Engineering</li>
+            <li>FH 305: Surgical Robots: Shaping the Future of Medicine</li>
+            <li>FH 306: Cryonics: The Technology of Life Extension</li>
+            <li>FH 307: The Future of Nanorobotics</li>
+            <li>FH 308: Designing Closed Ecological Life Support Systems</li>
+            <li>FH 309: Space Technology for the Future</li>
+        </ul>
 
-    <footer>
-        <p>&copy; 2024 Futuretech Academy. All rights reserved.</p>
-    </footer>
+        <h3>Introduction to College Level</h3>
+        <ul class="course-list">
+            <li>FH 401: Advanced 3D Bioprinting</li>
+            <li>FH 402: Biotech: Next-Level Applications</li>
+            <li>FH 403: Cutting-Edge Regenerative Biotherapeutics</li>
+            <li>FH 404: Prosthetics: The Future of Mobility</li>
+            <li>FH 405: Advanced Surgical Robotics</li>
+            <li>FH 406: Cryonics in the Modern World</li>
+            <li>FH 407: Exploring Nanorobotics for Medicine and Engineering</li>
+            <li>FH 408: Building the Future of Space Habitats</li>
+            <li>FH 409: Next-Gen Space Technologies</li>
+        </ul>
 
-    <!-- JavaScript for Wallet Authentication -->
-    <script>
-        // Function to connect to the wallet
-        async function connectWallet() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    // Request wallet connection
-                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    const walletAddress = accounts[0];
+        <h3>Advanced College Level</h3>
+        <ul class="course-list">
+            <li>FH 501: Mastering 3D Bioprinting</li>
+            <li>FH 502: Biotech Mastery: From Theory to Practice</li>
+            <li>FH 503: Pioneering Regenerative Biotherapeutics</li>
+            <li>FH 504: Prosthetics Engineering and Design</li>
+            <li>FH 505: Surgical Robots and the Future of Medicine</li>
+            <li>FH 506: The Role of Cryonics in Modern Science</li>
+            <li>FH 507: Mastering Nanorobotics</li>
+            <li>FH 508: Building Closed Ecological Life Support Systems for Mars</li>
+            <li>FH 509: Advanced Space Technology</li>
+        </ul>
+    </div>
 
-                    // Store the wallet address in local storage
-                    localStorage.setItem('walletAddress', walletAddress);
+    <div class="track">
+        <h2>BCI and Humanoids Track</h2>
 
-                    // Update UI: show wallet address and course content
-                    displayUserInfo(walletAddress);
-                    showCourses();
-                } catch (error) {
-                    console.error("Connection to wallet failed:", error);
-                }
-            } else {
-                alert("MetaMask is not installed. Please install it to connect.");
-            }
-        }
+        <h3>Elementary Level</h3>
+        <ul class="course-list">
+            <li>BH 101: Introduction to Brain-Computer Interfaces</li>
+            <li>BH 102: Humanoid Robots: A New Era</li>
+            <li>BH 103: Neural Communication Basics</li>
+        </ul>
 
-        // Function to display user info and hide the connect button
-        function displayUserInfo(walletAddress) {
-            document.getElementById('wallet-address').textContent = walletAddress;
-            document.getElementById('user-info').style.display = 'block';
-            document.getElementById('connect-wallet').style.display = 'none';
-        }
+        <h3>Middle School Level</h3>
+        <ul class="course-list">
+            <li>BH 201: Exploring Brain-Computer Interfaces</li>
+            <li>BH 202: Building Humanoid Robots</li>
+            <li>BH 203: Neural Communication: Understanding Signals</li>
+        </ul>
 
-        // Function to reveal courses section
-        function showCourses() {
-            document.getElementById('courses').style.display = 'block';
-        }
+        <h3>High School Level</h3>
+        <ul class="course-list">
+            <li>BH 301: Advanced Brain-Computer Interfaces</li>
+            <li>BH 302: Humanoid Robotics: Designing the Future</li>
+            <li>BH 303: Neural Communication Systems</li>
+        </ul>
 
-        // Event listener for the "Connect Wallet" button
-        document.getElementById('connect-wallet').addEventListener('click', connectWallet);
+        <h3>Introduction to College Level</h3>
+        <ul class="course-list">
+            <li>BH 401: Brain-Computer Interfaces for the Future</li>
+            <li>BH 402: Advanced Humanoid Robotics</li>
+            <li>BH 403: The Science of Neural Communication</li>
+        </ul>
 
-        // Auto-check if wallet is already connected on page load
-        window.addEventListener('load', () => {
-            const walletAddress = localStorage.getItem('walletAddress');
-            if (walletAddress) {
-                displayUserInfo(walletAddress);
-                showCourses();
-            }
-        });
-    </script>
+        <h3>Advanced College Level</h3>
+        <ul class="course-list">
+            <li>BH 501: Mastering Brain-Computer Interfaces</li>
+            <li>BH 502: Humanoid Robotics Engineering</li>
+            <li>BH 503: Advanced Neural Communication and Emulation</li>
+        </ul>
+    </div>
+
+    <div class="track">
+        <h2>Quantum and Space Tech Track</h2>
+
+        <h3>Elementary Level</h3>
+        <ul class="course-list">
+            <li>QS 101: Introduction to Quantum Computing</li>
+            <li>QS 102: Exploring Quantum Materials</li>
+            <li>QS 103: Fundamentals of Space Tech</li>
+        </ul>
+
+        <h3>Middle School Level</h3>
+        <ul class="course-list">
+            <li>QS 201: Quantum Computing in Action</li>
+            <li>QS 202: Quantum Materials Engineering</li>
+            <li>QS 203: Building Space Tech for the Future</li>
+        </ul>
+
+        <h3>High School Level</h3>
+        <ul class="course-list">
+            <li>QS 301: Advanced Quantum Computing</li>
+            <li>QS 302: Quantum Materials and Their Impact</li>
+            <li>QS 303: Breakthrough Propulsion Technologies</li>
+            <li>QS 304: Space Tech: The Next Frontier</li>
+        </ul>
+
+        <h3>Introduction to College Level</h3>
+        <ul class="course-list">
+            <li>QS 401: Advanced Quantum Computing Techniques</li>
+            <li>QS 402: Quantum Materials Engineering</li>
+            <li>QS 403: Aerospace Engineering Concepts</li>
+            <li>QS 404: Breakthrough Propulsion Systems</li>
+        </ul>
+
+        <h3>Advanced College Level</h3>
+        <ul class="course-list">
+            <li>QS 501: Mastering Quantum Computing</li>
+            <li>QS 502: Advanced Quantum Materials Engineering</li>
+            <li>QS 503: Conceptual Aerospace Engineering</li>
+            <li>QS 504: Advanced Propulsion Systems</li>
+        </ul>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2024 Futuretech Academy. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
