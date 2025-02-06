@@ -40,6 +40,10 @@
             cursor: pointer;
             margin-bottom: 20px;
         }
+        }
+        #courseCatalog {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -264,6 +268,7 @@
         <p>© 2024 Futuretech Academy. All rights reserved.</p>
     </footer>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
     <script>
         if (typeof window.ethereum !== 'undefined') {
@@ -278,8 +283,15 @@
                     const accounts = await web3.eth.getAccounts();
                     const walletAddress = accounts[0];
 
-                    // Update the wallet address message
+                    // Update the welcome message
                     document.getElementById("walletAddress").textContent = `Welcome, ${walletAddress}`;
+
+                    // Show the course catalog
+                    document.getElementById("courseCatalog").style.display = "block";
+
+                    // Hide the connect wallet button
+                    document.getElementById("connectWallet").style.display = "none";
+
                 } catch (error) {
                     console.error("User denied account access or there was an error:", error);
                 }
