@@ -40,7 +40,6 @@
             cursor: pointer;
             margin-bottom: 20px;
         }
-        }
         #courseCatalog {
             display: none;
         }
@@ -294,6 +293,7 @@
                 document.getElementById("connectWallet").style.display = "none";
             } catch (error) {
                 console.error("Error connecting wallet:", error);
+                alert("Error connecting wallet. Please try again. Check the console for details."); // Alert the user!
             }
         }
         // Adding an Event Listener 
