@@ -32,13 +32,22 @@
             text-align: center;
             color: #7f8c8d;
         }
+        #connectWallet {
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <h1>Futuretech Academy Course Catalog</h1>
     <p><strong>Connect your Web3 wallet to access courses and learn about the future of technology!</strong></p>
-    <p><strong>Welcome, 0x99ed116d1278b4260b1cbbfb9cb4fe71fa4e14d8!</strong></p>
+    <button id="connectWallet" onclick="login()">Connect Wallet</button>
+    <p><strong id="walletAddress">Welcome, please connect your wallet!</strong></p>
 
     <hr>
 
@@ -254,6 +263,31 @@
     <footer>
         <p>© 2024 Futuretech Academy. All rights reserved.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+    <script>
+        if (typeof window.ethereum !== 'undefined') {
+            const web3 = new Web3(window.ethereum);
+
+            async function login() {
+                try {
+                    // Request account access
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                    // Get the wallet address
+                    const accounts = await web3.eth.getAccounts();
+                    const walletAddress = accounts[0];
+
+                    // Update the wallet address message
+                    document.getElementById("walletAddress").textContent = `Welcome, ${walletAddress}`;
+                } catch (error) {
+                    console.error("User denied account access or there was an error:", error);
+                }
+            }
+        } else {
+            alert("Please install MetaMask to interact with the wallet.");
+        }
+    </script>
 
 </body>
 </html>
