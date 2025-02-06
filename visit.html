@@ -47,6 +47,14 @@
             color: #007bff;
             font-weight: bold;
         }
+         #copy-email-button { /* Style the button */
+            background-color: #b4b4b4; 
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+         }
     </style>
 </head>
 <body>
@@ -56,7 +64,7 @@
         
         <div class="contact-info">
             <h2>Our Location</h2>
-            <p>FutureTech Foundation<br>1529 12th St. SE #200 #129<br>Rochester, MN, 55904<br>Email: futuretechfoundationX@gmail.com<br>Phone: 507-295-8561</p>
+            <p>FutureTech Foundation<br>1529 12th St. SE #200 #129<br>Rochester, MN, 55904<br>Email: <button id="copy-email-button" title="Click to copy">futuretechfoundationX@gmail.com</button><br>Phone: 507-295-8561</p>
         </div>
 
         <div class="map-container">
@@ -73,5 +81,25 @@
             <a href="https://instagram.com/futuretechfoundation" target="_blank">Instagram</a>
         </div>
     </div>
+    <script>
+        const copyEmailButton = document.getElementById('copy-email-button');
+        const email = copyEmailButton.textContent;
+
+        copyEmailButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(email)
+              .then(() => {
+                copyEmailButton.textContent = "Copied!";
+                copyEmailButton.title = "Copied!";
+                setTimeout(() => {
+                  copyEmailButton.textContent = email;
+                  copyEmailButton.title = "Click to copy";
+                }, 2000);
+              })
+              .catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy. Please copy manually.");
+              });
+          });
+    </script>
 </body>
 </html>
