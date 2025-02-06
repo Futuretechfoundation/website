@@ -284,7 +284,7 @@
 
                 // Get the wallet address
                 const accounts = await web3.eth.getAccounts();
-                const walletAddress = accounts[0];
+                const walletAddress = accounts;
 
                 // Show the course catalog
                 document.getElementById("courseCatalog").style.display = "block";
@@ -294,8 +294,6 @@
                 document.getElementById("connectWallet").style.display = "none";
             } catch (error) {
                 console.error("Error connecting wallet:", error);
-                // To display alert
-                alert("Error connecting wallet. Please try again."); 
             }
         }
         // Adding an Event Listener 
