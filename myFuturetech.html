@@ -50,7 +50,8 @@
 
     <h1>Futuretech Academy Course Catalog</h1>
     <p><strong>Connect your Web3 wallet to access courses and learn about the future of technology!</strong></p>
-    <button id="connectWallet" onclick="login()">Connect Wallet</button>
+    <button id="connectWallet">Connect Wallet</button>
+    <!--<button id="connectWallet" onclick="login()">Connect Wallet</button>-->
     <p><strong id="walletAddress">Welcome, please connect your wallet!</strong></p>
 
     <hr>
@@ -293,8 +294,12 @@
                 document.getElementById("connectWallet").style.display = "none";
             } catch (error) {
                 console.error("Error connecting wallet:", error);
+                // To display alert
+                alert("Error connecting wallet. Please try again."); 
             }
         }
+        // Adding an Event Listener 
+        document.getElementById('connectWallet').addEventListener('click', connectWallet);
     }
 </script>
 
