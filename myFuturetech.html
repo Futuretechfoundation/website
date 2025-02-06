@@ -268,38 +268,36 @@
         <p>© 2024 Futuretech Academy. All rights reserved.</p>
     </footer>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
-    <script>
-        if (typeof window.ethereum !== 'undefined') {
-            const web3 = new Web3(window.ethereum);
+<script>
+    // Check for MetaMask
+    if (typeof window.ethereum === 'undefined') {
+        document.body.innerHTML = '<h1>Please install MetaMask to access this site.</h1>';
+    } else {
+        const web3 = new Web3(window.ethereum);
 
-            async function login() {
-                try {
-                    // Request account access
-                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+        async function connectWallet() {
+            try {
+                // Request wallet connection
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-                    // Get the wallet address
-                    const accounts = await web3.eth.getAccounts();
-                    const walletAddress = accounts[0];
+                // Get the wallet address
+                const accounts = await web3.eth.getAccounts();
+                const walletAddress = accounts[0];
 
-                    // Update the welcome message
-                    document.getElementById("walletAddress").textContent = `Welcome, ${walletAddress}`;
+                // Show the course catalog
+                document.getElementById("courseCatalog").style.display = "block";
 
-                    // Show the course catalog
-                    document.getElementById("courseCatalog").style.display = "block";
-
-                    // Hide the connect wallet button
-                    document.getElementById("connectWallet").style.display = "none";
-
-                } catch (error) {
-                    console.error("User denied account access or there was an error:", error);
-                }
+                // Update the wallet address and hide the button
+                document.getElementById("walletAddress").textContent = `Welcome, ${walletAddress}`;
+                document.getElementById("connectWallet").style.display = "none";
+            } catch (error) {
+                console.error("Error connecting wallet:", error);
             }
-        } else {
-            alert("Please install MetaMask to interact with the wallet.");
         }
-    </script>
+    }
+</script>
+
 
 </body>
 </html>
