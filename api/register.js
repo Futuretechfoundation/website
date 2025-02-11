@@ -1,33 +1,47 @@
-import fs from 'fs';
-import path from 'path';
+import { MongoClient } from 'mongodb';
 
-export default function handler(req, res) {
+// MongoDB URI and Client Setup
+const uri = process.env.MONGODB_URI; // Store your MongoDB URI in an environment variable
+const client = new MongoClient(uri);
+
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { slack_handle, membership } = req.body;
 
     if (!slack_handle || !membership) {
+      console.error("Missing required fields");
       return res.status(400).json({ error: 'Slack handle and membership are required.' });
     }
 
-    const filePath = path.join(process.cwd(), 'data', 'members.json');
-
     try {
-      let members = [];
-      if (fs.existsSync(filePath)) {
-        const fileData = fs.readFileSync(filePath, 'utf-8');
-        members = JSON.parse(fileData);
-      }
+      // Connect to the MongoDB client
+      await client.connect();
 
-      members.push({ slack_handle, membership, payment_status: "Pending" });
+      // Access the FuturetechDB database and the members collection
+      const database = client.db('FuturetechDB');
+      const collection = database.collection('members');
 
-      fs.writeFileSync(filePath, JSON.stringify(members, null, 2));
+      // Create a new member document
+      const newMember = {
+        slack_handle,
+        membership,
+        payment_status: "Pending",
+      };
 
-      return res.status(200).json({ message: 'Registration successful' });
+      // Insert the new member into the MongoDB collection
+      const result = await collection.insertOne(newMember);
+
+      return res.status(200).json({ message: 'Registration successful', memberId: result.insertedId });
     } catch (error) {
-      return res.status(500).json({ error: 'Server error' });
+      console.error("Error inserting to MongoDB:", error);
+      return res.status(500).json({ error: 'Server error. Check logs.' });
+    } finally {
+      // Close the MongoDB connection
+      await client.close();
     }
   } else {
+    console.error("Invalid request method");
     res.setHeader('Allow', ['POST']);
-    res.status(405).json({ error: 'Method Not Allowed' });
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
-        }
+    }
