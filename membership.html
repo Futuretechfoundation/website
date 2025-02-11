@@ -55,11 +55,31 @@
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section id="cta">
+    <!-- Membership Registration Form -->
+    <section id="registration">
         <h2>Become a Member Today</h2>
-        <p>Ready to make an impact and shape the future of technology? Join us now and start your journey!</p>
-        <a href="signup.html" class="button">Join Now</a>
+        <form id="membershipForm" action="/api/register" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+
+            <label for="tier">Select Membership Tier:</label>
+            <select id="tier" name="tier" required>
+                <option value="basic">Basic Member (Free)</option>
+                <option value="professional">Professional Member ($50/year)</option>
+                <option value="elite">Elite Member ($100/year)</option>
+            </select>
+            <br>
+
+            <label for="paymentStatus">Payment Status:</label>
+            <select id="paymentStatus" name="paymentStatus" required>
+                <option value="paid">Paid</option>
+                <option value="pending">Pending</option>
+            </select>
+            <br>
+
+            <button type="submit">Register</button>
+        </form>
     </section>
 </main>
 
@@ -70,4 +90,4 @@
 </footer>
 
 </body>
-                </html>
+                               </html>
