@@ -164,26 +164,33 @@
         });
     });
 
-    document.getElementById('registration-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
-        
-        fetch('/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Registration successful!');
-        })
-        .catch(error => {
-            alert('Error: ' + error);
-        });
+    document.getElementById("registration-form").onsubmit = async function (event) {
+  event.preventDefault();
+
+  const slackHandle = document.getElementById("slack-handle").value;
+  const membership = document.querySelector('input[name="membership"]:checked').value;
+
+  try {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ slack_handle: slackHandle, membership: membership }),
     });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert(result.message);
+    } else {
+      alert(result.error);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 </script>
 
 </body>
