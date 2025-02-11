@@ -1,44 +1,33 @@
-// Import dependencies if needed (e.g., for database connections)
-import { writeFile } from 'fs/promises'; // For simple file storage (temporary, replace with a DB later)
+import fs from 'fs';
 import path from 'path';
 
-// Handler function for the API
-export default async function handler(req, res) {
+export default function handler(req, res) {
   if (req.method === 'POST') {
+    const { slack_handle, membership } = req.body;
+
+    if (!slack_handle || !membership) {
+      return res.status(400).json({ error: 'Slack handle and membership are required.' });
+    }
+
+    const filePath = path.join(process.cwd(), 'data', 'members.json');
+
     try {
-      const { slackHandle, membership } = req.body;
-
-      // Basic validation
-      if (!slackHandle || !membership) {
-        return res.status(400).json({ error: 'Slack handle and membership type are required.' });
+      let members = [];
+      if (fs.existsSync(filePath)) {
+        const fileData = fs.readFileSync(filePath, 'utf-8');
+        members = JSON.parse(fileData);
       }
 
-      // Save data to a file (temporary solution, replace with DB)
-      const filePath = path.join(process.cwd(), 'data', 'members.json');
+      members.push({ slack_handle, membership, payment_status: "Pending" });
 
-      // Read existing data if available
-      let existingData = [];
-      try {
-        const data = await readFile(filePath, 'utf-8');
-        existingData = JSON.parse(data);
-      } catch (err) {
-        console.log('No existing data found. Creating a new file.');
-      }
+      fs.writeFileSync(filePath, JSON.stringify(members, null, 2));
 
-      // Append new member
-      existingData.push({ slackHandle, membership, registeredAt: new Date() });
-
-      // Write updated data back
-      await writeFile(filePath, JSON.stringify(existingData, null, 2));
-
-      // Respond with success
-      res.status(200).json({ message: 'Registration successful!' });
+      return res.status(200).json({ message: 'Registration successful' });
     } catch (error) {
-      console.error('Error saving registration:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      return res.status(500).json({ error: 'Server error' });
     }
   } else {
     res.setHeader('Allow', ['POST']);
     res.status(405).json({ error: 'Method Not Allowed' });
   }
-}
+        }
