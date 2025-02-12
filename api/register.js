@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 
-// MongoDB URI and Client Setup
-const uri = process.env.MONGODB_URI; // Store your MongoDB URI in an environment variable
+// MongoDB URI from environment variable
+const uri = process.env.MONGODB_URI;  // Use the environment variable
+
 const client = new MongoClient(uri);
 
 export default async function handler(req, res) {
@@ -44,4 +45,4 @@ export default async function handler(req, res) {
     res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
-    }
+}
