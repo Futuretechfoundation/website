@@ -5,46 +5,46 @@
   </head>
   <body>
     <a-scene>
-      <!-- Brighter 360 Background -->
-      <a-sky color="#B0E0E6"></a-sky> <!-- Light blue background -->
+      <!-- Lighter Nature Background -->
+      <a-sky src="url(https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg)"></a-sky> <!-- Lighter nature scene -->
 
       <!-- Interactive Descriptions -->
-      <a-entity id="info" position="0 3 -3" text="value: Click on a model to learn more and take a quiz!; color: cyan; width: 6; align: center; font: https://cdn.aframe.io/fonts/mozillavr.woff2; scale: 3 3 3"></a-entity>
+      <a-entity id="info" position="0 3 -3" text="value: Click on a model to learn more and take a quiz!; color: cyan; width: 10; align: center; font: https://cdn.aframe.io/fonts/mozillavr.woff2; scale: 6 6 6"></a-entity>
 
       <!-- DNA Diagram -->
       <a-plane id="dna-diagram" position="-4 1 -3" width="3" height="2" rotation="0 0 0" material="src: url(https://example.com/path/to/dna-diagram.jpg)" event-set__click="_event: click; _target: #quiz-dna; visible: true;"></a-plane>
-      <a-entity id="quiz-dna" position="-4 2 -3" text="value: What does DNA stand for?\nA) Dynamic Nucleic Acid\nB) Deoxyribonucleic Acid\nC) Double Helix Nucleic Acid; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-dna" position="-4 2 -3" text="value: What does DNA stand for?\nA) Dynamic Nucleic Acid\nB) Deoxyribonucleic Acid\nC) Double Helix Nucleic Acid; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Cell Diagram -->
       <a-plane id="cell-diagram" position="-2 1 -3" width="3" height="2" material="src: url(https://example.com/path/to/cell-diagram.jpg)" event-set__click="_event: click; _target: #quiz-cell; visible: true;"></a-plane>
-      <a-entity id="quiz-cell" position="-2 2 -3" text="value: What is the powerhouse of the cell?\nA) Nucleus\nB) Mitochondria\nC) Ribosome; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-cell" position="-2 2 -3" text="value: What is the powerhouse of the cell?\nA) Nucleus\nB) Mitochondria\nC) Ribosome; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- CRISPR Diagram -->
       <a-plane id="crispr-diagram" position="2 1 -3" width="3" height="2" material="src: url(https://example.com/path/to/crispr-diagram.jpg)" event-set__click="_event: click; _target: #quiz-crispr; visible: true;"></a-plane>
-      <a-entity id="quiz-crispr" position="2 2 -3" text="value: What is CRISPR used for?\nA) Editing genes\nB) Creating proteins\nC) Building cells; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-crispr" position="2 2 -3" text="value: What is CRISPR used for?\nA) Editing genes\nB) Creating proteins\nC) Building cells; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Stem Cells Diagram -->
       <a-plane id="stemcells-diagram" position="4 1 -3" width="3" height="2" material="src: url(https://example.com/path/to/stemcells-diagram.jpg)" event-set__click="_event: click; _target: #quiz-stemcells; visible: true;"></a-plane>
-      <a-entity id="quiz-stemcells" position="4 2 -3" text="value: What can stem cells become?\nA) Only neurons\nB) Any cell type\nC) Only muscle cells; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-stemcells" position="4 2 -3" text="value: What can stem cells become?\nA) Only neurons\nB) Any cell type\nC) Only muscle cells; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Bioinformatics Diagram -->
       <a-plane id="bioinformatics-diagram" position="-4 1 -5" width="3" height="2" material="src: url(https://example.com/path/to/bioinformatics-diagram.jpg)" event-set__click="_event: click; _target: #quiz-bioinformatics; visible: true;"></a-plane>
-      <a-entity id="quiz-bioinformatics" position="-4 2 -5" text="value: What does bioinformatics analyze?\nA) Genetic data\nB) Chemical compounds\nC) Bacteria growth; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-bioinformatics" position="-4 2 -5" text="value: What does bioinformatics analyze?\nA) Genetic data\nB) Chemical compounds\nC) Bacteria growth; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Synthetic Biology Diagram -->
       <a-plane id="synbio-diagram" position="-2 1 -5" width="3" height="2" material="src: url(https://example.com/path/to/synbio-diagram.jpg)" event-set__click="_event: click; _target: #quiz-synbio; visible: true;"></a-plane>
-      <a-entity id="quiz-synbio" position="-2 2 -5" text="value: What is synthetic biology?\nA) Modifying existing cells\nB) Creating new biological systems\nC) Studying bacteria; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-synbio" position="-2 2 -5" text="value: What is synthetic biology?\nA) Modifying existing cells\nB) Creating new biological systems\nC) Studying bacteria; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Regenerative Medicine Diagram -->
       <a-plane id="regenmedicine-diagram" position="0 1 -5" width="3" height="2" material="src: url(https://example.com/path/to/regenmedicine-diagram.jpg)" event-set__click="_event: click; _target: #quiz-regenmedicine; visible: true;"></a-plane>
-      <a-entity id="quiz-regenmedicine" position="0 2 -5" text="value: What does regenerative medicine aim to do?\nA) Heal wounds faster\nB) Repair or replace damaged tissues\nC) Grow artificial organs; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-regenmedicine" position="0 2 -5" text="value: What does regenerative medicine aim to do?\nA) Heal wounds faster\nB) Repair or replace damaged tissues\nC) Grow artificial organs; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Nanobiotechnology Diagram -->
       <a-plane id="nanobio-diagram" position="2 1 -5" width="3" height="2" material="src: url(https://example.com/path/to/nanobio-diagram.jpg)" event-set__click="_event: click; _target: #quiz-nanobio; visible: true;"></a-plane>
-      <a-entity id="quiz-nanobio" position="2 2 -5" text="value: What is nanobiotechnology?\nA) Study of tiny bacteria\nB) Applying nanotechnology to biology\nC) Creating synthetic cells; color: white; visible: false; scale: 2 2 2"></a-entity>
+      <a-entity id="quiz-nanobio" position="2 2 -5" text="value: What is nanobiotechnology?\nA) Study of tiny bacteria\nB) Applying nanotechnology to biology\nC) Creating synthetic cells; color: white; visible: false; scale: 4 4 4"></a-entity>
 
       <!-- Activity Section -->
-      <a-entity id="activity" position="0 2 -3" text="value: Activity: Drag and match DNA bases!; color: yellow; width: 6; align: center; font: https://cdn.aframe.io/fonts/mozillavr.woff2; scale: 3 3 3"></a-entity>
+      <a-entity id="activity" position="0 2 -3" text="value: Activity: Drag and match DNA bases!; color: yellow; width: 10; align: center; font: https://cdn.aframe.io/fonts/mozillavr.woff2; scale: 6 6 6"></a-entity>
     </a-scene>
   </body>
 </html>
