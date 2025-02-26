@@ -171,7 +171,7 @@
   const membership = document.querySelector('input[name="membership"]:checked').value;
 
   try {
-    const response = await fetch("/api/register", {
+    const response = await fetch("https://nodejs-virid-pi.vercel.app/api/submit-membership", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
