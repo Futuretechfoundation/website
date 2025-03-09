@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Programs - Futuretech Academy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.0.2/web3.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 20px;
+            background-color: #f4f4f9;
             color: #333;
         }
         h1 {
@@ -17,9 +19,10 @@
         }
         .track {
             margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #2A9D8F;
+            padding: 15px;
+            border: 2px solid #2A9D8F;
             border-radius: 5px;
+            background-color: #fff;
         }
         h2 {
             color: #264653;
@@ -27,48 +30,117 @@
         ul {
             padding-left: 20px;
         }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #walletAddress {
+            text-align: center;
+            font-weight: bold;
+        }
+        #courseCatalog {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
     <h1>Academic Programs - Futuretech Academy</h1>
 
-    <div id="future-of-humans-track" class="track">
-        <h2>Future of Humans Track</h2>
-        <p>The "Future of Humans" track focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here’s an overview of the key components:</p>
-        <ul>
-            <li><strong>Biotechnology:</strong> Covers the use of biological systems, organisms, or derivatives to create various products and technologies, including genetic engineering, synthetic biology, and bioinformatics.</li>
-            <li><strong>Regenerative Biotherapeutics:</strong> Focuses on developing therapies to regenerate or replace damaged tissues and organs, utilizing stem cell therapy, gene editing, and tissue engineering.</li>
-            <li><strong>3D Bioprinting:</strong> Explores the use of 3D printing technology to create complex biological structures, including tissues and organs, advancing personalized medicine, and custom implants.</li>
-            <li><strong>Prosthetics:</strong> Involves the design and development of artificial limbs and body parts, emphasizing functionality, comfort, and integration with the human body.</li>
-            <li><strong>Nanorobotics:</strong> Studies tiny robots at the nanoscale for tasks like targeted drug delivery and cellular repairs, enhancing diagnostic tools.</li>
-            <li><strong>Surgical Robotics:</strong> Integrates robotics into surgical procedures to improve precision, reduce recovery times, and optimize outcomes with robot-assisted surgeries.</li>
-        </ul>
+    <p id="walletAddress">Welcome, please connect your wallet to access courses.</p>
+    <button id="connectWallet">Connect Wallet</button>
+
+    <hr>
+
+    <div id="courseCatalog">
+        <h2>Programs and Courses</h2>
+
+        <div class="track">
+            <h2>Future of Humans Track</h2>
+            <p>This track focuses on advancing human capabilities through biotechnology, 3D bioprinting, nanorobotics, and more.</p>
+            <ul>
+                <li><strong>Biotechnology:</strong> Covers genetic engineering, synthetic biology, and bioinformatics.</li>
+                <li><strong>Regenerative Biotherapeutics:</strong> Develops therapies for tissue regeneration using stem cells.</li>
+                <li><strong>3D Bioprinting:</strong> Creates complex biological structures, advancing personalized medicine.</li>
+                <li><strong>Prosthetics:</strong> Focuses on artificial limbs with enhanced integration.</li>
+                <li><strong>Nanorobotics:</strong> Studies nanoscale robots for medical applications.</li>
+                <li><strong>Surgical Robotics:</strong> Uses AI-driven robotics to enhance precision in surgeries.</li>
+            </ul>
+        </div>
+
+        <div class="track">
+            <h2>BCI and Humanoids Track</h2>
+            <p>Explores the interface between human cognition and AI, with a focus on digital consciousness and humanoid robotics.</p>
+            <ul>
+                <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication from brain signals to external devices.</li>
+                <li><strong>Telepathy-Based Communication:</strong> Uses BCI to facilitate mind-to-mind communication.</li>
+                <li><strong>Neural Networks & Brain Simulation:</strong> Develops AI models to replicate human thought.</li>
+                <li><strong>Mind Uploading:</strong> Investigates transferring consciousness into digital or robotic forms.</li>
+                <li><strong>Humanoids Development:</strong> Focuses on AI-driven robots that mimic human movement and cognition.</li>
+            </ul>
+        </div>
+
+        <div class="track">
+            <h2>Quantum and Space Tech Track</h2>
+            <p>Combines quantum computing, non-human vehicle technology, and interdimensional travel.</p>
+            <ul>
+                <li><strong>Quantum Computing:</strong> Uses quantum mechanics for advanced computation.</li>
+                <li><strong>Quantum Materials Engineering:</strong> Develops new materials at the atomic level.</li>
+                <li><strong>Brain-Computer Interface Integration:</strong> Merges human thoughts with quantum computing.</li>
+                <li><strong>Mind-Controlled Vehicles:</strong> Enables vehicles to respond to human thoughts.</li>
+                <li><strong>Interdimensional Travel:</strong> Investigates high-speed travel across dimensions.</li>
+            </ul>
+        </div>
     </div>
 
-    <div id="bci-humanoids-track" class="track">
-        <h2>BCI and Humanoids Track</h2>
-        <p>The BCI and Humanoid Robots Track explores the interface between human cognition and advanced robotics, focusing on digital preservation and transferring human consciousness into humanoid robots.</p>
-        <ul>
-            <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication directly from the brain to external devices.</li>
-            <li><strong>Telepathy-Based Communication:</strong> Investigates non-verbal communication techniques powered by BCI technologies.</li>
-            <li><strong>Neural Networks & Brain Simulation:</strong> Focuses on simulating brain functions and neural connectivity for enhanced robot interaction.</li>
-            <li><strong>Mind Uploading:</strong> Studies the transfer of consciousness to inhabit robotic bodies, while addressing ethical implications and technical challenges.</li>
-            <li><strong>Humanoids Development:</strong> Covers building humanoids that mirror human movements, emotions, and thought processes for intelligent machine interaction.</li>
-        </ul>
-    </div>
+    <script>
+        let web3;
+        let contract;
+        const contractAddress = "YOUR_SMART_CONTRACT_ADDRESS";
+        const contractABI = [
+            {
+                "constant": true,
+                "inputs": [{"name": "student", "type": "address"}],
+                "name": "isStudentRegistered",
+                "outputs": [{"name": "", "type": "bool"}],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
 
-    <div id="quantum-space-track" class="track">
-        <h2>Quantum and Space Tech Track</h2>
-        <p>Combining quantum technologies such as quantum computing and quantum materials engineering, this track explores advanced non-human vehicle and space technology, including interdimensional travel.</p>
-        <ul>
-            <li><strong>Quantum Computing:</strong> Focuses on harnessing the power of quantum mechanics to revolutionize data processing and problem-solving.</li>
-            <li><strong>Quantum Materials Engineering:</strong> Studies materials at the quantum level for use in futuristic technologies.</li>
-            <li><strong>Brain-Computer Interface Integration:</strong> Digitizes a person’s thoughts, memories, and personality to interface with quantum-based systems.</li>
-            <li><strong>Mind-Controlled Vehicles:</strong> Explores the control of vehicles through integrated mind and machine interfaces, allowing for advanced exploration.</li>
-            <li><strong>Interdimensional Travel:</strong> Envisions accessing different dimensions, high-speed travel, and quantum manipulation as ways to transcend biological forms and explore the universe.</li>
-        </ul>
-    </div>
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    web3 = new Web3(window.ethereum);
+                    await ethereum.request({ method: 'eth_requestAccounts' });
+                    const accounts = await web3.eth.getAccounts();
+                    const userAddress = accounts[0];
+
+                    document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
+
+                    contract = new web3.eth.Contract(contractABI, contractAddress);
+                    const isRegistered = await contract.methods.isStudentRegistered(userAddress).call();
+
+                    if (isRegistered) {
+                        document.getElementById("courseCatalog").style.display = "block";
+                    } else {
+                        alert("Access denied. You are not registered as a student.");
+                    }
+                } catch (error) {
+                    console.error("Wallet connection failed:", error);
+                }
+            } else {
+                alert("MetaMask is not installed. Please install MetaMask to access the courses.");
+            }
+        }
+
+        document.getElementById("connectWallet").addEventListener("click", connectWallet);
+    </script>
 
 </body>
 </html>
