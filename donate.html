@@ -3,83 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate Now</title>
+    <title>Donate Now - FutureTech Foundation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3, h4 {
+            color: #0077b6;
+        }
+        p, ul {
+            line-height: 1.6;
+        }
+        strong {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .donation-method {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f0f8ff;
+            border-left: 5px solid #0077b6;
+        }
+        form {
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #005f8b;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+        footer a {
+            color: #f4f4f9;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Donate Now</h1>
+        <h1>Donate Now - FutureTech Foundation</h1>
     </header>
+
     <section>
         <p>Support FutureTech Foundation’s mission by making a donation.</p>
         
         <h2>Donation Methods</h2>
 
-
         <!-- Cash App Donation -->
-        <h3>Donate with Cash App</h3>
-        <p>You can also donate via Cash App by using our $Cashtag:</p>
-        <p><strong>Cash App $Cashtag:</strong> $FutureTechFoundation</p>
-        <p>Simply open Cash App, enter your donation amount, and use the $Cashtag above to send your support.</p>
+        <div class="donation-method">
+            <h3>Donate with Cash App</h3>
+            <p>You can donate via Cash App using our $Cashtag:</p>
+            <p><strong>Cash App $Cashtag:</strong> $FutureTechFoundation</p>
+            <p>Simply open Cash App, enter your donation amount, and use the $Cashtag above to send your support.</p>
+        </div>
 
         <!-- Cryptocurrency Donation -->
-        <h3>Donate with Cryptocurrency</h3>
-        <p>FutureTech Foundation accepts a variety of cryptocurrency donations. Please send to the appropriate address:</p>
-        <ul>
-            <p><strong>Bitcoin (BTC):</strong>bc1q2q45yj3t3vua867z9367fqfuhswy2zks64cpuv</p>
-            <p><strong>Ethereum (ETH):</strong>0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</p>
-            <li><strong>Litecoin (LTC):</strong>ltc1qecyhm59dkn3czq5u6r298nvu43sxwqzad5a83f </li>
-            <li><strong>Ripple (XRP):</strong>rptBenK5peJdV5c2vxspoffjWpjaaRaoky </li>
-            <li><strong>Dogecoin (DOGE):</strong>DD7UqrqFMpXBjaR9LBQn8YeG5qzY921rhg </li>
-            <li><strong>Cardano (ADA):</strong>addr1q8dljrx99e8q8dxyjvtat35sccfw9w7svypxz6lvmqn6rnmdqz7uyq3xh39xqrp7us27ek9epfmywksnaayv848egfesmd6xuv </li>
-            <li><strong>Polkadot (DOT):</strong>1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG </li>
-        </ul>
+        <div class="donation-method">
+            <h3>Donate with Cryptocurrency</h3>
+            <p>FutureTech Foundation accepts a variety of cryptocurrency donations. Please send to the appropriate address:</p>
+            <ul>
+                <li><strong>Bitcoin (BTC):</strong> bc1q2q45yj3t3vua867z9367fqfuhswy2zks64cpuv</li>
+                <li><strong>Ethereum (ETH):</strong> 0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</li>
+                <li><strong>Litecoin (LTC):</strong> ltc1qecyhm59dkn3czq5u6r298nvu43sxwqzad5a83f</li>
+                <li><strong>Ripple (XRP):</strong> rptBenK5peJdV5c2vxspoffjWpjaaRaoky</li>
+                <li><strong>Dogecoin (DOGE):</strong> DD7UqrqFMpXBjaR9LBQn8YeG5qzY921rhg</li>
+                <li><strong>Cardano (ADA):</strong> addr1q8dljrx99e8q8dxyjvtat35sccfw9w7svypxz6lvmqn6rnmdqz7uyq3xh39xqrp7us27ek9epfmywksnaayv848egfesmd6xuv</li>
+                <li><strong>Polkadot (DOT):</strong> 1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG</li>
+            </ul>
+        </div>
 
         <!-- NFT Donation -->
-        <h3>Donate NFTs</h3>
-        <p>Support FutureTech Foundation by donating NFTs to help fund our mission. We currently accept NFTs on the Ethereum and Solana networks.</p>
-        <p><strong>Ethereum Wallet Address:</strong>0x19Be60326c1ED6367aeb541d523bEe9e08A136F3 </p>
-        <p><strong>Solana Wallet Address:</strong>GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845</p>
-        <p>To donate an NFT, please transfer it directly to one of the wallet addresses above. For assistance, feel free to contact us.</p>
+        <div class="donation-method">
+            <h3>Donate NFTs</h3>
+            <p>Support FutureTech Foundation by donating NFTs to help fund our mission. We accept NFTs on the Ethereum and Solana networks:</p>
+            <p><strong>Ethereum Wallet Address:</strong> 0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</p>
+            <p><strong>Solana Wallet Address:</strong> GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845</p>
+            <p>To donate an NFT, transfer it directly to one of the wallet addresses above. For assistance, feel free to contact us.</p>
+        </div>
 
         <!-- Mail-in Donation -->
-        <h3>Mail-in Donation</h3>
-        <p>If you prefer to send a check, please make it payable to "FutureTech Foundation" and mail it to:</p>
-        <p>FutureTech Foundation<br>1529 12th St SE 200 #129<br>Rochester, MN 55904</p>
+        <div class="donation-method">
+            <h3>Mail-in Donation</h3>
+            <p>If you prefer to send a check, please make it payable to "FutureTech Foundation" and mail it to:</p>
+            <p>FutureTech Foundation<br>1529 12th St SE 200 #129<br>Rochester, MN 55904</p>
+        </div>
 
         <!-- Other Ways to Support -->
-        <h3>Other Ways to Support</h3>
+        <div class="donation-method">
+            <h3>Other Ways to Support</h3>
 
-        <!-- Physical Goods -->
-        <h4>Donate Physical Goods</h4>
-        <p>If you have items that may be of use to the FutureTech Foundation, such as tech equipment, office supplies, or other materials, please reach out to coordinate delivery.</p>
-        <p><strong>Shipping Address:</strong></p>
-        <p>FutureTech Foundation<br>1529 12th St SE 200 #129<br>Rochester, MN 55904</p>
-        <p><strong>Email:</strong> futuretechfoundationX@gmail.com</p>
-        
-        <!-- Volunteer Time or Skills -->
-        <h4>Volunteer Your Time or Skills</h4>
-        <p>We welcome volunteers who can offer time, skills, or expertise in various areas like event planning, IT support, marketing, and more. If you're interested in volunteering, please fill out the form below, and we’ll be in touch!</p>
-        <form action="/submit-volunteer" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <label for="skills">Skills or Services You Can Offer:</label>
-            <textarea id="skills" name="skills" rows="4" required></textarea>
-            <br>
-            <button type="submit">Submit Volunteer Information</button>
-        </form>
-        
-        <!-- Corporate or In-kind Sponsorship -->
-        <h4>Corporate or In-Kind Sponsorship</h4>
-        <p>If your business would like to offer services, sponsor an event, or provide other forms of in-kind support, please reach out to us directly. We’re open to partnerships that align with our mission.</p>
-        <p><strong>Contact:</strong> futuretechfoundationX@gmail.com</p>
+            <!-- Donate Physical Goods -->
+            <h4>Donate Physical Goods</h4>
+            <p>If you have items such as tech equipment, office supplies, or other materials that may be of use to the FutureTech Foundation, please reach out to coordinate delivery.</p>
+            <p><strong>Shipping Address:</strong></p>
+            <p>FutureTech Foundation<br>1529 12th St SE 200 #129<br>Rochester, MN 55904</p>
+            <p><strong>Email:</strong> futuretechfoundationX@gmail.com</p>
+            
+            <!-- Volunteer Time or Skills -->
+            <h4>Volunteer Your Time or Skills</h4>
+            <p>We welcome volunteers who can offer time, skills, or expertise in areas like event planning, IT support, marketing, and more. If you're interested in volunteering, please fill out the form below, and we’ll be in touch!</p>
+            <form action="/submit-volunteer" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="skills">Skills or Services You Can Offer:</label>
+                <textarea id="skills" name="skills" rows="4" required></textarea>
+                <br>
+                <button type="submit">Submit Volunteer Information</button>
+            </form>
+            
+            <!-- Corporate Sponsorship -->
+            <h4>Corporate or In-Kind Sponsorship</h4>
+            <p>If your business would like to offer services, sponsor an event, or provide other forms of in-kind support, please reach out to us directly. We’re open to partnerships that align with our mission.</p>
+            <p><strong>Contact:</strong> futuretechfoundationX@gmail.com</p>
+        </div>
     </section>
     
     <footer>
         <p><a href="index.html">Back to Home</a></p>
     </footer>
+
 </body>
-    </html>
+</html>
