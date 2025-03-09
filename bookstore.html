@@ -6,15 +6,22 @@
     <title>Surgical Robots: Revolutionizing the Future</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file if applicable -->
 
-
-  <style>
-    #book-cover {
-      width: 50%;
-      height: auto;
-    }
-  </style>
-
-
+    <style>
+        #book-cover {
+            width: 50%;
+            height: auto;
+        }
+        .book-price {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .discount {
+            color: red;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -33,54 +40,40 @@
     <section id="book-details">
         <h2>Surgical Robots: Revolutionizing the Future</h2>
         <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Surgical_robotics.jpg" alt="Surgical Robots Book Cover" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <p><strong>Price:</strong> <span id="bookPrice">Loading...</span> BTC</p> <!-- Dynamic price in Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
             <p>"Surgical Robots: Revolutionizing the Future" explores the cutting-edge technology behind surgical robots and how they are transforming the field of medicine. The book dives into the science, the breakthroughs, and the incredible potential for improving patient outcomes through robotic surgery.</p>
         </div>
 
-        <h2> Empowering Limbs: Unveiling the Technological Frontiers of Prosthetics, Bionics, and Cybernetics</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/empowering_limbs.jpg " alt="Empowering Limbs" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <h2>Empowering Limbs: Unveiling the Technological Frontiers of Prosthetics, Bionics, and Cybernetics</h2>
+        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/empowering_limbs.jpg" alt="Empowering Limbs" id="book-cover">
+        <p><strong>Price:</strong> <span id="empoweringLimbsPrice">Loading...</span> BTC</p> <!-- Dynamic price in Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
-            <p> *Empowering Limbs* offers a comprehensive exploration of the evolution and future of prosthetic, bionic, and cybernetic technologies. From ancient innovations to cutting-edge advancements, this book delves into materials science, neuromechanics, AI-powered prosthetics, and regenerative medicine. It covers key topics such as sensory feedback, brain-computer interfaces, and 3D printing for customization, while addressing economic and ethical considerations. Ideal for researchers, healthcare professionals, engineers, and technology enthusiasts, *Empowering Limbs* provides valuable insights into the transformative innovations shaping human augmentation and limb technology.
-            </p>
+            <p>*Empowering Limbs* offers a comprehensive exploration of the evolution and future of prosthetic, bionic, and cybernetic technologies. From ancient innovations to cutting-edge advancements, this book delves into materials science, neuromechanics, AI-powered prosthetics, and regenerative medicine. It covers key topics such as sensory feedback, brain-computer interfaces, and 3D printing for customization, while addressing economic and ethical considerations. Ideal for researchers, healthcare professionals, engineers, and technology enthusiasts, *Empowering Limbs* provides valuable insights into the transformative innovations shaping human augmentation and limb technology.</p>
         </div>
 
-        <h2> Cybernetic Integration Revolution: Advancing Human Potential with BCI, Nanorobots, 3D Printed Organs, and Cybernetics</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Cybernetic%20Integration%20Revolution.jpg" alt="Empowering Limbs" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <h2>Cybernetic Integration Revolution: Advancing Human Potential with BCI, Nanorobots, 3D Printed Organs, and Cybernetics</h2>
+        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Cybernetic%20Integration%20Revolution.jpg" alt="Cybernetic Integration Revolution" id="book-cover">
+        <p><strong>Price:</strong> <span id="cyberneticIntegrationPrice">Loading...</span> BTC</p> <!-- Dynamic price in Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
-            <p> Cybernetic Integration Revolution: Advancing Human Potential explores the transformative future of human-machine fusion. This captivating book delves into brain-computer interfaces (BCIs), 3D printed organs, nanorobots, and advanced prosthetics, showcasing their potential to redefine human capabilities.
-
-Discover how robotic limbs with sensory feedback and neural interfaces revolutionize prosthetics, while BCIs enable seamless mind-machine collaboration. Learn about 3D printed organs that address organ shortages and personalize medicine, and nanorobots that deliver targeted treatments and repair cells at the molecular level.
-
-The book imagines a future where these technologies synergize—prosthetics controlled by neural interfaces, organs monitored by nanorobots, and enhanced cognitive abilities through BCIs. It also addresses societal implications, costs, insurance, and ethical considerations, offering insights into leading innovators shaping this field.
-
-Unlock the future of human potential by embarking on this extraordinary journey of cybernetic integration.
-            </p>
+            <p>Cybernetic Integration Revolution explores the transformative future of human-machine fusion. This captivating book delves into brain-computer interfaces (BCIs), 3D printed organs, nanorobots, and advanced prosthetics, showcasing their potential to redefine human capabilities. Discover how robotic limbs with sensory feedback and neural interfaces revolutionize prosthetics, while BCIs enable seamless mind-machine collaboration. Learn about 3D printed organs that address organ shortages and personalize medicine, and nanorobots that deliver targeted treatments and repair cells at the molecular level.</p>
         </div>
 
-        <h2> UAP Propulsion: A Metamaterial Approach to Spacetime Control</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Uap_propulsion.jpg" alt="Empowering Limbs" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <h2>UAP Propulsion: A Metamaterial Approach to Spacetime Control</h2>
+        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Uap_propulsion.jpg" alt="UAP Propulsion" id="book-cover">
+        <p><strong>Price:</strong> <span id="uapPropulsionPrice">Loading...</span> BTC</p> <!-- Dynamic price in Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
-            <p> Explore the speculative frontier where science meets the unexplained. This thought experiment book delves into using engineered metamaterials to warp spacetime, inspired by quantum physics, relativity, and advanced material science.
+            <p>Explore the speculative frontier where science meets the unexplained. This thought experiment book delves into using engineered metamaterials to warp spacetime, inspired by quantum physics, relativity, and advanced material science. Theoretical ideas include manipulating spacetime through nanoscale structures, focused electromagnetic fields, and interactions with quantum foam. A metamaterial blueprint and measurement techniques are presented to test unconventional hypotheses. Embark on a journey beyond the known, where imagination meets scientific rigor, uncovering hidden potential in the fabric of spacetime.</p>
+        </div>
 
-Theoretical ideas include manipulating spacetime through nanoscale structures, focused electromagnetic fields, and interactions with quantum foam. A metamaterial blueprint and measurement techniques are presented to test unconventional hypotheses.
-
-Embark on a journey beyond the known, where imagination meets scientific rigor, uncovering hidden potential in the fabric of spacetime.
-
-            </p>
-        </div>I 
-        
         <!-- Bitcoin Payment Button (NOWPayments) -->
         <div id="bitcoin-payment">
             <h3>Buy the Book with Bitcoin</h3>
@@ -93,11 +86,44 @@ Embark on a journey beyond the known, where imagination meets scientific rigor, 
         </div>
     </section>
 
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Your Website Name. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Constants
+        const USDPrice = 50;  // Book price in USD
+        const discountRate = 0.5;  // 50% Discount for members
+
+        // Fetch Bitcoin price from CoinGecko API
+        async function fetchBitcoinPrice() {
+            const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.bitcoin.usd; // USD price of 1 Bitcoin
+        }
+
+        // Convert USD to BTC and update the prices for all books
+        async function updatePrices() {
+            const bitcoinPriceUSD = await fetchBitcoinPrice();
+            const bookPriceBTC = USDPrice / bitcoinPriceUSD;  // Price of book in BTC
+
+            // Update book prices dynamically
+            document.getElementById('bookPrice').innerText = bookPriceBTC.toFixed(6);
+            document.getElementById('empoweringLimbsPrice').innerText = bookPriceBTC.toFixed(6);
+            document.getElementById('cyberneticIntegrationPrice').innerText = bookPriceBTC.toFixed(6);
+            document.getElementById('uapPropulsionPrice').innerText = bookPriceBTC.toFixed(6);
+
+            // Apply member discount (50%)
+            const discountedPriceBTC = bookPriceBTC * discountRate;
+            // You can display the discounted price if needed
+            console.log("Discounted Price: " + discountedPriceBTC.toFixed(6) + " BTC");
+        }
+
+        // Call the function to update prices when the page loads
+        window.onload = updatePrices;
+    </script>
 
 </body>
 </html>
