@@ -63,6 +63,40 @@
             padding: 10px;
             border: 1px solid #ddd;
         }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .membership-features {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .membership-features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .membership-features li {
+            padding: 10px;
+            background-color: #e9e9e9;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        .membership-features li.green {
+            background-color: #d4edda;
+        }
+
+        .membership-features li.red {
+            background-color: #f8d7da;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.4.0/dist/ethers.min.js"></script>
 </head>
@@ -84,31 +118,17 @@
 
         <fieldset>
             <legend>Select Your Membership Tier</legend>
-            <label for="basic">
-                <input type="radio" id="basic" name="membership" value="basic" required>
-                Basic Member (Free)
-            </label>
             <label for="professional">
-                <input type="radio" id="professional" name="membership" value="professional">
+                <input type="radio" id="professional" name="membership" value="professional" required>
                 Professional Member ($50/year)
-            </label>
-            <label for="elite">
-                <input type="radio" id="elite" name="membership" value="elite">
-                Elite Member ($100/year)
             </label>
         </fieldset>
 
-        <fieldset id="payment-info" style="display:none;">
+        <fieldset id="payment-info">
             <legend>Payment Information</legend>
-            <div id="professional-payment" style="display:none;">
+            <div id="professional-payment">
                 <p>Use this payment link for Professional Membership:</p>
                 <a href="https://nowpayments.io/payment/?iid=4387220382" target="_blank" rel="noreferrer noopener">
-                    <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
-                </a>
-            </div>
-            <div id="elite-payment" style="display:none;">
-                <p>Use this payment link for Elite Membership:</p>
-                <a href="https://nowpayments.io/payment/?iid=4683460567" target="_blank" rel="noreferrer noopener">
                     <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
                 </a>
             </div>
@@ -120,6 +140,24 @@
     <h2>Existing Member Login (Via MetaMask)</h2>
     <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
     <p id="wallet-address"></p>
+
+    <div class="membership-features">
+        <h3>Pro Membership Features</h3>
+        <ul>
+            <li class="green">Access to Public Resources</li>
+            <li class="green">Private Discussion Channels</li>
+            <li class="green">Exclusive Webinars & Q&A</li>
+            <li class="green">1-on-1 Expert Mentorship</li>
+            <li class="green">Modular Learning Courses (Full Access)</li>
+            <li class="green">Certificate of Completion</li>
+            <li class="green">Early Access to Events</li>
+            <li class="green">Networking with Industry Leaders</li>
+            <li class="green">Access to Resource Library (Full Access)</li>
+        </ul>
+    </div>
+
+    <h2>Current Bitcoin Price</h2>
+    <p id="bitcoin-price" class="price">Loading...</p>
 
     <p>Need Help? Contact us at <a href="mailto:futuretechfoundationX@gmail.com">futuretechfoundationX@gmail.com</a>.</p>
 </div>
@@ -142,56 +180,45 @@
         }
     }
 
-    // Show payment info based on membership
-    const membershipOptions = document.querySelectorAll('input[name="membership"]');
-    const paymentInfo = document.getElementById('payment-info');
-    const professionalPayment = document.getElementById('professional-payment');
-    const elitePayment = document.getElementById('elite-payment');
+    // Fetch the current Bitcoin price
+    async function getBitcoinPrice() {
+        const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+        const data = await response.json();
+        const bitcoinPrice = data.bpi.USD.rate_float;
+        document.getElementById('bitcoin-price').innerText = `Current Bitcoin Price: $${bitcoinPrice.toFixed(2)}`;
+    }
 
-    membershipOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            if (this.value === 'professional') {
-                paymentInfo.style.display = 'block';
-                professionalPayment.style.display = 'block';
-                elitePayment.style.display = 'none';
-            } else if (this.value === 'elite') {
-                paymentInfo.style.display = 'block';
-                professionalPayment.style.display = 'none';
-                elitePayment.style.display = 'block';
-            } else {
-                paymentInfo.style.display = 'none';
-            }
-        });
-    });
+    // Fetch Bitcoin price when the page loads
+    window.onload = getBitcoinPrice;
 
     document.getElementById("registration-form").onsubmit = async function (event) {
-  event.preventDefault();
+        event.preventDefault();
 
-  const slackHandle = document.getElementById("slack-handle").value;
-  const membership = document.querySelector('input[name="membership"]:checked').value;
+        const slackHandle = document.getElementById("slack-handle").value;
+        const membership = document.querySelector('input[name="membership"]:checked').value;
 
-  try {
-    const response = await fetch("https://registerjs.vercel.app/api/submit-membershipftf", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ slack_handle: slackHandle, membership: membership }),
-    });
+        try {
+            const response = await fetch("https://registerjs.vercel.app/api/submit-membershipftf", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ slack_handle: slackHandle, membership: membership }),
+            });
 
-    const result = await response.json();
+            const result = await response.json();
 
-    if (response.ok) {
-      alert(result.message);
-    } else {
-      alert(result.error);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong. Please try again.");
-  }
-};
+            if (response.ok) {
+                alert(result.message);
+            } else {
+                alert(result.error);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
+        }
+    };
 </script>
 
 </body>
-    </html>
+</html>
