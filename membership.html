@@ -196,10 +196,10 @@
     // Fetch the current Bitcoin price dynamically and calculate the equivalent amount for $50
     async function fetchBitcoinPrice() {
         try {
-            // Fetch the current Bitcoin price from a public API
-            const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+            // Fetch the current Bitcoin price from CoinGecko API
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
             const data = await response.json();
-            const bitcoinPriceUSD = data.bpi.USD.rate_float;
+            const bitcoinPriceUSD = data.bitcoin.usd;
             
             // Calculate the equivalent Bitcoin amount for $50
             const bitcoinEquivalent = (50 / bitcoinPriceUSD).toFixed(6);
