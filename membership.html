@@ -141,14 +141,17 @@
             cursor: pointer;
         }
 
+        .connect-wallet-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Futuretech Foundation Membership Portal</h1>
-
-    
+    <h1>Futuretech Foundation Membership</h1>
 
     <div class="membership-card">
         <h3>Pro Membership</h3>
@@ -183,8 +186,10 @@
         </div>
     </div>
 
-    <h2>Existing Member Login (Via MetaMask)</h2>
-    <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
+    <h2>Existing Member Login</h2>
+    <div class="connect-wallet-container">
+        <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
+    </div>
     <p id="wallet-address"></p>
 
     <p>Need Help? Contact us at <a href="mailto:futuretechfoundationX@gmail.com">futuretechfoundationX@gmail.com</a>.</p>
@@ -233,4 +238,4 @@
 </script>
 
 </body>
-                </html>
+    </html>
