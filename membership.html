@@ -213,9 +213,9 @@
     // Fetch current Bitcoin price and update the price container
     async function fetchBitcoinPrice() {
         try {
-            const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
             const data = await response.json();
-            const bitcoinPrice = data.bpi.USD.rate;
+            const bitcoinPrice = data.bitcoin.usd;
             document.getElementById('bitcoin-price').innerText = `≈ ${bitcoinPrice} USD`;
         } catch (error) {
             document.getElementById('bitcoin-price').innerText = 'Unable to load Bitcoin price';
@@ -227,4 +227,4 @@
 </script>
 
 </body>
-            </html>
+</html>
