@@ -7,75 +7,62 @@
     <style>
         /* Inline CSS for styling */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
             color: #333;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
-            max-width: 900px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
         h1, h2 {
             text-align: center;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        input[type="text"], input[type="radio"] {
-            margin: 5px 0;
-            padding: 10px;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        fieldset {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .price {
-            font-size: 20px;
-            font-weight: bold;
             color: #333;
         }
 
-        .membership-features {
-            margin-top: 20px;
+        h2 {
+            margin-top: 40px;
+            color: #4CAF50;
+        }
+
+        .membership-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .membership-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .membership-card p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .membership-features {
+            text-align: left;
+            width: 80%;
+            margin: 0 auto;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
         .membership-features ul {
@@ -84,84 +71,127 @@
         }
 
         .membership-features li {
-            padding: 10px;
-            background-color: #e9e9e9;
-            margin-bottom: 5px;
-            border-radius: 4px;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
         }
 
-        .membership-features li.green {
-            background-color: #d4edda;
+        .membership-features li:last-child {
+            border-bottom: none;
         }
 
-        .membership-features li.red {
-            background-color: #f8d7da;
+        .price-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
         }
+
+        .price {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .price-bitcoin {
+            background-color: #f5a623;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            color: white;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .payment-link {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .payment-link img {
+            max-width: 200px;
+            cursor: pointer;
+        }
+
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.4.0/dist/ethers.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <h1>Futuretech Foundation Membership Portal</h1>
 
-    <p>Welcome to the Futuretech Foundation Membership Portal! Please fill out the form below to complete your membership registration and access your account. If you're a returning member, please log in using MetaMask to view or update your profile.</p>
+    <p>Welcome to the Futuretech Foundation Membership Portal! Join us as a Pro Member to access exclusive benefits!</p>
 
-    <h2>New Member Registration</h2>
+    <div class="membership-card">
+        <h3>Pro Membership</h3>
+        <p>Become a Pro Member for only $50 per year to unlock the following exclusive features:</p>
 
-    <form id="registration-form">
-        <fieldset>
-            <legend>Slack Handle</legend>
-            <label for="slack-handle">Your Slack Handle:</label>
-            <input type="text" id="slack-handle" name="slack_handle" required>
-        </fieldset>
+        <div class="membership-features">
+            <ul>
+                <li>Private Discussion Channels</li>
+                <li>Exclusive Webinars & Q&A</li>
+                <li>1-on-1 Expert Mentorship</li>
+                <li>Full Access to Modular Learning Courses</li>
+                <li>Certificate of Completion</li>
+                <li>Early Access to Events</li>
+                <li>Networking with Industry Leaders</li>
+                <li>Full Access to Resource Library</li>
+            </ul>
+        </div>
 
-        <fieldset>
-            <legend>Select Your Membership Tier</legend>
-            <label for="professional">
-                <input type="radio" id="professional" name="membership" value="professional" required>
-                Professional Member ($50/year)
-            </label>
-        </fieldset>
+        <div class="price-container">
+            <div class="price">$50/year</div>
+            <div class="price-bitcoin" id="bitcoin-price">Loading Bitcoin Price...</div>
+        </div>
 
-        <fieldset id="payment-info">
-            <legend>Payment Information</legend>
-            <div id="professional-payment">
-                <p>Use this payment link for Professional Membership:</p>
-                <a href="https://nowpayments.io/payment/?iid=4387220382" target="_blank" rel="noreferrer noopener">
-                    <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
-                </a>
-            </div>
-        </fieldset>
+        <button onclick="window.location.href='https://nowpayments.io/payment/?iid=4387220382'">
+            Become a Pro Member
+        </button>
 
-        <button type="submit">Submit Membership</button>
-    </form>
+        <div class="payment-link">
+            <p>Use the link above to complete your payment with cryptocurrency:</p>
+            <a href="https://nowpayments.io/payment/?iid=4387220382" target="_blank" rel="noreferrer noopener">
+                <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
+            </a>
+        </div>
+    </div>
 
     <h2>Existing Member Login (Via MetaMask)</h2>
     <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
     <p id="wallet-address"></p>
 
-    <div class="membership-features">
-        <h3>Pro Membership Features</h3>
-        <ul>
-            <li class="green">Access to Public Resources</li>
-            <li class="green">Private Discussion Channels</li>
-            <li class="green">Exclusive Webinars & Q&A</li>
-            <li class="green">1-on-1 Expert Mentorship</li>
-            <li class="green">Modular Learning Courses (Full Access)</li>
-            <li class="green">Certificate of Completion</li>
-            <li class="green">Early Access to Events</li>
-            <li class="green">Networking with Industry Leaders</li>
-            <li class="green">Access to Resource Library (Full Access)</li>
-        </ul>
-    </div>
-
-    <h2>Current Bitcoin Price</h2>
-    <p id="bitcoin-price" class="price">Loading...</p>
-
     <p>Need Help? Contact us at <a href="mailto:futuretechfoundationX@gmail.com">futuretechfoundationX@gmail.com</a>.</p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.4.0/dist/ethers.min.js"></script>
 <script>
     // MetaMask connection function
     async function connectWallet() {
@@ -180,45 +210,21 @@
         }
     }
 
-    // Fetch the current Bitcoin price
-    async function getBitcoinPrice() {
-        const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
-        const data = await response.json();
-        const bitcoinPrice = data.bpi.USD.rate_float;
-        document.getElementById('bitcoin-price').innerText = `Current Bitcoin Price: $${bitcoinPrice.toFixed(2)}`;
+    // Fetch current Bitcoin price and update the price container
+    async function fetchBitcoinPrice() {
+        try {
+            const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+            const data = await response.json();
+            const bitcoinPrice = data.bpi.USD.rate;
+            document.getElementById('bitcoin-price').innerText = `≈ ${bitcoinPrice} USD`;
+        } catch (error) {
+            document.getElementById('bitcoin-price').innerText = 'Unable to load Bitcoin price';
+        }
     }
 
-    // Fetch Bitcoin price when the page loads
-    window.onload = getBitcoinPrice;
-
-    document.getElementById("registration-form").onsubmit = async function (event) {
-        event.preventDefault();
-
-        const slackHandle = document.getElementById("slack-handle").value;
-        const membership = document.querySelector('input[name="membership"]:checked').value;
-
-        try {
-            const response = await fetch("https://registerjs.vercel.app/api/submit-membershipftf", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ slack_handle: slackHandle, membership: membership }),
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                alert(result.message);
-            } else {
-                alert(result.error);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Something went wrong. Please try again.");
-        }
-    };
+    // Load the Bitcoin price when the page is loaded
+    window.onload = fetchBitcoinPrice;
 </script>
 
 </body>
-</html>
+            </html>
