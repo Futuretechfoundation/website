@@ -43,8 +43,19 @@
             text-align: center;
             font-weight: bold;
         }
-        #courseCatalog {
-            display: none;
+        .course-link {
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+            background-color: #2A9D8F;
+            padding: 8px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .course-link.disabled {
+            background-color: #888;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -57,45 +68,46 @@
 
     <hr>
 
-    <div id="courseCatalog">
-        <h2>Programs and Courses</h2>
+    <h2>Programs and Courses</h2>
 
-        <div class="track">
-            <h2>Future of Humans Track</h2>
-            <p>This track focuses on advancing human capabilities through biotechnology, 3D bioprinting, nanorobotics, and more.</p>
-            <ul>
-                <li><strong>Biotechnology:</strong> Covers genetic engineering, synthetic biology, and bioinformatics.</li>
-                <li><strong>Regenerative Biotherapeutics:</strong> Develops therapies for tissue regeneration using stem cells.</li>
-                <li><strong>3D Bioprinting:</strong> Creates complex biological structures, advancing personalized medicine.</li>
-                <li><strong>Prosthetics:</strong> Focuses on artificial limbs with enhanced integration.</li>
-                <li><strong>Nanorobotics:</strong> Studies nanoscale robots for medical applications.</li>
-                <li><strong>Surgical Robotics:</strong> Uses AI-driven robotics to enhance precision in surgeries.</li>
-            </ul>
-        </div>
+    <div class="track">
+        <h2>Future of Humans Track</h2>
+        <p>This track focuses on advancing human capabilities through biotechnology, 3D bioprinting, nanorobotics, and more.</p>
+        <ul>
+            <li><strong>Biotechnology:</strong> Covers genetic engineering, synthetic biology, and bioinformatics.</li>
+            <li><strong>Regenerative Biotherapeutics:</strong> Develops therapies for tissue regeneration using stem cells.</li>
+            <li><strong>3D Bioprinting:</strong> Creates complex biological structures, advancing personalized medicine.</li>
+            <li><strong>Prosthetics:</strong> Focuses on artificial limbs with enhanced integration.</li>
+            <li><strong>Nanorobotics:</strong> Studies nanoscale robots for medical applications.</li>
+            <li><strong>Surgical Robotics:</strong> Uses AI-driven robotics to enhance precision in surgeries.</li>
+        </ul>
+        <a href="#" class="course-link disabled">Access Course</a>
+    </div>
 
-        <div class="track">
-            <h2>BCI and Humanoids Track</h2>
-            <p>Explores the interface between human cognition and AI, with a focus on digital consciousness and humanoid robotics.</p>
-            <ul>
-                <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication from brain signals to external devices.</li>
-                <li><strong>Telepathy-Based Communication:</strong> Uses BCI to facilitate mind-to-mind communication.</li>
-                <li><strong>Neural Networks & Brain Simulation:</strong> Develops AI models to replicate human thought.</li>
-                <li><strong>Mind Uploading:</strong> Investigates transferring consciousness into digital or robotic forms.</li>
-                <li><strong>Humanoids Development:</strong> Focuses on AI-driven robots that mimic human movement and cognition.</li>
-            </ul>
-        </div>
+    <div class="track">
+        <h2>BCI and Humanoids Track</h2>
+        <p>Explores the interface between human cognition and AI, with a focus on digital consciousness and humanoid robotics.</p>
+        <ul>
+            <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication from brain signals to external devices.</li>
+            <li><strong>Telepathy-Based Communication:</strong> Uses BCI to facilitate mind-to-mind communication.</li>
+            <li><strong>Neural Networks & Brain Simulation:</strong> Develops AI models to replicate human thought.</li>
+            <li><strong>Mind Uploading:</strong> Investigates transferring consciousness into digital or robotic forms.</li>
+            <li><strong>Humanoids Development:</strong> Focuses on AI-driven robots that mimic human movement and cognition.</li>
+        </ul>
+        <a href="#" class="course-link disabled">Access Course</a>
+    </div>
 
-        <div class="track">
-            <h2>Quantum and Space Tech Track</h2>
-            <p>Combines quantum computing, non-human vehicle technology, and interdimensional travel.</p>
-            <ul>
-                <li><strong>Quantum Computing:</strong> Uses quantum mechanics for advanced computation.</li>
-                <li><strong>Quantum Materials Engineering:</strong> Develops new materials at the atomic level.</li>
-                <li><strong>Brain-Computer Interface Integration:</strong> Merges human thoughts with quantum computing.</li>
-                <li><strong>Mind-Controlled Vehicles:</strong> Enables vehicles to respond to human thoughts.</li>
-                <li><strong>Interdimensional Travel:</strong> Investigates high-speed travel across dimensions.</li>
-            </ul>
-        </div>
+    <div class="track">
+        <h2>Quantum and Space Tech Track</h2>
+        <p>Combines quantum computing, non-human vehicle technology, and interdimensional travel.</p>
+        <ul>
+            <li><strong>Quantum Computing:</strong> Uses quantum mechanics for advanced computation.</li>
+            <li><strong>Quantum Materials Engineering:</strong> Develops new materials at the atomic level.</li>
+            <li><strong>Brain-Computer Interface Integration:</strong> Merges human thoughts with quantum computing.</li>
+            <li><strong>Mind-Controlled Vehicles:</strong> Enables vehicles to respond to human thoughts.</li>
+            <li><strong>Interdimensional Travel:</strong> Investigates high-speed travel across dimensions.</li>
+        </ul>
+        <a href="#" class="course-link disabled">Access Course</a>
     </div>
 
     <script>
@@ -127,7 +139,7 @@
                     const isRegistered = await contract.methods.isStudentRegistered(userAddress).call();
 
                     if (isRegistered) {
-                        document.getElementById("courseCatalog").style.display = "block";
+                        enableCourseAccess();
                     } else {
                         alert("Access denied. You are not registered as a student.");
                     }
@@ -137,6 +149,13 @@
             } else {
                 alert("MetaMask is not installed. Please install MetaMask to access the courses.");
             }
+        }
+
+        function enableCourseAccess() {
+            document.querySelectorAll('.course-link').forEach(link => {
+                link.classList.remove('disabled');
+                link.href = "courses.html"; // Replace with actual course URLs
+            });
         }
 
         document.getElementById("connectWallet").addEventListener("click", connectWallet);
