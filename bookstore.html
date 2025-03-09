@@ -205,44 +205,21 @@
 
         <div class="book-description">
             <h3>About the Book</h3>
-            <p>This book introduces the concept of UAP propulsion from a metamaterial perspective, exploring cutting-edge research in physics, spacetime, and exotic propulsion methods. Learn how scientists are developing materials that could change the future of interstellar travel.</p>
+            <p>UAP Propulsion explores the theoretical and experimental approaches to creating advanced propulsion systems. Focused on metamaterials and their applications in spacetime control, this book offers insights into the emerging field of UAP technology.</p>
         </div>
     </section>
 
+    <!-- Return to Home Button -->
+    <a href="https://futuretechfoundation.github.io/website/index.html" class="return-home">Return to Home</a>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 FutureTech Foundation</p>
+        <p>&copy; 2025 FutureTech Foundation. All Rights Reserved.</p>
     </footer>
 
-    <!-- JavaScript to fetch CoinGecko API -->
     <script>
-        async function getBitcoinPrices() {
-            // Fetch Bitcoin price in USD from CoinGecko
-            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-            const data = await response.json();
-            const bitcoinPriceUSD = data.bitcoin.usd;
-
-            // Set the original price (50 USD worth of Bitcoin)
-            const originalPriceInBTC = 50 / bitcoinPriceUSD; // Convert $50 to BTC
-
-            // Calculate 50% discount
-            const discountedPriceInBTC = originalPriceInBTC / 2;
-
-            // Update the prices on the page
-            document.getElementById('original-price-1').innerText = `Original Price: ${originalPriceInBTC.toFixed(6)} BTC`;
-            document.getElementById('discounted-price-1').innerText = `Discounted Price for Members: ${discountedPriceInBTC.toFixed(6)} BTC`;
-
-            document.getElementById('original-price-2').innerText = `Original Price: ${originalPriceInBTC.toFixed(6)} BTC`;
-            document.getElementById('discounted-price-2').innerText = `Discounted Price for Members: ${discountedPriceInBTC.toFixed(6)} BTC`;
-
-            document.getElementById('original-price-3').innerText = `Original Price: ${originalPriceInBTC.toFixed(6)} BTC`;
-            document.getElementById('discounted-price-3').innerText = `Discounted Price for Members: ${discountedPriceInBTC.toFixed(6)} BTC`;
-
-            document.getElementById('original-price-4').innerText = `Original Price: ${originalPriceInBTC.toFixed(6)} BTC`;
-            document.getElementById('discounted-price-4').innerText = `Discounted Price for Members: ${discountedPriceInBTC.toFixed(6)} BTC`;
-        }
-
-        // Fetch Bitcoin prices on page load
-        window.onload = getBitcoinPrices;
+        // You would add the logic here to fetch live Bitcoin prices from CoinGecko API
+        // and update the original and discounted prices for each book.
     </script>
 </body>
 </html>
