@@ -4,6 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer - FutureTech Foundation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2, h3, h4 {
+            color: #333;
+        }
+        section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,27 +52,49 @@
     <section id="intro-letter">
         <h2>Welcome to FutureTech Foundation</h2>
         <p>Dear Volunteers,</p>
-        <p>Welcome to the FutureTech Foundation family! We are thrilled to have you on board and grateful for your commitment to contributing your time, skills, and passion to our mission...</p>
-        <p>Thank you for choosing to volunteer with us. Your dedication and effort will undoubtedly help us achieve great things!</p>
-        <p>Warm regards,<br>JonX<br>Executive Director<br>FutureTech Foundation</p>
+        <p>Welcome to the FutureTech Foundation family! We are thrilled to have you on board and grateful for your commitment to contributing your time, skills, and passion to our mission.</p>
+        <p>Through innovation, leadership, and collaboration, we are shaping the future of technology. Your dedication makes it all possible.</p>
+        <p>Warm regards,<br><strong>JonX</strong><br>Executive Director<br>FutureTech Foundation</p>
     </section>
 
     <!-- FutureTech Foundation Overview -->
     <section id="foundation-overview">
-        <h3>FutureTech Foundation Overview</h3>
-        <h4>Goals</h4>
+        <h3>Our Mission & Goals</h3>
         <ul>
-            <li><strong>Leadership Development:</strong> Empower volunteers and community members to take on leadership roles...</li>
-            <li><strong>Community Outreach:</strong> Engage with middle schools, high schools, and local communities...</li>
-            <li><strong>Educational Innovation:</strong> Create and distribute educational tools and content focused on future technologies...</li>
-            <li><strong>Inclusive Technology:</strong> Ensure that technological advancements are accessible to all...</li>
+            <li><strong>🚀 Leadership Development:</strong> Empower volunteers to take on leadership roles.</li>
+            <li><strong>🌍 Community Outreach:</strong> Engage with students, schools, and local communities.</li>
+            <li><strong>📚 Educational Innovation:</strong> Develop and distribute learning tools for future technologies.</li>
+            <li><strong>🤖 Inclusive Technology:</strong> Make emerging tech accessible to all.</li>
         </ul>
     </section>
 
-    <!-- Application Form Section -->
+    <!-- Volunteer Expectations -->
+    <section id="volunteer-expectations">
+        <h3>Volunteer Expectations & Time Commitment</h3>
+        <p>To ensure meaningful engagement, volunteers are asked to commit a recommended **minimum of [X] hours per month** to FutureTech projects.</p>
+        <ul>
+            <li><strong>📌 Time Tracking:</strong> Log volunteer hours via Slack, Notion, or manual entry.</li>
+            <li><strong>🤝 Engagement:</strong> Participate in discussions, contribute to projects, and attend check-ins.</li>
+            <li><strong>💡 Collaboration:</strong> Work with teams and share progress updates.</li>
+        </ul>
+    </section>
+
+    <!-- Time Tracking -->
+    <section id="time-tracking">
+        <h3>⏳ How to Track Your Volunteer Hours</h3>
+        <ul>
+            <li>🔹 **Slack Bot (Coming Soon!)** – Use simple commands like <code>/log 2h AI mentoring</code>.</li>
+            <li>🔹 **Notion Dashboard** – Track progress in real-time.</li>
+            <li>🔹 **Manual Time Tracking Form** – Submit weekly/monthly time logs.</li>
+            <li>🔹 **#time-tracking Slack Channel** – Post updates on your contributions.</li>
+        </ul>
+        <p><em>Tracking time ensures proper recognition and helps us measure collective impact.</em></p>
+    </section>
+
+    <!-- Application Form -->
     <section id="application-form">
-        <h3>Join Us as a Volunteer</h3>
-        <p>Interested in becoming a volunteer? Complete the form below to apply or visit our <a href="https://www.volunteermatch.org/search/org1249983.jsp?utm_params=onsiteshare_twitter_publicweb">VolunteerMatch profile</a>.</p>
+        <h3>🚀 Become a Volunteer</h3>
+        <p>Ready to make an impact? Complete the form below or visit our <a href="https://www.volunteermatch.org/search/org1249983.jsp?utm_params=onsiteshare_twitter_publicweb" target="_blank">VolunteerMatch profile</a>.</p>
         <form action="/submit-volunteer-application" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -39,58 +102,38 @@
             <input type="email" id="email" name="email" required>
             <label for="skills">Skills and Interests:</label>
             <textarea id="skills" name="skills"></textarea>
-            <button type="submit">Submit Application</button>
+            <button type="submit" class="button">Submit Application</button>
         </form>
     </section>
 
     <!-- Slack Link Section -->
     <section id="slack-link">
-        <h3>Stay Connected on Slack</h3>
-        <p>Join our Slack community to stay updated, collaborate, and engage with fellow volunteers and team members.</p>
-        <p><a href="https://join.slack.com/t/futuretechfoundation/shared_invite/zt-2p4vtweqa-DNfYAGJMBseovqxu_0~VPQ" target="_blank">Join Slack</a></p>
+        <h3>📢 Join Our Slack Community</h3>
+        <p>FutureTech Foundation runs on collaboration! Join our Slack to connect with fellow volunteers, get updates, and contribute to ongoing projects.</p>
+        <p><a href="https://join.slack.com/t/futuretechfoundation/shared_invite/zt-2p4vtweqa-DNfYAGJMBseovqxu_0~VPQ" target="_blank" class="button">Join Slack</a></p>
     </section>
 
-    <!-- Volunteer Handbook -->
-    <section id="volunteer-handbook">
-        <h3>Volunteer Handbook</h3>
-        <p><strong>Welcome to FutureTech Foundation!</strong></p>
-        <p>Your decision to volunteer with us is a step towards making a lasting impact on communities and the future of technology...</p>
+    <!-- NDA Section -->
+    <section id="nda-section">
+        <h3>🔒 Confidentiality & NDA Agreement</h3>
+        <p><strong>By signing into Slack, you automatically accept our Non-Disclosure Agreement (NDA).</strong></p>
+        <p>This ensures that all proprietary information, project details, and discussions remain confidential.</p>
+    </section>
+
+    <!-- Intellectual Property Rights -->
+    <section id="intellectual-property">
+        <h3>⚖️ Intellectual Property Rights</h3>
+        <p>As a volunteer, you may contribute to educational tools, content creation, or technological innovations.</p>
         <ul>
-            <li><strong>Commitment:</strong> Volunteers are expected to commit to their role for a minimum of 3 months...</li>
-            <li><strong>Leadership:</strong> We encourage volunteers to take initiative, lead projects, and mentor others...</li>
-            <li><strong>Communication:</strong> Regular communication with your supervisor and team is crucial...</li>
-            <li><strong>Confidentiality:</strong> Maintaining confidentiality is essential to our integrity...</li>
+            <li>🔹 <strong>Ownership:</strong> All work created while volunteering is the property of FutureTech Foundation.</li>
+            <li>🔹 <strong>Usage:</strong> FutureTech Foundation may use, adapt, or distribute volunteer contributions.</li>
+            <li>🔹 <strong>Acknowledgment:</strong> Contributions may be credited, but full rights remain with the foundation.</li>
         </ul>
-
-        <!-- Intellectual Property Rights Waiver in Handbook -->
-        <h4>Intellectual Property Rights Waiver</h4>
-        <p>Volunteers may contribute to projects involving intellectual property, such as educational tools, content creation, or technological innovations. By participating in these projects, volunteers agree to assign all rights, titles, and interests in any work created during their service to FutureTech Foundation.</p>
-        <ul>
-            <li><strong>Ownership:</strong> Any work, content, or invention developed while volunteering is the property of FutureTech Foundation.</li>
-            <li><strong>Usage:</strong> FutureTech Foundation may use, adapt, or distribute volunteer contributions as needed to support its mission.</li>
-            <li><strong>Acknowledgment:</strong> Contributions may be acknowledged in project outputs, but all rights to the intellectual property remain with the foundation.</li>
-        </ul>
-        <p>For any questions about intellectual property, please reach out to our legal team. This waiver ensures FutureTech Foundation has the full rights necessary to use and protect work created within the organization.</p>
     </section>
 
-    <!-- NDA Request and Form -->
-    <section id="nda-request">
-        <h3>Non-Disclosure Agreement (NDA)</h3>
-        <p>As part of our commitment to maintaining the confidentiality of sensitive information, we request all volunteers to sign a Non-Disclosure Agreement (NDA).</p>
-        <p>The NDA safeguards our proprietary information, including ongoing projects, strategies, and other confidential matters related to our organization.</p>
-        
-        <!-- Intellectual Property Rights Waiver in NDA Section -->
-        <h4>Intellectual Property Rights Waiver</h4>
-        <p>Volunteers involved in creating content, tools, or innovations for FutureTech Foundation agree to assign all intellectual property rights to the foundation. This waiver is designed to ensure that FutureTech Foundation has complete ownership over all work produced, protecting our ability to use, adapt, and expand these projects as needed to fulfill our mission.</p>
-
-        <p><a href="[path-to-NDA.pdf]" target="_blank">Download the NDA</a></p>
-    </section>
-
-</body>
-    </html>
-    
     <footer>
-        <p><a href="index.html">Back to Home</a></p>
+        <p><a href="index.html">⬅ Back to Home</a></p>
     </footer>
+
 </body>
 </html>
