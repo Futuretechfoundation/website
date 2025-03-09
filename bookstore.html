@@ -123,7 +123,7 @@
     <section id="book-details">
         <h2>Surgical Robots: Revolutionizing the Future</h2>
         <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Surgical_robotics.jpg" alt="Surgical Robots Book Cover" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <p><strong>Price:</strong> <span id="book1-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
@@ -131,8 +131,8 @@
         </div>
 
         <h2> Empowering Limbs: Unveiling the Technological Frontiers of Prosthetics, Bionics, and Cybernetics</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/empowering_limbs.jpg " alt="Empowering Limbs" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/empowering_limbs.jpg" alt="Empowering Limbs" id="book-cover">
+        <p><strong>Price:</strong> <span id="book2-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
@@ -141,7 +141,7 @@
 
         <h2>Cybernetic Integration Revolution: Advancing Human Potential with BCI, Nanorobots, 3D Printed Organs, and Cybernetics</h2>
         <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Cybernetic%20Integration%20Revolution.jpg" alt="Cybernetic Integration Revolution" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <p><strong>Price:</strong> <span id="book3-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
@@ -153,7 +153,7 @@
 
         <h2>UAP Propulsion: A Metamaterial Approach to Spacetime Control</h2>
         <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Uap_propulsion.jpg" alt="UAP Propulsion" id="book-cover">
-        <p><strong>Price:</strong> 0.01 BTC</p> <!-- Example price in Bitcoin -->
+        <p><strong>Price:</strong> <span id="book4-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
 
         <div class="book-description">
             <h3>About the Book</h3>
@@ -161,7 +161,7 @@
             <p>Theoretical ideas include manipulating spacetime through nanoscale structures, focused electromagnetic fields, and interactions with quantum foam. A metamaterial blueprint and measurement techniques are presented to test unconventional hypotheses.</p>
             <p>Embark on a journey beyond the known, where imagination meets scientific rigor, uncovering hidden potential in the fabric of spacetime.</p>
         </div>
-        
+
         <!-- Bitcoin Payment Button (NOWPayments) -->
         <div id="bitcoin-payment">
             <h3>Buy the Book with Bitcoin</h3>
@@ -174,12 +174,40 @@
         </div>
 
         <!-- Return to Home Button -->
-        <a href="/" class="return-home">Return to Home</a>
+        <a href="https://futuretechfoundation.github.io/website/index.html" class="return-home">Return to Home</a>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 FutureTechFoundation. All Rights Reserved.</p>
+        <p>&copy; 2025 Your Website Name. All Rights Reserved.</p>
     </footer>
+
+    <!-- Dynamic Bitcoin Price Script -->
+    <script>
+        // Fetch Bitcoin prices dynamically from an API (using CoinGecko for example)
+        async function fetchBitcoinPrice() {
+            const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
+            const response = await fetch(url);
+            const data = await response.json();
+            const bitcoinPrice = data.bitcoin.usd;
+
+            // Convert book prices into Bitcoin
+            const bookPricesInUSD = {
+                book1: 10, // Example USD price for book 1
+                book2: 12, // Example USD price for book 2
+                book3: 15, // Example USD price for book 3
+                book4: 20  // Example USD price for book 4
+            };
+
+            // Calculate the Bitcoin price
+            document.getElementById('book1-price').textContent = (bookPricesInUSD.book1 / bitcoinPrice).toFixed(6) + ' BTC';
+            document.getElementById('book2-price').textContent = (bookPricesInUSD.book2 / bitcoinPrice).toFixed(6) + ' BTC';
+            document.getElementById('book3-price').textContent = (bookPricesInUSD.book3 / bitcoinPrice).toFixed(6) + ' BTC';
+            document.getElementById('book4-price').textContent = (bookPricesInUSD.book4 / bitcoinPrice).toFixed(6) + ' BTC';
+        }
+
+        // Call the function to fetch Bitcoin price and update the book prices
+        fetchBitcoinPrice();
+    </script>
 </body>
 </html>
