@@ -111,6 +111,27 @@
         .return-home:hover {
             background-color: #0056b3;
         }
+
+        /* Price styling */
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #777;
+        }
+
+        .discounted-price {
+            color: #28a745;
+        }
+
+        .members-only {
+            font-size: 0.9em;
+            color: #ff6600;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -123,90 +144,49 @@
     <section id="book-details">
         <h2>Surgical Robots: Revolutionizing the Future</h2>
         <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Surgical_robotics.jpg" alt="Surgical Robots Book Cover" id="book-cover">
-        <p><strong>Price:</strong> <span id="book1-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
+        
+        <!-- Price Section -->
+        <p class="price">
+            <span id="original-price">Original Price: Loading...</span>
+            <br>
+            <span id="discounted-price">Discounted Price for Members: Loading...</span>
+        </p>
+        <p class="members-only">Discount available for members only. Become a member to save on this book!</p>
 
         <div class="book-description">
             <h3>About the Book</h3>
             <p>"Surgical Robots: Revolutionizing the Future" explores the cutting-edge technology behind surgical robots and how they are transforming the field of medicine. The book dives into the science, the breakthroughs, and the incredible potential for improving patient outcomes through robotic surgery.</p>
         </div>
 
-        <h2> Empowering Limbs: Unveiling the Technological Frontiers of Prosthetics, Bionics, and Cybernetics</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/empowering_limbs.jpg" alt="Empowering Limbs" id="book-cover">
-        <p><strong>Price:</strong> <span id="book2-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
+        <!-- More books, description, etc. -->
 
-        <div class="book-description">
-            <h3>About the Book</h3>
-            <p>*Empowering Limbs* offers a comprehensive exploration of the evolution and future of prosthetic, bionic, and cybernetic technologies. From ancient innovations to cutting-edge advancements, this book delves into materials science, neuromechanics, AI-powered prosthetics, and regenerative medicine. It covers key topics such as sensory feedback, brain-computer interfaces, and 3D printing for customization, while addressing economic and ethical considerations. Ideal for researchers, healthcare professionals, engineers, and technology enthusiasts, *Empowering Limbs* provides valuable insights into the transformative innovations shaping human augmentation and limb technology.</p>
-        </div>
-
-        <h2>Cybernetic Integration Revolution: Advancing Human Potential with BCI, Nanorobots, 3D Printed Organs, and Cybernetics</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Cybernetic%20Integration%20Revolution.jpg" alt="Cybernetic Integration Revolution" id="book-cover">
-        <p><strong>Price:</strong> <span id="book3-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
-
-        <div class="book-description">
-            <h3>About the Book</h3>
-            <p>Cybernetic Integration Revolution: Advancing Human Potential explores the transformative future of human-machine fusion. This captivating book delves into brain-computer interfaces (BCIs), 3D printed organs, nanorobots, and advanced prosthetics, showcasing their potential to redefine human capabilities.</p>
-            <p>Discover how robotic limbs with sensory feedback and neural interfaces revolutionize prosthetics, while BCIs enable seamless mind-machine collaboration. Learn about 3D printed organs that address organ shortages and personalize medicine, and nanorobots that deliver targeted treatments and repair cells at the molecular level.</p>
-            <p>The book imagines a future where these technologies synergize—prosthetics controlled by neural interfaces, organs monitored by nanorobots, and enhanced cognitive abilities through BCIs. It also addresses societal implications, costs, insurance, and ethical considerations, offering insights into leading innovators shaping this field.</p>
-            <p>Unlock the future of human potential by embarking on this extraordinary journey of cybernetic integration.</p>
-        </div>
-
-        <h2>UAP Propulsion: A Metamaterial Approach to Spacetime Control</h2>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Uap_propulsion.jpg" alt="UAP Propulsion" id="book-cover">
-        <p><strong>Price:</strong> <span id="book4-price">Loading...</span></p> <!-- Dynamic price for Bitcoin -->
-
-        <div class="book-description">
-            <h3>About the Book</h3>
-            <p>Explore the speculative frontier where science meets the unexplained. This thought experiment book delves into using engineered metamaterials to warp spacetime, inspired by quantum physics, relativity, and advanced material science.</p>
-            <p>Theoretical ideas include manipulating spacetime through nanoscale structures, focused electromagnetic fields, and interactions with quantum foam. A metamaterial blueprint and measurement techniques are presented to test unconventional hypotheses.</p>
-            <p>Embark on a journey beyond the known, where imagination meets scientific rigor, uncovering hidden potential in the fabric of spacetime.</p>
-        </div>
-
-        <!-- Bitcoin Payment Button (NOWPayments) -->
-        <div id="bitcoin-payment">
-            <h3>Buy the Book with Bitcoin</h3>
-            <p>Click the button below to purchase the book and receive an immediate download link after payment.</p>
-            
-            <!-- NOWPayments Payment Button -->
-            <a href="https://nowpayments.io/payment/?iid=4582998425" target="_blank" rel="noreferrer noopener">
-                <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
-            </a>
-        </div>
-
-        <!-- Return to Home Button -->
-        <a href="https://futuretechfoundation.github.io/website/index.html" class="return-home">Return to Home</a>
+        <footer>
+            <p>Futuretech Foundation | All Rights Reserved</p>
+            <a href="https://futuretechfoundation.github.io/website/index.html" class="return-home">Return to Home</a>
+        </footer>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Your Website Name. All Rights Reserved.</p>
-    </footer>
-
-    <!-- Dynamic Bitcoin Price Script -->
     <script>
-        // Fetch Bitcoin prices dynamically from an API (using CoinGecko for example)
+        // Function to fetch Bitcoin price from CoinGecko API
         async function fetchBitcoinPrice() {
-            const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
-            const response = await fetch(url);
-            const data = await response.json();
-            const bitcoinPrice = data.bitcoin.usd;
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+                const data = await response.json();
+                const bitcoinPriceInUSD = data.bitcoin.usd;
 
-            // Convert book prices into Bitcoin
-            const bookPricesInUSD = {
-                book1: 10, // Example USD price for book 1
-                book2: 12, // Example USD price for book 2
-                book3: 15, // Example USD price for book 3
-                book4: 20  // Example USD price for book 4
-            };
+                // Calculate Bitcoin price equivalent for $50
+                const priceInBTC = 50 / bitcoinPriceInUSD;
 
-            // Calculate the Bitcoin price
-            document.getElementById('book1-price').textContent = (bookPricesInUSD.book1 / bitcoinPrice).toFixed(6) + ' BTC';
-            document.getElementById('book2-price').textContent = (bookPricesInUSD.book2 / bitcoinPrice).toFixed(6) + ' BTC';
-            document.getElementById('book3-price').textContent = (bookPricesInUSD.book3 / bitcoinPrice).toFixed(6) + ' BTC';
-            document.getElementById('book4-price').textContent = (bookPricesInUSD.book4 / bitcoinPrice).toFixed(6) + ' BTC';
+                // Update the price section
+                document.getElementById('original-price').textContent = `Original Price: ${priceInBTC.toFixed(6)} BTC`;
+                const discountedPrice = priceInBTC * 0.8; // Assuming 20% discount for members
+                document.getElementById('discounted-price').textContent = `Discounted Price for Members: ${discountedPrice.toFixed(6)} BTC`;
+            } catch (error) {
+                console.error('Error fetching Bitcoin price:', error);
+            }
         }
 
-        // Call the function to fetch Bitcoin price and update the book prices
+        // Call the function to fetch and display Bitcoin prices
         fetchBitcoinPrice();
     </script>
 </body>
