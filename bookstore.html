@@ -93,7 +93,6 @@
             margin: 0;
         }
 
-        /* Return to Home button styling */
         .return-home {
             display: block;
             width: 200px;
@@ -147,9 +146,9 @@
         
         <!-- Original and Discounted Price in Bitcoin -->
         <p class="price">
-            <span class="original-price">Original Price: 0.001 BTC</span>
+            <span id="original-price-1" class="original-price">Original Price: Loading...</span>
             <br>
-            <span class="discounted-price">Discounted Price for Members: 0.0008 BTC</span>
+            <span id="discounted-price-1" class="discounted-price">Discounted Price for Members: Loading...</span>
         </p>
         <p class="members-only">Discount available for members only. Become a member to save on this book!</p>
 
@@ -163,9 +162,9 @@
         
         <!-- Original and Discounted Price in Bitcoin -->
         <p class="price">
-            <span class="original-price">Original Price: 0.0015 BTC</span>
+            <span id="original-price-2" class="original-price">Original Price: Loading...</span>
             <br>
-            <span class="discounted-price">Discounted Price for Members: 0.0012 BTC</span>
+            <span id="discounted-price-2" class="discounted-price">Discounted Price for Members: Loading...</span>
         </p>
         <p class="members-only">Discount available for members only. Become a member to save on this book!</p>
 
@@ -179,9 +178,9 @@
         
         <!-- Original and Discounted Price in Bitcoin -->
         <p class="price">
-            <span class="original-price">Original Price: 0.002 BTC</span>
+            <span id="original-price-3" class="original-price">Original Price: Loading...</span>
             <br>
-            <span class="discounted-price">Discounted Price for Members: 0.0015 BTC</span>
+            <span id="discounted-price-3" class="discounted-price">Discounted Price for Members: Loading...</span>
         </p>
         <p class="members-only">Discount available for members only. Become a member to save on this book!</p>
 
@@ -198,26 +197,55 @@
         
         <!-- Original and Discounted Price in Bitcoin -->
         <p class="price">
-            <span class="original-price">Original Price: 0.0025 BTC</span>
+            <span id="original-price-4" class="original-price">Original Price: Loading...</span>
             <br>
-            <span class="discounted-price">Discounted Price for Members: 0.002 BTC</span>
+            <span id="discounted-price-4" class="discounted-price">Discounted Price for Members: Loading...</span>
         </p>
         <p class="members-only">Discount available for members only. Become a member to save on this book!</p>
 
         <div class="book-description">
             <h3>About the Book</h3>
-            <p>Explore the speculative frontier where science meets the unexplained. This thought experiment book delves into using engineered metamaterials to warp spacetime, inspired by quantum physics, relativity, and advanced material science.</p>
-            <p>Theoretical ideas include manipulating spacetime through nanoscale structures, focused electromagnetic fields, and interactions with quantum foam. A metamaterial blueprint and measurement techniques are presented to test unconventional hypotheses.</p>
-            <p>Embark on a journey beyond the known, where imagination meets scientific rigor, uncovering hidden potential in the fabric of spacetime.</p>
+            <p>"UAP Propulsion: A Metamaterial Approach to Spacetime Control" explores advanced metamaterial technology, proposing solutions for achieving faster-than-light propulsion systems.</p>
         </div>
     </section>
 
-    <!-- Return to Home Button -->
-    <a href="https://futuretechfoundation.github.io/website/index.html" class="return-home">Return to Home</a>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Futuretech Foundation. All rights reserved.</p>
+        <p>&copy; 2025 Futuretech Foundation. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Fetch current Bitcoin price in USD and update book prices
+        async function fetchBitcoinPrices() {
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+            const data = await response.json();
+            const btcToUsd = data.bitcoin.usd;
+
+            // Function to update book prices based on live Bitcoin price
+            function updatePrices() {
+                const originalPrices = {
+                    1: 0.001, // Surgical Robots
+                    2: 0.0015, // Empowering Limbs
+                    3: 0.002, // Cybernetic Integration
+                    4: 0.0025 // UAP Propulsion
+                };
+
+                for (let i = 1; i <= 4; i++) {
+                    const originalPriceInBtc = originalPrices[i];
+                    const originalPriceInUsd = (originalPriceInBtc * btcToUsd).toFixed(2);
+                    const discountedPriceInBtc = (originalPriceInBtc / 2).toFixed(4);
+                    const discountedPriceInUsd = (discountedPriceInBtc * btcToUsd).toFixed(2);
+
+                    document.getElementById(`original-price-${i}`).textContent = `Original Price: ${originalPriceInBtc} BTC ($${originalPriceInUsd})`;
+                    document.getElementById(`discounted-price-${i}`).textContent = `Discounted Price for Members: ${discountedPriceInBtc} BTC ($${discountedPriceInUsd})`;
+                }
+            }
+
+            // Update prices once data is fetched
+            updatePrices();
+        }
+
+        // Fetch prices when the page loads
+        fetchBitcoinPrices();
+    </script>
 </body>
-            </html>
+</html>
