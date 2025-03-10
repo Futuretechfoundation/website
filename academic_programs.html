@@ -4,50 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutureTech Academy</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Adjustments for banner text and logo size */
-        .banner {
-            font-size: 1.5em; /* Increase banner text size by 1.5 times */
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #0d4b8e; /* Electric blue */
+            color: #fff;
+            padding: 1em;
             text-align: center;
-            padding: 20px;
-            background-color: #003366;
-            color: white;
+            position: relative;
         }
 
-        .banner img {
-            width: 150%; /* Increase the logo size by 1.5 times */
-            height: auto;
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
         }
 
-        /* Sidebar styles for mobile menu */
-        #mySidebar {
+        /* FutureTech Academy Logo */
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            height: 50px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
             height: 100%;
             width: 0;
             position: fixed;
-            z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
+            background-color: #333;
             overflow-x: hidden;
-            transition: 0.5s;
+            transition: 0.3s;
             padding-top: 60px;
+            z-index: 9999;
         }
 
-        #mySidebar a {
+        .sidebar a {
             padding: 8px 8px 8px 32px;
             text-decoration: none;
-            font-size: 25px;
-            color: #818181;
+            font-size: 1.2em;
+            color: #fff;
             display: block;
             transition: 0.3s;
         }
 
-        #mySidebar a:hover {
-            color: #f1f1f1;
+        .sidebar a:hover {
+            color: #ffeb3b;
         }
 
-        #mySidebar .closebtn {
+        .sidebar .closebtn {
             position: absolute;
             top: 0;
             right: 25px;
@@ -55,61 +82,154 @@
             margin-left: 50px;
         }
 
-        /* Nowpayments button styles */
-        .nowpayments-button {
-            margin: 20px;
+        /* Page content styles */
+        .content-container {
+            padding: 2em;
+            flex-grow: 1;
+        }
+
+        .welcome-banner {
+            background-color: #7c0c0c;
+            color: #fff;
+            padding: 1em;
             text-align: center;
+            border-radius: 5px;
+            margin-bottom: 1em;
+        }
+
+        .section-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
+
+        .link-button {
+            background-color: #0d4b8e; /* Electric blue */
+            color: #fff;
+            padding: 0.8em;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .meta-mask-login {
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        .meta-mask-login button {
+            background-color: #0d4b8e; /* Electric blue */
+            color: white;
+            border: none;
+            padding: 0.8em 2em;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .meta-mask-login button:hover {
+            background-color: #1a6f97;
+        }
+
+        .track-section {
+            margin-top: 2em;
+        }
+
+        .track-header {
+            background-color: #0d4b8e; /* Electric blue */
+            color: #fff;
+            padding: 1em;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .course-list {
+            margin-left: 20px;
+        }
+
+        .course-item {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1em;
+            font-size: 0.9em;
+            background-color: #f8f8f8;
+            color: #555;
+            margin-top: 2em;
+        }
+
+        /* NOWPayments button style */
+        .nowpayments-button {
+            text-align: center;
+            margin-top: 2em;
         }
 
         .nowpayments-button button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #0d4b8e; /* Electric blue */
             color: white;
             border: none;
-            font-size: 16px;
-            cursor: pointer;
+            padding: 0.8em 2em;
             border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
         }
 
         .nowpayments-button button:hover {
-            background-color: #45a049;
-        }
-
-        /* Footer styles */
-        .footer {
-            text-align: center;
-            background-color: #111;
-            color: white;
-            padding: 10px;
+            background-color: #1a6f97;
         }
     </style>
 </head>
 <body>
 
-<!-- Sidebar/Menu -->
-<div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="#">Home</a>
-    <a href="#future-of-humans-track">Future of Humans Track</a>
-    <a href="#bci-humanoids-track">BCI and Humanoids Track</a>
-    <a href="#quantum-space-track">Quantum and Space Tech Track</a>
-    <a href="#donate">Donate</a>
-</div>
-
-<!-- Menu Button to Open Sidebar -->
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-
-<!-- Banner with logo and text -->
-<div class="banner">
-    <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/futuretechacademy.webp" alt="FutureTech Academy Logo">
+<header>
     <h1>FutureTech Academy</h1>
+    <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/futuretechacademy.webp" alt="FutureTech Academy Logo" class="logo">
+    <span class="hamburger" onclick="openNav()">&#9776;</span>
+</header>
+
+<!-- Sidebar menu -->
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#calendar">Academic Calendar</a>
+    <a href="#attendance">Cost of Attendance</a>
+    <a href="#tuition">Tuition</a>
+    <a href="#transcripts">Transcripts</a>
+    <a href="#aid">Financial Aid Timeline</a>
+    <a href="#work-study">Work-Study Info</a>
+    <a href="#contact">Contact Us</a>
 </div>
 
-<!-- Main content of the page -->
-<div class="content">
-    <div id="future-of-humans-track" class="track">
-        <h2>Future of Humans Track</h2>
+<!-- Overlay background when sidebar is active -->
+<div id="myOverlay" class="overlay" onclick="closeNav()"></div>
+
+<!-- Main content -->
+<div class="content-container">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <h2>Welcome to FutureTech Academy</h2>
+        <p>Explore our resources, programs, and services to help you excel in futuristic technologies.</p>
+    </div>
+
+    <!-- MetaMask Login Section -->
+    <div class="meta-mask-login">
+        <h3>Login with MetaMask</h3>
+        <p>Connect your MetaMask wallet to access exclusive services and features.</p>
+        <button onclick="location.href='futuretechacademy.html'">Connect MetaMask</button>
+    </div>
+
+    <!-- Future of Humans Track Section -->
+    <div class="track-section" id="humans">
+        <div class="track-header">
+            <h3>Future of Humans Track</h3>
+        </div>
         <p>The "Future of Humans" track focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here’s an overview of the key components:</p>
+
         <ul>
             <li><strong>Nanorobotics:</strong> Studies tiny robots at the nanoscale for tasks like targeted drug delivery and cellular repairs, enhancing diagnostic tools.</li>
             <li><strong>Surgical Robotics:</strong> Integrates robotics into surgical procedures to improve precision, reduce recovery times, and optimize outcomes with robot-assisted surgeries.</li>
@@ -117,9 +237,13 @@
         <p>Each component addresses current limitations and pushes the boundaries of enhancing human health and capabilities.</p>
     </div>
 
-    <div id="bci-humanoids-track" class="track">
-        <h2>BCI and Humanoids Track</h2>
+    <!-- BCI and Humanoids Track Section -->
+    <div class="track-section" id="bci">
+        <div class="track-header">
+            <h3>BCI and Humanoids Track</h3>
+        </div>
         <p>The BCI and Humanoid Robots Track explores the interface between human cognition and advanced robotics, focusing on digital preservation and transferring human consciousness into humanoid robots.</p>
+
         <ul>
             <li><strong>Mind Uploading:</strong> Studies the transfer of consciousness to inhabit robotic bodies, while addressing ethical implications and technical challenges.</li>
             <li><strong>Humanoids Development:</strong> Covers building humanoids that mirror human movements, emotions, and thought processes for intelligent machine interaction.</li>
@@ -127,9 +251,13 @@
         <p>This track is designed to push the boundaries of what it means to be human and live beyond biological constraints.</p>
     </div>
 
-    <div id="quantum-space-track" class="track">
-        <h2>Quantum and Space Tech Track</h2>
+    <!-- Quantum and Space Tech Track Section -->
+    <div class="track-section" id="quantum">
+        <div class="track-header">
+            <h3>Quantum and Space Tech Track</h3>
+        </div>
         <p>Combining quantum technologies such as quantum computing and quantum materials engineering, this track explores advanced non-human vehicle and space technology, including interdimensional travel.</p>
+
         <ul>
             <li><strong>Mind-Controlled Vehicles:</strong> Explores the control of vehicles through integrated mind and machine interfaces, allowing for advanced exploration.</li>
             <li><strong>Interdimensional Travel:</strong> Envisions accessing different dimensions, high-speed travel, and quantum manipulation as ways to transcend biological forms and explore the universe.</li>
@@ -137,21 +265,15 @@
         <p>This track offers transformative ways for humans to experience the universe beyond physical and biological limits.</p>
     </div>
 
-    <!-- NOWPayments Section -->
-    <div class="nowpayments-button" id="donate">
-        <h3>Support FutureTech Academy</h3>
-        <p>Donate and support the future of technology education.</p>
-        <button onclick="location.href='https://nowpayments.io/donate/futuretechacademy'">Donate via NOWPayments</button>
+    <!-- NOWPayments Button -->
+    <div class="nowpayments-button">
+        <button>Make a Payment with NOWPayments</button>
     </div>
-</div>
 
-<!-- Footer Section -->
-<div class="footer">
-    <p>&copy; 2025 FutureTech Academy. All Rights Reserved.</p>
 </div>
 
 <script>
-    // JavaScript to toggle the sidebar menu
+    /* Script for Sidebar Menu */
     function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
         document.getElementById("myOverlay").style.display = "block";
@@ -164,4 +286,4 @@
 </script>
 
 </body>
-</html>
+    </html>
