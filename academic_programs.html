@@ -50,32 +50,33 @@
         /* Sidebar styles */
 .sidebar {
     height: 100%;
-    width: 300px; /* Set a fixed width */
+    width: 300px; /* Fixed width */
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #222; /* Darker shade for better contrast */
+    background-color: #121212; /* Deep black for better contrast */
     overflow-x: hidden;
-    overflow-y: auto; /* Enable scrolling */
+    overflow-y: scroll; /* Always show scrollbar */
     transition: 0.3s;
     padding-top: 60px;
+    padding-bottom: 60px; /* Extra space at bottom */
     z-index: 9999;
 }
 
 /* Sidebar links */
 .sidebar a {
-    padding: 12px 20px; /* More padding for better spacing */
+    padding: 14px 20px;
     text-decoration: none;
-    font-size: 1em; /* Adjusted font size for better fit */
-    color: #fff;
+    font-size: 1em;
+    color: #e0e0e0; /* Light gray for regular links */
     display: block;
     transition: 0.3s;
 }
 
 /* Hover effect */
 .sidebar a:hover {
-    background-color: #444; /* Slightly lighter background */
-    color: #ffeb3b; /* Highlight text */
+    background-color: #333;
+    color: #ffcc00;
 }
 
 /* Sidebar close button */
@@ -90,12 +91,41 @@
 
 /* Sidebar section headers */
 .sidebar h3 {
-    padding: 10px 20px;
+    padding: 14px 20px;
     font-size: 1.1em;
-    color: #ffeb3b; /* Highlight section titles */
-    background-color: #333;
+    color: #ffcc00; /* Bright yellow */
+    background-color: #1e1e1e; /* Dark gray */
     margin: 0;
     border-bottom: 1px solid #444;
+}
+
+/* List items */
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* Regular list items */
+.sidebar ul li {
+    padding: 14px 20px;
+    font-size: 0.95em;
+    color: #e0e0e0; /* Light gray */
+    border-bottom: 1px solid #333;
+    line-height: 1.6;
+}
+
+/* Special sections (Upcoming Dates, American Indian Scholars, Emergency Funds) */
+.sidebar .highlighted-section {
+    color: #ffffff !important; /* Pure white for visibility */
+    font-weight: bold;
+}
+
+/* Prevent last item cutoff */
+.sidebar::after {
+    content: "";
+    display: block;
+    height: 60px;
 }
 
         /* Page content styles */
