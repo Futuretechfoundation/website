@@ -7,38 +7,36 @@
     <style>
         /* Basic Styles */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fafafa;
+            background-color: #f8f8f8;
             display: flex;
             min-height: 100vh;
             flex-direction: column;
-            color: #333;
         }
 
         header {
-            background-color: #1a1a2e;
+            background-color: #0d4b8e; /* Electric blue */
             color: #fff;
-            padding: 1.5em;
-            text-align: center;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 2em;
             padding: 1em;
-            background-color: #1a1a2e;
+            text-align: center;
+            position: relative;
         }
 
-        .navbar a {
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
             color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
+            position: absolute;
+            top: 15px;
+            left: 15px;
         }
 
         /* Sidebar styles */
@@ -56,7 +54,7 @@
         }
 
         .sidebar a {
-            padding: 10px 10px 10px 30px;
+            padding: 8px 8px 8px 32px;
             text-decoration: none;
             font-size: 1.2em;
             color: #fff;
@@ -65,7 +63,7 @@
         }
 
         .sidebar a:hover {
-            color: #ff6347;
+            color: #ffeb3b;
         }
 
         .sidebar .closebtn {
@@ -76,13 +74,6 @@
             margin-left: 50px;
         }
 
-        /* Style the hamburger icon */
-        .hamburger {
-            font-size: 30px;
-            cursor: pointer;
-            color: #fff;
-        }
-
         /* Page content styles */
         .content-container {
             padding: 2em;
@@ -90,112 +81,78 @@
         }
 
         .welcome-banner {
-            background-color: #ff6347;
+            background-color: #7c0c0c;
             color: #fff;
-            padding: 1.5em;
+            padding: 1em;
             text-align: center;
             border-radius: 5px;
-            margin-bottom: 1.5em;
+            margin-bottom: 1em;
         }
 
         .section-links {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5em;
-            margin-top: 2em;
+            gap: 1em;
         }
 
         .link-button {
-            background-color: #1a1a2e;
+            background-color: #0d4b8e; /* Electric blue */
             color: #fff;
-            padding: 1em;
+            padding: 0.8em;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 5px;
             text-decoration: none;
-            font-size: 1.2em;
+            font-size: 1em;
         }
 
-        .link-button:hover {
-            background-color: #333;
-        }
-
-        /* MetaMask login */
         .meta-mask-login {
             text-align: center;
             margin-top: 2em;
-            background-color: #1a1a2e;
-            padding: 2em;
-            color: #fff;
-            border-radius: 10px;
         }
 
-        .meta-mask-login a {
-            color: #ff6347;
-            font-weight: bold;
-            font-size: 1.2em;
-            text-decoration: none;
-            background-color: #fff;
-            padding: 1em;
+        .meta-mask-login button {
+            background-color: #0d4b8e; /* Electric blue */
+            color: white;
+            border: none;
+            padding: 0.8em 2em;
             border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
         }
 
-        .meta-mask-login a:hover {
-            background-color: #ff6347;
-            color: #fff;
+        .meta-mask-login button:hover {
+            background-color: #1a6f97;
         }
 
-        /* Track Section */
         .track-section {
-            margin-top: 3em;
+            margin-top: 2em;
         }
 
         .track-header {
-            background-color: #1a1a2e;
+            background-color: #0d4b8e; /* Electric blue */
             color: #fff;
-            padding: 1.5em;
-            font-size: 1.5em;
+            padding: 1em;
+            font-size: 1.2em;
             text-align: center;
-            border-radius: 5px;
-            margin-bottom: 2em;
+            margin-bottom: 1em;
         }
 
         .course-list {
-            padding-left: 20px;
+            margin-left: 20px;
         }
 
         .course-item {
-            margin: 15px 0;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-
-        .course-item strong {
-            color: #ff6347;
+            margin: 10px 0;
+            font-size: 1em;
         }
 
         .footer {
             text-align: center;
-            padding: 1.5em;
-            font-size: 1em;
-            background-color: #1a1a2e;
-            color: #fff;
-            margin-top: 3em;
-        }
-
-        /* Overlay effect when menu is open */
-        .overlay {
-            position: fixed;
-            z-index: 9998;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
+            padding: 1em;
+            font-size: 0.9em;
+            background-color: #f8f8f8;
+            color: #555;
+            margin-top: 2em;
         }
 
     </style>
@@ -203,7 +160,8 @@
 <body>
 
 <header>
-    FutureTech Academy
+    <h1>FutureTech Academy</h1>
+    <span class="hamburger" onclick="openNav()">&#9776;</span>
 </header>
 
 <!-- Sidebar menu -->
@@ -227,17 +185,17 @@
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <h2>Welcome to FutureTech Academy</h2>
-        <p>Explore our cutting-edge resources, programs, and services to help you excel in the world of futuristic technologies.</p>
+        <p>Explore our resources, programs, and services to help you excel in futuristic technologies.</p>
     </div>
 
     <!-- MetaMask Login Section -->
     <div class="meta-mask-login">
         <h3>Login with MetaMask</h3>
         <p>Connect your MetaMask wallet to access exclusive services and features.</p>
-        <a href="futuretechacademy.html" class="link-button">Connect MetaMask</a>
+        <button onclick="location.href='futuretechacademy.html'">Connect MetaMask</button>
     </div>
 
-    <!-- Track Sections -->
+    <!-- Future of Humans Track Section -->
     <div class="track-section" id="humans">
         <div class="track-header">
             <h3>Future of Humans Track</h3>
@@ -260,23 +218,80 @@
         </div>
     </div>
 
-    <!-- Footer Section -->
-    <div class="footer">
-        &copy; 2025 FutureTech Academy | All Rights Reserved
+    <!-- BCI and Humanoids Track Section -->
+    <div class="track-section" id="bci">
+        <div class="track-header">
+            <h3>BCI and Humanoids Track</h3>
+        </div>
+        <p>This track explores brain-computer interfaces (BCI) and humanoid robotics, including advancements in AI, neurotechnology, and human-robot interaction.</p>
+
+        <div class="course-list">
+            <div class="course-item">
+                <strong>Introduction to Brain-Computer Interfaces</strong><br>
+                Learn the fundamentals of BCIs and their applications in medicine and human augmentation.
+            </div>
+            <div class="course-item">
+                <strong>Humanoid Robotics and AI Integration</strong><br>
+                Explore the field of humanoid robotics and how AI enhances human-like behavior and interaction.
+            </div>
+        </div>
+    </div>
+
+    <!-- Quantum Computing Track Section -->
+    <div class="track-section" id="quantum">
+        <div class="track-header">
+            <h3>Quantum Computing Track</h3>
+        </div>
+        <p>This track covers quantum computing, quantum cryptography, and the transformative potential of quantum technologies.</p>
+
+        <div class="course-list">
+            <div class="course-item">
+                <strong>Quantum Computing Fundamentals</strong><br>
+                Dive into the basics of quantum mechanics and quantum algorithms.
+            </div>
+            <div class="course-item">
+                <strong>Quantum Cryptography and Security</strong><br>
+                Understand the principles of quantum cryptography and its application to secure communications.
+            </div>
+        </div>
+    </div>
+
+    <!-- AI and Robotics Track Section -->
+    <div class="track-section" id="ai">
+        <div class="track-header">
+            <h3>AI and Robotics Track</h3>
+        </div>
+        <p>This track focuses on the integration of AI and robotics, from machine learning to autonomous systems.</p>
+
+        <div class="course-list">
+            <div class="course-item">
+                <strong>Machine Learning and Neural Networks</strong><br>
+                Learn about machine learning techniques and how neural networks are used to train AI models.
+            </div>
+            <div class="course-item">
+                <strong>Autonomous Robotics</strong><br>
+                Explore the development of robots that can perform tasks without human intervention.
+            </div>
+        </div>
     </div>
 
 </div>
 
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2025 FutureTech Academy. All rights reserved.</p>
+</div>
+
+<!-- Sidebar Functions -->
 <script>
-    // Sidebar functions
     function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("myOverlay").classList.add('active');
+        document.getElementById("myOverlay").classList.add("active");
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("myOverlay").classList.remove('active');
+        document.getElementById("myOverlay").classList.remove("active");
     }
 </script>
 
