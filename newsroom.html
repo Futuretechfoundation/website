@@ -3,206 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureTech Foundation Newsroom</title>
+    <title>Newsroom - Futuretech Foundation</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f0f0;
+            color: #333;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
-        header, footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
+
+        header {
+            background: #4a90e2;
+            color: white;
+            padding: 20px 0;
             text-align: center;
         }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .container {
-            width: 80%;
-            margin: auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .news-item {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .news-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .news-item-content {
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #333;
+
+        .news-item h2 {
+            font-size: 2em;
+            color: #4a90e2;
+            margin-bottom: 10px;
         }
-        section {
-            margin-bottom: 20px;
+
+        .news-item p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
         }
-        .press-contact, .resources {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-        }
-        a {
-            color: #007bff;
+
+        .news-item a {
+            display: inline-block;
             text-decoration: none;
+            font-weight: bold;
+            color: #4a90e2;
+            margin-top: 10px;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .news-item a:hover {
+            color: #2575fc;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .news-item h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Responsive grid layout */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FutureTech Foundation Newsroom</h1>
+    <h1>Newsroom</h1>
 </header>
 
 <div class="container">
+    <div class="news-grid">
+        <div class="news-item">
+            <img src="news1.jpg" alt="News Image 1">
+            <div class="news-item-content">
+                <h2>Futuretech Foundation Launches New Initiative</h2>
+                <p>Futuretech Foundation is excited to announce the launch of a new educational initiative aimed at bridging the gap between emerging technologies and young innovators...</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
 
-    <!-- Latest News Section -->
-    <section class="news-section">
+        <div class="news-item">
+            <img src="news2.jpg" alt="News Image 2">
+            <div class="news-item-content">
+                <h2>Futuretech Academy Hosts Robotics Workshop</h2>
+                <p>Our recent robotics workshop brought together students, educators, and industry experts to explore the latest advancements in robotics and automation...</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
 
-      <section id="newsroom" class="newsroom-section">
-  <div class="container">
-    <h2>FutureTech Foundation Joins OpenBCI Community</h2>
-    <p class="date"><strong>Date:</strong> December 4, 2024</p>
-    <p>
-      We are proud to announce that <strong>FutureTech Foundation</strong> has officially joined the <strong>OpenBCI</strong> community!
-    </p>
-    <p>
-      This marks a significant step forward in our commitment to advancing neurotechnology and fostering open collaboration within the field. By aligning with OpenBCI, we aim to contribute to groundbreaking innovations that empower researchers, developers, and enthusiasts around the world.
-    </p>
-    <p>
-      The OpenBCI community is renowned for its dedication to exploring the frontiers of brain-computer interface (BCI) technology and making it accessible for a wide range of applications. As part of this vibrant ecosystem, FutureTech Foundation looks forward to sharing our expertise, learning from peers, and co-creating solutions that shape the future of human-computer interaction.
-    </p>
-    <p>
-      Stay tuned for updates as we embark on this exciting journey!
-    </p>
-    <p>
-      <a href="https://openbci.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Learn More About OpenBCI</a>
-      <a href="/research-and-development" class="btn btn-secondary">Explore Our Initiatives</a>
-    </p>
-  </div>
-</section>
-
-        
-    <h2>Future Tech Foundation Joins the e-NABLE Hub</h2>
-    <p>
-        Exciting news from the <strong>e-NABLE Hub</strong>! The Future Tech Foundation has officially joined the community and received their first badge, marking a significant step toward becoming a certified e-NABLE Community Chapter member.
-    </p>
-    <figure>
-        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Enable_hub.jpg" alt="e-NABLE Badge" style="max-width:100%; height:auto; border-radius:8px;">
-        <figcaption>Future Tech Foundation's first badge toward e-NABLE Community Chapter membership.</figcaption>
-    </figure>
-    <p>
-        This badge represents their commitment to the mission of empowering individuals and communities by creating innovative, 3D-printed prosthetic devices for those in need.
-    </p>
-    <h3>What is e-NABLE?</h3>
-    <p>
-        The <strong>e-NABLE</strong> community is a global network of volunteers dedicated to providing free and affordable assistive devices using 3D printing technology. Since its inception, e-NABLE has connected makers, engineers, educators, and enthusiasts to work together on creating prosthetic hands and arms for individuals who have lost limbs or were born without them. 
-    </p>
-    <p>
-        This community's open-source designs, collaborative spirit, and focus on accessibility have transformed lives worldwide, enabling recipients to regain independence and functionality at a fraction of the cost of traditional prosthetics.
-    </p>
-    <p>
-        By earning their first badge, the Future Tech Foundation is on its way to joining the ranks of active e-NABLE chapters, further advancing this inspiring mission.
-    </p>
-    <p>
-        <a href="https://hub.e-nable.org/content/perma?id=76364" target="_blank">Learn more about Future Tech Foundation's achievement and the e-NABLE Hub</a>.
-    </p>
-    </section>
-    <section id="latest-news">
-        <h2>Latest News</h2>
-        <article>
-            <h3>FutureTech Foundation Achieves 501(c)(3) Status</h3>
-            <p><strong>Date:</strong> August 24, 2024</p>
-            <p>FutureTech Foundation has officially received 501(c)(3) status, enhancing our ability to partner with other nonprofits and accept tax-deductible donations. This is a significant milestone that will help expand our community-driven projects and volunteer initiatives.</p>
-        </article>
-        <article>
-            <h3>Regenerative Medicine Minnesota (RMM) 2025 Grant Application</h3>
-            <p><strong>Date:</strong> October 20, 2024</p>
-            <p>FutureTech Foundation has submitted an application under the RMM Discovery category. Our focus is on scalable iPSC production for neurodegenerative and musculoskeletal disease therapies, showcasing our commitment to advancing regenerative medicine.</p>
-        </article>
-    </section>
-
-    <!-- Upcoming Events Section -->
-    <section id="upcoming-events">
-        <h2>Upcoming Events</h2>
-        <article>
-            <h3>Volunteer Outreach Workshop for Future Technologies</h3>
-            <p><strong>Date:</strong> November 15, 2024</p>
-            <p>Join our directors and community volunteers as we reach out to middle and high schools, sharing resources and learning opportunities in nanorobotics, 3D bioprinting, and more. Registration required.</p>
-        </article>
-        <article>
-            <h3>Quantum Programming in VR/AR – A New Course Launch</h3>
-            <p><strong>Date:</strong> December 1, 2024</p>
-            <p>FutureTech Foundation is launching a pioneering course that integrates quantum programming with VR/AR. This course will empower students to customize 3D bioprinting files and engage with the latest in quantum computing.</p>
-        </article>
-    </section>
-
-    <!-- Featured Stories Section -->
-    <section id="featured-stories">
-        <h2>Featured Stories</h2>
-        <article>
-            <h3>Empowering Youth with Hands-on Tech</h3>
-            <p>Through workshops targeting middle schoolers, FutureTech Foundation is giving young learners hands-on experience with 3D-printed models. This initiative aims to spark interest in futuristic technologies and inspire the next generation of innovators.</p>
-        </article>
-        <article>
-            <h3>International Collaborations and Growth</h3>
-            <p>We’re proud to expand FutureTech Foundation's reach globally. With board members and directors around the world, we’re fostering a diverse network of experts dedicated to community-oriented technological advancement.</p>
-        </article>
-    </section>
-
-    <!-- Research Highlights Section -->
-    <section id="research-highlights">
-        <h2>Research Highlights</h2>
-        <article>
-            <h3>iPSC Production and Regenerative Therapies</h3>
-            <p>Our regenerative biotherapeutics team is working to advance scalable induced pluripotent stem cell (iPSC) production. This innovative approach has the potential to impact neurodegenerative and musculoskeletal disease treatments.</p>
-        </article>
-        <article>
-            <h3>Metamaterial Innovation for Warp Drives</h3>
-            <p>FutureTech Academy is exploring metamaterials for advanced applications, including potential warp drive designs. Our research team is combining theoretical physics with practical applications to explore the frontiers of space technology.</p>
-        </article>
-    </section>
-
-    <!-- Press Releases Section -->
-    <section id="press-releases">
-        <h2>Press Releases</h2>
-        <article>
-            <h3>FutureTech Academy and Foundation Partnership Announced</h3>
-            <p><strong>Date:</strong> September 2024</p>
-            <p>FutureTech Academy and FutureTech Foundation have formalized a partnership to merge academic and for-profit interests. This collaboration will allow for a seamless transfer of knowledge, projects, and resources between the nonprofit and for-profit arms.</p>
-        </article>
-        <article>
-            <h3>Introduction of Biomedical Engineering Volunteer Position</h3>
-            <p><strong>Date:</strong> August 2024</p>
-            <p>FutureTech Foundation is introducing a volunteer Biomedical Engineer position, focusing on small prosthetics. This role offers a unique opportunity to work on cutting-edge biomedical projects that align with our mission of community-driven technological advancement.</p>
-        </article>
-    </section>
-
-    <!-- Media Contacts Section -->
-    <section class="press-contact">
-        <h2>Media Contacts</h2>
-        <p><strong>Press Inquiries:</strong> For media inquiries, interviews, and press kits, please contact <a href="mailto:media@futuretechfoundation.org">media@futuretechfoundation.org</a>.</p>
-        <p><strong>Social Media:</strong> Stay updated by following us on <a href="#">X (formerly Twitter)</a>, LinkedIn, and Instagram.</p>
-    </section>
-
-    <!-- Resources and Media Kit Section -->
-    <section class="resources">
-        <h2>Resources and Media Kit</h2>
-        <ul>
-            <li>Download high-resolution logos, fact sheets, and photos of recent events.</li>
-            <li>Access key publications, annual reports, and detailed project descriptions.</li>
-        </ul>
-    </section>
-
+        <div class="news-item">
+            <img src="news3.jpg" alt="News Image 3">
+            <div class="news-item-content">
+                <h2>Partnership with Leading Tech Companies</h2>
+                <p>We are proud to announce our new partnership with some of the most innovative tech companies in the industry, aimed at supporting research and development in key fields...</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>
-    <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+    <p>&copy; 2025 Futuretech Foundation | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
 </footer>
 
-</body>
-</html>
-    <footer>
-        <p><a href="index.html">Back to Home</a></p>
-    </footer>
 </body>
 </html>
