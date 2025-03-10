@@ -19,24 +19,33 @@
         header {
             background-color: #0d4b8e; /* Electric blue */
             color: #fff;
-            padding: 1.5em 1em;
+            padding: 1em;
             text-align: center;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1em;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2em; /* Increased text size */
+            font-size: 2.5em; /* Larger heading for better logo visibility */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for better contrast */
         }
 
         /* FutureTech Academy Logo */
         .logo {
-            height: 60px; /* Increased logo size */
-            object-fit: contain;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            height: 60px; /* Slightly larger logo */
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 15px;
         }
 
         /* Sidebar styles */
@@ -48,169 +57,76 @@
             left: 0;
             background-color: #121212; /* Deep black for better contrast */
             overflow-x: hidden;
-            overflow-y: scroll; /* Always show scrollbar */
+            overflow-y: scroll;
             transition: 0.3s;
             padding-top: 60px;
             padding-bottom: 60px; /* Extra space at bottom */
             z-index: 9999;
         }
 
-        /* Sidebar links */
         .sidebar a {
             padding: 14px 20px;
             text-decoration: none;
-            font-size: 1em;
-            color: #e0e0e0; /* Light gray for regular links */
+            font-size: 1.1em;
+            color: #e0e0e0;
             display: block;
             transition: 0.3s;
         }
 
-        /* Hover effect */
         .sidebar a:hover {
             background-color: #333;
             color: #ffcc00;
         }
 
-        /* Sidebar section headers */
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            color: #fff;
+            cursor: pointer;
+        }
+
         .sidebar h3 {
             padding: 14px 20px;
-            font-size: 1.1em;
-            color: #ffcc00; /* Bright yellow */
-            background-color: #1e1e1e; /* Dark gray */
+            font-size: 1.2em;
+            color: #ffcc00;
+            background-color: #1e1e1e;
             margin: 0;
             border-bottom: 1px solid #444;
-        }
-
-        .sidebar ul {
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-
-        .sidebar ul li {
-            padding: 14px 20px;
-            font-size: 0.95em;
-            color: #e0e0e0; /* Light gray */
-            border-bottom: 1px solid #333;
-            line-height: 1.6;
         }
 
         .content-container {
             padding: 2em;
             flex-grow: 1;
-            margin-left: 320px; /* Sidebar width adjusted */
-        }
-
-        .welcome-banner {
-            background-color: #7c0c0c;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 1em;
-        }
-
-        .section-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
-        }
-
-        .link-button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 0.8em;
-            text-align: center;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1em;
-        }
-
-        .meta-mask-login {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .meta-mask-login button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
-            border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-
-        .meta-mask-login button:hover {
-            background-color: #1a6f97;
-        }
-
-        .track-section {
-            margin-top: 2em;
-        }
-
-        .track-header {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 1em;
-            font-size: 1.2em;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-
-        .course-list {
-            margin-left: 20px;
-        }
-
-        .course-item {
-            margin: 10px 0;
-            font-size: 1em;
         }
 
         .footer {
             text-align: center;
             padding: 1em;
-            font-size: 0.9em;
-            background-color: #f8f8f8;
-            color: #555;
+            font-size: 1em;
+            background-color: #0d4b8e; /* Matching footer color */
+            color: #fff;
             margin-top: 2em;
-        }
-
-        /* NOWPayments button style */
-        .nowpayments-button {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .nowpayments-button button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
-            border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-
-        .nowpayments-button button:hover {
-            background-color: #1a6f97;
         }
 
         /* Back Button */
         .back-button {
-            background-color: #0d4b8e;
-            color: white;
-            border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
+            text-align: center;
+            padding: 1em;
             font-size: 1.2em;
+            background-color: #ffcc00;
+            color: #0d4b8e;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            display: block;
-            margin: 2em auto;
+            margin-top: 2em;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .back-button:hover {
-            background-color: #1a6f97;
+            background-color: #f2a800;
         }
     </style>
 </head>
@@ -252,56 +168,17 @@
         <h3>Campus & Contact</h3>
         <a href="#maps-directions">Maps & Directions</a>
         <a href="#parking-transportation">Parking & Transportation</a>
-        <a href="#contact">Contact Us</a>
+        <a href="#contact">Contact</a>
     </div>
 
-    <!-- Main Content -->
     <div class="content-container">
-        <!-- Welcome Banner -->
-        <div class="welcome-banner">
-            <h2>Welcome to FutureTech Academy</h2>
-            <p>Your journey into the future of technology begins here.</p>
-        </div>
-
-        <!-- Tracks Section -->
-        <div class="track-section">
-            <div class="track-header">
-                <h2>Our Academic Tracks</h2>
-            </div>
-
-            <!-- Track 1: Quantum Computing -->
-            <div class="course-list">
-                <div class="course-item">
-                    <h3>Quantum Computing Track</h3>
-                    <ul>
-                        <li>Introduction to Quantum Algorithms</li>
-                        <li>Quantum Programming Languages</li>
-                        <li>Quantum Cryptography</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Track 2: Robotics -->
-            <div class="course-list">
-                <div class="course-item">
-                    <h3>Robotics Track</h3>
-                    <ul>
-                        <li>Fundamentals of Robotics</li>
-                        <li>Robotics Systems Design</li>
-                        <li>AI in Robotics</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Back Button -->
-        <button class="back-button" onclick="window.history.back()">Back</button>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>&copy; 2025 FutureTech Academy. All rights reserved.</p>
-        </div>
+        <!-- Content here -->
+        <a href="#" class="back-button">Back</a>
     </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 FutureTech Academy. All rights reserved.</p>
+    </footer>
 
     <script>
         function openNav() {
@@ -313,4 +190,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
