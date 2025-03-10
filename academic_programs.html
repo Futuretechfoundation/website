@@ -9,14 +9,56 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0;
             background-color: #f4f4f9;
             color: #333;
+            display: flex;
         }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: #2A9D8F;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding-top: 20px;
+            transition: 0.3s;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .sidebar a:hover, .sidebar .active {
+            background: #264653;
+        }
+        .sidebar .pay-button {
+            background-color: #E76F51;
+            text-align: center;
+            margin: 20px;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
         h1 {
             text-align: center;
             color: #2A9D8F;
         }
+        
         .track {
             margin-top: 20px;
             padding: 15px;
@@ -24,12 +66,15 @@
             border-radius: 5px;
             background-color: #fff;
         }
+        
         h2 {
             color: #264653;
         }
+        
         ul {
             padding-left: 20px;
         }
+        
         button {
             display: block;
             margin: 20px auto;
@@ -39,10 +84,12 @@
             border: none;
             cursor: pointer;
         }
+        
         #walletAddress {
             text-align: center;
             font-weight: bold;
         }
+        
         .course-link {
             display: block;
             margin-top: 10px;
@@ -53,61 +100,89 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        
         .course-link.disabled {
             background-color: #888;
             pointer-events: none;
+        }
+
+        /* Mobile Sidebar */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100px;
+            }
+            .content {
+                margin-left: 110px;
+            }
+            .sidebar h2, .sidebar a {
+                text-align: center;
+                font-size: 14px;
+                padding: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Academic Programs - Futuretech Academy</h1>
-
-    <p id="walletAddress">Welcome, please connect your wallet to access courses.</p>
-    <button id="connectWallet">Connect Wallet</button>
-
-    <hr>
-
-    <h2>Programs and Courses</h2>
-
-    <div class="track">
-        <h2>Future of Humans Track</h2>
-        <p>This track focuses on advancing human capabilities through biotechnology, 3D bioprinting, nanorobotics, and more.</p>
-        <ul>
-            <li><strong>Biotechnology:</strong> Covers genetic engineering, synthetic biology, and bioinformatics.</li>
-            <li><strong>Regenerative Biotherapeutics:</strong> Develops therapies for tissue regeneration using stem cells.</li>
-            <li><strong>3D Bioprinting:</strong> Creates complex biological structures, advancing personalized medicine.</li>
-            <li><strong>Prosthetics:</strong> Focuses on artificial limbs with enhanced integration.</li>
-            <li><strong>Nanorobotics:</strong> Studies nanoscale robots for medical applications.</li>
-            <li><strong>Surgical Robotics:</strong> Uses AI-driven robotics to enhance precision in surgeries.</li>
-        </ul>
-        <a href="#" class="course-link disabled">Access Course</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Futuretech Academy</h2>
+        <a href="#" class="active">Home</a>
+        <a href="#">Future of Humans Track</a>
+        <a href="#">BCI & Humanoids Track</a>
+        <a href="#">Quantum & Space Tech Track</a>
+        <a href="#" class="pay-button">Pay Tuition in Bitcoin</a>
     </div>
 
-    <div class="track">
-        <h2>BCI and Humanoids Track</h2>
-        <p>Explores the interface between human cognition and AI, with a focus on digital consciousness and humanoid robotics.</p>
-        <ul>
-            <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication from brain signals to external devices.</li>
-            <li><strong>Telepathy-Based Communication:</strong> Uses BCI to facilitate mind-to-mind communication.</li>
-            <li><strong>Neural Networks & Brain Simulation:</strong> Develops AI models to replicate human thought.</li>
-            <li><strong>Mind Uploading:</strong> Investigates transferring consciousness into digital or robotic forms.</li>
-            <li><strong>Humanoids Development:</strong> Focuses on AI-driven robots that mimic human movement and cognition.</li>
-        </ul>
-        <a href="#" class="course-link disabled">Access Course</a>
-    </div>
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Academic Programs - Futuretech Academy</h1>
+        <p id="walletAddress">Welcome, please connect your wallet to access courses.</p>
+        <button id="connectWallet">Connect Wallet</button>
 
-    <div class="track">
-        <h2>Quantum and Space Tech Track</h2>
-        <p>Combines quantum computing, non-human vehicle technology, and interdimensional travel.</p>
-        <ul>
-            <li><strong>Quantum Computing:</strong> Uses quantum mechanics for advanced computation.</li>
-            <li><strong>Quantum Materials Engineering:</strong> Develops new materials at the atomic level.</li>
-            <li><strong>Brain-Computer Interface Integration:</strong> Merges human thoughts with quantum computing.</li>
-            <li><strong>Mind-Controlled Vehicles:</strong> Enables vehicles to respond to human thoughts.</li>
-            <li><strong>Interdimensional Travel:</strong> Investigates high-speed travel across dimensions.</li>
-        </ul>
-        <a href="#" class="course-link disabled">Access Course</a>
+        <hr>
+
+        <h2>Programs and Courses</h2>
+
+        <div class="track">
+            <h2>Future of Humans Track</h2>
+            <p>This track focuses on advancing human capabilities through biotechnology, 3D bioprinting, nanorobotics, and more.</p>
+            <ul>
+                <li><strong>Biotechnology:</strong> Covers genetic engineering, synthetic biology, and bioinformatics.</li>
+                <li><strong>Regenerative Biotherapeutics:</strong> Develops therapies for tissue regeneration using stem cells.</li>
+                <li><strong>3D Bioprinting:</strong> Creates complex biological structures, advancing personalized medicine.</li>
+                <li><strong>Prosthetics:</strong> Focuses on artificial limbs with enhanced integration.</li>
+                <li><strong>Nanorobotics:</strong> Studies nanoscale robots for medical applications.</li>
+                <li><strong>Surgical Robotics:</strong> Uses AI-driven robotics to enhance precision in surgeries.</li>
+            </ul>
+            <a href="#" class="course-link disabled">Access Course</a>
+        </div>
+
+        <div class="track">
+            <h2>BCI and Humanoids Track</h2>
+            <p>Explores the interface between human cognition and AI, with a focus on digital consciousness and humanoid robotics.</p>
+            <ul>
+                <li><strong>Brain-Computer Interface (BCI):</strong> Enables communication from brain signals to external devices.</li>
+                <li><strong>Telepathy-Based Communication:</strong> Uses BCI to facilitate mind-to-mind communication.</li>
+                <li><strong>Neural Networks & Brain Simulation:</strong> Develops AI models to replicate human thought.</li>
+                <li><strong>Mind Uploading:</strong> Investigates transferring consciousness into digital or robotic forms.</li>
+                <li><strong>Humanoids Development:</strong> Focuses on AI-driven robots that mimic human movement and cognition.</li>
+            </ul>
+            <a href="#" class="course-link disabled">Access Course</a>
+        </div>
+
+        <div class="track">
+            <h2>Quantum & Space Tech Track</h2>
+            <p>Focuses on cutting-edge research in quantum computing, AI-driven space exploration, and theoretical physics.</p>
+            <ul>
+                <li><strong>Quantum Computing:</strong> Studies qubit-based computing and its impact on cryptography and AI.</li>
+                <li><strong>AI & Space Exploration:</strong> Uses AI for space travel, navigation, and planetary research.</li>
+                <li><strong>Warp Field Mechanics:</strong> Examines theoretical concepts for faster-than-light travel.</li>
+                <li><strong>Interstellar Propulsion:</strong> Develops propulsion systems for deep-space missions.</li>
+                <li><strong>Quantum Neural Networks:</strong> Combines quantum computing with machine learning.</li>
+            </ul>
+            <a href="#" class="course-link disabled">Access Course</a>
+        </div>
     </div>
 
     <script>
@@ -120,7 +195,6 @@
                     const userAddress = accounts[0];
 
                     document.getElementById("walletAddress").innerText = `Connected: ${userAddress}`;
-
                     enableCourseAccess();
                 } catch (error) {
                     console.error("Wallet connection failed:", error);
