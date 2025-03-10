@@ -48,39 +48,55 @@
         }
 
         /* Sidebar styles */
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #333;
-            overflow-x: hidden;
-            transition: 0.3s;
-            padding-top: 60px;
-            z-index: 9999;
-        }
+.sidebar {
+    height: 100%;
+    width: 300px; /* Set a fixed width */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #222; /* Darker shade for better contrast */
+    overflow-x: hidden;
+    overflow-y: auto; /* Enable scrolling */
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 9999;
+}
 
-        .sidebar a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 1.2em;
-            color: #fff;
-            display: block;
-            transition: 0.3s;
-        }
+/* Sidebar links */
+.sidebar a {
+    padding: 12px 20px; /* More padding for better spacing */
+    text-decoration: none;
+    font-size: 1em; /* Adjusted font size for better fit */
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
 
-        .sidebar a:hover {
-            color: #ffeb3b;
-        }
+/* Hover effect */
+.sidebar a:hover {
+    background-color: #444; /* Slightly lighter background */
+    color: #ffeb3b; /* Highlight text */
+}
 
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
+/* Sidebar close button */
+.sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Sidebar section headers */
+.sidebar h3 {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #ffeb3b; /* Highlight section titles */
+    background-color: #333;
+    margin: 0;
+    border-bottom: 1px solid #444;
+}
 
         /* Page content styles */
         .content-container {
