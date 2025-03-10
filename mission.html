@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision and Mission</title>
+    <title>Vision and Mission - Futuretech Foundation</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,36 +16,116 @@
             align-items: center;
             height: 100vh;
         }
+
         .container {
-            max-width: 800px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: #ffffff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            padding: 40px;
+            overflow: hidden;
         }
+
         h1 {
             text-align: center;
+            font-size: 3em;
             color: #4a90e2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+
         h2 {
             color: #333;
+            font-size: 2em;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
+
         p {
-            line-height: 1.6;
+            font-size: 1.2em;
+            line-height: 1.8;
             color: #555;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        .mission p {
+            font-size: 1.1em;
+        }
+
+        .vision, .mission {
+            margin-bottom: 40px;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 10px;
+            background: #4a90e2;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            color: #fff;
+            margin-top: 40px;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Futuretech Academy</h1>
+    <h1>Futuretech Foundation</h1>
 
-    <h2>Vision</h2>
-    <p>To empower the next generation of innovators by providing access to cutting-edge education and hands-on experiences in emerging technologies, fostering a global community of thinkers, creators, and leaders dedicated to shaping a sustainable and technologically advanced future.</p>
+    <div class="vision">
+        <h2>Our Vision</h2>
+        <p>To <span class="highlight">empower</span> the next generation of innovators by providing access to <span class="highlight">cutting-edge education</span> and hands-on experiences in emerging technologies, fostering a global community of thinkers, creators, and leaders dedicated to shaping a <span class="highlight">sustainable</span> and technologically advanced future.</p>
+    </div>
 
-    <h2>Mission</h2>
-    <p>Futuretech Academy is committed to delivering transformative educational experiences that blend theoretical knowledge with practical application in fields such as metamaterials, 3D bioprinting, and advanced robotics. Through collaborative learning, industry partnerships, and a focus on real-world problem-solving, we aim to equip students with the skills, mindset, and network necessary to drive technological progress and societal impact.</p>
+    <div class="mission">
+        <h2>Our Mission</h2>
+        <p>Futuretech Foundation is committed to delivering transformative educational experiences that blend theoretical knowledge with practical application in fields such as <span class="highlight">metamaterials</span>, <span class="highlight">3D bioprinting</span>, and <span class="highlight">advanced robotics</span>. Through collaborative learning, industry partnerships, and a focus on real-world problem-solving, we aim to equip students with the skills, mindset, and network necessary to drive technological progress and societal impact.</p>
+    </div>
+
+    <footer>
+        <p>Join us in shaping the future. <a href="#">Learn More</a></p>
+    </footer>
 </div>
 
 </body>
