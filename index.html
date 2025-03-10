@@ -53,21 +53,21 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #1a1a1a; /* Dark gray background */
+    background-color: #121212; /* Deep black for better contrast */
     overflow-x: hidden;
     overflow-y: scroll; /* Always show scrollbar */
     transition: 0.3s;
     padding-top: 60px;
-    padding-bottom: 40px; /* Extra space at bottom */
+    padding-bottom: 60px; /* Extra space at bottom */
     z-index: 9999;
 }
 
 /* Sidebar links */
 .sidebar a {
-    padding: 12px 20px;
+    padding: 14px 20px;
     text-decoration: none;
     font-size: 1em;
-    color: #f1f1f1; /* Lighter text for readability */
+    color: #e0e0e0; /* Light gray for better visibility */
     display: block;
     transition: 0.3s;
 }
@@ -90,15 +90,15 @@
 
 /* Sidebar section headers */
 .sidebar h3 {
-    padding: 12px 20px;
+    padding: 14px 20px;
     font-size: 1.1em;
-    color: #ffcc00;
-    background-color: #262626;
+    color: #ffcc00; /* Bright yellow */
+    background-color: #1e1e1e; /* Dark gray */
     margin: 0;
     border-bottom: 1px solid #444;
 }
 
-/* Upcoming Dates & Featured Programs Text */
+/* List items */
 .sidebar ul {
     padding: 0;
     margin: 0;
@@ -106,23 +106,23 @@
 }
 
 .sidebar ul li {
-    padding: 12px 20px;
+    padding: 14px 20px;
     font-size: 0.95em;
-    color: #ccc;
+    color: #e0e0e0; /* Light gray */
     border-bottom: 1px solid #333;
-    line-height: 1.5; /* Improved spacing */
+    line-height: 1.6; /* More spacing */
 }
 
-/* Prevent last item from having a border */
+/* Last item fix */
 .sidebar ul li:last-child {
     border-bottom: none;
 }
 
-/* Ensures space at the bottom */
+/* Prevent last item cutoff */
 .sidebar::after {
     content: "";
     display: block;
-    height: 40px;
+    height: 60px;
 }
 
         /* MetaMask Login Button */
