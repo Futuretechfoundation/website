@@ -3,163 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsroom - Futuretech Foundation</title>
+    <title>FutureTech Foundation Newsroom</title>
     <style>
+        /* Global Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f0f0;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
-        header {
-            background: #4a90e2;
-            color: white;
-            padding: 20px 0;
+        /* Header and Footer */
+        header, footer {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 15px 0;
             text-align: center;
         }
 
-        header h1 {
-            font-size: 3em;
+        header h1, footer h1 {
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 2rem;
         }
 
+        /* Container for content */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-
-        .news-item {
-            background: white;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .news-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .news-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .news-item-content {
+            width: 85%;
+            margin: auto;
             padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
-        .news-item h2 {
-            font-size: 2em;
-            color: #4a90e2;
+        h2, h3 {
+            color: #333;
+            font-weight: bold;
             margin-bottom: 10px;
         }
 
-        .news-item p {
-            font-size: 1.1em;
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Styling the News section */
+        .news-section p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .news-section .date {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .news-section a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .news-section a:hover {
+            color: #004a99;
+        }
+
+        /* Styling for the images */
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figure img {
+            max-width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        figure img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #004a99;
+        }
+
+        .btn-secondary {
+            background-color: #007bff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #005fa3;
+        }
+
+        /* Featured Stories and Articles */
+        .featured-stories article, .news-section article {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-stories h3, .news-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .featured-stories p, .news-section p {
+            font-size: 1.1rem;
             line-height: 1.6;
             color: #555;
         }
 
-        .news-item a {
-            display: inline-block;
-            text-decoration: none;
-            font-weight: bold;
-            color: #4a90e2;
-            margin-top: 10px;
+        /* Upcoming Events */
+        #upcoming-events article {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        .news-item a:hover {
-            color: #2575fc;
+        #upcoming-events h3 {
+            font-size: 1.5rem;
         }
 
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
+        #upcoming-events p {
+            font-size: 1.1rem;
         }
 
-        footer p {
-            font-size: 1.1em;
-            margin: 0;
+        /* Research Highlights */
+        #research-highlights article {
+            background-color: #e6f7e6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        footer a {
-            text-decoration: none;
-            color: #ff6600;
-            font-weight: bold;
+        #research-highlights h3 {
+            font-size: 1.5rem;
         }
 
-        footer a:hover {
-            color: #ff4500;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            .news-item h2 {
-                font-size: 1.5em;
-            }
-        }
-
-        /* Responsive grid layout */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        #research-highlights p {
+            font-size: 1.1rem;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Newsroom</h1>
+    <h1>FutureTech Foundation Newsroom</h1>
 </header>
 
 <div class="container">
-    <div class="news-grid">
-        <div class="news-item">
-            <img src="news1.jpg" alt="News Image 1">
-            <div class="news-item-content">
-                <h2>Futuretech Foundation Launches New Initiative</h2>
-                <p>Futuretech Foundation is excited to announce the launch of a new educational initiative aimed at bridging the gap between emerging technologies and young innovators...</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
 
-        <div class="news-item">
-            <img src="news2.jpg" alt="News Image 2">
-            <div class="news-item-content">
-                <h2>Futuretech Academy Hosts Robotics Workshop</h2>
-                <p>Our recent robotics workshop brought together students, educators, and industry experts to explore the latest advancements in robotics and automation...</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
+    <!-- Latest News Section -->
+    <section class="news-section">
+        <h2>Latest News</h2>
+        <article>
+            <h3>FutureTech Foundation Joins OpenBCI Community</h3>
+            <p class="date"><strong>Date:</strong> December 4, 2024</p>
+            <p>
+                We are proud to announce that <strong>FutureTech Foundation</strong> has officially joined the <strong>OpenBCI</strong> community!
+            </p>
+            <p>
+                This marks a significant step forward in our commitment to advancing neurotechnology and fostering open collaboration within the field. By aligning with OpenBCI, we aim to contribute to groundbreaking innovations that empower researchers, developers, and enthusiasts around the world.
+            </p>
+            <p>
+                The OpenBCI community is renowned for its dedication to exploring the frontiers of brain-computer interface (BCI) technology and making it accessible for a wide range of applications. As part of this vibrant ecosystem, FutureTech Foundation looks forward to sharing our expertise, learning from peers, and co-creating solutions that shape the future of human-computer interaction.
+            </p>
+            <p>
+                Stay tuned for updates as we embark on this exciting journey!
+            </p>
+            <p>
+                <a href="https://openbci.com" class="btn">Learn More About OpenBCI</a>
+                <a href="/research-and-development" class="btn btn-secondary">Explore Our Initiatives</a>
+            </p>
+        </article>
+        <article>
+            <h3>Future Tech Foundation Joins the e-NABLE Hub</h3>
+            <p>
+                Exciting news from the <strong>e-NABLE Hub</strong>! The Future Tech Foundation has officially joined the community and received their first badge, marking a significant step toward becoming a certified e-NABLE Community Chapter member.
+            </p>
+            <figure>
+                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Enable_hub.jpg" alt="e-NABLE Badge">
+                <figcaption>Future Tech Foundation's first badge toward e-NABLE Community Chapter membership.</figcaption>
+            </figure>
+            <p>
+                This badge represents their commitment to the mission of empowering individuals and communities by creating innovative, 3D-printed prosthetic devices for those in need.
+            </p>
+            <p>
+                <a href="https://hub.e-nable.org/content/perma?id=76364" target="_blank">Learn more about Future Tech Foundation's achievement and the e-NABLE Hub</a>.
+            </p>
+        </article>
+        <article>
+            <h3>FutureTech Foundation Achieves 501(c)(3) Status</h3>
+            <p><strong>Date:</strong> August 24, 2024</p>
+            <p>FutureTech Foundation has officially received 501(c)(3) status, enhancing our ability to partner with other nonprofits and accept tax-deductible donations. This is a significant milestone that will help expand our community-driven projects and volunteer initiatives.</p>
+        </article>
+        <article>
+            <h3>Regenerative Medicine Minnesota (RMM) 2025 Grant Application</h3>
+            <p><strong>Date:</strong> October 20, 2024</p>
+            <p>FutureTech Foundation has submitted an application under the RMM Discovery category. Our focus is on scalable iPSC production for neurodegenerative and musculoskeletal disease therapies, showcasing our commitment to advancing regenerative medicine.</p>
+        </article>
+    </section>
 
-        <div class="news-item">
-            <img src="news3.jpg" alt="News Image 3">
-            <div class="news-item-content">
-                <h2>Partnership with Leading Tech Companies</h2>
-                <p>We are proud to announce our new partnership with some of the most innovative tech companies in the industry, aimed at supporting research and development in key fields...</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-    </div>
+    <!-- Upcoming Events Section -->
+    <section id="upcoming-events">
+        <h2>Upcoming Events</h2>
+        <article>
+            <h3>Volunteer Outreach Workshop for Future Technologies</h3>
+            <p><strong>Date:</strong> November 15, 2024</p>
+            <p>Join our directors and community volunteers as we reach out to middle and high schools, sharing resources and learning opportunities in nanorobotics, 3D bioprinting, and more. Registration required.</p>
+        </article>
+    </section>
 </div>
 
 <footer>
-    <p>&copy; 2025 Futuretech Foundation | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <h1>FutureTech Foundation</h1>
 </footer>
 
 </body>
