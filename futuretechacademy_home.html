@@ -19,14 +19,14 @@
         header {
             background-color: #0d4b8e; /* Electric blue */
             color: #fff;
-            padding: 1em;
+            padding: 1.5em;
             text-align: center;
             position: relative;
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.5em;
+            font-size: 2em; /* Increased font size */
         }
 
         /* FutureTech Academy Logo */
@@ -34,7 +34,7 @@
             position: absolute;
             top: 10px;
             right: 20px;
-            height: 50px;
+            height: 70px; /* Enlarged for better visibility */
         }
 
         /* Hamburger Menu */
@@ -48,158 +48,97 @@
         }
 
         /* Sidebar styles */
-.sidebar {
-    height: 100%;
-    width: 300px; /* Fixed width */
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #121212; /* Deep black for better contrast */
-    overflow-x: hidden;
-    overflow-y: scroll; /* Always show scrollbar */
-    transition: 0.3s;
-    padding-top: 60px;
-    padding-bottom: 60px; /* Extra space at bottom */
-    z-index: 9999;
-}
+        .sidebar {
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #121212;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            transition: 0.3s;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            z-index: 9999;
+        }
 
-/* Sidebar links */
-.sidebar a {
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 1em;
-    color: #e0e0e0; /* Light gray for regular links */
-    display: block;
-    transition: 0.3s;
-}
+        /* Sidebar links */
+        .sidebar a {
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1em;
+            color: #e0e0e0;
+            display: block;
+            transition: 0.3s;
+        }
 
-/* Hover effect */
-.sidebar a:hover {
-    background-color: #333;
-    color: #ffcc00;
-}
+        /* Hover effect */
+        .sidebar a:hover {
+            background-color: #333;
+            color: #ffcc00;
+        }
 
-/* Sidebar close button */
-.sidebar .closebtn {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 36px;
-    color: #fff;
-    cursor: pointer;
-}
+        /* Sidebar close button */
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-/* Sidebar section headers */
-.sidebar h3 {
-    padding: 14px 20px;
-    font-size: 1.1em;
-    color: #ffcc00; /* Bright yellow */
-    background-color: #1e1e1e; /* Dark gray */
-    margin: 0;
-    border-bottom: 1px solid #444;
-}
-
-/* List items */
-.sidebar ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-/* Regular list items */
-.sidebar ul li {
-    padding: 14px 20px;
-    font-size: 0.95em;
-    color: #e0e0e0; /* Light gray */
-    border-bottom: 1px solid #333;
-    line-height: 1.6;
-}
-
-/* Special sections (Upcoming Dates, American Indian Scholars, Emergency Funds) */
-.sidebar .highlighted-section {
-    color: #ffffff !important; /* Pure white for visibility */
-    font-weight: bold;
-}
-
-/* Prevent last item cutoff */
-.sidebar::after {
-    content: "";
-    display: block;
-    height: 60px;
-}
-
-        /* Page content styles */
+        /* Content Container */
         .content-container {
             padding: 2em;
             flex-grow: 1;
+            text-align: center;
         }
 
         .welcome-banner {
             background-color: #7c0c0c;
             color: #fff;
             padding: 1em;
-            text-align: center;
             border-radius: 5px;
             margin-bottom: 1em;
-        }
-
-        .section-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
         }
 
         .link-button {
-            background-color: #0d4b8e; /* Electric blue */
+            background-color: #0d4b8e;
             color: #fff;
             padding: 0.8em;
-            text-align: center;
-            border-radius: 5px;
             text-decoration: none;
-            font-size: 1em;
-        }
-
-        .meta-mask-login {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .meta-mask-login button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
-            border: none;
-            padding: 0.8em 2em;
             border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
+            font-size: 1em;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        .meta-mask-login button:hover {
+        .link-button:hover {
             background-color: #1a6f97;
         }
 
-        .track-section {
-            margin-top: 2em;
-        }
-
-        .track-header {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 1em;
-            font-size: 1.2em;
+        /* Back Button */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 2em auto;
             text-align: center;
-            margin-bottom: 1em;
+            padding: 0.8em;
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
         }
 
-        .course-list {
-            margin-left: 20px;
+        .back-button:hover {
+            background-color: #333;
         }
 
-        .course-item {
-            margin: 10px 0;
-            font-size: 1em;
-        }
-
+        /* Footer */
         .footer {
             text-align: center;
             padding: 1em;
@@ -207,26 +146,6 @@
             background-color: #f8f8f8;
             color: #555;
             margin-top: 2em;
-        }
-
-        /* NOWPayments button style */
-        .nowpayments-button {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .nowpayments-button button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
-            border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-        }
-
-        .nowpayments-button button:hover {
-            background-color: #1a6f97;
         }
     </style>
 </head>
@@ -238,11 +157,9 @@
     <span class="hamburger" onclick="openNav()">&#9776;</span>
 </header>
 
-<!-- Sidebar menu -->
+<!-- Sidebar -->
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-    <!-- Academic Info Section -->
     <h3>Academics</h3>
     <a href="#calendar">Academic Calendar</a>
     <a href="#attendance">Cost of Attendance</a>
@@ -250,121 +167,38 @@
     <a href="#transcripts">Transcripts</a>
     <a href="#aid">Financial Aid Timeline</a>
     <a href="#work-study">Work-Study Info</a>
-
-    <!-- Upcoming Dates Section -->
-    <h3>Upcoming Dates</h3>
-    <ul>
-        <li><strong>Mon, Oct 27, 2025:</strong> Last day for 100% tuition refund</li>
-        <li><strong>Fri, Oct 31, 2025:</strong> Graduation application deadline (Graduate)</li>
-        <li><strong>Mon, Nov 3, 2025:</strong> Last day for 50% tuition refund</li>
-    </ul>
-
-    <!-- Featured Programs Section -->
-    <h3>Featured Programs</h3>
-    <a href="#american-indian-scholars">American Indian Scholars Program</a>
-    <a href="#student-emergency-funds">Student Emergency Funds</a>
-
-    <!-- Additional Resources Section -->
-    <h3>Resources & Support</h3>
-    <a href="#eligibility-funding">Eligibility & Funding Information</a>
-    <a href="#get-help">Get Help</a>
-    <a href="#contact-one-stop">Contact One Stop</a>
-    <a href="#how-to-guides">How-to Guides</a>
-
-    <!-- Campus & Contact Info Section -->
-    <h3>Campus & Contact</h3>
-    <a href="#maps-directions">Maps & Directions</a>
-    <a href="#parking-transportation">Parking & Transportation</a>
-    <a href="#contact">Contact Us</a>
-
-    <!-- Legal & Administrative Section -->
-    <h3>Legal & Admin</h3>
-    <a href="#terms-conditions">Terms & Conditions</a>
-    <a href="#consumer-info">Consumer Information</a>
-    <a href="#directories">Directories</a>
-    <a href="#content-management">One Stop Websites Content Management</a>
 </div>
 
-<!-- Overlay background when sidebar is active -->
-<div id="myOverlay" class="overlay" onclick="closeNav()"></div>
-
-<!-- Main content -->
+<!-- Page Content -->
 <div class="content-container">
-
-    <!-- Welcome Banner -->
     <div class="welcome-banner">
         <h2>Welcome to FutureTech Academy</h2>
-        <p>Explore our resources, programs, and services to help you excel in futuristic technologies.</p>
+        <p>Explore programs, scholarships, and resources to advance your education.</p>
     </div>
 
-    <!-- MetaMask Login Section -->
-    <div class="meta-mask-login">
-        <h3>Login with MetaMask</h3>
-        <p>Connect your MetaMask wallet to access exclusive services and features.</p>
-        <button onclick="location.href='futuretechacademy.html'">Connect MetaMask</button>
+    <div class="section-links">
+        <a href="#featured-programs" class="link-button">Explore Programs</a>
+        <a href="#financial-aid" class="link-button">Financial Aid</a>
     </div>
 
-    <!-- Future of Humans Track Section -->
-    <div class="track-section" id="humans">
-        <div class="track-header">
-            <h3>Future of Humans Track</h3>
-        </div>
-        <p>The "Future of Humans" track focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here’s an overview of the key components:</p>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+</div>
 
-        <ul>
-            <li><strong>Nanorobotics:</strong> Studies tiny robots at the nanoscale for tasks like targeted drug delivery and cellular repairs, enhancing diagnostic tools.</li>
-            <li><strong>Surgical Robotics:</strong> Integrates robotics into surgical procedures to improve precision, reduce recovery times, and optimize outcomes with robot-assisted surgeries.</li>
-        </ul>
-        <p>Each component addresses current limitations and pushes the boundaries of enhancing human health and capabilities.</p>
-    </div>
-
-    <!-- BCI and Humanoids Track Section -->
-    <div class="track-section" id="bci">
-        <div class="track-header">
-            <h3>BCI and Humanoids Track</h3>
-        </div>
-        <p>The BCI and Humanoid Robots Track explores the interface between human cognition and advanced robotics, focusing on digital preservation and transferring human consciousness into humanoid robots.</p>
-
-        <ul>
-            <li><strong>Mind Uploading:</strong> Studies the transfer of consciousness to inhabit robotic bodies, while addressing ethical implications and technical challenges.</li>
-            <li><strong>Humanoids Development:</strong> Covers building humanoids that mirror human movements, emotions, and thought processes for intelligent machine interaction.</li>
-        </ul>
-        <p>This track is designed to push the boundaries of what it means to be human and live beyond biological constraints.</p>
-    </div>
-
-    <!-- Quantum and Space Tech Track Section -->
-    <div class="track-section" id="quantum">
-        <div class="track-header">
-            <h3>Quantum and Space Tech Track</h3>
-        </div>
-        <p>Combining quantum technologies such as quantum computing and quantum materials engineering, this track explores advanced non-human vehicle and space technology, including interdimensional travel.</p>
-
-        <ul>
-            <li><strong>Mind-Controlled Vehicles:</strong> Explores the control of vehicles through integrated mind and machine interfaces, allowing for advanced exploration.</li>
-            <li><strong>Interdimensional Travel:</strong> Envisions accessing different dimensions, high-speed travel, and quantum manipulation as ways to transcend biological forms and explore the universe.</li>
-        </ul>
-        <p>This track offers transformative ways for humans to experience the universe beyond physical and biological limits.</p>
-    </div>
-
-    <!-- NOWPayments Button -->
-    <div class="nowpayments-button">
-        <button>Make a Payment with NOWPayments</button>
-    </div>
-
+<!-- Footer -->
+<div class="footer">
+    &copy; 2025 FutureTech Academy. All rights reserved.
 </div>
 
 <script>
-    /* Script for Sidebar Menu */
     function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("myOverlay").style.display = "block";
+        document.getElementById("mySidebar").style.width = "300px";
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("myOverlay").style.display = "none";
     }
 </script>
 
 </body>
-    </html>
+</html>
