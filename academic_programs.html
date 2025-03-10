@@ -155,6 +155,25 @@
             margin-top: 2em;
         }
 
+        /* NOWPayments button style */
+        .nowpayments-button {
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        .nowpayments-button button {
+            background-color: #0d4b8e; /* Electric blue */
+            color: white;
+            border: none;
+            padding: 0.8em 2em;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .nowpayments-button button:hover {
+            background-color: #1a6f97;
+        }
     </style>
 </head>
 <body>
@@ -237,12 +256,12 @@
         </div>
     </div>
 
-    <!-- Quantum Computing Track Section -->
+    <!-- Quantum and Space Tech Track Section -->
     <div class="track-section" id="quantum">
         <div class="track-header">
-            <h3>Quantum Computing Track</h3>
+            <h3>Quantum and Space Tech Track</h3>
         </div>
-        <p>This track covers quantum computing, quantum cryptography, and the transformative potential of quantum technologies.</p>
+        <p>This track covers quantum computing, quantum cryptography, space technology, and the transformative potential of quantum technologies.</p>
 
         <div class="course-list">
             <div class="course-item">
@@ -253,45 +272,39 @@
                 <strong>Quantum Cryptography and Security</strong><br>
                 Understand the principles of quantum cryptography and its application to secure communications.
             </div>
+            <div class="course-item">
+                <strong>Space Exploration and Technology</strong><br>
+                Explore the latest advancements in space technology, including propulsion systems, space habitats, and interstellar travel.
+            </div>
+            <div class="course-item">
+                <strong>Advanced Space Robotics</strong><br>
+                Learn about robotic systems designed for space exploration, including autonomous rovers and spacecraft.
+            </div>
         </div>
     </div>
 
-    <!-- AI and Robotics Track Section -->
-    <div class="track-section" id="ai">
-        <div class="track-header">
-            <h3>AI and Robotics Track</h3>
-        </div>
-        <p>This track focuses on the integration of AI and robotics, from machine learning to autonomous systems.</p>
-
-        <div class="course-list">
-            <div class="course-item">
-                <strong>Machine Learning and Neural Networks</strong><br>
-                Learn about machine learning techniques and how neural networks are used to train AI models.
-            </div>
-            <div class="course-item">
-                <strong>Autonomous Robotics</strong><br>
-                Explore the development of robots that can perform tasks without human intervention.
-            </div>
-        </div>
+    <!-- NOWPayments Button Section -->
+    <div class="nowpayments-button">
+        <button onclick="window.location.href='https://nowpayments.io'">Make a Donation with NOWPayments</button>
     </div>
 
 </div>
 
-<!-- Footer -->
+<!-- Footer Section -->
 <div class="footer">
     <p>&copy; 2025 FutureTech Academy. All rights reserved.</p>
 </div>
 
-<!-- Sidebar Functions -->
 <script>
+    // Sidebar menu open/close functionality
     function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("myOverlay").classList.add("active");
+        document.getElementById("myOverlay").style.display = "block";
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("myOverlay").classList.remove("active");
+        document.getElementById("myOverlay").style.display = "none";
     }
 </script>
 
