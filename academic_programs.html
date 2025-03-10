@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureTech Academy - One Stop Services</title>
+    <title>FutureTech Academy</title>
     <style>
         /* Basic Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #fafafa;
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            color: #333;
         }
 
         header {
-            background-color: #7c0c0c;
+            background-color: #1a1a2e;
             color: #fff;
-            padding: 1em;
+            padding: 1.5em;
             text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
+            font-size: 1.8em;
+            font-weight: 700;
         }
 
         .navbar {
             display: flex;
             justify-content: center;
-            gap: 1em;
+            gap: 2em;
             padding: 1em;
-            background-color: #7c0c0c;
+            background-color: #1a1a2e;
         }
 
         .navbar a {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1em;
         }
 
         /* Sidebar styles */
@@ -57,7 +56,7 @@
         }
 
         .sidebar a {
-            padding: 8px 8px 8px 32px;
+            padding: 10px 10px 10px 30px;
             text-decoration: none;
             font-size: 1.2em;
             color: #fff;
@@ -66,7 +65,7 @@
         }
 
         .sidebar a:hover {
-            color: #ffeb3b;
+            color: #ff6347;
         }
 
         .sidebar .closebtn {
@@ -91,80 +90,96 @@
         }
 
         .welcome-banner {
-            background-color: #ffeb3b;
-            color: #333;
-            padding: 1em;
+            background-color: #ff6347;
+            color: #fff;
+            padding: 1.5em;
             text-align: center;
             border-radius: 5px;
-            margin-bottom: 1em;
+            margin-bottom: 1.5em;
         }
 
         .section-links {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1em;
+            gap: 1.5em;
+            margin-top: 2em;
         }
 
         .link-button {
-            background-color: #7c0c0c;
+            background-color: #1a1a2e;
             color: #fff;
-            padding: 0.8em;
+            padding: 1em;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 1em;
+            font-size: 1.2em;
         }
 
-        .upcoming-dates {
+        .link-button:hover {
+            background-color: #333;
+        }
+
+        /* MetaMask login */
+        .meta-mask-login {
+            text-align: center;
             margin-top: 2em;
+            background-color: #1a1a2e;
+            padding: 2em;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .meta-mask-login a {
+            color: #ff6347;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-decoration: none;
             background-color: #fff;
-            border: 1px solid #ddd;
             padding: 1em;
             border-radius: 5px;
         }
 
-        .upcoming-dates h2 {
-            color: #7c0c0c;
+        .meta-mask-login a:hover {
+            background-color: #ff6347;
+            color: #fff;
         }
 
-        .upcoming-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1em;
+        /* Track Section */
+        .track-section {
+            margin-top: 3em;
         }
 
-        .upcoming-table th, .upcoming-table td {
-            border: 1px solid #ddd;
-            padding: 0.5em;
-            text-align: left;
+        .track-header {
+            background-color: #1a1a2e;
+            color: #fff;
+            padding: 1.5em;
+            font-size: 1.5em;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 2em;
+        }
+
+        .course-list {
+            padding-left: 20px;
+        }
+
+        .course-item {
+            margin: 15px 0;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .course-item strong {
+            color: #ff6347;
         }
 
         .footer {
             text-align: center;
-            padding: 1em;
-            font-size: 0.9em;
-            background-color: #f8f8f8;
-            color: #555;
-            margin-top: 2em;
-        }
-
-        .return-home {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .return-home button {
-            background-color: #7c0c0c;
-            color: #fff;
-            padding: 1em 2em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 1.5em;
             font-size: 1em;
-        }
-
-        .return-home button:hover {
-            background-color: #a30000;
+            background-color: #1a1a2e;
+            color: #fff;
+            margin-top: 3em;
         }
 
         /* Overlay effect when menu is open */
@@ -183,36 +198,12 @@
             display: block;
         }
 
-        /* New Section Styles */
-        .track-section {
-            margin-top: 2em;
-        }
-
-        .track-header {
-            background-color: #7c0c0c;
-            color: #fff;
-            padding: 1em;
-            font-size: 1.2em;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-
-        .course-list {
-            margin-left: 20px;
-        }
-
-        .course-item {
-            margin: 10px 0;
-            font-size: 1em;
-        }
-
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FutureTech Academy - One Stop Services</h1>
-    <span class="hamburger" onclick="openNav()">&#9776;</span>
+    FutureTech Academy
 </header>
 
 <!-- Sidebar menu -->
@@ -236,24 +227,17 @@
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <h2>Welcome to FutureTech Academy</h2>
-        <p>Explore our resources, programs, and services to help you excel in futuristic technologies.</p>
+        <p>Explore our cutting-edge resources, programs, and services to help you excel in the world of futuristic technologies.</p>
     </div>
 
     <!-- MetaMask Login Section -->
-    <div class="meta-mask-login" style="text-align: center; margin-top: 2em;">
+    <div class="meta-mask-login">
         <h3>Login with MetaMask</h3>
         <p>Connect your MetaMask wallet to access exclusive services and features.</p>
-        <a href="javascript:void(0)" class="link-button" onclick="connectMetaMask()">Connect MetaMask</a>
+        <a href="futuretechacademy.html" class="link-button">Connect MetaMask</a>
     </div>
 
-    <!-- NOWPayments Link Section -->
-    <div class="now-payments-link" style="text-align: center; margin-top: 2em;">
-        <h3>Make Payments with Crypto</h3>
-        <p>Use NOWPayments for secure and fast crypto payments.</p>
-        <a href="https://nowpayments.io/" target="_blank" class="link-button">Visit NOWPayments</a>
-    </div>
-
-    <!-- Future of Humans Track Section -->
+    <!-- Track Sections -->
     <div class="track-section" id="humans">
         <div class="track-header">
             <h3>Future of Humans Track</h3>
@@ -276,76 +260,25 @@
         </div>
     </div>
 
-    <!-- BCI and Humanoids Track Section -->
-    <div class="track-section" id="bci">
-        <div class="track-header">
-            <h3>BCI and Humanoids Track</h3>
-        </div>
-        <p>This track explores brain-computer interfaces (BCI) and humanoid robotics, including advancements in AI, neurotechnology, and human-robot interaction.</p>
-
-        <div class="course-list">
-            <div class="course-item">
-                <strong>Introduction to Brain-Computer Interfaces (BCI)</strong><br>
-                Learn the basics of BCIs, how they work, and their applications in fields like healthcare and communication.
-            </div>
-            <div class="course-item">
-                <strong>Humanoid Robotics</strong><br>
-                Explore the design, development, and applications of humanoid robots, focusing on AI and interaction capabilities.
-            </div>
-            <div class="course-item">
-                <strong>Neurotechnologies for the Future</strong><br>
-                Study the cutting-edge neurotechnologies that are transforming the way we interact with machines and our own brains.
-            </div>
-        </div>
+    <!-- Footer Section -->
+    <div class="footer">
+        &copy; 2025 FutureTech Academy | All Rights Reserved
     </div>
 
-    <!-- Quantum and Space Tech Track Section -->
-    <div class="track-section" id="quantum-space">
-        <div class="track-header">
-            <h3>Quantum and Space Tech Track</h3>
-        </div>
-        <p>This track delves into the fascinating realms of quantum computing and space exploration, preparing you for groundbreaking innovations in both fields.</p>
-
-        <div class="course-list">
-            <div class="course-item">
-                <strong>Introduction to Quantum Computing</strong><br>
-                Dive into the fundamentals of quantum computing and its potential applications in cryptography, optimization, and more.
-            </div>
-            <div class="course-item">
-                <strong>Space Exploration and Technologies</strong><br>
-                Explore the latest advancements in space technologies, from propulsion systems to satellite communications.
-            </div>
-            <div class="course-item">
-                <strong>Quantum Cryptography</strong><br>
-                Learn about the principles of quantum cryptography and its applications in secure communications.
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- Footer Section -->
-<div class="footer">
-    <p>&copy; 2025 FutureTech Academy. All rights reserved.</p>
 </div>
 
 <script>
-    // Sidebar Toggle Functions
+    // Sidebar functions
     function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("myOverlay").classList.add("active");
+        document.getElementById("myOverlay").classList.add('active');
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("myOverlay").classList.remove("active");
-    }
-
-    // MetaMask Connection Placeholder
-    function connectMetaMask() {
-        alert("MetaMask is not connected. Please connect using your MetaMask wallet.");
+        document.getElementById("myOverlay").classList.remove('active');
     }
 </script>
 
 </body>
-            </html>
+</html>
