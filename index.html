@@ -46,20 +46,27 @@
             cursor: pointer;
         }
 
-        /* Sidebar styles */
+        
+/* Sidebar styles */
 .sidebar {
     height: 100%;
-    width: 300px; /* Fixed width */
+    width: 250px; /* Adjusted width */
+    max-width: 80%; /* Prevents full-screen takeover on small screens */
     position: fixed;
     top: 0;
-    left: 0;
-    background-color: #121212; /* Deep black for better contrast */
+    left: -250px; /* Initially hidden */
+    background-color: #121212; /* Deep black for contrast */
     overflow-x: hidden;
-    overflow-y: scroll; /* Always show scrollbar */
-    transition: 0.3s;
+    overflow-y: auto; /* Allow scrolling if needed */
+    transition: left 0.3s ease-in-out;
     padding-top: 60px;
-    padding-bottom: 60px; /* Extra space at bottom */
-    z-index: 9999;
+    padding-bottom: 60px;
+    z-index: 1000;
+}
+
+/* Show sidebar */
+.sidebar.active {
+    left: 0; /* Slide in */
 }
 
 /* Sidebar links */
@@ -113,11 +120,6 @@
     line-height: 1.6; /* More spacing */
 }
 
-/* Last item fix */
-.sidebar ul li:last-child {
-    border-bottom: none;
-}
-
 /* Prevent last item cutoff */
 .sidebar::after {
     content: "";
@@ -125,6 +127,22 @@
     height: 60px;
 }
 
+/* Hamburger button */
+.menu-btn {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+}
+
+.menu-btn:hover {
+    color: #ffcc00;
+}
         /* MetaMask Login Button */
         .login-button {
             background-color: #f39200;
@@ -299,10 +317,13 @@
         </div>
     </header>
         
-  <!-- Menu Sidebar -->
-    <div id="menuSidebar" class="menu-sidebar">
-        <button onclick="toggleMenu()" class="close-button">X</button>
-        <h2>Menu</h2>
+  <!-- Use the existing sidebar structure -->
+<button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+<div class="sidebar" id="mySidebar">
+    <span class="closebtn" onclick="toggleSidebar()">&times;</span>
+    
+</div>
         
         <!-- MetaMask Login Button -->
         <button id="loginButton" class="login-button">Login with MetaMask</button>
