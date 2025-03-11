@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Future Technologies VR Course</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.5.0/aframe.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -11,18 +11,21 @@
       margin: 0; 
       overflow: hidden;
       font-family: 'Arial', sans-serif;
+      touch-action: manipulation;
     }
     
     .ui-overlay {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      left: 10px;
+      right: 10px;
       background: rgba(0, 0, 0, 0.7);
       color: white;
-      padding: 15px 20px;
+      padding: 12px 15px;
       border-radius: 10px;
       z-index: 100;
-      max-width: 400px;
+      max-width: 100%;
+      box-sizing: border-box;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -32,23 +35,25 @@
     .ui-overlay h2 {
       margin-top: 0;
       color: #4FC3F7;
-      font-size: 1.4em;
+      font-size: 1.2em;
     }
     
     .ui-overlay p {
       margin-bottom: 10px;
-      line-height: 1.5;
-      font-size: 1em;
+      line-height: 1.4;
+      font-size: 0.9em;
     }
     
     .modules {
       position: absolute;
-      bottom: 20px;
+      bottom: 10px;
       left: 0;
       right: 0;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 10px;
+      padding: 0 10px;
       z-index: 100;
     }
     
@@ -56,32 +61,43 @@
       background: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 8px 12px;
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.9em;
+      flex: 1 1 auto;
+      min-width: 70px;
+      max-width: 140px;
+      margin-bottom: 5px;
     }
     
-    .module-btn:hover {
+    .module-btn:hover, .module-btn:active {
       background: rgba(79, 195, 247, 0.8);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
     
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 8px;
+      right: 8px;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
       font-size: 1.2em;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
     }
     
     .hidden {
-      display: none;
+      display: none !important;
     }
     
     #module-content {
@@ -89,11 +105,13 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 80%;
+      width: 90%;
       max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
       background: rgba(0, 0, 0, 0.8);
       color: white;
-      padding: 20px 30px;
+      padding: 15px 20px;
       border-radius: 15px;
       z-index: 200;
       backdrop-filter: blur(10px);
@@ -104,16 +122,26 @@
     #module-content h3 {
       color: #4FC3F7;
       margin-top: 0;
+      font-size: 1.2em;
+    }
+    
+    #module-content p {
+      font-size: 0.9em;
+    }
+    
+    #module-content ul {
+      padding-left: 20px;
+      font-size: 0.9em;
     }
     
     .vr-enter-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 10px;
+      right: 10px;
       background: rgba(76, 175, 80, 0.9);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 8px 15px;
       border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
@@ -121,9 +149,11 @@
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      font-size: 0.9em;
+      z-index: 100;
     }
     
-    .vr-enter-btn:hover {
+    .vr-enter-btn:hover, .vr-enter-btn:active {
       background: rgba(76, 175, 80, 1);
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.4);
@@ -145,8 +175,8 @@
     }
     
     .loader {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border: 5px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       border-top-color: #4FC3F7;
@@ -160,12 +190,15 @@
     .loading-text {
       margin-top: 20px;
       color: white;
-      font-size: 1.2em;
+      font-size: 1em;
       letter-spacing: 2px;
+      text-align: center;
+      padding: 0 20px;
     }
     
     .progress-bar {
-      width: 300px;
+      width: 80%;
+      max-width: 300px;
       height: 10px;
       margin-top: 20px;
       background: rgba(255,255,255,0.2);
@@ -179,9 +212,140 @@
       background: linear-gradient(90deg, #4FC3F7, #2196F3);
       transition: width 0.3s ease;
     }
+    
+    /* UI controls for mobile */
+    .ui-controls {
+      position: absolute;
+      bottom: 70px;
+      right: 10px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .ui-control-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 600px) {
+      .ui-overlay {
+        font-size: 0.9em;
+      }
+      
+      .ui-overlay h2 {
+        font-size: 1.1em;
+      }
+      
+      .ui-overlay p {
+        font-size: 0.85em;
+        margin: 8px 0;
+      }
+      
+      .modules {
+        gap: 5px;
+      }
+      
+      .module-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+        min-width: 60px;
+      }
+      
+      #module-content {
+        padding: 12px;
+      }
+      
+      #module-content h3 {
+        font-size: 1.1em;
+      }
+      
+      #module-content p, #module-content ul {
+        font-size: 0.85em;
+      }
+      
+      .ui-control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+      }
+    }
+    
+    /* Overlay toggle button */
+    .toggle-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 150;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* Orientation message */
+    .orientation-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .orientation-message img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .orientation-message p {
+      font-size: 1.2em;
+      max-width: 300px;
+    }
+    
+    @media (max-height: 450px) and (orientation: landscape) {
+      .orientation-message {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Orientation Message -->
+  <div class="orientation-message">
+    <img src="/api/placeholder/80/80" alt="Rotate device">
+    <p>Please rotate your device to portrait mode for the best experience</p>
+  </div>
+
   <!-- Loading Screen -->
   <div class="loading-screen" id="loading-screen">
     <div class="loader"></div>
@@ -191,22 +355,31 @@
     </div>
   </div>
 
+  <!-- UI Overlay Toggle -->
+  <button class="toggle-overlay" id="toggle-overlay">i</button>
+
   <!-- UI Overlay -->
-  <div class="ui-overlay">
+  <div class="ui-overlay" id="ui-overlay">
     <h2>Future Technologies VR Course</h2>
     <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Navigate through different modules by selecting them below or by interacting with objects in the virtual space.</p>
-    <p>Use your VR controllers to interact with holographic interfaces. For desktop users, click and drag to look around, and use WASD to move.</p>
+    <p>Use your VR controllers to interact with holographic interfaces. For mobile users, tap to select and swipe to look around.</p>
   </div>
   
   <!-- VR Enter Button -->
-  <button class="vr-enter-btn" id="enter-vr-btn">ENTER VR MODE</button>
+  <button class="vr-enter-btn" id="enter-vr-btn">VR MODE</button>
+  
+  <!-- Mobile UI Controls -->
+  <div class="ui-controls">
+    <button class="ui-control-btn" id="move-forward">↑</button>
+    <button class="ui-control-btn" id="move-backward">↓</button>
+  </div>
   
   <!-- Module Buttons -->
   <div class="modules">
     <button class="module-btn" data-module="quantum">Quantum Computing</button>
     <button class="module-btn" data-module="neurotech">Neural Interfaces</button>
-    <button class="module-btn" data-module="ai">Advanced AI Systems</button>
-    <button class="module-btn" data-module="biotech">Synthetic Biology</button>
+    <button class="module-btn" data-module="ai">Advanced AI</button>
+    <button class="module-btn" data-module="biotech">Synthetic Bio</button>
   </div>
   
   <!-- Module Content Popup (Hidden by default) -->
@@ -217,7 +390,7 @@
   </div>
 
   <!-- A-Frame VR Scene -->
-  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false">
+  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
     <a-assets>
       <!-- Textures -->
       <img id="floor-texture" src="/api/placeholder/1024/1024" alt="Floor Texture">
@@ -234,12 +407,12 @@
     <a-light type="directional" color="#aaf" position="1 1 1" intensity="0.6"></a-light>
     
     <!-- Quantum Computing Module -->
-    <a-entity position="-6 1.6 -5">
-      <a-sphere radius="1.2" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true">
+    <a-entity position="-4 1.6 -4">
+      <a-sphere radius="1" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true" class="interactive">
         <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
       </a-sphere>
       <a-entity position="0 -2 0">
-        <a-text value="Quantum Computing" width="5" color="white" align="center"></a-text>
+        <a-text value="Quantum Computing" width="4" color="white" align="center"></a-text>
       </a-entity>
       
       <!-- Quantum Particles -->
@@ -252,10 +425,10 @@
     </a-entity>
     
     <!-- Neural Interfaces Module -->
-    <a-entity position="6 1.6 -5">
-      <a-box width="1.6" height="1.6" depth="1.6" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true"></a-box>
+    <a-entity position="4 1.6 -4">
+      <a-box width="1.4" height="1.4" depth="1.4" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true" class="interactive"></a-box>
       <a-entity position="0 -2 0">
-        <a-text value="Neural Interfaces" width="5" color="white" align="center"></a-text>
+        <a-text value="Neural Interfaces" width="4" color="white" align="center"></a-text>
       </a-entity>
       
       <!-- Neuron connections -->
@@ -264,77 +437,77 @@
         <a-sphere position="-0.5 0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
         <a-sphere position="0.5 -0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
         <a-sphere position="-0.5 -0.5 0.5" radius="0.1" color="#7fff7f"></a-sphere>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f"></a-cylinder>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f" rotation="0 0 90"></a-cylinder>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f" rotation="90 0 0"></a-cylinder>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f"></a-cylinder>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f" rotation="0 0 90"></a-cylinder>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f" rotation="90 0 0"></a-cylinder>
       </a-entity>
     </a-entity>
     
     <!-- Advanced AI Systems Module -->
-    <a-entity position="-6 1.6 3">
-      <a-torus-knot radius="1" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true"></a-torus-knot>
+    <a-entity position="-4 1.6 2.5">
+      <a-torus-knot radius="0.8" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true" class="interactive"></a-torus-knot>
       <a-entity position="0 -2 0">
-        <a-text value="Advanced AI Systems" width="5" color="white" align="center"></a-text>
+        <a-text value="Advanced AI Systems" width="4" color="white" align="center"></a-text>
       </a-entity>
       
       <!-- AI Network -->
       <a-entity class="ai-network">
         <a-sphere position="0 0 0" radius="0.05" color="white" animation="property: opacity; from: 0.2; to: 1; dur: 1000; dir: alternate; loop: true"></a-sphere>
         <a-entity position="0 0 0" rotation="0 0 0" animation="property: rotation; to: 0 360 0; dur: 12000; loop: true">
-          <a-sphere position="0 0 0.7" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0.61 0 0.35" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0.61 0 -0.35" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0 0 -0.7" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="-0.61 0 -0.35" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="-0.61 0 0.35" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-cylinder position="0 0 0.35" radius="0.01" height="0.7" color="#ff7f7f" rotation="90 0 0"></a-cylinder>
-          <a-cylinder position="0.3 0 0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 60 0"></a-cylinder>
-          <a-cylinder position="0.3 0 -0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 120 0"></a-cylinder>
-          <a-cylinder position="0 0 -0.35" radius="0.01" height="0.7" color="#ff7f7f" rotation="90 180 0"></a-cylinder>
-          <a-cylinder position="-0.3 0 -0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 240 0"></a-cylinder>
-          <a-cylinder position="-0.3 0 0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 300 0"></a-cylinder>
+          <a-sphere position="0 0 0.6" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0.52 0 0.3" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0.52 0 -0.3" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0 0 -0.6" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="-0.52 0 -0.3" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="-0.52 0 0.3" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-cylinder position="0 0 0.3" radius="0.01" height="0.6" color="#ff7f7f" rotation="90 0 0"></a-cylinder>
+          <a-cylinder position="0.26 0 0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 60 0"></a-cylinder>
+          <a-cylinder position="0.26 0 -0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 120 0"></a-cylinder>
+          <a-cylinder position="0 0 -0.3" radius="0.01" height="0.6" color="#ff7f7f" rotation="90 180 0"></a-cylinder>
+          <a-cylinder position="-0.26 0 -0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 240 0"></a-cylinder>
+          <a-cylinder position="-0.26 0 0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 300 0"></a-cylinder>
         </a-entity>
       </a-entity>
     </a-entity>
     
     <!-- Synthetic Biology Module -->
-    <a-entity position="6 1.6 3">
-      <a-cylinder height="2" radius="0.6" color="#cfcf4f" segments-height="8" segments-radial="36" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true">
-        <a-torus position="0 0.9 0" rotation="90 0 0" radius="0.6" radius-tubular="0.05" color="#cfcf4f"></a-torus>
-        <a-torus position="0 -0.9 0" rotation="90 0 0" radius="0.6" radius-tubular="0.05" color="#cfcf4f"></a-torus>
+    <a-entity position="4 1.6 2.5">
+      <a-cylinder height="1.8" radius="0.5" color="#cfcf4f" segments-height="8" segments-radial="36" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true" class="interactive">
+        <a-torus position="0 0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
+        <a-torus position="0 -0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
       </a-cylinder>
       <a-entity position="0 -2 0">
-        <a-text value="Synthetic Biology" width="5" color="white" align="center"></a-text>
+        <a-text value="Synthetic Biology" width="4" color="white" align="center"></a-text>
       </a-entity>
       
       <!-- DNA Helix -->
       <a-entity class="dna-helix" position="0 0 0">
         <a-entity animation="property: rotation; to: 0 360 0; dur: 10000; loop: true">
-          <a-cylinder position="0 0.4 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 0.4 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
-          <a-cylinder position="0 0 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 0 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
-          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+          <a-cylinder position="0 0.4 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 0.4 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+          <a-cylinder position="0 0 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 0 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
         </a-entity>
       </a-entity>
     </a-entity>
     
     <!-- Central Hub -->
     <a-entity position="0 0.1 0">
-      <a-cylinder height="0.1" radius="4" color="#222" opacity="0.7"></a-cylinder>
-      <a-text value="FUTURE TECH HUB" position="0 0.1 0" rotation="-90 0 0" width="10" color="#4FC3F7" align="center"></a-text>
+      <a-cylinder height="0.1" radius="3" color="#222" opacity="0.7"></a-cylinder>
+      <a-text value="FUTURE TECH HUB" position="0 0.1 0" rotation="-90 0 0" width="8" color="#4FC3F7" align="center"></a-text>
     </a-entity>
     
     <!-- Holographic Interface -->
     <a-entity position="0 1.5 0">
-      <a-sphere radius="0.5" color="#4FC3F7" opacity="0.3" animation="property: opacity; to: 0.5; dir: alternate; dur: 2000; loop: true"></a-sphere>
+      <a-sphere radius="0.4" color="#4FC3F7" opacity="0.3" animation="property: opacity; to: 0.5; dir: alternate; dur: 2000; loop: true"></a-sphere>
     </a-entity>
     
     <!-- Camera and Controls -->
-    <a-entity position="0 1.8 8">
-      <a-camera wasd-controls="acceleration: 100" look-controls>
-        <a-cursor color="#4FC3F7"></a-cursor>
+    <a-entity position="0 1.6 6">
+      <a-camera id="camera" wasd-controls="acceleration: 100" look-controls touch-controls="enabled: true">
+        <a-cursor color="#4FC3F7" raycaster="objects: .interactive"></a-cursor>
       </a-camera>
     </a-entity>
   </a-scene>
@@ -342,6 +515,9 @@
   <!-- JavaScript for interactivity -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Check if mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
       // Elements
       const loadingScreen = document.getElementById('loading-screen');
       const loadingProgress = document.getElementById('loading-progress');
@@ -351,6 +527,32 @@
       const moduleDescription = document.getElementById('module-description');
       const closeModuleBtn = document.getElementById('close-module');
       const enterVRBtn = document.getElementById('enter-vr-btn');
+      const toggleOverlayBtn = document.getElementById('toggle-overlay');
+      const uiOverlay = document.getElementById('ui-overlay');
+      const moveForwardBtn = document.getElementById('move-forward');
+      const moveBackwardBtn = document.getElementById('move-backward');
+      const camera = document.getElementById('camera');
+      
+      // Show toggle button and hide overlay on small screens
+      if (window.innerWidth < 500) {
+        toggleOverlayBtn.style.display = 'flex';
+        
+        // Set up toggle functionality
+        toggleOverlayBtn.addEventListener('click', function() {
+          if (uiOverlay.classList.contains('hidden')) {
+            uiOverlay.classList.remove('hidden');
+            toggleOverlayBtn.style.display = 'none';
+          } else {
+            uiOverlay.classList.add('hidden');
+            toggleOverlayBtn.style.display = 'flex';
+          }
+        });
+        
+        // Close overlay when clicking on the close button in modules
+        closeModuleBtn.addEventListener('click', function() {
+          toggleOverlayBtn.style.display = 'flex';
+        });
+      }
       
       // Module content
       const modules = {
@@ -412,90 +614,42 @@
         }
       };
       
-      // Simulate loading
-      let progress = 0;
-      const loadingInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress >= 100) {
-          progress = 100;
-          clearInterval(loadingInterval);
+      // Mobile movement controls
+      if (isMobile) {
+        // Adjust UI for mobile
+        document.querySelector('.ui-controls').style.display = 'flex';
+        
+        // Movement controls for mobile
+        let moving = false;
+        let direction = '';
+        
+        const moveCamera = function() {
+          if (!moving) return;
           
-          // Fade out loading screen
-          setTimeout(() => {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-              loadingScreen.style.display = 'none';
-            }, 1000);
-          }, 500);
-        }
-        loadingProgress.style.width = progress + '%';
-      }, 300);
-      
-      // Module button click handlers
-      moduleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const moduleId = button.getAttribute('data-module');
-          moduleTitle.textContent = modules[moduleId].title;
-          moduleDescription.innerHTML = modules[moduleId].description;
-          moduleContent.classList.remove('hidden');
+          const cameraEl = camera.object3D;
+          const cameraDirection = new THREE.Vector3();
+          camera.object3D.getWorldDirection(cameraDirection);
+          
+          if (direction === 'forward') {
+            cameraDirection.multiplyScalar(0.1);
+            camera.object3D.position.add(cameraDirection);
+          } else if (direction === 'backward') {
+            cameraDirection.multiplyScalar(-0.1);
+            camera.object3D.position.add(cameraDirection);
+          }
+          
+          requestAnimationFrame(moveCamera);
+        };
+        
+        moveForwardBtn.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          moving = true;
+          direction = 'forward';
+          moveCamera();
         });
-      });
-      
-      // Close module content
-      closeModuleBtn.addEventListener('click', () => {
-        moduleContent.classList.add('hidden');
-      });
-      
-      // Enter VR mode
-      enterVRBtn.addEventListener('click', () => {
-        const scene = document.querySelector('a-scene');
-        if (scene.hasAttribute('vr-mode')) {
-          scene.exitVR();
-        } else {
-          scene.enterVR();
-        }
-      });
-      
-      // Make A-Frame entities interactive
-      document.querySelectorAll('a-sphere, a-box, a-torus-knot, a-cylinder').forEach(entity => {
-        if (!entity.classList.contains('particles') && 
-            !entity.parentNode.classList.contains('particles') && 
-            !entity.classList.contains('ai-network') && 
-            !entity.parentNode.classList.contains('ai-network') && 
-            !entity.classList.contains('neuron-network') && 
-            !entity.parentNode.classList.contains('neuron-network') && 
-            !entity.classList.contains('dna-helix') && 
-            !entity.parentNode.classList.contains('dna-helix')) {
-          
-          entity.setAttribute('class', 'interactive');
-          entity.setAttribute('event-set__mouseenter', 'scale: 1.1 1.1 1.1');
-          entity.setAttribute('event-set__mouseleave', 'scale: 1 1 1');
-          
-          entity.addEventListener('click', function(evt) {
-            // Find nearest module text
-            const parentEntity = this.parentNode;
-            const textEntity = parentEntity.querySelector('a-text');
-            if (textEntity) {
-              const moduleText = textEntity.getAttribute('value').toLowerCase();
-              
-              // Find matching module
-              let matchedModule = null;
-              Object.keys(modules).forEach(key => {
-                if (moduleText.includes(key) || modules[key].title.toLowerCase().includes(moduleText)) {
-                  matchedModule = key;
-                }
-              });
-              
-              if (matchedModule) {
-                moduleTitle.textContent = modules[matchedModule].title;
-                moduleDescription.innerHTML = modules[matchedModule].description;
-                moduleContent.classList.remove('hidden');
-              }
-            }
-          });
-        }
-      });
-    });
-  </script>
-</body>
-    </html>
+        
+        moveForwardBtn.addEventListener('touchend', function() {
+          moving = false;
+        });
+        
+        moveBackwardBtn.addEventListener('
