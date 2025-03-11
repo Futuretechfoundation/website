@@ -79,7 +79,32 @@
             height: 3.5rem;
             object-fit: contain;
         }
+        
+        /* ... other CSS styles ... */
+        .menu-sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: var(--white);
+            padding: 1.5rem;
+            box-shadow: -2px 0px 10px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            z-index: 1100;
+            transition: transform 0.3s ease-out, visibility 0.3s, opacity 0.3s;
+            transform: translateX(100%);
+            visibility: hidden;
+            opacity: 0;
+        }
 
+        .menu-sidebar.active {
+            transform: translateX(0);
+            visibility: visible;
+            opacity: 1;
+        }
+    
         .menu-button {
             background: none;
             border: none;
@@ -89,11 +114,7 @@
             cursor: pointer;
             padding: 10px;
             transition: var(--transition);
-            <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
-    <span class="hamburger-icon"></span>
-    <span class="hamburger-icon"></span>
-    <span class="hamburger-icon"></span>
-</button>
+        
         }
 
         .hamburger-icon {
@@ -667,17 +688,17 @@
     <header>
         <div class="top-bar">
             <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
-            <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
+           <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
                 <span class="hamburger-icon"></span>
                 <span class="hamburger-icon"></span>
                 <span class="hamburger-icon"></span>
-            </button>
+           </button>
         </div>
     </header>
 
     <!-- Menu Sidebar -->
     <div id="menuSidebar" class="menu-sidebar">
-        <button onclick="toggleMenu()" class="close-button" aria-label="Close Menu">×</button>
+          <button onclick="toggleMenu()" class="close-button" aria-label="Close Menu">×</button>
         <h2>Menu</h2>
         
         <!-- Login Button -->
@@ -1273,12 +1294,14 @@
         }
     }
 </style>
-<script>
-    function toggleMenu() {
-        const menuSidebar = document.getElementById('menuSidebar');
-        menuSidebar.classList.toggle('active');
-    }
-</script>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.classList.toggle('active');
+        }
+    </script>
 </body>
     </html>
                                                                                                                                                                
