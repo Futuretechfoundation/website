@@ -3,127 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access Hub for future technology resources">
+    <meta name="theme-color" content="#0093E9">
     <title>Welcome to the Access Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #4f46e5;
+            --gradient-start: #0093E9;
+            --gradient-end: #80D0C7;
+            --surface-color: rgba(255, 255, 255, 0.15);
+            --text-color: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --transition-speed: 0.3s;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to bottom, #0093E9, #80D0C7);
-            color: white;
-            overflow: hidden;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            max-width: 700px;
+            background-color: var(--surface-color);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px var(--shadow-color);
+            width: min(90%, 650px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.6s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 1.5rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
         }
+
         p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
         }
+
+        #wallet-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .status-icon {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background-color: #e11d48;
+            display: inline-block;
+        }
+
+        .status-icon.connected {
+            background-color: #10b981;
+        }
+
         #connect-button {
-            background: linear-gradient(45deg, #6a4dff, #2c7bf5);
+            background: var(--primary-color);
             color: white;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             border: none;
-            border-radius: 50px;
+            border-radius: 0.75rem;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
         }
+
+        #connect-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
         #connect-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+            background: var(--primary-hover);
+            transform: translateY(-3px);
         }
+
+        #connect-button:hover::before {
+            left: 100%;
+        }
+
         #connect-button:active {
-            transform: scale(0.95);
+            transform: translateY(0);
         }
+
         #connect-button:focus {
-            outline: none;
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
         }
+        
+        .address-display {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            display: inline-block;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .resource-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-card a::after {
+            content: '→';
+            margin-left: 0.5rem;
+            transition: transform var(--transition-speed);
+            display: inline-block;
+        }
+
+        .resource-card:hover a::after {
+            transform: translateX(5px);
+        }
+
         .hidden {
             display: none;
         }
-        .container ul {
-            list-style-type: none;
-            padding: 0;
-            font-size: 1.1rem;
-            margin-top: 20px;
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
         }
-        .container ul li {
-            margin: 15px 0;
+
+        #error-message {
+            color: #f87171;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
-        .container ul li a {
-            color: #FFF;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease-in-out;
+
+        @media (prefers-reduced-motion) {
+            .container, .fade-in {
+                animation: none;
+            }
+            #connect-button::before, #connect-button:hover, .resource-card:hover, .resource-card:hover a::after {
+                transition: none;
+                transform: none;
+            }
         }
-        .container ul li a:hover {
-            color: #6a4dff;
-            text-decoration: underline;
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --surface-color: rgba(23, 23, 23, 0.8);
+                --text-color: #f3f4f6;
+                --shadow-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to the Access Hub</h1>
-        <p id="connect-prompt">Please connect your MetaMask wallet to access our resources.</p>
+        <p id="connect-prompt">Please connect your wallet to access our resources.</p>
+        
+        <div id="wallet-status">
+            <span class="status-icon" id="status-indicator"></span>
+            <span id="status-text">Not connected</span>
+        </div>
+        
         <button id="connect-button">Connect Wallet</button>
+        <div id="wallet-address" class="hidden"></div>
+        <div id="error-message" class="hidden"></div>
+        
         <div id="content" class="hidden">
             <p>You now have access to our full range of future technology resources:</p>
-            <ul>
-                <li><a href="page-3d-bioprinted-organ-tissue.html">3D Bioprinted Organ Tissue</a></li>
-                <li><a href="page-regenerative-biotherapeutics.html">Regenerative Biotherapeutics</a></li>
-                <li><a href="page-orthopedic-implants.html">Orthopedic Implants</a></li>
-                <li><a href="page-stem-cell-therapy.html">Stem Cell Therapy Options</a></li>
-                <li><a href="page-nanobots-surgical-assistance.html">Nanobots & Surgical Assistance</a></li>
-                <li><a href="page-prosthetic-devices.html">Prosthetic Devices and More</a></li>
-            </ul>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <a href="page-3d-bioprinted-organ-tissue.html">3D Bioprinted Organ Tissue</a>
+                </div>
+                <div class="resource-card">
+                    <a href="page-regenerative-biotherapeutics.html">Regenerative Biotherapeutics</a>
+                </div>
+                <div class="resource-card">
+                    <a href="page-orthopedic-implants.html">Orthopedic Implants</a>
+                </div>
+                <div class="resource-card">
+                    <a href="page-stem-cell-therapy.html">Stem Cell Therapy Options</a>
+                </div>
+                <div class="resource-card">
+                    <a href="page-nanobots-surgical-assistance.html">Nanobots & Surgical Assistance</a>
+                </div>
+                <div class="resource-card">
+                    <a href="page-prosthetic-devices.html">Prosthetic Devices</a>
+                </div>
+            </div>
         </div>
     </div>
+
     <script>
-        const connectButton = document.getElementById('connect-button');
-        const content = document.getElementById('content');
-        const connectPrompt = document.getElementById('connect-prompt');
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectButton = document.getElementById('connect-button');
+            const content = document.getElementById('content');
+            const connectPrompt = document.getElementById('connect-prompt');
+            const walletAddress = document.getElementById('wallet-address');
+            const errorMessage = document.getElementById('error-message');
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
 
-        async function connectMetaMask() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    // Request account access
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    // If connected, display the content
-                    connectPrompt.textContent = `Wallet connected: ${accounts[0]}`;
-                    connectButton.classList.add('hidden');
-                    content.classList.remove('hidden');
-                } catch (error) {
-                    console.error("User denied account access", error);
-                    connectPrompt.textContent = "Please allow wallet access to continue.";
+            // Check if already connected
+            checkConnection();
+
+            async function checkConnection() {
+                if (typeof window.ethereum !== 'undefined') {
+                    try {
+                        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                        if (accounts.length > 0) {
+                            handleConnection(accounts[0]);
+                        }
+                    } catch (error) {
+                        console.error("Error checking existing connection:", error);
+                    }
                 }
-            } else {
-                connectPrompt.textContent = "MetaMask is not installed. Please install MetaMask to use this feature.";
-                connectButton.classList.add('hidden');
             }
-        }
 
-        connectButton.addEventListener('click', connectMetaMask);
+            function handleConnection(account) {
+                // Format address for display
+                const formattedAddress = `${account.substring(0, 6)}...${account.substring(account.length - 4)}`;
+                
+                // Update UI
+                connectPrompt.textContent = 'Wallet connected successfully!';
+                walletAddress.innerHTML = `<span class="address-display">${formattedAddress}</span>`;
+                walletAddress.classList.remove('hidden');
+                connectButton.classList.add('hidden');
+                content.classList.remove('hidden');
+                content.classList.add('fade-in');
+                
+                // Update status indicator
+                statusIndicator.classList.add('connected');
+                statusText.textContent = 'Connected';
+                
+                // Hide any error messages
+                errorMessage.classList.add('hidden');
+            }
+
+            async function connectMetaMask() {
+                if (typeof window.ethereum !== 'undefined') {
+                    try {
+                        // Show loading state
+                        connectButton.textContent = 'Connecting...';
+                        connectButton.disabled = true;
+                        
+                        // Request account access
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        
+                        // Handle successful connection
+                        handleConnection(accounts[0]);
+                        
+                    } catch (error) {
+                        console.error("Connection error:", error);
+                        
+                        // Reset button
+                        connectButton.textContent = 'Connect Wallet';
+                        connectButton.disabled = false;
+                        
+                        // Show error message
+                        errorMessage.textContent = error.message || "Failed to connect. Please try again.";
+                        errorMessage.classList.remove('hidden');
+                    }
+                } else {
+                    // MetaMask not installed
+                    connectPrompt.textContent = "Wallet extension not detected";
+                    errorMessage.textContent = "Please install MetaMask or another compatible wallet to access this feature.";
+                    errorMessage.classList.remove('hidden');
+                    connectButton.textContent = 'Install MetaMask';
+                    connectButton.onclick = () => window.open('https://metamask.io/download/', '_blank');
+                }
+            }
+
+            // Listen for account changes
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', (accounts) => {
+                    if (accounts.length === 0) {
+                        // User disconnected
+                        location.reload();
+                    } else {
+                        // Account switched
+                        handleConnection(accounts[0]);
+                    }
+                });
+            }
+
+            connectButton.addEventListener('click', connectMetaMask);
+        });
     </script>
 </body>
-</html>
+            </html>
