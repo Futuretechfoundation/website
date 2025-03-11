@@ -5,110 +5,494 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afiba 3D Chatbot</title>
   <style>
-    body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
-    #chat-container {
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    }
+    
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    
+    #avatar-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      z-index: 5;
+    }
+    
+    #avatar-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+      transition: transform 0.3s ease;
+    }
+    
+    #avatar-image.speaking {
+      animation: pulse 1s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+    
+    #organization-name {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      z-index: 10;
+    }
+    
+    #chat-interface {
       position: absolute;
       bottom: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      box-sizing: border-box;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    #chat-messages {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
       padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: white;
+    }
+    
+    .message {
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      max-width: 80%;
+      word-wrap: break-word;
+      line-height: 1.4;
+    }
+    
+    .user-message {
+      background: #2979FF;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+    
+    .bot-message {
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+    }
+    
+    #input-container {
       display: flex;
       align-items: center;
     }
-    #input-box {
+    
+    #message-input {
       flex-grow: 1;
-      margin-right: 10px;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 16px;
+      outline: none;
+      transition: background 0.3s;
     }
+    
+    #message-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    #message-input:focus {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
     #send-button {
-      padding: 10px 20px;
+      margin-left: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      background: #00C853;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    #send-button:hover {
+      background: #00E676;
+    }
+    
+    #toggle-info {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    
+    #toggle-info:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    #info-panel {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      display: none;
+      z-index: 9;
+    }
+    
+    #info-panel h2 {
+      margin-top: 0;
+      color: #00E676;
+    }
+    
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 100;
+    }
+    
+    .loader {
+      width: 100px;
+      height: 100px;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top: 5px solid #00E676;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+    
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+    
+    /* Add holographic UI elements */
+    .holographic-ui {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.7;
+      z-index: 3;
+    }
+    
+    .ui-left {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 300px;
+      width: 100px;
+    }
+    
+    .ui-right {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 300px;
+      width: 100px;
     }
   </style>
 </head>
 <body>
-  <div id="chat-container">
-    <input type="text" id="input-box" placeholder="Type your message to Afiba..." />
-    <button id="send-button">Send</button>
+  <div id="loading-screen">
+    <div class="loader"></div>
+    <h2>Loading Afiba Avatar...</h2>
+    <p>Preparing your interactive experience</p>
   </div>
+
+  <div id="organization-name">FUTURE TECH FOUNDATION</div>
+  
+  <button id="toggle-info">i</button>
+  
+  <div id="info-panel">
+    <h2>About Afiba</h2>
+    <p>Afiba is an AI assistant designed to answer questions about our organization.</p>
+    <h3>Sample Questions</h3>
+    <ul>
+      <li>What services do you offer?</li>
+      <li>How can I become a member?</li>
+      <li>What is your mission statement?</li>
+      <li>When was the organization founded?</li>
+    </ul>
+  </div>
+  
+  <!-- Add holographic UI elements -->
+  <div class="holographic-ui ui-left">
+    <svg width="100" height="300" viewBox="0 0 100 300">
+      <rect x="10" y="50" width="20" height="200" fill="rgba(0, 255, 255, 0.2)" />
+      <rect x="40" y="100" width="20" height="150" fill="rgba(0, 255, 255, 0.2)" />
+      <rect x="70" y="70" width="20" height="180" fill="rgba(0, 255, 255, 0.2)" />
+    </svg>
+  </div>
+  
+  <div class="holographic-ui ui-right">
+    <svg width="100" height="300" viewBox="0 0 100 300">
+      <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+      <circle cx="50" cy="150" r="40" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+      <circle cx="50" cy="250" r="35" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+    </svg>
+  </div>
+  
+  <div id="avatar-container">
+    <img id="avatar-image" src="/api/placeholder/400/400" alt="Afiba Avatar" />
+  </div>
+  
+  <div id="chat-interface">
+    <div id="chat-messages"></div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Ask Afiba a question..." />
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script>
-    // Initialize the Three.js scene
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    // Configuration
+    const RESPONSES = {
+      "default": "I'm Afiba, your virtual assistant from the Future Tech Foundation. I can answer questions about our organization. How can I help you today?",
+      "greeting": ["Hello!", "Hi there!", "Greetings!", "Welcome! How can I help?"],
+      "mission": "Our mission at Future Tech Foundation is to empower communities through technology education and innovation with a focus on African development and representation in the tech space.",
+      "services": "We offer technology workshops, community outreach programs, educational resources, mentorship opportunities, and networking events for tech professionals, with special emphasis on connecting African tech talent globally.",
+      "membership": "To become a member, visit our website and click on the 'Join Us' button. We offer different membership tiers based on your level of involvement and interest in our initiatives.",
+      "founded": "The Future Tech Foundation was founded in 2024 by a group of tech enthusiasts committed to bridging the digital divide in underserved communities and increasing African representation in technology fields.",
+      "events": "We host monthly tech workshops, quarterly hackathons, and an annual technology conference. Our next major event is our Pan-African Tech Summit happening virtually next month.",
+      "contact": "You can reach us at info@futuretechfoundation.org or call our main office at (507) 295-8561.",
+      "thankyou": ["You're welcome!", "Happy to help!", "Anytime!", "My pleasure!"],
+      "goodbye": ["Goodbye!", "See you later!", "Take care!", "Until next time!"]
+    };
 
-    // Add lighting to enhance 3D effect
-    const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    const ambientLight = new THREE.AmbientLight(0x404040); // Soft ambient light
-    scene.add(ambientLight);
-
-    // Load the Afiba texture
-    const textureLoader = new THREE.TextureLoader();
-    const afibaTexture = textureLoader.load('https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp');
-
-    // Create a 3D box to represent Afiba
-    const geometry = new THREE.BoxGeometry(2, 2, 2); // Cube geometry
-    const material = new THREE.MeshStandardMaterial({ map: afibaTexture });
-    const afiba = new THREE.Mesh(geometry, material);
-    scene.add(afiba);
-
-    // Position the camera and Afiba
-    camera.position.z = 5;
-
-    // Animate the chatbot (subtle rotation)
+    // DOM Elements
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const chatMessages = document.getElementById('chat-messages');
+    const toggleInfoButton = document.getElementById('toggle-info');
+    const infoPanel = document.getElementById('info-panel');
+    const loadingScreen = document.getElementById('loading-screen');
+    const avatarImage = document.getElementById('avatar-image');
+    
+    // Set up background effects with Three.js
+    let scene, camera, renderer, particles;
+    
+    function initThreeJS() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000, 0);
+      document.body.insertBefore(renderer.domElement, document.body.firstChild);
+      
+      // Add particles
+      createParticles();
+      
+      // Position camera
+      camera.position.z = 5;
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+      
+      // Animation loop
+      animate();
+    }
+    
+    function createParticles() {
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 1000;
+      
+      const posArray = new Float32Array(particlesCount * 3);
+      
+      for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 10;
+      }
+      
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0x00ffff,
+        transparent: true,
+        opacity: 0.5
+      });
+      
+      particles = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particles);
+    }
+    
     function animate() {
       requestAnimationFrame(animate);
-      afiba.rotation.y += 0.01; // Rotate Afiba
+      
+      particles.rotation.x += 0.0005;
+      particles.rotation.y += 0.0005;
+      
       renderer.render(scene, camera);
     }
-    animate();
-
-    // Chat handling: Display messages as text bubbles
-    const inputBox = document.getElementById('input-box');
-    const sendButton = document.getElementById('send-button');
-
-    function createTextBubble(message, isUser) {
-      const textDiv = document.createElement('div');
-      textDiv.textContent = message;
-      textDiv.style.position = 'absolute';
-      textDiv.style.background = isUser ? '#0077ff' : '#ffffff';
-      textDiv.style.color = isUser ? '#ffffff' : '#000000';
-      textDiv.style.borderRadius = '10px';
-      textDiv.style.padding = '10px';
-      textDiv.style.maxWidth = '200px';
-      textDiv.style.top = `${Math.random() * 50 + 20}px`; // Randomize position for demo
-      textDiv.style.left = `${Math.random() * 300 + 50}px`; // Randomize position for demo
-      document.body.appendChild(textDiv);
-
-      // Remove after 3 seconds
-      setTimeout(() => document.body.removeChild(textDiv), 3000);
+    
+    // Chat functionality
+    function addUserMessage(text) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user-message';
+      messageDiv.textContent = text;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    sendButton.addEventListener('click', () => {
-      const userMessage = inputBox.value.trim();
-      if (userMessage) {
-        createTextBubble(`You: ${userMessage}`, true);
-        inputBox.value = '';
+    function addBotMessage(text) {
+      // Animate avatar speaking
+      avatarImage.classList.add('speaking');
+      
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot-message';
+      
+      // Simulate typing effect
+      let i = 0;
+      messageDiv.textContent = "";
+      chatMessages.appendChild(messageDiv);
+      
+      const typingEffect = setInterval(() => {
+        if (i < text.length) {
+          messageDiv.textContent += text.charAt(i);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          i++;
+        } else {
+          clearInterval(typingEffect);
+          setTimeout(() => {
+            avatarImage.classList.remove('speaking');
+          }, 500);
+        }
+      }, 20);
+    }
 
-        // Simulated chatbot response
-        setTimeout(() => {
-          const botResponse = `Afiba: I heard "${userMessage}"`;
-          createTextBubble(botResponse, false);
-        }, 1000);
+    function getRandomResponse(responseArray) {
+      return responseArray[Math.floor(Math.random() * responseArray.length)];
+    }
+
+    function processMessage(message) {
+      message = message.toLowerCase();
+      
+      // Simple keyword-based responses
+      if (message.includes("hi") || message.includes("hello") || message.includes("hey")) {
+        return getRandomResponse(RESPONSES.greeting);
+      } else if (message.includes("mission") || message.includes("purpose")) {
+        return RESPONSES.mission;
+      } else if (message.includes("service") || message.includes("offer") || message.includes("provide")) {
+        return RESPONSES.services;
+      } else if (message.includes("member") || message.includes("join")) {
+        return RESPONSES.membership;
+      } else if (message.includes("found") || message.includes("start") || message.includes("begin")) {
+        return RESPONSES.founded;
+      } else if (message.includes("event") || message.includes("workshop") || message.includes("conference")) {
+        return RESPONSES.events;
+      } else if (message.includes("contact") || message.includes("email") || message.includes("phone") || message.includes("reach")) {
+        return RESPONSES.contact;
+      } else if (message.includes("thank")) {
+        return getRandomResponse(RESPONSES.thankyou);
+      } else if (message.includes("bye") || message.includes("goodbye") || message.includes("see you")) {
+        return getRandomResponse(RESPONSES.goodbye);
+      } else {
+        // Default response for unrecognized queries
+        return "I don't have specific information on that yet. For more details about the Future Tech Foundation, please contact our team or visit our website.";
+      }
+    }
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message === "") return;
+      
+      // Add user message to chat
+      addUserMessage(message);
+      messageInput.value = "";
+      
+      // Process and respond after a short delay
+      setTimeout(() => {
+        const response = processMessage(message);
+        addBotMessage(response);
+      }, 500);
+    }
+
+    // Event listeners
+    sendButton.addEventListener('click', sendMessage);
+    
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
       }
     });
+    
+    toggleInfoButton.addEventListener('click', () => {
+      infoPanel.style.display = infoPanel.style.display === 'none' ? 'block' : 'none';
+    });
 
-    // Resize handling
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Three.js background
+      initThreeJS();
+      
+      // Set the avatar image to the provided image
+      const dataImage = ""; // This is where you would put your base64 encoded image if needed
+      
+      // Hide loading screen after everything is loaded
+      setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        addBotMessage(RESPONSES.default);
+      }, 1500);
     });
   </script>
 </body>
-</html>
+        </html>
