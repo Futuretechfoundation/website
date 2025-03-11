@@ -814,44 +814,66 @@
         </section>
     </main>
 
-<!-- Add Hover Effect -->
+<!-- Add Hover Effect with Smoother Transition -->
 <style>
+    section img {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
     section img:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 </style>
     
-    </div>
+</div>
 
-<!-- Persistent Chatbot Button (Darker Red Background) -->
-<button id="chatbotToggleBtn" class="chatbot-toggle-btn">💬</button>
+<!-- Persistent Chatbot Button (Modern Design) -->
+<button id="chatbotToggleBtn" class="chatbot-toggle-btn">
+    <span class="chat-icon">💬</span>
+</button>
 
 <!-- Chatbot Section -->
-<div class="chatbot-container" id="chatbot" style="display: none;">
-    <!-- Close Button to Toggle the Chat -->
-    <button class="close-chat-btn" onclick="closeChat()">X</button>
-
-    <!-- Afiba's Photo -->
-    <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba" class="avatar" />
-
-    <!-- Welcome Message -->
-    <div class="welcome-message">
-        <strong>Hello, I'm Afiba!</strong><br>
-        Your guide to the FutureTechFoundation.
+<div class="chatbot-container" id="chatbot">
+    <!-- Header with Avatar and Close Button -->
+    <div class="chatbot-header">
+        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba" class="avatar" />
+        <div class="header-text">
+            <h3>Afiba</h3>
+            <p>Your FutureTech Foundation Guide</p>
+        </div>
+        <button class="close-chat-btn" onclick="toggleChat()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
     </div>
 
     <!-- Chatbox Section -->
     <div class="chatbox" id="chatbox">
         <div id="chatboxContent">
-            <p><strong>Afiba:</strong> How can I help you today? Ask me about our mission, projects, or anything else!</p>
+            <div class="message bot-message">
+                <p>How can I help you today? Ask me about our mission, projects, or anything else!</p>
+            </div>
         </div>
     </div>
 
     <!-- Input Area -->
     <div class="input-area">
         <input type="text" id="userInput" placeholder="Type your question here..." />
-        <button onclick="respond()">Ask Afiba</button>
+        <button id="sendButton" onclick="respond()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+            </svg>
+        </button>
+    </div>
+    
+    <!-- Quick Reply Buttons -->
+    <div class="quick-replies">
+        <button onclick="quickReply('mission')">Our Mission</button>
+        <button onclick="quickReply('projects')">Projects</button>
+        <button onclick="quickReply('contact')">Contact</button>
+        <button onclick="quickReply('events')">Events</button>
     </div>
 </div>
 
@@ -862,17 +884,36 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #8B0000; /* Darker red color */
+        background: linear-gradient(135deg, #8B0000, #5A0000);
         color: white;
         border: none;
         border-radius: 50%;
         width: 60px;
         height: 60px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         font-size: 1.5rem;
         text-align: center;
         cursor: pointer;
         z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .chatbot-toggle-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+    
+    .chat-icon {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
     }
 
     /* Chatbot Container */
@@ -880,37 +921,78 @@
         position: fixed;
         bottom: 100px;
         right: 20px;
-        width: 300px;
+        width: 350px;
         background: white;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         z-index: 999;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s ease;
+        max-height: 500px;
+    }
+    
+    .chatbot-container.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+    
+    /* Chatbot Header */
+    .chatbot-header {
+        display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, #8B0000, #5A0000);
+        color: white;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .chatbot-header .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-right: 12px;
+    }
+    
+    .header-text {
+        flex: 1;
+    }
+    
+    .header-text h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .header-text p {
+        margin: 0;
+        font-size: 12px;
+        opacity: 0.8;
     }
 
     /* Close Button Styling */
     .close-chat-btn {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.2);
         border: none;
-        font-size: 1rem;
-        color: #333;
-        cursor: pointer;
-    }
-
-    /* Afiba's Photo */
-    .avatar {
-        width: 100px;
-        height: 100px;
         border-radius: 50%;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+    
+    .close-chat-btn:hover {
+        background: rgba(255, 255, 255, 0.4);
     }
 
     /* Chatbox Content */
@@ -918,72 +1000,262 @@
         flex: 1;
         width: 100%;
         overflow-y: auto;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 10px;
-        background: #f9f9f9;
+        padding: 16px;
+        background: #f8f9fa;
+        scrollbar-width: thin;
+    }
+    
+    .chatbox::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .chatbox::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
     }
 
     #chatboxContent {
-        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .message {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 18px;
+        animation: fadeIn 0.3s ease;
+        line-height: 1.4;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bot-message {
+        background-color: #e9ecef;
+        align-self: flex-start;
+        border-radius: 18px 18px 18px 4px;
+    }
+    
+    .user-message {
+        background-color: #8b0000;
+        color: white;
+        align-self: flex-end;
+        border-radius: 18px 18px 4px 18px;
+        margin-left: auto;
+    }
+    
+    .message p {
+        margin: 0;
+        font-size: 14px;
     }
 
     /* Input Area */
     .input-area {
-        margin-top: 10px;
         display: flex;
-        width: 100%;
+        padding: 12px 16px;
+        border-top: 1px solid #e9ecef;
+        background: white;
     }
 
     .input-area input {
         flex: 1;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px 0 0 5px;
-        font-size: 0.9rem;
+        padding: 10px 14px;
+        border: 1px solid #ced4da;
+        border-radius: 24px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .input-area input:focus {
+        border-color: #8b0000;
+        box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
     }
 
     .input-area button {
         background: #8B0000;
         color: white;
         border: none;
-        padding: 8px;
-        border-radius: 0 5px 5px 0;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        margin-left: 8px;
         cursor: pointer;
-        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .input-area button:hover {
         background: #5A0000;
+        transform: scale(1.05);
+    }
+    
+    /* Quick Reply Buttons */
+    .quick-replies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 16px 16px;
+        background: white;
+    }
+    
+    .quick-replies button {
+        background: transparent;
+        border: 1px solid #8b0000;
+        color: #8b0000;
+        border-radius: 16px;
+        padding: 6px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .quick-replies button:hover {
+        background: rgba(139, 0, 0, 0.1);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+        .chatbot-container {
+            width: calc(100% - 40px);
+            bottom: 80px;
+            right: 20px;
+            left: 20px;
+            max-height: 400px;
+        }
+
+        // Add bot response with typing effect
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.className = 'message bot-message';
+        chatboxContent.appendChild(botMessageDiv);
+        
+        // Simulate typing indicator
+        botMessageDiv.innerHTML = '<p><span class="typing-indicator"><span>.</span><span>.</span><span>.</span></span></p>';
+        
+        // Scroll to the bottom
+        chatboxContent.scrollTop = chatboxContent.scrollHeight;
+        
+        // Clear input field
+        document.getElementById('userInput').value = "";
+        
+        // Display actual response after a short delay
+        setTimeout(() => {
+            botMessageDiv.innerHTML = `<p>${response}</p>`;
+            chatboxContent.scrollTop = chatboxContent.scrollHeight;
+        }, 800);
+    }
+    
+    // Add typing indicator styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .typing-indicator {
+            display: inline-flex;
+        }
+        
+        .typing-indicator span {
+            height: 5px;
+            width: 5px;
+            margin: 0 1px;
+            background-color: #333;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.4;
+        }
+        
+        .typing-indicator span:nth-child(1) {
+            animation: pulse 1s infinite 0.1s;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation: pulse 1s infinite 0.3s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation: pulse 1s infinite 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.4; transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
     }
 </style>
 
 <!-- JavaScript for Chat Functionality -->
 <script>
     // Toggle Chatbot Visibility
-    document.getElementById("chatbotToggleBtn").addEventListener("click", function () {
-        const chatbot = document.getElementById("chatbot");
-        chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+    document.getElementById("chatbotToggleBtn").addEventListener("click", function() {
+        toggleChat();
     });
 
-    function closeChat() {
-        document.getElementById("chatbot").style.display = "none";
+    function toggleChat() {
+        const chatbot = document.getElementById("chatbot");
+        chatbot.classList.toggle("active");
+        
+        // Focus on input when chat is opened
+        if (chatbot.classList.contains("active")) {
+            document.getElementById("userInput").focus();
+        }
+    }
+
+    // Handle Enter key press
+    document.getElementById("userInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            respond();
+        }
+    });
+
+    function quickReply(topic) {
+        document.getElementById("userInput").value = topic;
+        respond();
     }
 
     function respond() {
-    const userInput = document.getElementById('userInput').value.trim().toLowerCase();
-    const chatboxContent = document.getElementById('chatboxContent');
+        const userInput = document.getElementById('userInput').value.trim();
+        if (!userInput) return; // Don't process empty inputs
+        
+        const chatboxContent = document.getElementById('chatboxContent');
+        
+        // Add user message to chat
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'message user-message';
+        userMessageDiv.innerHTML = `<p>${userInput}</p>`;
+        chatboxContent.appendChild(userMessageDiv);
+        
+        // Define FAQ responses
+        let response = "Thank you for your question! I'll get back to you on that.";
+        
+        // Convert input to lowercase for matching but display original text
+        const inputLower = userInput.toLowerCase();
+        
+        // Enhanced FAQ with more contextual matching
+        if (inputLower.includes("mission") || inputLower.includes("goal") || inputLower.includes("purpose")) {
+            response = "We collaborate with leading universities and researchers to promote STEM education and technological literacy worldwide. We also offer research grants and internship opportunities.";
+        } else if (inputLower.includes("event") || inputLower.includes("conference") || inputLower.includes("webinar")) {
+            response = "Our upcoming events include a Tech Expo in December and a webinar on AI ethics next month. Sign up on our website to receive notifications about all our events.";
+        } else if (inputLower.includes("support") || inputLower.includes("donate") || inputLower.includes("help")) {
+            response = "You can support our foundation through donations, volunteering, or by spreading awareness about our mission. Visit our 'Giving to FutureTech' page for more information.";
+        } else if (inputLower.includes("hello") || inputLower.includes("hi") || inputLower === "hey") {
+            response = "Hello there! I'm Afiba, your guide to the FutureTech Foundation. How can I assist you today?";
+        } else if (inputLower.includes("thank")) {
+            response = "You're welcome! If you have any more questions, feel free to ask.";
+        } = "The FutureTech Foundation's mission is to drive innovation by collaborating with experts and fostering groundbreaking technological advancements for societal benefit.";
+        } else if (inputLower.includes("project") || inputLower.includes("work") || inputLower.includes("initiative")) {
+            response = "Our current projects include AI development for healthcare, renewable energy solutions, smart city infrastructure, and educational technology platforms.";
+        } else if (inputLower.includes("contact") || inputLower.includes("reach") || inputLower.includes("email")) {
+            response = "You can contact us via email at info@futuretechfoundation.org or through the contact form on our website. Our team typically responds within 24-48 hours.";
+        } else if (inputLower.includes("academic") || inputLower.includes("research") || inputLower.includes("university")) {
+            response
 
-    let response = "Thank you for your question! I'll get back to you on that.";
 
-    // Define FAQ responses
-    const faq = {
-        "mission": "The FutureTech Foundation's mission is to drive innovation by collaborating with experts and fostering groundbreaking technological advancements.",
-        "projects": "Our current projects include AI development, renewable energy solutions, and smart city infrastructure.",
-        "contact": "You can contact us via our email at info@futuretechfoundation.org or through the contact form on our website.",
-        "academics": "We collaborate with leading universities and researchers to promote STEM education and technological literacy worldwide.",
-        "events": "Our upcoming events include a Tech Expo in December and a webinar on AI ethics next month.",
-    };
 
     // Match user input with FAQ
     if (userInput in faq) {
