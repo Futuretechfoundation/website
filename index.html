@@ -505,97 +505,117 @@
         }
 
         /* Footer */
-        footer {
-            background-color: #212121;
-            color: var(--white);
-            padding: 3rem 1.5rem 2rem;
-            margin-top: auto;
-        }
+        :root {
+    --white: #fff;
+    --accent-color: #f39c12; /* Adjust as needed */
+    --transition: 0.3s ease-in-out;
+}
 
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.modern-footer {
+    background-color: #222;
+    color: var(--white);
+    text-align: center;
+    padding: 20px 0;
+}
 
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.25rem;
-            position: relative;
-            padding-bottom: 0.75rem;
-            color: var(--accent-color);
-        }
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
 
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
-        }
+.footer-section {
+    flex: 1 1 250px;
+    max-width: 300px;
+}
 
-        .footer-links {
-            list-style: none;
-        }
+.footer-section h4 {
+    margin-bottom: 10px;
+}
 
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .footer-links a {
-            color: #bbb;
-            transition: var(--transition);
-        }
+.footer-nav a {
+    text-decoration: none;
+    color: var(--white);
+    margin: 5px 0;
+}
 
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
+.footer-links a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
 
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
 
-        .social-links a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
-        }
+.social-links a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+}
 
-        .social-links img {
-            width: 18px;
-            height: 18px;
-            filter: brightness(0) invert(1);
-        }
+.social-links img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+}
 
-        .address p {
-            margin-bottom: 0.5rem;
-            color: #bbb;
-        }
+.address p {
+    margin-bottom: 0.5rem;
+    color: #bbb;
+}
 
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #999;
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.copyright p,
+.disclaimer {
+    text-align: center;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter-form input {
+    text-align: center;
+}
         }
 
         .disclaimer {
