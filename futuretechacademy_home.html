@@ -4,253 +4,493 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutureTech Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Basic Styles */
-        body {
-            font-family: Arial, sans-serif;
+        /* Modern Variables */
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #7c0c0c;
+            --secondary-hover: #9e1010;
+            --dark: #121212;
+            --dark-medium: #1e1e1e;
+            --dark-light: #333;
+            --light: #ffffff;
+            --gray-light: #f8f8f8;
+            --gray-medium: #e0e0e0;
+            --gray-dark: #555;
+            --accent: #ffcc00;
+            --success: #34a853;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --font-primary: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Reset & Base Styles */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
-            display: flex;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.6;
             min-height: 100vh;
+            display: flex;
             flex-direction: column;
         }
 
+        /* Header Styles */
         header {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 1em;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .logo {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-home:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--dark);
+            overflow-x: hidden;
+            transition: 0.4s;
+            padding-top: 70px;
+            z-index: 1001;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-active {
+            width: 320px;
+        }
+
+        .sidebar a {
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 1rem;
+            color: var(--gray-medium);
+            display: block;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--dark-light);
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 1.75rem;
+            margin-left: 50px;
+            color: var(--light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sidebar .closebtn:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .sidebar h3 {
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            color: var(--accent);
+            background-color: var(--dark-medium);
+            margin: 0;
+            border-bottom: 1px solid var(--dark-light);
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .sidebar ul li {
+            padding: 14px 24px 14px 40px;
+            font-size: 0.95rem;
+            color: var(--gray-medium);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .sidebar ul li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar .highlighted-section {
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        /* Main Content Styles */
+        .content-container {
+            padding: 2rem;
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--secondary), #990000);
+            color: var(--light);
+            padding: 2rem;
             text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.05) 50%, transparent 51%);
+            background-size: 20px 20px;
+        }
+
+        .welcome-banner h2 {
+            margin-bottom: 0.75rem;
+            font-size: 2rem;
             position: relative;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
+        /* Cards & Sections */
+        .card {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
         }
 
-        /* FutureTech Academy Logo */
-        .logo {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            height: 50px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            font-size: 30px;
-            cursor: pointer;
-            color: #fff;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-        }
-
-        /* Sidebar styles */
-.sidebar {
-    height: 100%;
-    width: 300px; /* Fixed width */
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #121212; /* Deep black for better contrast */
-    overflow-x: hidden;
-    overflow-y: scroll; /* Always show scrollbar */
-    transition: 0.3s;
-    padding-top: 60px;
-    padding-bottom: 60px; /* Extra space at bottom */
-    z-index: 9999;
-}
-
-/* Sidebar links */
-.sidebar a {
-    padding: 14px 20px;
-    text-decoration: none;
-    font-size: 1em;
-    color: #e0e0e0; /* Light gray for regular links */
-    display: block;
-    transition: 0.3s;
-}
-
-/* Hover effect */
-.sidebar a:hover {
-    background-color: #333;
-    color: #ffcc00;
-}
-
-/* Sidebar close button */
-.sidebar .closebtn {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 36px;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* Sidebar section headers */
-.sidebar h3 {
-    padding: 14px 20px;
-    font-size: 1.1em;
-    color: #ffcc00; /* Bright yellow */
-    background-color: #1e1e1e; /* Dark gray */
-    margin: 0;
-    border-bottom: 1px solid #444;
-}
-
-/* List items */
-.sidebar ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-/* Regular list items */
-.sidebar ul li {
-    padding: 14px 20px;
-    font-size: 0.95em;
-    color: #e0e0e0; /* Light gray */
-    border-bottom: 1px solid #333;
-    line-height: 1.6;
-}
-
-/* Special sections (Upcoming Dates, American Indian Scholars, Emergency Funds) */
-.sidebar .highlighted-section {
-    color: #ffffff !important; /* Pure white for visibility */
-    font-weight: bold;
-}
-
-/* Prevent last item cutoff */
-.sidebar::after {
-    content: "";
-    display: block;
-    height: 60px;
-}
-
-        /* Page content styles */
-        .content-container {
-            padding: 2em;
-            flex-grow: 1;
-        }
-
-        .welcome-banner {
-            background-color: #7c0c0c;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 1em;
-        }
-
-        .section-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
-        }
-
-        .link-button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 0.8em;
-            text-align: center;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1em;
-        }
-
+        /* MetaMask Login Section */
         .meta-mask-login {
             text-align: center;
-            margin-top: 2em;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
-        .meta-mask-login button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
+        .meta-mask-login h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        .meta-mask-button {
+            background-color: var(--primary);
+            color: var(--light);
             border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
-            font-size: 1.2em;
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .meta-mask-login button:hover {
-            background-color: #1a6f97;
+        .meta-mask-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
+        /* Track Section Styles */
         .track-section {
-            margin-top: 2em;
+            margin-bottom: 2rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .track-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .track-header {
-            background-color: #0d4b8e; /* Electric blue */
-            color: #fff;
-            padding: 1em;
-            font-size: 1.2em;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: var(--light);
+            padding: 1.25rem;
+            position: relative;
+        }
+
+        .track-header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
             text-align: center;
-            margin-bottom: 1em;
         }
 
-        .course-list {
-            margin-left: 20px;
+        .track-content {
+            padding: 1.5rem;
         }
 
-        .course-item {
-            margin: 10px 0;
-            font-size: 1em;
+        .track-section ul {
+            margin: 1rem 0 1rem 1.5rem;
         }
 
-        .footer {
+        .track-section li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .track-section strong {
+            color: var(--primary-dark);
+        }
+
+        /* NOWPayments Button */
+        .payments-section {
             text-align: center;
-            padding: 1em;
-            font-size: 0.9em;
-            background-color: #f8f8f8;
-            color: #555;
-            margin-top: 2em;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
-        /* NOWPayments button style */
-        .nowpayments-button {
-            text-align: center;
-            margin-top: 2em;
-        }
-
-        .nowpayments-button button {
-            background-color: #0d4b8e; /* Electric blue */
-            color: white;
+        .payments-button {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--light);
             border: none;
-            padding: 0.8em 2em;
-            border-radius: 5px;
-            font-size: 1.2em;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .nowpayments-button button:hover {
-            background-color: #1a6f97;
+        .payments-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: var(--gray-medium);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-medium);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--gray-medium);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1rem;
+            }
+
+            .welcome-banner {
+                padding: 1.5rem;
+            }
+
+            .welcome-banner h2 {
+                font-size: 1.5rem;
+            }
+
+            .sidebar-active {
+                width: 280px;
+            }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FutureTech Academy</h1>
+    <div class="header-left">
+        <div class="hamburger" onclick="toggleNav()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <h1 class="site-title">FutureTech Academy</h1>
+    </div>
     <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/futuretechacademy.webp" alt="FutureTech Academy Logo" class="logo">
-    <span class="hamburger" onclick="openNav()">&#9776;</span>
 </header>
+
+<!-- Back to Home Button -->
+<a href="#top" class="back-home" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+</a>
 
 <!-- Sidebar menu -->
 <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#calendar">Academic Calendar</a>
-    <a href="#attendance">Cost of Attendance</a>
-    <a href="#tuition">Tuition</a>
-    <a href="#transcripts">Transcripts</a>
-    <a href="#aid">Financial Aid Timeline</a>
-    <a href="#work-study">Work-Study Info</a>
-    <a href="#contact">Contact Us</a>
+    <span class="closebtn" onclick="toggleNav()"><i class="fas fa-times"></i></span>
+    <a href="#calendar"><i class="far fa-calendar-alt"></i> Academic Calendar</a>
+    <a href="#attendance"><i class="fas fa-calculator"></i> Cost of Attendance</a>
+    <a href="#tuition"><i class="fas fa-dollar-sign"></i> Tuition</a>
+    <a href="#transcripts"><i class="fas fa-file-alt"></i> Transcripts</a>
+    <a href="#aid"><i class="fas fa-hand-holding-usd"></i> Financial Aid Timeline</a>
+    <a href="#work-study"><i class="fas fa-briefcase"></i> Work-Study Info</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a>
 
     <!-- Upcoming Dates Section -->
-    <h3>Upcoming Dates</h3>
+    <h3><i class="fas fa-clock"></i> Upcoming Dates</h3>
     <ul>
         <li><strong>Mon, Oct 27, 2025:</strong> Last day for 100% tuition refund</li>
         <li><strong>Fri, Oct 31, 2025:</strong> Graduation application deadline (Graduate)</li>
@@ -258,36 +498,36 @@
     </ul>
 
     <!-- Featured Programs Section -->
-    <h3>Featured Programs</h3>
+    <h3><i class="fas fa-star"></i> Featured Programs</h3>
     <ul>
-    <a href="#american-indian-scholars">American Indian Scholars Program</a>
-    <a href="#student-emergency-funds">Student Emergency Funds</a>
+        <a href="#american-indian-scholars"><i class="fas fa-users"></i> American Indian Scholars Program</a>
+        <a href="#student-emergency-funds"><i class="fas fa-life-ring"></i> Student Emergency Funds</a>
     </ul>
 
     <!-- Additional Resources Section -->
-    <h3>Additional Resources</h3>
-    <a href="#eligibility-funding">Eligibility & Funding Information</a>
-    <a href="#get-help">Get Help</a>
-    <a href="#contact-one-stop">Contact One Stop</a>
-    <a href="#terms-conditions">Terms & Conditions</a>
-    <a href="#consumer-info">Consumer Information</a>
-    <a href="#how-to-guides">How-to Guides</a>
-    <a href="#campus-resources">Campus Resources</a>
-    <a href="#maps-directions">Maps & Directions</a>
-    <a href="#parking-transportation">Parking & Transportation</a>
-    <a href="#directories">Directories</a>
-    <a href="#content-management">One Stop Websites Content Management</a>
+    <h3><i class="fas fa-book"></i> Additional Resources</h3>
+    <a href="#eligibility-funding"><i class="fas fa-check-circle"></i> Eligibility & Funding Information</a>
+    <a href="#get-help"><i class="fas fa-question-circle"></i> Get Help</a>
+    <a href="#contact-one-stop"><i class="fas fa-headset"></i> Contact One Stop</a>
+    <a href="#terms-conditions"><i class="fas fa-gavel"></i> Terms & Conditions</a>
+    <a href="#consumer-info"><i class="fas fa-info-circle"></i> Consumer Information</a>
+    <a href="#how-to-guides"><i class="fas fa-book-open"></i> How-to Guides</a>
+    <a href="#campus-resources"><i class="fas fa-university"></i> Campus Resources</a>
+    <a href="#maps-directions"><i class="fas fa-map-marked-alt"></i> Maps & Directions</a>
+    <a href="#parking-transportation"><i class="fas fa-car"></i> Parking & Transportation</a>
+    <a href="#directories"><i class="fas fa-address-book"></i> Directories</a>
+    <a href="#content-management"><i class="fas fa-cog"></i> One Stop Websites Content Management</a>
 
     <!-- Campuses Section -->
-    <h3>Campuses</h3>
-    <a href="#crookston">Crookston</a>
-    <a href="#duluth">Duluth</a>
-    <a href="#morris">Morris</a>
-    <a href="#twin-cities">Twin Cities</a>
+    <h3><i class="fas fa-building"></i> Campuses</h3>
+    <a href="#crookston"><i class="fas fa-map-pin"></i> Crookston</a>
+    <a href="#duluth"><i class="fas fa-map-pin"></i> Duluth</a>
+    <a href="#morris"><i class="fas fa-map-pin"></i> Morris</a>
+    <a href="#twin-cities"><i class="fas fa-map-pin"></i> Twin Cities</a>
 </div>
 
 <!-- Overlay background when sidebar is active -->
-<div id="myOverlay" class="overlay" onclick="closeNav()"></div>
+<div id="myOverlay" class="overlay" onclick="toggleNav()"></div>
 
 <!-- Main content -->
 <div class="content-container">
@@ -295,77 +535,124 @@
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <h2>Welcome to FutureTech Academy</h2>
-        <p>Explore our resources, programs, and services to help you excel in futuristic technologies.</p>
+        <p>Explore our cutting-edge resources, programs, and services to help you excel in futuristic technologies and shape the world of tomorrow.</p>
     </div>
 
     <!-- MetaMask Login Section -->
-    <div class="meta-mask-login">
-        <h3>Login with MetaMask</h3>
-        <p>Connect your MetaMask wallet to access exclusive services and features.</p>
-        <button onclick="location.href='futuretechacademy.html'">Connect MetaMask</button>
+    <div class="meta-mask-login card">
+        <h3>Log in with MetaMask</h3>
+        <p>Connect your MetaMask wallet to access exclusive services, courses, and blockchain-verified credentials.</p>
+        <button class="meta-mask-button" onclick="location.href='futuretechacademy.html'">
+            <i class="fas fa-wallet"></i> Connect MetaMask
+        </button>
     </div>
 
     <!-- Future of Humans Track Section -->
     <div class="track-section" id="humans">
         <div class="track-header">
-            <h3>Future of Humans Track</h3>
+            <h3><i class="fas fa-dna"></i> Future of Humans Track</h3>
         </div>
-        <p>The "Future of Humans" track focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here’s an overview of the key components:</p>
+        <div class="track-content">
+            <p>The "Future of Humans" track focuses on the advancement of technologies aimed at enhancing human capabilities and health. Here's an overview of the key components:</p>
 
-        <ul>
-            <li><strong>Nanorobotics:</strong> Studies tiny robots at the nanoscale for tasks like targeted drug delivery and cellular repairs, enhancing diagnostic tools.</li>
-            <li><strong>Surgical Robotics:</strong> Integrates robotics into surgical procedures to improve precision, reduce recovery times, and optimize outcomes with robot-assisted surgeries.</li>
-        </ul>
-        <p>Each component addresses current limitations and pushes the boundaries of enhancing human health and capabilities.</p>
+            <ul>
+                <li><strong>Nanorobotics:</strong> Studies tiny robots at the nanoscale for tasks like targeted drug delivery and cellular repairs, enhancing diagnostic tools.</li>
+                <li><strong>Surgical Robotics:</strong> Integrates robotics into surgical procedures to improve precision, reduce recovery times, and optimize outcomes with robot-assisted surgeries.</li>
+            </ul>
+            <p>Each component addresses current limitations and pushes the boundaries of enhancing human health and capabilities.</p>
+        </div>
     </div>
 
     <!-- BCI and Humanoids Track Section -->
     <div class="track-section" id="bci">
         <div class="track-header">
-            <h3>BCI and Humanoids Track</h3>
+            <h3><i class="fas fa-brain"></i> BCI and Humanoids Track</h3>
         </div>
-        <p>The BCI and Humanoid Robots Track explores the interface between human cognition and advanced robotics, focusing on digital preservation and transferring human consciousness into humanoid robots.</p>
+        <div class="track-content">
+            <p>The BCI and Humanoid Robots Track explores the interface between human cognition and advanced robotics, focusing on digital preservation and transferring human consciousness into humanoid robots.</p>
 
-        <ul>
-            <li><strong>Mind Uploading:</strong> Studies the transfer of consciousness to inhabit robotic bodies, while addressing ethical implications and technical challenges.</li>
-            <li><strong>Humanoids Development:</strong> Covers building humanoids that mirror human movements, emotions, and thought processes for intelligent machine interaction.</li>
-        </ul>
-        <p>This track is designed to push the boundaries of what it means to be human and live beyond biological constraints.</p>
+            <ul>
+                <li><strong>Mind Uploading:</strong> Studies the transfer of consciousness to inhabit robotic bodies, while addressing ethical implications and technical challenges.</li>
+                <li><strong>Humanoids Development:</strong> Covers building humanoids that mirror human movements, emotions, and thought processes for intelligent machine interaction.</li>
+            </ul>
+            <p>This track is designed to push the boundaries of what it means to be human and live beyond biological constraints.</p>
+        </div>
     </div>
 
     <!-- Quantum and Space Tech Track Section -->
     <div class="track-section" id="quantum">
         <div class="track-header">
-            <h3>Quantum and Space Tech Track</h3>
+            <h3><i class="fas fa-atom"></i> Quantum and Space Tech Track</h3>
         </div>
-        <p>Combining quantum technologies such as quantum computing and quantum materials engineering, this track explores advanced non-human vehicle and space technology, including interdimensional travel.</p>
+        <div class="track-content">
+            <p>Combining quantum technologies such as quantum computing and quantum materials engineering, this track explores advanced non-human vehicle and space technology, including interdimensional travel.</p>
 
-        <ul>
-            <li><strong>Mind-Controlled Vehicles:</strong> Explores the control of vehicles through integrated mind and machine interfaces, allowing for advanced exploration.</li>
-            <li><strong>Interdimensional Travel:</strong> Envisions accessing different dimensions, high-speed travel, and quantum manipulation as ways to transcend biological forms and explore the universe.</li>
-        </ul>
-        <p>This track offers transformative ways for humans to experience the universe beyond physical and biological limits.</p>
+            <ul>
+                <li><strong>Mind-Controlled Vehicles:</strong> Explores the control of vehicles through integrated mind and machine interfaces, allowing for advanced exploration.</li>
+                <li><strong>Interdimensional Travel:</strong> Envisions accessing different dimensions, high-speed travel, and quantum manipulation as ways to transcend biological forms and explore the universe.</li>
+            </ul>
+            <p>This track offers transformative ways for humans to experience the universe beyond physical and biological limits.</p>
+        </div>
     </div>
 
     <!-- NOWPayments Button -->
-    <div class="nowpayments-button">
-        <button>Make a Payment with NOWPayments</button>
+    <div class="payments-section">
+        <h3>Make a Payment</h3>
+        <p>We accept cryptocurrency payments through NOWPayments for tuition and services.</p>
+        <button class="payments-button">
+            <i class="fas fa-coins"></i> Pay with NOWPayments
+        </button>
     </div>
 
 </div>
 
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#about">About Us</a>
+            <a href="#careers">Careers</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <div class="copyright">
+            © 2025 FutureTech Academy. All rights reserved.
+        </div>
+    </div>
+</footer>
+
 <script>
     /* Script for Sidebar Menu */
-    function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("myOverlay").style.display = "block";
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        const overlay = document.getElementById("myOverlay");
+        
+        if (sidebar.classList.contains("sidebar-active")) {
+            sidebar.classList.remove("sidebar-active");
+            overlay.style.display = "none";
+        } else {
+            sidebar.classList.add("sidebar-active");
+            overlay.style.display = "block";
+        }
     }
 
-    function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("myOverlay").style.display = "none";
-    }
+    // Smooth scroll for back to top button
+    document.querySelector('.back-home').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 </script>
 
 </body>
-    </html>
+</html>
