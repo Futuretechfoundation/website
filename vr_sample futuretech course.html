@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Technologies VR Course</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.5.0/aframe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body { 
+      margin: 0; 
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .ui-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      z-index: 100;
+      max-width: 400px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: opacity 0.3s ease;
+    }
+    
+    .ui-overlay h2 {
+      margin-top: 0;
+      color: #4FC3F7;
+      font-size: 1.4em;
+    }
+    
+    .ui-overlay p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 1em;
+    }
+    
+    .modules {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 100;
+    }
+    
+    .module-btn {
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .module-btn:hover {
+      background: rgba(79, 195, 247, 0.8);
+      transform: translateY(-3px);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    #module-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      z-index: 200;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    #module-content h3 {
+      color: #4FC3F7;
+      margin-top: 0;
+    }
+    
+    .vr-enter-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(76, 175, 80, 0.9);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .vr-enter-btn:hover {
+      background: rgba(76, 175, 80, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+    
+    .loading-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 1s ease;
+    }
+    
+    .loader {
+      width: 100px;
+      height: 100px;
+      border: 5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      border-top-color: #4FC3F7;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      margin-top: 20px;
+      color: white;
+      font-size: 1.2em;
+      letter-spacing: 2px;
+    }
+    
+    .progress-bar {
+      width: 300px;
+      height: 10px;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4FC3F7, #2196F3);
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loader"></div>
+    <div class="loading-text">INITIALIZING VIRTUAL ENVIRONMENT</div>
+    <div class="progress-bar">
+      <div class="progress" id="loading-progress"></div>
+    </div>
+  </div>
+
+  <!-- UI Overlay -->
+  <div class="ui-overlay">
+    <h2>Future Technologies VR Course</h2>
+    <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Navigate through different modules by selecting them below or by interacting with objects in the virtual space.</p>
+    <p>Use your VR controllers to interact with holographic interfaces. For desktop users, click and drag to look around, and use WASD to move.</p>
+  </div>
+  
+  <!-- VR Enter Button -->
+  <button class="vr-enter-btn" id="enter-vr-btn">ENTER VR MODE</button>
+  
+  <!-- Module Buttons -->
+  <div class="modules">
+    <button class="module-btn" data-module="quantum">Quantum Computing</button>
+    <button class="module-btn" data-module="neurotech">Neural Interfaces</button>
+    <button class="module-btn" data-module="ai">Advanced AI Systems</button>
+    <button class="module-btn" data-module="biotech">Synthetic Biology</button>
+  </div>
+  
+  <!-- Module Content Popup (Hidden by default) -->
+  <div id="module-content" class="hidden">
+    <button class="close-btn" id="close-module">×</button>
+    <h3 id="module-title">Module Title</h3>
+    <div id="module-description">Module description will appear here.</div>
+  </div>
+
+  <!-- A-Frame VR Scene -->
+  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false">
+    <a-assets>
+      <!-- Textures -->
+      <img id="floor-texture" src="/api/placeholder/1024/1024" alt="Floor Texture">
+      <img id="sky-texture" src="/api/placeholder/2048/2048" alt="Sky Texture">
+    </a-assets>
+    
+    <!-- Environment -->
+    <a-sky color="#0c0c2c" src="#sky-texture"></a-sky>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#333" material="src: #floor-texture; repeat: 10 10"></a-plane>
+    
+    <!-- Ambient Lighting -->
+    <a-light type="ambient" color="#445" intensity="0.4"></a-light>
+    <a-light type="point" color="#66c" position="0 5 0" intensity="0.8"></a-light>
+    <a-light type="directional" color="#aaf" position="1 1 1" intensity="0.6"></a-light>
+    
+    <!-- Quantum Computing Module -->
+    <a-entity position="-6 1.6 -5">
+      <a-sphere radius="1.2" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true">
+        <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
+      </a-sphere>
+      <a-entity position="0 -2 0">
+        <a-text value="Quantum Computing" width="5" color="white" align="center"></a-text>
+      </a-entity>
+      
+      <!-- Quantum Particles -->
+      <a-entity class="particles">
+        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: 0.8 0.6 0.8; dur: 2000; dir: alternate; loop: true"></a-sphere>
+        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: -0.6 0.8 -0.7; dur: 2400; dir: alternate; loop: true"></a-sphere>
+        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: 0.7 -0.7 0.6; dur: 2200; dir: alternate; loop: true"></a-sphere>
+        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: -0.8 -0.5 0.8; dur: 2600; dir: alternate; loop: true"></a-sphere>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Neural Interfaces Module -->
+    <a-entity position="6 1.6 -5">
+      <a-box width="1.6" height="1.6" depth="1.6" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true"></a-box>
+      <a-entity position="0 -2 0">
+        <a-text value="Neural Interfaces" width="5" color="white" align="center"></a-text>
+      </a-entity>
+      
+      <!-- Neuron connections -->
+      <a-entity class="neuron-network">
+        <a-sphere position="0.5 0.5 0.5" radius="0.1" color="#7fff7f"></a-sphere>
+        <a-sphere position="-0.5 0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
+        <a-sphere position="0.5 -0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
+        <a-sphere position="-0.5 -0.5 0.5" radius="0.1" color="#7fff7f"></a-sphere>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f"></a-cylinder>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f" rotation="0 0 90"></a-cylinder>
+        <a-cylinder position="0 0 0" radius="0.02" height="1.73" color="#7fff7f" rotation="90 0 0"></a-cylinder>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Advanced AI Systems Module -->
+    <a-entity position="-6 1.6 3">
+      <a-torus-knot radius="1" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true"></a-torus-knot>
+      <a-entity position="0 -2 0">
+        <a-text value="Advanced AI Systems" width="5" color="white" align="center"></a-text>
+      </a-entity>
+      
+      <!-- AI Network -->
+      <a-entity class="ai-network">
+        <a-sphere position="0 0 0" radius="0.05" color="white" animation="property: opacity; from: 0.2; to: 1; dur: 1000; dir: alternate; loop: true"></a-sphere>
+        <a-entity position="0 0 0" rotation="0 0 0" animation="property: rotation; to: 0 360 0; dur: 12000; loop: true">
+          <a-sphere position="0 0 0.7" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0.61 0 0.35" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0.61 0 -0.35" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="0 0 -0.7" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="-0.61 0 -0.35" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-sphere position="-0.61 0 0.35" radius="0.07" color="#ff7f7f"></a-sphere>
+          <a-cylinder position="0 0 0.35" radius="0.01" height="0.7" color="#ff7f7f" rotation="90 0 0"></a-cylinder>
+          <a-cylinder position="0.3 0 0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 60 0"></a-cylinder>
+          <a-cylinder position="0.3 0 -0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 120 0"></a-cylinder>
+          <a-cylinder position="0 0 -0.35" radius="0.01" height="0.7" color="#ff7f7f" rotation="90 180 0"></a-cylinder>
+          <a-cylinder position="-0.3 0 -0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 240 0"></a-cylinder>
+          <a-cylinder position="-0.3 0 0.18" radius="0.01" height="0.61" color="#ff7f7f" rotation="90 300 0"></a-cylinder>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Synthetic Biology Module -->
+    <a-entity position="6 1.6 3">
+      <a-cylinder height="2" radius="0.6" color="#cfcf4f" segments-height="8" segments-radial="36" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true">
+        <a-torus position="0 0.9 0" rotation="90 0 0" radius="0.6" radius-tubular="0.05" color="#cfcf4f"></a-torus>
+        <a-torus position="0 -0.9 0" rotation="90 0 0" radius="0.6" radius-tubular="0.05" color="#cfcf4f"></a-torus>
+      </a-cylinder>
+      <a-entity position="0 -2 0">
+        <a-text value="Synthetic Biology" width="5" color="white" align="center"></a-text>
+      </a-entity>
+      
+      <!-- DNA Helix -->
+      <a-entity class="dna-helix" position="0 0 0">
+        <a-entity animation="property: rotation; to: 0 360 0; dur: 10000; loop: true">
+          <a-cylinder position="0 0.4 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 0.4 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+          <a-cylinder position="0 0 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 0 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.6" color="#7fffff" rotation="0 0 45"></a-cylinder>
+          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.6" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Central Hub -->
+    <a-entity position="0 0.1 0">
+      <a-cylinder height="0.1" radius="4" color="#222" opacity="0.7"></a-cylinder>
+      <a-text value="FUTURE TECH HUB" position="0 0.1 0" rotation="-90 0 0" width="10" color="#4FC3F7" align="center"></a-text>
+    </a-entity>
+    
+    <!-- Holographic Interface -->
+    <a-entity position="0 1.5 0">
+      <a-sphere radius="0.5" color="#4FC3F7" opacity="0.3" animation="property: opacity; to: 0.5; dir: alternate; dur: 2000; loop: true"></a-sphere>
+    </a-entity>
+    
+    <!-- Camera and Controls -->
+    <a-entity position="0 1.8 8">
+      <a-camera wasd-controls="acceleration: 100" look-controls>
+        <a-cursor color="#4FC3F7"></a-cursor>
+      </a-camera>
+    </a-entity>
+  </a-scene>
+
+  <!-- JavaScript for interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const loadingScreen = document.getElementById('loading-screen');
+      const loadingProgress = document.getElementById('loading-progress');
+      const moduleButtons = document.querySelectorAll('.module-btn');
+      const moduleContent = document.getElementById('module-content');
+      const moduleTitle = document.getElementById('module-title');
+      const moduleDescription = document.getElementById('module-description');
+      const closeModuleBtn = document.getElementById('close-module');
+      const enterVRBtn = document.getElementById('enter-vr-btn');
+      
+      // Module content
+      const modules = {
+        quantum: {
+          title: 'Quantum Computing',
+          description: `
+            <p>Explore the fundamentals of quantum computing and its applications in 2025 and beyond. This module covers:</p>
+            <ul>
+              <li>Quantum bits (qubits) and quantum gates</li>
+              <li>Quantum entanglement and superposition principles</li>
+              <li>Quantum algorithms and their real-world applications</li>
+              <li>Recent breakthroughs in quantum error correction</li>
+              <li>Hands-on exercises with quantum circuit simulators</li>
+            </ul>
+            <p>Through interactive simulations, you'll learn how quantum computers are revolutionizing fields like cryptography, materials science, and artificial intelligence.</p>
+          `
+        },
+        neurotech: {
+          title: 'Neural Interfaces',
+          description: `
+            <p>Dive into the cutting-edge world of brain-computer interfaces and neural technology. This module covers:</p>
+            <ul>
+              <li>Non-invasive and invasive neural recording technologies</li>
+              <li>Neural decoding algorithms and thought-to-text applications</li>
+              <li>Sensory feedback mechanisms and neural implants</li>
+              <li>Ethical considerations and regulatory frameworks</li>
+              <li>Virtual simulations of neural interface technologies</li>
+            </ul>
+            <p>Experience simulated neural interfaces and explore how these technologies are transforming healthcare, communication, and human-computer interaction.</p>
+          `
+        },
+        ai: {
+          title: 'Advanced AI Systems',
+          description: `
+            <p>Understand the most sophisticated AI architectures and their impact on society. This module covers:</p>
+            <ul>
+              <li>Multimodal foundation models and their capabilities</li>
+              <li>Autonomous AI agents and emergent behaviors</li>
+              <li>AI alignment techniques and safety mechanisms</li>
+              <li>Neuromorphic computing and brain-inspired architectures</li>
+              <li>Practical applications across industries</li>
+            </ul>
+            <p>Through interactive demonstrations, you'll explore how advanced AI systems are reshaping creative processes, scientific discovery, and decision-making across every sector.</p>
+          `
+        },
+        biotech: {
+          title: 'Synthetic Biology',
+          description: `
+            <p>Explore the frontier of engineered biological systems and their applications. This module covers:</p>
+            <ul>
+              <li>CRISPR-Cas9 and next-generation gene editing tools</li>
+              <li>Synthetic genomics and minimal cell design</li>
+              <li>Engineered protein design and biological computation</li>
+              <li>Biofabrication techniques and living materials</li>
+              <li>Biosafety protocols and ethical frameworks</li>
+            </ul>
+            <p>Through virtual laboratory simulations, you'll learn how synthetic biology is addressing challenges in medicine, agriculture, materials science, and environmental sustainability.</p>
+          `
+        }
+      };
+      
+      // Simulate loading
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(loadingInterval);
+          
+          // Fade out loading screen
+          setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 1000);
+          }, 500);
+        }
+        loadingProgress.style.width = progress + '%';
+      }, 300);
+      
+      // Module button click handlers
+      moduleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const moduleId = button.getAttribute('data-module');
+          moduleTitle.textContent = modules[moduleId].title;
+          moduleDescription.innerHTML = modules[moduleId].description;
+          moduleContent.classList.remove('hidden');
+        });
+      });
+      
+      // Close module content
+      closeModuleBtn.addEventListener('click', () => {
+        moduleContent.classList.add('hidden');
+      });
+      
+      // Enter VR mode
+      enterVRBtn.addEventListener('click', () => {
+        const scene = document.querySelector('a-scene');
+        if (scene.hasAttribute('vr-mode')) {
+          scene.exitVR();
+        } else {
+          scene.enterVR();
+        }
+      });
+      
+      // Make A-Frame entities interactive
+      document.querySelectorAll('a-sphere, a-box, a-torus-knot, a-cylinder').forEach(entity => {
+        if (!entity.classList.contains('particles') && 
+            !entity.parentNode.classList.contains('particles') && 
+            !entity.classList.contains('ai-network') && 
+            !entity.parentNode.classList.contains('ai-network') && 
+            !entity.classList.contains('neuron-network') && 
+            !entity.parentNode.classList.contains('neuron-network') && 
+            !entity.classList.contains('dna-helix') && 
+            !entity.parentNode.classList.contains('dna-helix')) {
+          
+          entity.setAttribute('class', 'interactive');
+          entity.setAttribute('event-set__mouseenter', 'scale: 1.1 1.1 1.1');
+          entity.setAttribute('event-set__mouseleave', 'scale: 1 1 1');
+          
+          entity.addEventListener('click', function(evt) {
+            // Find nearest module text
+            const parentEntity = this.parentNode;
+            const textEntity = parentEntity.querySelector('a-text');
+            if (textEntity) {
+              const moduleText = textEntity.getAttribute('value').toLowerCase();
+              
+              // Find matching module
+              let matchedModule = null;
+              Object.keys(modules).forEach(key => {
+                if (moduleText.includes(key) || modules[key].title.toLowerCase().includes(moduleText)) {
+                  matchedModule = key;
+                }
+              });
+              
+              if (matchedModule) {
+                moduleTitle.textContent = modules[matchedModule].title;
+                moduleDescription.innerHTML = modules[matchedModule].description;
+                moduleContent.classList.remove('hidden');
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+    </html>
