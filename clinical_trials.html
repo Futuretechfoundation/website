@@ -3,134 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join FutureTechFoundation's clinical trials to advance medical science and gain early access to innovative treatments.">
     <title>FutureTechFoundation Clinical Trials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #e0f2fe;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        header {
-            text-align: center;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 0;
-        }
-        h1 {
+
+        * {
             margin: 0;
-        }
-        h2 {
-            color: #007BFF;
-        }
-        .content {
-            margin-top: 20px;
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-section {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e9f7ef;
-            border-radius: 5px;
-        }
-        .form-section input, .form-section textarea, .form-section select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            padding: 0;
             box-sizing: border-box;
         }
-        .form-section button {
-            background-color: #007BFF;
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            background-color: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
             border: none;
-            border-radius: 5px;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
         }
-        .form-section button:hover {
-            background-color: #0056b3;
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
-        footer {
-            margin-top: 20px;
+
+        h1 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+        }
+
+        p, ul {
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.8), rgba(37, 99, 235, 0.9)), url('/api/placeholder/1200/600') no-repeat center center/cover;
+            color: white;
+            padding: 4rem 0;
             text-align: center;
-            font-size: 0.9em;
-            color: #777;
+        }
+
+        .hero h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--card);
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .trial-card {
+            background-color: var(--card);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .trial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .trial-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .trial-card h3 {
+            margin-top: 0;
+        }
+
+        .form-section {
+            background-color: var(--secondary);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            background-color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .required:after {
+            content: "*";
+            color: #ef4444;
+            margin-left: 0.25rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-top: 0.25rem;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                padding: 1rem;
+                box-shadow: var(--shadow);
+                display: none;
+                z-index: 100;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FutureTechFoundation Clinical Trials</h1>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-microscope"></i>
+            <span>FutureTechFoundation</span>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#trials">Trials</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#signup">Sign Up</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
-<div class="content">
-    <h2>About FutureTechFoundation</h2>
-    <p>
-        FutureTechFoundation is committed to advancing medical science through innovative research. Our clinical trials aim to improve treatments, introduce new technologies, and elevate patient care across a range of medical conditions.
-    </p>
-
-    <h2>Types of Clinical Trials We Conduct</h2>
-    <ul>
-        <li><strong>Drug Trials:</strong> Testing the effectiveness and safety of new medications.</li>
-        <li><strong>Device Trials:</strong> Assessing the functionality of new medical devices.</li>
-        <li><strong>Preventative Trials:</strong> Exploring prevention methods for various diseases.</li>
-        <li><strong>Treatment Trials:</strong> Evaluating new therapies for effectiveness and safety.</li>
-        <li><strong>Quality of Life Trials:</strong> Improving patient comfort in chronic conditions.</li>
-    </ul>
-
-    <h2>Benefits of Participating</h2>
-    <p>By joining our clinical trials, you may gain early access to treatments, contribute to impactful research, and receive medical care from experienced professionals.</p>
-
-    <h2>Sign Up for a Clinical Trial</h2>
-    <p>If you’re interested in participating in one of FutureTechFoundation’s clinical trials, please fill out the form below. Our team will contact you with more information and help match you to suitable studies.</p>
-
-    <div class="form-section">
-        <form action="#" method="POST">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name">
-
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address">
-
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-
-            <label for="x-account">X (formerly Twitter) Account Handle</label>
-            <input type="text" id="x-account" name="x-account" placeholder="Enter your X handle (e.g., @username)">
-
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" min="18" placeholder="Enter your age">
-
-            <label for="medical-condition">Relevant Medical Condition(s)</label>
-            <textarea id="medical-condition" name="medical-condition" rows="3" placeholder="List any relevant medical conditions"></textarea>
-
-            <label for="trial-type">Preferred Type of Clinical Trial</label>
-            <select id="trial-type" name="trial-type">
-                <option value="">Select a trial type</option>
-                <option value="drug">Drug Trial</option>
-                <option value="device">Device Trial</option>
-                <option value="preventative">Preventative Trial</option>
-                <option value="treatment">Treatment Trial</option>
-                <option value="quality-of-life">Quality of Life Trial</option>
-            </select>
-
-            <label for="questions">Questions or Additional Information</label>
-            <textarea id="questions" name="questions" rows="3" placeholder="Any questions or additional information you'd like to share"></textarea>
-
-            <button type="submit">Submit Application</button>
-        </form>
+<section class="hero">
+    <div class="container">
+        <h2>Advancing Medical Science Through Innovation</h2>
+        <p>Join our clinical trials to help develop breakthrough treatments and improve patient care worldwide.</p>
+        <a href="#signup" class="btn">Participate in a Trial</a>
     </div>
-</div>
+</section>
+
+<main class="container">
+    <section id="about" class="card">
+        <h2>About FutureTechFoundation</h2>
+        <p>
+            FutureTechFoundation is committed to advancing medical science through innovative research. Our clinical trials aim to improve treatments, introduce new technologies, and elevate patient care across a range of medical conditions.
+        </p>
+        <p>
+            With a team of dedicated researchers and medical professionals, we strive to make meaningful contributions to healthcare and improve quality of life for patients around the world.
+        </p>
+    </section>
+
+    <section id="trials">
+        <h2>Types of Clinical Trials We Conduct</h2>
+        <div class="card-grid">
+            <div class="trial-card">
+                <i class="fas fa-pills"></i>
+                <h3>Drug Trials</h3>
+                <p>Testing the effectiveness and safety of new medications for various conditions.</p>
+            </div>
+            <div class="trial-card">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Device Trials</h3>
+                <p>Assessing the functionality and benefits of innovative medical devices.</p>
+            </div>
+            <div class="trial-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Preventative Trials</h3>
+                <p>Exploring prevention methods and technologies for various diseases.</p>
+            </div>
+            <div class="trial-card">
+                <i class="fas fa-procedures"></i>
+                <h3>Treatment Trials</h3>
+                <p>Evaluating new therapies and treatment approaches for effectiveness and safety.</p>
+            </div>
+            <div class="trial-card">
+                <i class="fas fa-smile"></i>
+                <h3>Quality of Life Trials</h3>
+                <p>Improving patient comfort and daily living in chronic conditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="card">
+        <h2>Benefits of Participating</h2>
+        <ul>
+            <li><strong>Early Access to Treatments:</strong> Gain potential access to cutting-edge therapies before they become widely available.</li>
+            <li><strong>Expert Medical Care:</strong> Receive care from experienced healthcare professionals throughout the trial period.</li>
+            <li><strong>Regular Health Monitoring:</strong> Benefit from close monitoring of your health condition and response to treatment.</li>
+            <li><strong>Contribute to Medical Advances:</strong> Help develop treatments that may benefit countless people in the future.</li>
+            <li><strong>Potential Compensation:</strong> Some trials offer compensation for your time and participation.</li>
+        </ul>
+    </section>
+
+    <section id="signup">
+        <h2>Sign Up for a Clinical Trial</h2>
+        <p>If you're interested in participating in one of FutureTechFoundation's clinical trials, please complete the form below. Our team will review your information and contact you about suitable studies.</p>
+
+        <div class="form-section">
+            <div id="form-success" class="alert alert-success" role="alert">
+                <i class="fas fa-check-circle"></i> Your application has been submitted successfully. We'll contact you soon.
+            </div>
+            
+            <form id="trial-form" action="#" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name" class="required">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required aria-required="true">
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age" class="required">Age</label>
+                        <input type="number" id="age" name="age" min="18" placeholder="Enter your age" required aria-required="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="social-media">Social Media Handle (Optional)</label>
+                    <input type="text" id="social-media" name="social-media" placeholder="Enter your social media handle (e.g., @username)">
+                </div>
+
+                <div class="form-group">
+                    <label for="medical-condition" class="required">Relevant Medical Condition(s)</label>
+                    <textarea id="medical-condition" name="medical-condition" rows="3" placeholder="List any relevant medical conditions" required aria-required="true"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="trial-type" class="required">Preferred Type of Clinical Trial</label>
+                    <select id="trial-type" name="trial-type" required aria-required="true">
+                        <option value="">Select a trial type</option>
+                        <option value="drug">Drug Trial</option>
+                        <option value="device">Device Trial</option>
+                        <option value="preventative">Preventative Trial</option>
+                        <option value="treatment">Treatment Trial</option>
+                        <option value="quality-of-life">Quality of Life Trial</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="questions">Questions or Additional Information</label>
+                    <textarea id="questions" name="questions" rows="3" placeholder="Any questions or additional information you'd like to share"></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consent" name="consent" required aria-required="true">
+                    <label for="consent" class="required">I consent to FutureTechFoundation collecting and processing my personal data for the purpose of matching me with clinical trials.</label>
+                </div>
+
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 
 <footer>
-    <p>&copy; 2024 FutureTechFoundation. All Rights Reserved.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>FutureTechFoundation</h3>
+                <p>Advancing medical science through innovative research and clinical trials.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#trials">Our Trials</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#signup">Participate</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Innovation Way, Medical District</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> trials@futuretechfoundation.org</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FutureTechFoundation. All Rights Reserved.</p>
+        </div>
+    </div>
 </footer>
 
+<script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('#main-nav');
+    
+    menuBtn.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true' || false;
+        menuBtn.setAttribute('aria-expanded', !expanded);
+    });
+    
+    // Form submission handler
+    const form = document.getElementById('trial-form');
+    const successMessage = document.getElementById('form-success');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Simple form validation
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = '#ef4444';
+            } else {
+                field.style.borderColor = '';
+            }
+        });
+        
+        if (isValid) {
+            // In a real application, you would submit the form to a server here
+            // For demo purposes, we'll just show the success message
+            successMessage.style.display = 'block';
+            form.reset();
+            
+            // Scroll to the success message
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+    });
+</script>
+
 </body>
-</html>
+    </html>
