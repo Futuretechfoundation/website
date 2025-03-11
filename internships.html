@@ -3,97 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore internship opportunities at FutureTech Foundation in emerging technologies including quantum computing, AI, robotics, and UAP technology.">
     <title>Internships at FutureTech Foundation</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="projects.html">Our Projects</a></li>
-                <li><a href="internships.html" class="active">Internships</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/api/placeholder/200/60" alt="FutureTech Foundation Logo">
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="projects.html"><i class="fas fa-project-diagram"></i> Our Projects</a></li>
+                    <li><a href="internships.html" class="active" aria-current="page"><i class="fas fa-graduation-cap"></i> Internships</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="internship-intro">
-            <h1>Internship Opportunities at FutureTech Foundation</h1>
-            <p>Join the FutureTech Foundation and be part of cutting-edge research and projects. Our internships provide a hands-on learning experience with opportunities to work alongside industry experts in emerging technologies like nanorobotics, AI, quantum computing, and UAP technology.</p>
+        <section class="hero">
+            <div class="container">
+                <h1>Internship Opportunities</h1>
+                <p class="hero-text">Join the FutureTech Foundation and be part of cutting-edge research in emerging technologies. Work alongside industry experts and shape the future.</p>
+                <a href="#available-internships" class="btn btn-primary">View Opportunities</a>
+                <a href="apply.html" class="btn btn-secondary">Apply Now</a>
+            </div>
         </section>
 
-        <section class="internship-list">
-            <h2>Available Internships</h2>
-
-            <div class="internship-item">
-                <h3>Tech Mentorship Program Intern</h3>
-                <p><strong>Description:</strong> Assist in creating educational content and mentorship programs for middle and high school students interested in technology and innovation.</p>
-                <p><strong>Required Skills:</strong> Strong communication skills, interest in mentorship, and a passion for technology.</p>
-                <p><strong>Duration:</strong> 6 months, Part-time, Remote</p>
-                <a href="apply.html">Apply Now</a>
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Mentorship</h3>
+                        <p>One-on-one guidance from industry experts</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Collaborative Environment</h3>
+                        <p>Work in diverse, cross-functional teams</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Skill Development</h3>
+                        <p>Gain valuable experience in cutting-edge technologies</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Networking</h3>
+                        <p>Build connections with industry professionals</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="internship-item">
-                <h3>Quantum Computing Research Intern</h3>
-                <p><strong>Description:</strong> Contribute to research and development in quantum computing, focusing on real-world applications in various industries.</p>
-                <p><strong>Required Skills:</strong> Experience with quantum mechanics, programming, and research methodologies.</p>
-                <p><strong>Duration:</strong> 3 months, Full-time, In-office</p>
-                <a href="apply.html">Apply Now</a>
-            </div>
+        <section id="available-internships" class="internship-list">
+            <div class="container">
+                <h2>Available Internships</h2>
+                <p class="section-intro">Explore our current internship opportunities and find the perfect match for your skills and interests.</p>
+                
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="remote">Remote</button>
+                    <button class="filter-btn" data-filter="hybrid">Hybrid</button>
+                    <button class="filter-btn" data-filter="in-office">In-Office</button>
+                </div>
 
-            <div class="internship-item">
-                <h3>UAP Technology Research Intern</h3>
-                <p><strong>Description:</strong> Work on projects related to Unidentified Aerial Phenomena (UAP), including the study of potential new technologies and materials.</p>
-                <p><strong>Required Skills:</strong> Strong background in aerospace engineering, physics, or material science.</p>
-                <p><strong>Duration:</strong> 6 months, Part-time, Hybrid</p>
-                <a href="apply.html">Apply Now</a>
-            </div>
+                <div class="internship-grid">
+                    <article class="internship-card" data-category="remote">
+                        <div class="card-header">
+                            <span class="badge badge-remote">Remote</span>
+                            <span class="badge badge-part-time">Part-Time</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tech Mentorship Program Intern</h3>
+                            <p class="card-description">Create educational content and mentorship programs for middle and high school students interested in technology and innovation.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>6 months</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Starting May 2025</span>
+                                </div>
+                            </div>
+                            <h4>Required Skills:</h4>
+                            <ul class="skills-list">
+                                <li>Strong communication</li>
+                                <li>Mentorship experience</li>
+                                <li>Passion for technology</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="apply.html?position=tech-mentorship" class="btn btn-apply">Apply Now</a>
+                            <button class="btn-more-info" aria-label="View more information">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </article>
 
-            <div class="internship-item">
-                <h3>Surgical Robotics Intern</h3>
-                <p><strong>Description:</strong> Collaborate with the robotics team on the design and development of surgical robots and other medical technologies.</p>
-                <p><strong>Required Skills:</strong> Experience in robotics, mechanical engineering, or bioengineering.</p>
-                <p><strong>Duration:</strong> 4 months, Full-time, In-office</p>
-                <a href="apply.html">Apply Now</a>
-            </div>
+                    <article class="internship-card" data-category="in-office">
+                        <div class="card-header">
+                            <span class="badge badge-in-office">In-Office</span>
+                            <span class="badge badge-full-time">Full-Time</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Quantum Computing Research Intern</h3>
+                            <p class="card-description">Contribute to research and development in quantum computing, focusing on real-world applications in various industries.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Starting June 2025</span>
+                                </div>
+                            </div>
+                            <h4>Required Skills:</h4>
+                            <ul class="skills-list">
+                                <li>Quantum mechanics</li>
+                                <li>Programming</li>
+                                <li>Research methodologies</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="apply.html?position=quantum-computing" class="btn btn-apply">Apply Now</a>
+                            <button class="btn-more-info" aria-label="View more information">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </article>
 
-            <div class="internship-item">
-                <h3>AI Tutoring Program Intern</h3>
-                <p><strong>Description:</strong> Help design and implement AI-based educational tools to teach complex subjects like quantum computing, robotics, and nanotechnology.</p>
-                <p><strong>Required Skills:</strong> Familiarity with AI and machine learning, strong problem-solving abilities.</p>
-                <p><strong>Duration:</strong> 3 months, Part-time, Remote</p>
-                <a href="apply.html">Apply Now</a>
+                    <article class="internship-card" data-category="hybrid">
+                        <div class="card-header">
+                            <span class="badge badge-hybrid">Hybrid</span>
+                            <span class="badge badge-part-time">Part-Time</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>UAP Technology Research Intern</h3>
+                            <p class="card-description">Work on projects related to Unidentified Aerial Phenomena (UAP), including the study of potential new technologies and materials.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>6 months</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Starting April 2025</span>
+                                </div>
+                            </div>
+                            <h4>Required Skills:</h4>
+                            <ul class="skills-list">
+                                <li>Aerospace engineering</li>
+                                <li>Physics</li>
+                                <li>Material science</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="apply.html?position=uap-technology" class="btn btn-apply">Apply Now</a>
+                            <button class="btn-more-info" aria-label="View more information">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="internship-card" data-category="in-office">
+                        <div class="card-header">
+                            <span class="badge badge-in-office">In-Office</span>
+                            <span class="badge badge-full-time">Full-Time</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Surgical Robotics Intern</h3>
+                            <p class="card-description">Collaborate with the robotics team on the design and development of surgical robots and other medical technologies.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>4 months</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Starting July 2025</span>
+                                </div>
+                            </div>
+                            <h4>Required Skills:</h4>
+                            <ul class="skills-list">
+                                <li>Robotics</li>
+                                <li>Mechanical engineering</li>
+                                <li>Bioengineering</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="apply.html?position=surgical-robotics" class="btn btn-apply">Apply Now</a>
+                            <button class="btn-more-info" aria-label="View more information">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="internship-card" data-category="remote">
+                        <div class="card-header">
+                            <span class="badge badge-remote">Remote</span>
+                            <span class="badge badge-part-time">Part-Time</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>AI Tutoring Program Intern</h3>
+                            <p class="card-description">Help design and implement AI-based educational tools to teach complex subjects like quantum computing, robotics, and nanotechnology.</p>
+                            <div class="card-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Starting May 2025</span>
+                                </div>
+                            </div>
+                            <h4>Required Skills:</h4>
+                            <ul class="skills-list">
+                                <li>AI and machine learning</li>
+                                <li>Problem-solving</li>
+                                <li>Educational technology</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="apply.html?position=ai-tutoring" class="btn btn-apply">Apply Now</a>
+                            <button class="btn-more-info" aria-label="View more information">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
         <section class="application-process">
-            <h2>How to Apply</h2>
-            <p>Follow these simple steps to apply for an internship at FutureTech Foundation:</p>
-            <ol>
-                <li>Choose the internship position you're interested in.</li>
-                <li>Submit your application through the application portal, including your resume, cover letter, and any relevant work samples.</li>
-                <li>Our team will review your application and contact you for an interview if you’re shortlisted.</li>
-                <li>If selected, you'll be invited to join our team and start your journey with FutureTech Foundation!</li>
-            </ol>
-            <p>Ready to apply? <a href="apply.html">Click here</a> to get started!</p>
+            <div class="container">
+                <h2>Application Process</h2>
+                <div class="process-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Find Your Match</h3>
+                            <p>Choose the internship position that aligns with your skills and career goals.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Submit Application</h3>
+                            <p>Complete the online application form and upload your resume, cover letter, and work samples.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Interview</h3>
+                            <p>If shortlisted, you'll be invited for an interview with the relevant team.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Join Our Team</h3>
+                            <p>If selected, you'll receive an offer and become part of the FutureTech community!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-container">
+                    <a href="apply.html" class="btn btn-primary">Start Your Application</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>Hear From Our Interns</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"My internship at FutureTech Foundation was transformative. I gained hands-on experience in quantum computing that I couldn't have found anywhere else."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="/api/placeholder/60/60" alt="Profile photo" class="author-image">
+                            <div class="author-info">
+                                <h4>Alex Johnson</h4>
+                                <p>Former Quantum Computing Intern</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The mentorship I received during my UAP Technology internship opened doors to incredible research opportunities. I'm now pursuing my Ph.D. in the field."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="/api/placeholder/60/60" alt="Profile photo" class="author-image">
+                            <div class="author-info">
+                                <h4>Maya Patel</h4>
+                                <p>Former UAP Technology Intern</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </section>
 
         <section class="partnerships">
-            <h2>Partnerships with Schools and Universities</h2>
-            <p>We actively collaborate with educational institutions to offer internship opportunities to students. If you’re a school or university interested in partnering with us to provide internship experiences to your students, please <a href="contact.html">contact us</a>.</p>
+            <div class="container">
+                <h2>Academic Partnerships</h2>
+                <p>We collaborate with leading educational institutions to provide valuable internship experiences for students. If your school or university is interested in partnering with us, please get in touch.</p>
+                <div class="partners-grid">
+                    <img src="/api/placeholder/160/80" alt="University Partner Logo" class="partner-logo">
+                    <img src="/api/placeholder/160/80" alt="University Partner Logo" class="partner-logo">
+                    <img src="/api/placeholder/160/80" alt="University Partner Logo" class="partner-logo">
+                    <img src="/api/placeholder/160/80" alt="University Partner Logo" class="partner-logo">
+                </div>
+                <div class="cta-container">
+                    <a href="contact.html?subject=partnership" class="btn btn-secondary">Become a Partner</a>
+                </div>
+            </div>
         </section>
 
-        <section class="mentorship">
-            <h2>Internship Mentorship Program</h2>
-            <p>Interns at FutureTech Foundation will receive one-on-one mentorship from experts in the fields of nanorobotics, AI, UAP technology, and more. You will have the opportunity to work closely with your mentor to gain hands-on experience, build your professional network, and receive guidance in your career development.</p>
+        <section class="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            Are internships paid?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Yes, all internships at FutureTech Foundation are paid. The exact compensation depends on the position, experience level, and duration of the internship.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            Can international students apply?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Yes, we welcome applications from international students. However, you must have the legal right to work in the country where the internship is located or be eligible for a work permit/visa.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            What is the selection timeline?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Our selection process typically takes 2-3 weeks from the application deadline. Shortlisted candidates will be contacted for interviews within 1-2 weeks after submission.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            Is there a possibility of full-time employment after the internship?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>While not guaranteed, many of our interns have gone on to join FutureTech Foundation in full-time roles. Exceptional performance during your internship may lead to employment opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter to receive information about upcoming internship opportunities.</p>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" placeholder="Your email address" required aria-label="Email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" name="consent" id="consent" required>
+                        <label for="consent">I agree to receive emails about internship opportunities and consent to the <a href="privacy-policy.html">Privacy Policy</a>.</label>
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 FutureTech Foundation | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>FutureTech Foundation</h3>
+                    <p>Advancing humanity through cutting-edge research and technology.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Our Projects</a></li>
+                        <li><a href="internships.html">Internships</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Avenue, Tech City, TC 12345</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+11234567890">(123) 456-7890</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:internships@futuretech.org">internships@futuretech.org</a></p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FutureTech Foundation. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="accessibility.html">Accessibility</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Internship filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const internshipCards = document.querySelectorAll('.internship-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                internshipCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const isExpanded = header.getAttribute('aria-expanded') === 'true';
+                header.setAttribute('aria-expanded', !isExpanded);
+                header.nextElementSibling.style.maxHeight = isExpanded ? '0' : header.nextElementSibling.scrollHeight + 'px';
+            });
+        });
+
+        // Testimonial slider functionality
+        let currentSlide = 0;
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.querySelector('.slider-prev');
+        const nextBtn = document.querySelector('.slider-next');
+        
+        function showSlide(index) {
+            testimonials.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        showSlide(currentSlide);
+        
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + testimonials.length) % testimonials.length;
+            showSlide(currentSlide);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % testimonials.length;
+            showSlide(currentSlide);
+        });
+    </script>
 </body>
-                                                    </html>
+</html>
