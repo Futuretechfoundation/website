@@ -79,32 +79,7 @@
             height: 3.5rem;
             object-fit: contain;
         }
-        
-        /* ... other CSS styles ... */
-        .menu-sidebar {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background-color: var(--white);
-            padding: 1.5rem;
-            box-shadow: -2px 0px 10px rgba(0,0,0,0.2);
-            overflow-y: auto;
-            z-index: 1100;
-            transition: transform 0.3s ease-out, visibility 0.3s, opacity 0.3s;
-            transform: translateX(100%);
-            visibility: hidden;
-            opacity: 0;
-        }
 
-        .menu-sidebar.active {
-            transform: translateX(0);
-            visibility: visible;
-            opacity: 1;
-        }
-    
         .menu-button {
             background: none;
             border: none;
@@ -114,7 +89,6 @@
             cursor: pointer;
             padding: 10px;
             transition: var(--transition);
-        
         }
 
         .hamburger-icon {
@@ -127,6 +101,22 @@
 
         .menu-button:hover .hamburger-icon {
             background-color: var(--accent-color);
+        }
+
+        /* Menu Sidebar */
+        .menu-sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: var(--white);
+            padding: 1.5rem;
+            box-shadow: -2px 0px 10px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            z-index: 1100;
+            transition: transform 0.3s ease-out;
         }
 
         .menu-sidebar h2 {
@@ -657,17 +647,17 @@
     <header>
         <div class="top-bar">
             <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
-           <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
+            <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
                 <span class="hamburger-icon"></span>
                 <span class="hamburger-icon"></span>
                 <span class="hamburger-icon"></span>
-           </button>
+            </button>
         </div>
     </header>
 
     <!-- Menu Sidebar -->
     <div id="menuSidebar" class="menu-sidebar">
-          <button onclick="toggleMenu()" class="close-button" aria-label="Close Menu">×</button>
+        <button onclick="toggleMenu()" class="close-button" aria-label="Close Menu">×</button>
         <h2>Menu</h2>
         
         <!-- Login Button -->
@@ -1012,71 +1002,85 @@
     
         
     <!-- Footer -->
-<footer class="modern-footer">
-    <div class="footer-container">
-        <div class="footer-section">
-            <h4>Contact Us</h4>
-            <address>
-                <p>FutureTech Foundation</p>
-                <p>1529 12th St. SE, #200, #129</p>
-                <p>Rochester, MN 55904</p>
-            </address>
+    <footer>
+        <div class="address">
+            <p>FutureTech Foundation</p>
+            <p>1529 12th St. SE, #200, #129</p>
+            <p>Rochester, MN 55904</p>
         </div>
 
-        <div class="footer-section">
-            <h4>Connect With Us</h4>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/profile.php?id=61573117167311" target="_blank" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
-                    </svg>
-                </a>
-                <a href="https://x.com/" target="_blank" aria-label="X (Twitter)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                <a href="https://youtube.com" target="_blank" aria-label="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                </a>
-            </div>
+        <div class="social-media">
+            <a href="https://www.facebook.com/profile.php?id=61573117167311" target="_blank">
+                <img src="images/facebook.png" alt="Facebook" style="width:24px; height:24px;">
+            </a>
+            <a href="https://x.com/" target="_blank">
+                <img src="images/x.jpg" alt="X" style="width:24px; height:24px;">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img src="images/youtube.jpg" alt="YouTube" style="width:24px; height:24px;">
+            </a>
         </div>
 
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <nav class="footer-nav">
-                <a href="visit.html">Visit Us</a>
-                <a href="giving.html">Giving to FutureTech</a>
-                <a href="privacy.html">Privacy Statement</a>
-                <a href="accessibility.html">Accessibility</a>
-            </nav>
+        <div class="footer-links">
+            <a href="visit.html">Visit Us</a>
+            <a href="giving.html">Giving to FutureTech</a>
+            <a href="privacy.html">Privacy Statement</a>
+            <a href="accessibility.html">Report Web-Related Disability Issue</a>
         </div>
 
-        <div class="footer-section">
-            <h4>Newsletter</h4>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); subscribeNewsletter();">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </div>
+        <div>
+        <!-- hitwebcounter Code START -->
+<a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=19420278&style=0001&nbdigits=5&type=ip&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                                    
+    </div>                           
+                                        
+                                          
+                            
 
-    <div class="footer-bottom">
         <div class="copyright">
             <p>&copy; 2025 FutureTech Foundation. All rights reserved.</p>
             <p>FutureTech Foundation is an equal opportunity educator and employer.</p>
         </div>
         
-        <div class="disclaimer">
-            <details>
-                <summary>Disclaimer</summary>
-                <p>This website provides information that reflects our goals and aspirations in the field of technology and innovation. While we strive for accuracy, some information may be subject to change, and certain links are intended to showcase future objectives rather than current achievements. Please use discretion and consult official sources when needed.</p>
-            </details>
+        <div style="font-size: 0.9em; color: #555; padding: 20px; text-align: center; border-top: 1px solid #ddd; margin-top: 30px;">
+            <p><strong>Disclaimer:</strong><br>
+            This website provides information that reflects our goals and aspirations in the field of technology and innovation. While we strive for accuracy, some information may be subject to change, and certain links are intended to showcase future objectives rather than current achievements. Please use discretion and consult official sources when needed.</p>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <script>
+        // Toggle Menu Sidebar
+        function toggleMenu() {
+            const menuSidebar = document.getElementById('menuSidebar');
+            menuSidebar.style.display = menuSidebar.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // MetaMask Login
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    alert(`Connected with account: ${accounts[0]}`);
+                } catch (error) {
+                    alert('Failed to connect MetaMask');
+                }
+            } else {
+                alert('MetaMask is not installed');
+            }
+        });
+
+
+
+        // Send Message in Chatbot
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput').value;
+            const chatResponse = document.getElementById('chatResponse');
+            chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
+        }
+    </script>
+
+    <!-- Dialogflow Messenger Script -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
 <!-- Dialogflow Messenger Chat -->
 <df-messenger
@@ -1086,188 +1090,6 @@
     agent-id="c2c70f06-5b03-493f-8c74-d2096f7d676b"
     language-code="en"
 ></df-messenger>
-
-<script>
-    
-    }
-
-    // MetaMask Login
-    document.getElementById('loginButton').addEventListener('click', async () => {
-        if (window.ethereum) {
-            try {
-                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                alert(`Connected with account: ${accounts[0]}`);
-            } catch (error) {
-                alert('Failed to connect MetaMask');
-            }
-        } else {
-            alert('MetaMask is not installed');
-        }
-    });
-
-    
-    }
-    
-    // Send Message in Chatbot
-    function sendMessage() {
-        const chatInput = document.getElementById('chatInput').value;
-        const chatResponse = document.getElementById('chatResponse');
-        chatResponse.textContent = `You asked: "${chatInput}". Our team will respond soon!`; // Placeholder response
-    }
-</script>
-
-<!-- Dialogflow Messenger Script -->
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
-<style>
-    .modern-footer {
-        background-color: #1a1a2e;
-        color: #f0f0f0;
-        padding: 3rem 0 1rem;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .footer-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-    }
-
-    .footer-section {
-        flex: 1;
-        min-width: 200px;
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-        text-align: center;
-    }
-
-    .footer-section h4 {
-        font-size: 1.2rem;
-        margin-bottom: 1.2rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-    }
-
-    .footer-section h4:after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 0;
-        width: 50px;
-        height: 2px;
-        background-color: #4361ee;
-    }
-
-    address p {
-        margin: 0.5rem 0;
-        line-height: 1.6;
-    }
-
-    .social-icons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-    }
-
-    .social-icons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #2b2b43;
-        color: #f0f0f0;
-        transition: all 0.3s ease;
-    }
-
-    .social-icons a:hover {
-        background-color: #4361ee;
-        transform: translateY(-3px);
-    }
-
-    .footer-nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-nav a {
-        color: #f0f0f0;
-        text-decoration: none;
-        margin: 0.5rem 0;
-        transition: color 0.3s ease;
-        line-height: 1.6;
-    }
-
-    .footer-nav a:hover {
-        color: #4361ee;
-        text-decoration: underline;
-    
-    }
-
-    .footer-bottom {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1.5rem;
-        text-align: center;
-        border-top: 1px solid #2b2b43;
-    }
-
-    .copyright {
-        margin-bottom: 1rem;
-    }
-
-    .copyright p {
-        margin: 0.3rem 0;
-        font-size: 0.9rem;
-    }
-
-    .disclaimer details {
-        margin: 1rem auto;
-        max-width: 800px;
-    }
-
-    .disclaimer summary {
-        cursor: pointer;
-        color: #a0a0a0;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .disclaimer p {
-        font-size: 0.85rem;
-        color: #a0a0a0;
-        line-height: 1.6;
-        text-align: center;
-        padding: 1rem;
-        background-color: #252542;
-        border-radius: 4px;
-    }
-
-    @media (max-width: 768px) {
-        .footer-container {
-            flex-direction: column;
-        }
-        
-        .footer-section {
-            width: 100%;
-            padding: 0;
-        }
-    }
-</style>
-
-    <!-- JavaScript for Menu Toggle Functionality -->
-    <script>
-        function toggleMenu() {
-            const menuSidebar = document.getElementById('menuSidebar');
-            menuSidebar.classList.toggle('active');
-        }
-    </script>
 </body>
     </html>
                                                                                                                                                                
