@@ -21,27 +21,28 @@
       right: 10px;
       background: rgba(0, 0, 0, 0.7);
       color: white;
-      padding: 12px 15px;
+      padding: 10px 15px;
       border-radius: 10px;
       z-index: 100;
       max-width: 100%;
-      box-sizing: border-box;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       transition: opacity 0.3s ease;
+      font-size: 14px;
     }
     
     .ui-overlay h2 {
       margin-top: 0;
+      margin-bottom: 10px;
       color: #4FC3F7;
-      font-size: 1.2em;
+      font-size: 18px;
     }
     
     .ui-overlay p {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       line-height: 1.4;
-      font-size: 0.9em;
+      font-size: 14px;
     }
     
     .modules {
@@ -50,9 +51,9 @@
       left: 0;
       right: 0;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
       padding: 0 10px;
       z-index: 100;
     }
@@ -62,42 +63,37 @@
       color: white;
       border: none;
       padding: 8px 12px;
-      border-radius: 30px;
+      border-radius: 20px;
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
-      font-size: 0.9em;
-      flex: 1 1 auto;
-      min-width: 70px;
-      max-width: 140px;
+      font-size: 12px;
+      min-width: 40%;
       margin-bottom: 5px;
+      -webkit-tap-highlight-color: transparent;
     }
     
-    .module-btn:hover, .module-btn:active {
+    .module-btn:active {
       background: rgba(79, 195, 247, 0.8);
-      transform: translateY(-2px);
+      transform: scale(0.95);
     }
     
     .close-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 5px;
+      right: 5px;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
-      font-size: 1.2em;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
+      font-size: 20px;
+      padding: 5px 10px;
+      -webkit-tap-highlight-color: transparent;
     }
     
     .hidden {
-      display: none !important;
+      display: none;
     }
     
     #module-content {
@@ -105,11 +101,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 800px;
+      width: 85%;
       max-height: 80vh;
       overflow-y: auto;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       color: white;
       padding: 15px 20px;
       border-radius: 15px;
@@ -117,46 +112,63 @@
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      font-size: 14px;
     }
     
     #module-content h3 {
       color: #4FC3F7;
       margin-top: 0;
-      font-size: 1.2em;
-    }
-    
-    #module-content p {
-      font-size: 0.9em;
+      font-size: 18px;
     }
     
     #module-content ul {
       padding-left: 20px;
-      font-size: 0.9em;
     }
     
-    .vr-enter-btn {
+    #module-content li {
+      margin-bottom: 8px;
+    }
+    
+    .vr-controls {
       position: absolute;
       top: 10px;
       right: 10px;
-      background: rgba(76, 175, 80, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 100;
+    }
+    
+    .control-btn {
+      background: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
-      padding: 8px 15px;
-      border-radius: 30px;
+      padding: 8px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.3s ease;
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      font-size: 0.9em;
-      z-index: 100;
+      -webkit-tap-highlight-color: transparent;
     }
     
-    .vr-enter-btn:hover, .vr-enter-btn:active {
-      background: rgba(76, 175, 80, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    .control-btn:active {
+      transform: scale(0.95);
+      background: rgba(79, 195, 247, 0.5);
+    }
+    
+    .vr-enter-btn {
+      background: rgba(76, 175, 80, 0.9);
+    }
+    
+    .info-toggle-btn {
+      background: rgba(33, 150, 243, 0.9);
     }
     
     .loading-screen {
@@ -175,9 +187,9 @@
     }
     
     .loader {
-      width: 80px;
-      height: 80px;
-      border: 5px solid rgba(255,255,255,0.2);
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       border-top-color: #4FC3F7;
       animation: spin 1s ease-in-out infinite;
@@ -188,21 +200,18 @@
     }
     
     .loading-text {
-      margin-top: 20px;
+      margin-top: 15px;
       color: white;
-      font-size: 1em;
-      letter-spacing: 2px;
-      text-align: center;
-      padding: 0 20px;
+      font-size: 14px;
+      letter-spacing: 1px;
     }
     
     .progress-bar {
-      width: 80%;
-      max-width: 300px;
-      height: 10px;
-      margin-top: 20px;
+      width: 250px;
+      height: 8px;
+      margin-top: 15px;
       background: rgba(255,255,255,0.2);
-      border-radius: 5px;
+      border-radius: 4px;
       overflow: hidden;
     }
     
@@ -213,137 +222,74 @@
       transition: width 0.3s ease;
     }
     
-    /* UI controls for mobile */
-    .ui-controls {
-      position: absolute;
-      bottom: 70px;
-      right: 10px;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    /* Touchscreen optimizations */
+    a-scene {
+      touch-action: none;
     }
     
-    .ui-control-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5em;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    
-    @media (max-width: 600px) {
-      .ui-overlay {
-        font-size: 0.9em;
-      }
-      
-      .ui-overlay h2 {
-        font-size: 1.1em;
-      }
-      
-      .ui-overlay p {
-        font-size: 0.85em;
-        margin: 8px 0;
-      }
-      
-      .modules {
-        gap: 5px;
-      }
-      
-      .module-btn {
-        padding: 6px 10px;
-        font-size: 0.8em;
-        min-width: 60px;
-      }
-      
-      #module-content {
-        padding: 12px;
-      }
-      
-      #module-content h3 {
-        font-size: 1.1em;
-      }
-      
-      #module-content p, #module-content ul {
-        font-size: 0.85em;
-      }
-      
-      .ui-control-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2em;
-      }
-    }
-    
-    /* Overlay toggle button */
-    .toggle-overlay {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 150;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+    /* Orientation warning */
+    .orientation-warning {
       display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    
-    /* Orientation message */
-    .orientation-message {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      color: white;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background: rgba(0,0,0,0.9);
       z-index: 2000;
+      color: white;
       text-align: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       padding: 20px;
-      box-sizing: border-box;
     }
     
-    .orientation-message img {
+    .orientation-warning img {
       width: 80px;
       height: 80px;
       margin-bottom: 20px;
+      animation: rotate 2s infinite;
     }
     
-    .orientation-message p {
-      font-size: 1.2em;
-      max-width: 300px;
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-90deg); }
+      100% { transform: rotate(0deg); }
     }
     
-    @media (max-height: 450px) and (orientation: landscape) {
-      .orientation-message {
-        display: flex;
+    @media (max-width: 600px) {
+      .ui-overlay {
+        font-size: 12px;
+      }
+      
+      .ui-overlay h2 {
+        font-size: 16px;
+      }
+      
+      .module-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+      
+      #module-content {
+        width: 90%;
+        padding: 12px 15px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Orientation Message -->
-  <div class="orientation-message">
-    <img src="/api/placeholder/80/80" alt="Rotate device">
-    <p>Please rotate your device to portrait mode for the best experience</p>
+  <!-- Orientation Warning (for mobile) -->
+  <div class="orientation-warning" id="orientation-warning">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" transform="rotate(90 12 12)"></rect>
+      <path d="M10 4H14"></path>
+      <path d="M12 18L12 13"></path>
+      <path d="M12 10L12 10"></path>
+    </svg>
+    <h2>Please Rotate Your Device</h2>
+    <p>This experience works best in landscape orientation.</p>
   </div>
 
   <!-- Loading Screen -->
@@ -355,23 +301,31 @@
     </div>
   </div>
 
-  <!-- UI Overlay Toggle -->
-  <button class="toggle-overlay" id="toggle-overlay">i</button>
-
   <!-- UI Overlay -->
-  <div class="ui-overlay" id="ui-overlay">
+  <div class="ui-overlay" id="info-overlay">
     <h2>Future Technologies VR Course</h2>
-    <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Navigate through different modules by selecting them below or by interacting with objects in the virtual space.</p>
-    <p>Use your VR controllers to interact with holographic interfaces. For mobile users, tap to select and swipe to look around.</p>
+    <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Select a module below or tap on objects in the virtual space.</p>
+    <p>Use touch and drag to look around. On mobile, tap the modules to learn more about each technology.</p>
   </div>
   
-  <!-- VR Enter Button -->
-  <button class="vr-enter-btn" id="enter-vr-btn">VR MODE</button>
-  
-  <!-- Mobile UI Controls -->
-  <div class="ui-controls">
-    <button class="ui-control-btn" id="move-forward">↑</button>
-    <button class="ui-control-btn" id="move-backward">↓</button>
+  <!-- VR Controls -->
+  <div class="vr-controls">
+    <button class="control-btn vr-enter-btn" id="enter-vr-btn" aria-label="Enter VR Mode">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 8c-.5-4-2.5-6-8-6H11C5.5 2 3.5 4 3 8"></path>
+        <path d="M9 10v.01"></path>
+        <path d="M15 10v.01"></path>
+        <path d="M21 12v3c0 4-2 6-6 6h-2c-3 0-5-1-5.5-3.5"></path>
+        <path d="M19 16c-.5 1.5-2 2-4 2h-2c-2 0-3.5-.5-4-2"></path>
+      </svg>
+    </button>
+    <button class="control-btn info-toggle-btn" id="info-toggle-btn" aria-label="Toggle Info">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 16v-4"></path>
+        <path d="M12 8h.01"></path>
+      </svg>
+    </button>
   </div>
   
   <!-- Module Buttons -->
@@ -379,7 +333,7 @@
     <button class="module-btn" data-module="quantum">Quantum Computing</button>
     <button class="module-btn" data-module="neurotech">Neural Interfaces</button>
     <button class="module-btn" data-module="ai">Advanced AI</button>
-    <button class="module-btn" data-module="biotech">Synthetic Bio</button>
+    <button class="module-btn" data-module="biotech">Synthetic Biology</button>
   </div>
   
   <!-- Module Content Popup (Hidden by default) -->
@@ -390,124 +344,71 @@
   </div>
 
   <!-- A-Frame VR Scene -->
-  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false" renderer="antialias: false; precision: medium; physicallyCorrectLights: false" stats="false">
     <a-assets>
-      <!-- Textures -->
-      <img id="floor-texture" src="/api/placeholder/1024/1024" alt="Floor Texture">
-      <img id="sky-texture" src="/api/placeholder/2048/2048" alt="Sky Texture">
+      <!-- Textures - Using smaller placeholder sizes for mobile -->
+      <img id="floor-texture" src="/api/placeholder/512/512" alt="Floor Texture">
+      <img id="sky-texture" src="/api/placeholder/1024/1024" alt="Sky Texture">
     </a-assets>
     
-    <!-- Environment -->
-    <a-sky color="#0c0c2c" src="#sky-texture"></a-sky>
-    <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#333" material="src: #floor-texture; repeat: 10 10"></a-plane>
+    <!-- Environment - Simplified for mobile -->
+    <a-sky color="#0c0c2c"></a-sky>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#333" material="src: #floor-texture; repeat: 5 5"></a-plane>
     
-    <!-- Ambient Lighting -->
-    <a-light type="ambient" color="#445" intensity="0.4"></a-light>
-    <a-light type="point" color="#66c" position="0 5 0" intensity="0.8"></a-light>
-    <a-light type="directional" color="#aaf" position="1 1 1" intensity="0.6"></a-light>
+    <!-- Ambient Lighting - Reduced for performance -->
+    <a-light type="ambient" color="#445" intensity="0.5"></a-light>
+    <a-light type="directional" color="#aaf" position="1 1 1" intensity="0.8"></a-light>
     
-    <!-- Quantum Computing Module -->
-    <a-entity position="-4 1.6 -4">
-      <a-sphere radius="1" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true" class="interactive">
+    <!-- Quantum Computing Module - Simplified -->
+    <a-entity position="-5 1.6 -5">
+      <a-sphere radius="1" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true">
         <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
       </a-sphere>
-      <a-entity position="0 -2 0">
+      <a-entity position="0 -1.8 0">
         <a-text value="Quantum Computing" width="4" color="white" align="center"></a-text>
       </a-entity>
-      
-      <!-- Quantum Particles -->
-      <a-entity class="particles">
-        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: 0.8 0.6 0.8; dur: 2000; dir: alternate; loop: true"></a-sphere>
-        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: -0.6 0.8 -0.7; dur: 2400; dir: alternate; loop: true"></a-sphere>
-        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: 0.7 -0.7 0.6; dur: 2200; dir: alternate; loop: true"></a-sphere>
-        <a-sphere position="0 0 0" radius="0.05" color="#7f7fff" animation="property: position; to: -0.8 -0.5 0.8; dur: 2600; dir: alternate; loop: true"></a-sphere>
-      </a-entity>
     </a-entity>
     
-    <!-- Neural Interfaces Module -->
-    <a-entity position="4 1.6 -4">
-      <a-box width="1.4" height="1.4" depth="1.4" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true" class="interactive"></a-box>
-      <a-entity position="0 -2 0">
+    <!-- Neural Interfaces Module - Simplified -->
+    <a-entity position="5 1.6 -5">
+      <a-box width="1.4" height="1.4" depth="1.4" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true"></a-box>
+      <a-entity position="0 -1.8 0">
         <a-text value="Neural Interfaces" width="4" color="white" align="center"></a-text>
       </a-entity>
-      
-      <!-- Neuron connections -->
-      <a-entity class="neuron-network">
-        <a-sphere position="0.5 0.5 0.5" radius="0.1" color="#7fff7f"></a-sphere>
-        <a-sphere position="-0.5 0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
-        <a-sphere position="0.5 -0.5 -0.5" radius="0.1" color="#7fff7f"></a-sphere>
-        <a-sphere position="-0.5 -0.5 0.5" radius="0.1" color="#7fff7f"></a-sphere>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f"></a-cylinder>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f" rotation="0 0 90"></a-cylinder>
-        <a-cylinder position="0 0 0" radius="0.02" height="1.5" color="#7fff7f" rotation="90 0 0"></a-cylinder>
-      </a-entity>
     </a-entity>
     
-    <!-- Advanced AI Systems Module -->
-    <a-entity position="-4 1.6 2.5">
-      <a-torus-knot radius="0.8" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true" class="interactive"></a-torus-knot>
-      <a-entity position="0 -2 0">
+    <!-- Advanced AI Systems Module - Simplified -->
+    <a-entity position="-5 1.6 3">
+      <a-torus-knot radius="0.8" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true"></a-torus-knot>
+      <a-entity position="0 -1.8 0">
         <a-text value="Advanced AI Systems" width="4" color="white" align="center"></a-text>
       </a-entity>
-      
-      <!-- AI Network -->
-      <a-entity class="ai-network">
-        <a-sphere position="0 0 0" radius="0.05" color="white" animation="property: opacity; from: 0.2; to: 1; dur: 1000; dir: alternate; loop: true"></a-sphere>
-        <a-entity position="0 0 0" rotation="0 0 0" animation="property: rotation; to: 0 360 0; dur: 12000; loop: true">
-          <a-sphere position="0 0 0.6" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0.52 0 0.3" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0.52 0 -0.3" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="0 0 -0.6" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="-0.52 0 -0.3" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-sphere position="-0.52 0 0.3" radius="0.07" color="#ff7f7f"></a-sphere>
-          <a-cylinder position="0 0 0.3" radius="0.01" height="0.6" color="#ff7f7f" rotation="90 0 0"></a-cylinder>
-          <a-cylinder position="0.26 0 0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 60 0"></a-cylinder>
-          <a-cylinder position="0.26 0 -0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 120 0"></a-cylinder>
-          <a-cylinder position="0 0 -0.3" radius="0.01" height="0.6" color="#ff7f7f" rotation="90 180 0"></a-cylinder>
-          <a-cylinder position="-0.26 0 -0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 240 0"></a-cylinder>
-          <a-cylinder position="-0.26 0 0.15" radius="0.01" height="0.52" color="#ff7f7f" rotation="90 300 0"></a-cylinder>
-        </a-entity>
-      </a-entity>
     </a-entity>
     
-    <!-- Synthetic Biology Module -->
-    <a-entity position="4 1.6 2.5">
-      <a-cylinder height="1.8" radius="0.5" color="#cfcf4f" segments-height="8" segments-radial="36" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true" class="interactive">
+    <!-- Synthetic Biology Module - Simplified -->
+    <a-entity position="5 1.6 3">
+      <a-cylinder height="1.8" radius="0.5" color="#cfcf4f" segments-height="6" segments-radial="24" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true">
         <a-torus position="0 0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
         <a-torus position="0 -0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
       </a-cylinder>
-      <a-entity position="0 -2 0">
+      <a-entity position="0 -1.8 0">
         <a-text value="Synthetic Biology" width="4" color="white" align="center"></a-text>
-      </a-entity>
-      
-      <!-- DNA Helix -->
-      <a-entity class="dna-helix" position="0 0 0">
-        <a-entity animation="property: rotation; to: 0 360 0; dur: 10000; loop: true">
-          <a-cylinder position="0 0.4 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 0.4 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
-          <a-cylinder position="0 0 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 0 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
-          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.4" color="#7fffff" rotation="0 0 45"></a-cylinder>
-          <a-cylinder position="0 -0.4 0" radius="0.03" height="1.4" color="#ffff7f" rotation="0 0 -45"></a-cylinder>
-        </a-entity>
       </a-entity>
     </a-entity>
     
-    <!-- Central Hub -->
+    <!-- Central Hub - Simplified -->
     <a-entity position="0 0.1 0">
       <a-cylinder height="0.1" radius="3" color="#222" opacity="0.7"></a-cylinder>
       <a-text value="FUTURE TECH HUB" position="0 0.1 0" rotation="-90 0 0" width="8" color="#4FC3F7" align="center"></a-text>
     </a-entity>
     
-    <!-- Holographic Interface -->
-    <a-entity position="0 1.5 0">
-      <a-sphere radius="0.4" color="#4FC3F7" opacity="0.3" animation="property: opacity; to: 0.5; dir: alternate; dur: 2000; loop: true"></a-sphere>
-    </a-entity>
-    
-    <!-- Camera and Controls -->
-    <a-entity position="0 1.6 6">
-      <a-camera id="camera" wasd-controls="acceleration: 100" look-controls touch-controls="enabled: true">
-        <a-cursor color="#4FC3F7" raycaster="objects: .interactive"></a-cursor>
+    <!-- Camera and Controls - Optimized for mobile -->
+    <a-entity position="0 1.6 7">
+      <a-camera look-controls="touchEnabled: true; reverseMouseDrag: false" wasd-controls="enabled: false">
+        <a-cursor color="#4FC3F7" raycaster="objects: .interactive" fuse="true" fuse-timeout="1000">
+          <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1" to="0.5 0.5 0.5" dur="1000"></a-animation>
+          <a-animation begin="click" easing="ease-in" attribute="scale" from="0.5 0.5 0.5" to="1 1 1" dur="300"></a-animation>
+        </a-cursor>
       </a-camera>
     </a-entity>
   </a-scene>
@@ -515,9 +416,6 @@
   <!-- JavaScript for interactivity -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Check if mobile device
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
       // Elements
       const loadingScreen = document.getElementById('loading-screen');
       const loadingProgress = document.getElementById('loading-progress');
@@ -527,32 +425,37 @@
       const moduleDescription = document.getElementById('module-description');
       const closeModuleBtn = document.getElementById('close-module');
       const enterVRBtn = document.getElementById('enter-vr-btn');
-      const toggleOverlayBtn = document.getElementById('toggle-overlay');
-      const uiOverlay = document.getElementById('ui-overlay');
-      const moveForwardBtn = document.getElementById('move-forward');
-      const moveBackwardBtn = document.getElementById('move-backward');
-      const camera = document.getElementById('camera');
+      const infoOverlay = document.getElementById('info-overlay');
+      const infoToggleBtn = document.getElementById('info-toggle-btn');
+      const orientationWarning = document.getElementById('orientation-warning');
       
-      // Show toggle button and hide overlay on small screens
-      if (window.innerWidth < 500) {
-        toggleOverlayBtn.style.display = 'flex';
-        
-        // Set up toggle functionality
-        toggleOverlayBtn.addEventListener('click', function() {
-          if (uiOverlay.classList.contains('hidden')) {
-            uiOverlay.classList.remove('hidden');
-            toggleOverlayBtn.style.display = 'none';
-          } else {
-            uiOverlay.classList.add('hidden');
-            toggleOverlayBtn.style.display = 'flex';
-          }
-        });
-        
-        // Close overlay when clicking on the close button in modules
-        closeModuleBtn.addEventListener('click', function() {
-          toggleOverlayBtn.style.display = 'flex';
-        });
+      // Check if we're on a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      // Check orientation on mobile
+      function checkOrientation() {
+        if (isMobile && window.innerHeight > window.innerWidth) {
+          orientationWarning.style.display = 'flex';
+        } else {
+          orientationWarning.style.display = 'none';
+        }
       }
+      
+      // Initial check
+      checkOrientation();
+      
+      // Listen for orientation changes
+      window.addEventListener('resize', checkOrientation);
+      window.addEventListener('orientationchange', checkOrientation);
+      
+      // Toggle info overlay
+      infoToggleBtn.addEventListener('click', () => {
+        if (infoOverlay.style.display === 'none') {
+          infoOverlay.style.display = 'block';
+        } else {
+          infoOverlay.style.display = 'none';
+        }
+      });
       
       // Module content
       const modules = {
@@ -614,42 +517,145 @@
         }
       };
       
-      // Mobile movement controls
+      // Faster loading for mobile
+      let loadingSpeed = isMobile ? 15 : 10;
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * loadingSpeed;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(loadingInterval);
+          
+          // Fade out loading screen
+          setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 1000);
+          }, 500);
+        }
+        loadingProgress.style.width = progress + '%';
+      }, 200);
+      
+      // Module button click handlers
+      moduleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const moduleId = button.getAttribute('data-module');
+          moduleTitle.textContent = modules[moduleId].title;
+          moduleDescription.innerHTML = modules[moduleId].description;
+          moduleContent.classList.remove('hidden');
+        });
+      });
+      
+      // Add touch events for mobile
       if (isMobile) {
-        // Adjust UI for mobile
-        document.querySelector('.ui-controls').style.display = 'flex';
+        moduleButtons.forEach(button => {
+          button.addEventListener('touchstart', () => {
+            button.style.transform = 'scale(0.95)';
+          });
+          button.addEventListener('touchend', () => {
+            button.style.transform = 'scale(1)';
+          });
+        });
+      }
+      
+      // Close module content
+      closeModuleBtn.addEventListener('click', () => {
+        moduleContent.classList.add('hidden');
+      });
+      
+      // Enter VR mode
+      enterVRBtn.addEventListener('click', () => {
+        const scene = document.querySelector('a-scene');
+        if (scene.hasAttribute('vr-mode')) {
+          scene.exitVR();
+        } else {
+          scene.enterVR();
+        }
+      });
+      
+      // Make A-Frame entities interactive
+      const interactiveEntities = ['a-sphere', 'a-box', 'a-torus-knot', 'a-cylinder'].map(selector => 
+        Array.from(document.querySelectorAll(selector))
+      ).flat().filter(entity => {
+        // Filter out entities that are not main module representations
+        return entity.parentNode && 
+               entity.parentNode.childNodes.length > 1 && 
+               Array.from(entity.parentNode.childNodes).some(node => 
+                 node.nodeName === 'A-ENTITY' && 
+                 node.querySelector && 
+                 node.querySelector('a-text')
+               );
+      });
+      
+      interactiveEntities.forEach(entity => {
+        entity.setAttribute('class', 'interactive');
         
-        // Movement controls for mobile
-        let moving = false;
-        let direction = '';
+        // For mobile, add animation on hover to indicate interactivity
+        entity.addEventListener('mouseenter', function() {
+          gsap.to(this.object3D.scale, {x: 1.1, y: 1.1, z: 1.1, duration: 0.3});
+        });
         
-        const moveCamera = function() {
-          if (!moving) return;
+        entity.addEventListener('mouseleave', function() {
+          gsap.to(this.object3D.scale, {x: 1, y: 1, z: 1, duration: 0.3});
+        });
+        
+        entity.addEventListener('click', function() {
+          // Find nearest module text
+          const parentEntity = this.parentNode;
+          const textEntity = parentEntity.querySelector('a-entity a-text');
           
-          const cameraEl = camera.object3D;
-          const cameraDirection = new THREE.Vector3();
-          camera.object3D.getWorldDirection(cameraDirection);
-          
-          if (direction === 'forward') {
-            cameraDirection.multiplyScalar(0.1);
-            camera.object3D.position.add(cameraDirection);
-          } else if (direction === 'backward') {
-            cameraDirection.multiplyScalar(-0.1);
-            camera.object3D.position.add(cameraDirection);
+          if (textEntity) {
+            const moduleText = textEntity.getAttribute('value').toLowerCase();
+            
+            // Find matching module
+            let matchedModule = null;
+            Object.keys(modules).forEach(key => {
+              if (moduleText.includes(key) || modules[key].title.toLowerCase().includes(moduleText)) {
+                matchedModule = key;
+              }
+            });
+            
+            if (matchedModule) {
+              moduleTitle.textContent = modules[matchedModule].title;
+              moduleDescription.innerHTML = modules[matchedModule].description;
+              moduleContent.classList.remove('hidden');
+            }
           }
-          
-          requestAnimationFrame(moveCamera);
-        };
-        
-        moveForwardBtn.addEventListener('touchstart', function(e) {
-          e.preventDefault();
-          moving = true;
-          direction = 'forward';
-          moveCamera();
         });
-        
-        moveForwardBtn.addEventListener('touchend', function() {
-          moving = false;
+      });
+      
+      // Add component for better mobile touch controls
+      AFRAME.registerComponent('touch-look-controls', {
+        init: function () {
+          this.el.setAttribute('look-controls', {
+            touchEnabled: true,
+            magicWindowTrackingEnabled: true
+          });
+        }
+      });
+      
+      // Disable page scrolling when interacting with A-Frame scene
+      const scene = document.querySelector('a-scene');
+      scene.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+      });
+      
+      // Detect VR capability
+      if (!navigator.xr && !navigator.getVRDisplays) {
+        enterVRBtn.style.display = 'none';
+      }
+      
+      // Performance optimization - reduce scene complexity if on a mobile device
+      if (isMobile) {
+        // Remove some of the decorative elements to improve performance
+        document.querySelectorAll('.particles, .neuron-network, .ai-network, .dna-helix').forEach(el => {
+          if (el && el.parentNode) {
+            el.parentNode.removeChild(el);
+          }
         });
-        
-        moveBackwardBtn.addEventListener('
+      }
+    });
+  </script>
+</body>
+        </html>
