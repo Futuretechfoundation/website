@@ -105,6 +105,21 @@
 
         /* Menu Sidebar */
         .menu-sidebar {
+            /* Add this to your existing CSS */
+.menu-sidebar {
+    display: none; /* Initial state */
+    /* Other existing styles */
+    transition: transform 0.3s ease-out, visibility 0.3s, opacity 0.3s;
+    transform: translateX(100%);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.menu-sidebar.active {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+}
             display: none;
             position: fixed;
             top: 0;
