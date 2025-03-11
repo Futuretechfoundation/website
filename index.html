@@ -5,67 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies.">
     <title>FutureTech Foundation</title>
-
+    
+    <!-- Font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- CSS Styling -->
     <style>
+        :root {
+            --primary-color: #7c0017;
+            --secondary-color: #007b7b;
+            --accent-color: #f39200;
+            --text-color: #333;
+            --light-bg: #f4f4f9;
+            --dark-bg: #2a3d45;
+            --white: #fff;
+            --gray: #666;
+            --light-gray: #f9f9f9;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
         }
 
         /* Header and Top Bar */
         .top-bar {
-            background-color: #7c0017;
-            color: #fff;
+            background-color: var(--primary-color);
+            color: var(--white);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            height: 60px;
+            height: 3.5rem;
+            object-fit: contain;
         }
 
-    .menu-button {
-        background: none;
-        border: none;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 10px;
-    }
+        .menu-button {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            transition: var(--transition);
+        }
 
-    .hamburger-icon {
-        width: 30px;
-        height: 4px;
-        background-color: white;
-        border-radius: 2px;
-    }
+        .hamburger-icon {
+            width: 28px;
+            height: 3px;
+            background-color: var(--white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
 
-    .top-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-    }
-
-    .logo {
-        height: 50px;
-    }
-
+        .menu-button:hover .hamburger-icon {
+            background-color: var(--accent-color);
+        }
 
         /* Menu Sidebar */
         .menu-sidebar {
@@ -73,25 +109,44 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 250px;
+            width: 300px;
             height: 100%;
-            background-color: #f4f4f4;
-            padding: 20px;
-            box-shadow: -2px 0px 5px rgba(0,0,0,0.5);
+            background-color: var(--white);
+            padding: 1.5rem;
+            box-shadow: -2px 0px 10px rgba(0,0,0,0.2);
             overflow-y: auto;
-            z-index: 1000;
+            z-index: 1100;
+            transition: transform 0.3s ease-out;
         }
 
         .menu-sidebar h2 {
-            font-size: 1.5em;
-            color: #7c0017;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .menu-section {
+            margin-bottom: 1.25rem;
         }
 
         .menu-section h3 {
-            color: #007b7b;
-            font-size: 1.2em;
-            margin-top: 20px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
         .menu-section ul {
@@ -100,347 +155,664 @@
         }
 
         .menu-section ul li {
-            margin: 10px 0;
+            margin: 0.75rem 0;
         }
 
         .menu-section ul li a {
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: var(--transition);
         }
 
-        /* MetaMask Login Button */
+        .menu-section ul li a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        /* Login Button */
         .login-button {
-            background-color: #f39200;
-            color: #fff;
-            padding: 10px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.75rem 1rem;
             border: none;
-            font-size: 1em;
-            font-weight: bold;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
+            margin: 1.5rem 0;
             display: block;
             width: 100%;
             text-align: center;
+            transition: var(--transition);
+        }
+
+        .login-button:hover {
+            background-color: #d97e00;
+            transform: translateY(-2px);
         }
 
         /* Close Button */
         .close-button {
             background: none;
             border: none;
-            font-size: 1.5em;
-            color: #333;
+            font-size: 1.5rem;
+            color: var(--text-color);
             cursor: pointer;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 1rem;
+            right: 1rem;
+            transition: var(--transition);
+        }
+
+        .close-button:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
         }
 
         /* Main Content */
-        .main-content {
-            padding: 20px;
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: var(--light-bg);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--gray);
             max-width: 800px;
-            margin: 40px auto; /* Adjusted for larger side margins */
-            text-align: center;
-            flex-grow: 1;
+            margin: 0 auto 3rem;
         }
 
-        /* Quote Section */
-        .quote {
-            font-style: italic;
-            font-size: 1.2em;
-            color: #555;
-            margin: 20px 0;
-            text-align: center;
+        .video-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            margin: 2rem auto;
+            max-width: 900px;
         }
 
-        .quote-author {
-            text-align: right;
-            font-weight: bold;
-            font-size: 1em;
-            color: #555;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .section {
-            margin: 40px 0;
+            padding: 4rem 1rem;
+            margin: 0 auto;
         }
 
-    .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        padding: 20px;
-    }
-    .photo-container {
-        text-align: center;
-        cursor: pointer;
-    }
-    .image-placeholder {
-        width: 100%;
-        height: 200px;
-        background-color: #ddd;
-        text-align: center;
-        line-height: 200px;
-        color: #666;
-        font-size: 1.2em;
-        margin: 20px 0;
-        border: 2px dashed #ccc;
-        transition: transform 0.3s ease;
-    }
-    .photo-container:hover .image-placeholder {
-        transform: scale(1.05);
-        border-color: #888;
-    }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .quote-container {
+            background-color: var(--light-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            margin: 3rem auto;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+
+        .quote-container::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            left: 2rem;
+            font-size: 5rem;
+            color: rgba(0,0,0,0.1);
+            line-height: 1;
+        }
+
+        .quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+            text-align: right;
+        }
+
+        .about-section {
+            background-color: var(--light-bg);
+            padding: 3rem 1.5rem;
+            border-radius: var(--border-radius);
+            max-width: 1000px;
+            margin: 4rem auto;
+            box-shadow: var(--box-shadow);
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background-color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
 
         /* Chatbot */
-        #chatbot {
+        .chatbot-toggle-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #fff;
-            display: none;
-            z-index: 1000;
-        }
-
-        #chatbot textarea {
-            width: 100%;
-            height: 70%;
-        }
-
-        #chatbot button {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #openChatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007b7b;
-            color: #fff;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
             border: none;
-            padding: 10px 15px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .chatbot-toggle-btn:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 1.5rem;
+            width: 320px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            max-height: 500px;
+            transition: var(--transition);
+        }
+
+        .close-chat-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-chat-btn:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .chatbox {
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            background: var(--light-gray);
+            margin-bottom: 1rem;
+            max-height: 250px;
+        }
+
+        #chatboxContent {
+            font-size: 0.95rem;
+        }
+
+        .chatbox p {
+            margin-bottom: 0.75rem;
+        }
+
+        .input-area {
+            display: flex;
+            width: 100%;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .input-area input:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .input-area button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .input-area button:hover {
+            background-color: var(--secondary-color);
         }
 
         /* Footer */
         footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
+            background-color: #212121;
+            color: var(--white);
+            padding: 3rem 1.5rem 2rem;
             margin-top: auto;
         }
 
-        footer .address, footer .social-media, footer .footer-links {
-            margin-bottom: 20px;
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        footer .address p {
-            margin: 5px 0;
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            color: var(--accent-color);
         }
 
-        footer .social-media a {
-            margin: 0 10px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2em;
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
-        footer .footer-links a {
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            margin: 5px 0;
+        .footer-links {
+            list-style: none;
         }
 
-        footer .footer-links a:hover {
-            text-decoration: underline;
+        .footer-links li {
+            margin-bottom: 0.75rem;
         }
 
-        footer .copyright {
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-            margin-top: 10px;
+        .footer-links a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links img {
+            width: 18px;
+            height: 18px;
+            filter: brightness(0) invert(1);
+        }
+
+        .address p {
+            margin-bottom: 0.5rem;
+            color: #bbb;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .disclaimer {
+            background-color: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .quote {
+                font-size: 1.1rem;
+            }
+            
+            .tech-list {
+                gap: 0.5rem;
+            }
+            
+            .tech-item {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .chatbot-container {
+                width: 300px;
+                right: 1rem;
+                bottom: 5rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-<header>
-    <div class="top-bar">
-        <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
-        <button onclick="toggleMenu()" class="menu-button">
-            <span class="hamburger-icon"></span>
-            <span class="hamburger-icon"></span>
-            <span class="hamburger-icon"></span>
-        </button>
-    </div>
-</header>
+    <header>
+        <div class="top-bar">
+            <img src="https://futuretechfoundation.github.io/website/Logo.jpg" alt="FutureTech Foundation Logo" class="logo">
+            <button onclick="toggleMenu()" class="menu-button" aria-label="Toggle Menu">
+                <span class="hamburger-icon"></span>
+                <span class="hamburger-icon"></span>
+                <span class="hamburger-icon"></span>
+            </button>
+        </div>
+    </header>
 
-
-        
-  <!-- Menu Sidebar -->
+    <!-- Menu Sidebar -->
     <div id="menuSidebar" class="menu-sidebar">
-        <button onclick="toggleMenu()" class="close-button">X</button>
+        <button onclick="toggleMenu()" class="close-button" aria-label="Close Menu">×</button>
         <h2>Menu</h2>
         
-        <!-- MetaMask Login Button -->
+        <!-- Login Button -->
         <button id="loginButton" class="login-button">Login with MetaMask</button>
         
         <div class="menu-section">
-    <h3>About Us</h3>
-    <ul>
-        <li><a href="mission.html">Our Vision and Mission</a></li>
-        <li><a href="accountability.html">Our Accountability</a></li>
-        <li><a href="newsroom.html">Newsroom</a></li>
-    </ul>
-</div>
+            <h3>About Us</h3>
+            <ul>
+                <li><a href="mission.html">Our Vision and Mission</a></li>
+                <li><a href="accountability.html">Our Accountability</a></li>
+                <li><a href="newsroom.html">Newsroom</a></li>
+            </ul>
+        </div>
 
-<div class="menu-section">
-    <h3>Research & Education</h3>
-    <ul>
-        <li><a href="futuretechacademy_home.html">FutureTechAcademy</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="clinical_trials.html">Clinical Trials</a></li>
-    </ul>
-</div>
+        <div class="menu-section">
+            <h3>Research & Education</h3>
+            <ul>
+                <li><a href="futuretechacademy_home.html">FutureTechAcademy</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="clinical_trials.html">Clinical Trials</a></li>
+            </ul>
+        </div>
 
-<div class="menu-section">
-    <h3>Engage with Us</h3>
-    <ul>
-        <li><a href="events.html">Find Events</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="ethics.html">Ethics Helpline</a></li>
-    </ul>
-</div>
+        <div class="menu-section">
+            <h3>Engage with Us</h3>
+            <ul>
+                <li><a href="events.html">Find Events</a></li>
+                <li><a href="volunteer.html">Volunteer</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="ethics.html">Ethics Helpline</a></li>
+            </ul>
+        </div>
 
-<div class="menu-section">
-    <h3>Opportunities</h3>
-    <ul>
-        <li><a href="internships.html">Internships</a></li>
-        <li><a href="access_portal.html">Access Portal</a></li>
-    </ul>
-</div>
+        <div class="menu-section">
+            <h3>Opportunities</h3>
+            <ul>
+                <li><a href="internships.html">Internships</a></li>
+                <li><a href="access_portal.html">Access Portal</a></li>
+            </ul>
+        </div>
 
-<div class="menu-section">
-    <h3>Technology & AI</h3>
-    <ul>
-        <li><a href="3dchatbot.html">3D Chatbot</a></li>
-        <li><a href="afiba.html">AfibaX</a></li>
-    </ul>
-</div>
+        <div class="menu-section">
+            <h3>Technology & AI</h3>
+            <ul>
+                <li><a href="3dchatbot.html">3D Chatbot</a></li>
+                <li><a href="afiba.html">AfibaX</a></li>
+            </ul>
+        </div>
 
-<div class="menu-section">
-    <h3>Support Us</h3>
-    <ul>
-        <li><a href="donate.html">Donate Now</a></li>
-        <li><a href="membership.html">Membership</a></li>
-        <li><a href="bookstore.html">Bookstore</a></li>
-        <li><a href="estate.html">Gift & Estate Planning</a></li>
-    </ul>
-</div>
+        <div class="menu-section">
+            <h3>Support Us</h3>
+            <ul>
+                <li><a href="donate.html">Donate Now</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="bookstore.html">Bookstore</a></li>
+                <li><a href="estate.html">Gift & Estate Planning</a></li>
+            </ul>
+        </div>
     </div>
     
     <!-- Main Content -->
-<div class="main-content" style="font-family: 'Arial', sans-serif; color: #333; margin: 0 auto; max-width: 1200px; padding: 50px 20px;">
-    <section style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 3em; font-weight: bold; color: #2a3d45; margin-bottom: 20px;">EMBRACING THE FUTURE OF TECHNOLOGY</h1>
-        <p style="font-size: 1.5em; color: #666; line-height: 1.6; margin-bottom: 40px;">FutureTech Foundation: Shaping Tomorrow Through Innovation.</p>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">EMBRACING THE FUTURE OF TECHNOLOGY</h1>
+                <p class="hero-subtitle">FutureTech Foundation: Shaping Tomorrow Through Innovation.</p>
+            </div>
+        </section>
 
-    <section style="margin-bottom: 50px;">
-        <div class="video-container" style="position: relative; padding-top: 56.25%; /* Aspect ratio 16:9 */">
-            <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/4nfsKGN1zQ8?autoplay=1&mute=1&loop=1&playlist=4nfsKGN1zQ8" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen
-                style="position: absolute; top: 0; left: 0;">
-            </iframe>
-        </div>
-    </section>
+        <!-- Video Section -->
+        <section class="section">
+            <div class="container">
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/4nfsKGN1zQ8?autoplay=1&mute=1&loop=1&playlist=4nfsKGN1zQ8" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
 
-    <section style="text-align: center; margin-bottom: 50px;">
-        <h2 style="font-size: 2.5em; font-weight: bold; color: #2a3d45; margin-bottom: 20px;">INNOVATION THAT REDEFINES POSSIBILITY.</h2>
-        <p style="font-size: 1.3em; color: #4a4a4a; line-height: 1.6; margin: 0 auto; max-width: 800px;">In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p>
-    </section>
+        <!-- Innovation Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">INNOVATION THAT REDEFINES POSSIBILITY</h2>
+                <p class="section-text">In collaboration with our community of experts, FutureTech empowers participants to tackle the technological challenges of the 21st century.</p>
+                
+                <!-- Quote Container -->
+                <div class="quote-container">
+                    <div class="quote">
+                        "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
+                    </div>
+                    <div class="quote-author">
+                        - Alex, Volunteer
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section style="text-align: center; margin-top: 50px;">
-        <div class="quote" style="font-size: 1.5em; font-style: italic; color: #555; background: #f4f4f9; padding: 20px 30px; border-radius: 8px; max-width: 900px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            "FutureTech helped me develop a mentality that acknowledges different cultural perspectives while building on our shared human values. I use these skills every day in my tech career."
-        </div>
-        <div class="quote-author" style="margin-top: 20px; font-size: 1.2em; font-weight: bold; color: #2a3d45;">
-            - Alex, Volunteer
-        </div>
-    </section>
-</div>
+        <!-- About Us Section -->
+        <section class="section">
+            <div class="container">
+                <div class="about-section">
+                    <h2 class="section-title">About Us</h2>
+                    <p class="section-text">
+                        FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing mentorship, hands-on learning experiences, and community engagement in fields such as:
+                    </p>
+                    
+                    <div class="tech-list">
+                        <span class="tech-item">Nanorobotics</span>
+                        <span class="tech-item">3D Bioprinting</span>
+                        <span class="tech-item">Biotechnology</span>
+                        <span class="tech-item">Artificial Intelligence</span>
+                        <span class="tech-item">Space Technology</span>
+                    </div>
 
-        <section style="background-color: #f4f4f9; padding: 40px 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 900px; margin: 0 auto; font-family: 'Arial', sans-serif;">
-    <h2 style="text-align: center; font-size: 2.5em; color: #2a3d45; margin-bottom: 20px;">About Us</h2>
-    <p style="font-size: 1.2em; color: #4a4a4a; line-height: 1.6; text-align: center; margin-bottom: 30px;">
-        FutureTech Foundation is a nonprofit organization focused on advancing education and innovation in emerging technologies. Our mission is to foster the next generation of leaders by providing mentorship, hands-on learning experiences, and community engagement in fields such as:
-    </p>
-    
-    <ul style="list-style-type: none; padding: 0; text-align: center; margin-bottom: 30px;">
-        <li style="font-size: 1.3em; color: #2a3d45; margin: 10px 0;">Nanorobotics</li>
-        <li style="font-size: 1.3em; color: #2a3d45; margin: 10px 0;">3D Bioprinting</li>
-        <li style="font-size: 1.3em; color: #2a3d45; margin: 10px 0;">Biotechnology</li>
-        <li style="font-size: 1.3em; color: #2a3d45; margin: 10px 0;">Artificial Intelligence</li>
-        <li style="font-size: 1.3em; color: #2a3d45; margin: 10px 0;">Space Technology</li>
-    </ul>
+                    <p class="section-text">
+                        Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational resources that inspire curiosity and empower learners to explore the future of human potential.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <p style="font-size: 1.2em; color: #4a4a4a; line-height: 1.6; text-align: center;">
-        Through our volunteer-driven programs, we partner with schools, universities, and local communities to create educational resources that inspire curiosity and empower learners to explore the future of human potential.
-    </p>
-</section>
-
-<section style="text-align: center; padding: 50px 20px;">
-    <h2 style="font-size: 2.5em; font-weight: bold; color: #2a3d45; margin-bottom: 40px;">Explore Our Focus Areas</h2>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; justify-items: center; align-items: center;">
-        <div style="position: relative;">
-            <a href="futuretechacademy_home.html#future-of-humans-track">
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/bioprinting%20.webp" 
-                     alt="3D Bioprinting" 
-                     style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            </a>
-        </div>
-        <div style="position: relative;">
-            <a href="futuretechacademy_home.html#future-of-humans-track">
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/nanobot.webp" 
-                     alt="Nanorobotics" 
-                     style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            </a>
-        </div>
-        <div style="position: relative;">
-            <a href="futuretecacademy_home.html#bci-humanoids-track">
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/humanoid%20.webp" 
-                     alt="Humanoids" 
-                     style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            </a>
-        </div>
-        <div style="position: relative;">
-            <a href="futuretechacad_home.html#quantum-space-track">
-                <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/uap.webp" 
-                     alt="UAP Technology" 
-                     style="width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            </a>
-        </div>
-    </div>
-</section>
+        <!-- Gallery Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Explore Our Focus Areas</h2>
+                
+                <div class="gallery-grid">
+                    <a href="futuretechacademy_home.html#future-of-humans-track" class="gallery-item">
+                        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/bioprinting%20.webp" 
+                             alt="3D Bioprinting" 
+                             loading="lazy">
+                    </a>
+                    <a href="futuretechacademy_home.html#future-of-humans-track" class="gallery-item">
+                        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/nanobot.webp" 
+                             alt="Nanorobotics" 
+                             loading="lazy">
+                    </a>
+                    <a href="futuretecacademy_home.html#bci-humanoids-track" class="gallery-item">
+                        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/humanoid%20.webp" 
+                             alt="Humanoids" 
+                             loading="lazy">
+                    </a>
+                    <a href="futuretechacad_home.html#quantum-space-track" class="gallery-item">
+                        <img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/uap.webp" 
+                             alt="UAP Technology" 
+                             loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
 <!-- Add Hover Effect -->
 <style>
