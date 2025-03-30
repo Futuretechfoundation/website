@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,10 @@
         .qr-code {
             margin-top: 20px;
         }
+        .qr-code img {
+            width: 150px;  /* Set the QR code size */
+            height: 150px;
+        }
     </style>
     <script>
         async function checkForUpdates() {
@@ -33,7 +38,7 @@
                 let data = await response.json();
                 document.getElementById('version').innerText = "Latest Version: " + data.latest_version;
                 document.getElementById('download-link').href = data.apk_url;
-                document.getElementById('qr-code').src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + data.apk_url;
+                document.getElementById('qr-code-img').src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(data.apk_url);
             } catch (error) {
                 console.error('Error fetching version info:', error);
             }
@@ -43,12 +48,13 @@
 <body onload="checkForUpdates()">
     <h1>Download Our Android App</h1>
     <p id="version">Checking for updates...</p>
-    <a id="https://github.com/Futuretechfoundation/website/raw/c72f60370809d8a015db23bd32e5b65661493c17/apk/Futuretechfoundation.apk" href="#" class="download-btn" download>Download APK</a>
+    <a id="download-link" href="https://github.com/Futuretechfoundation/website/raw/c72f60370809d8a015db23bd32e5b65661493c17/apk/Futuretechfoundation.apk" class="download-btn" download>Download APK</a>
+    
     <div class="qr-code">
         <p>Scan to download:</p>
-        <a href="https://www.qr-code-generator.com/" border="0" style="cursor:default" rel="nofollow"></a>
-<img src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/qr-code.png"
+        <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fgithub.com%2FFuturetechfoundation%2Fwebsite%2Fraw%2Fc72f60370809d8a015db23bd32e5b65661493c17%2Fapk%2FFuturetechfoundation.apk" alt="QR Code">
     </div>
+    
     <p>To install, enable "Install unknown apps" in your device’s settings.</p>
 </body>
-      </html>
+</html>
