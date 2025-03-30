@@ -1,107 +1,791 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate to FutureTech Foundation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Donate Now - FutureTech Foundation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 10px;
             position: relative;
+            overflow: hidden;
         }
-        .section-title::after {
+
+        .header::before {
             content: '';
             position: absolute;
-            left: 50%;
-            bottom: -5px;
-            width: 50px;
-            height: 4px;
-            background: linear-gradient(90deg, #28a745 0%, #218838 100%);
-            border-radius: 2px;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/300');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
         }
-        .crypto-address, .contact-info {
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header-subtitle {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .main {
+            padding: 2rem 0;
+        }
+
+        .card {
             background-color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: var(--primary);
+            color: white;
+            margin-right: 0.5rem;
+        }
+
+        .badge-secondary {
+            background-color: var(--secondary);
+        }
+
+        .badge-success {
+            background-color: var(--success);
+        }
+
+        .crypto-list {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .crypto-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .crypto-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background-color: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s;
         }
-        .crypto-item:last-child { border-bottom: none; }
+
+        .crypto-item:hover {
+            background-color: white;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
         .crypto-icon {
-            color: white;
-            padding: 10px;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
-            font-size: 1.25rem;
-        }
-        .crypto-copy {
-            background: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
+            flex-shrink: 0;
         }
-        .crypto-copy:hover { background: #218838; }
+
+        .crypto-icon-btc {
+            background-color: #f7931a;
+        }
+
+        .crypto-icon-eth {
+            background-color: #627eea;
+        }
+
+        .crypto-icon-ltc {
+            background-color: #345d9d;
+        }
+
+        .crypto-icon-xrp {
+            background-color: #23292f;
+        }
+
+        .crypto-icon-doge {
+            background-color: #c3a634;
+        }
+
+        .crypto-icon-ada {
+            background-color: #0033ad;
+        }
+
+        .crypto-icon-dot {
+            background-color: #e6007a;
+        }
+
+        .crypto-details {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .crypto-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .crypto-address {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .crypto-copy {
+            background-color: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s;
+        }
+
+        .crypto-copy:hover {
+            background-color: var(--gray-200);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-300);
+            background-color: white;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.5rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: white;
+            background-color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .donate-options {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .donate-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .donate-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .donate-option {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .option-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+        }
+
+        .option-desc {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .option-cta {
+            align-self: flex-start;
+            margin-top: auto;
+            font-weight: 500;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        .footer-text {
+            opacity: 0.6;
+            font-size: 0.875rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        .contact-info {
+            background-color: var(--gray-100);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            width: 1.25rem;
+            text-align: center;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .donation-impact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .impact-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 1.25rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 3px solid var(--primary);
+        }
+
+        .impact-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-text {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+
+        .clipboard-js {
+            position: fixed;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <h2 class="section-title">Crypto Donations</h2>
-    <div class="crypto-address">
-        <p>Bitcoin Address:</p>
-        <p>1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG</p>
-        <button class="crypto-copy" onclick="copyToClipboard('1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG')">
-            <i class="fas fa-copy"></i> Copy
-        </button>
-    </div><h2 class="section-title">Donate NFTs</h2>
-<div class="crypto-address">
-    <p>Ethereum Wallet Address:</p>
-    <p>0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</p>
-    <button class="crypto-copy" onclick="copyToClipboard('0x19Be60326c1ED6367aeb541d523bEe9e08A136F3')">
-        <i class="fas fa-copy"></i> Copy
-    </button>
-</div>
-<div class="crypto-address">
-    <p>Solana Wallet Address:</p>
-    <p>GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845</p>
-    <button class="crypto-copy" onclick="copyToClipboard('GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845')">
-        <i class="fas fa-copy"></i> Copy
-    </button>
-</div>
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="header-title">Support Our Mission</h1>
+            <p class="header-subtitle">Your generosity powers innovation and creates a better future for everyone.</p>
+        </div>
+    </header>
 
-<h2 class="section-title" id="mail">Mail-in Donation</h2>
-<div class="contact-info">
-    <p>If you prefer to send a check, please make it payable to "FutureTech Foundation" and mail it to:</p>
-    <p>FutureTech Foundation</p>
-    <p>1529 12th St SE 200 #129</p>
-    <p>Rochester, MN 55904</p>
-</div>
+    <main class="main">
+        <div class="container">
+            <div class="donate-options">
+                <!-- Quick Donate Option -->
+                <a href="#cashapp" class="donate-option">
+                    <div class="card option-card animate-fadeIn" style="animation-delay: 0.1s">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h3 class="card-title">Cash App</h3>
+                        </div>
+                        <div class="card-body option-card-body">
+                            <h4 class="option-title">Quick & Easy</h4>
+                            <p class="option-desc">Make an instant donation using Cash App with just a few taps.</p>
+                            <span class="option-cta">
+                                Donate now <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
 
-<script>
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Copied to clipboard: " + text);
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-        });
-    }
-</script>
+                <!-- Crypto Donate Option -->
+                <a href="#crypto" class="donate-option">
+                    <div class="card option-card animate-fadeIn" style="animation-delay: 0.2s">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <h3 class="card-title">Cryptocurrency</h3>
+                        </div>
+                        <div class="card-body option-card-body">
+                            <h4 class="option-title">Digital Assets</h4>
+                            <p class="option-desc">Support our mission with Bitcoin, Ethereum, and other cryptocurrencies.</p>
+                            <span class="option-cta">
+                                View options <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
 
-</body>
-</html>
+                <!-- Mail-in Donate Option -->
+                <a href="#mail" class="donate-option">
+                    <div class="card option-card animate-fadeIn" style="animation-delay: 0.3s">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 class="card-title">Mail a Check</h3>
+                        </div>
+                        <div class="card-body option-card-body">
+                            <h4 class="option-title">Traditional Method</h4>
+                            <p class="option-desc">Prefer to mail a check? Get our mailing address and instructions.</p>
+                            <span class="option-cta">
+                                Send by mail <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <h2 class="section-title">Your Impact</h2>
+            <p>When you donate to FutureTech Foundation, you're investing in the future of technology and innovation. Your contribution helps us:</p>
+            
+            <div class="donation-impact">
+                <div class="impact-item">
+                    <div class="impact-number">50+</div>
+                    <div class="impact-text">Tech education programs funded annually</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">2,500</div>
+                    <div class="impact-text">Students reached through our initiatives</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">12</div>
+                    <div class="impact-text">Research projects in emerging tech fields</div>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="cashapp">Donate with Cash App</h2>
+            <div class="card animate-fadeIn">
+                <div class="card-body">
+                    <div class="badge">Fast & Secure</div>
+                    <div class="badge badge-success">No Fees</div>
+                    
+                    <p style="margin-top: 1rem;">Make an instant donation to FutureTech Foundation using Cash App:</p>
+                    
+                    <div class="crypto-list" style="grid-template-columns: 1fr;">
+                        <div class="crypto-item">
+                            <div class="crypto-icon" style="background-color: #00D632;">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Cash App $Cashtag</div>
+                                <div class="crypto-address">$FutureTechFoundation</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('$FutureTechFoundation')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p>Simply open Cash App, enter your donation amount, and use the $Cashtag above to send your support. It's that easy!</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="crypto">Donate with Cryptocurrency</h2>
+            <div class="card animate-fadeIn">
+                <div class="card-body">
+                    <div class="badge">Tax Efficient</div>
+                    <div class="badge badge-secondary">Global</div>
+                    
+                    <p style="margin-top: 1rem;">FutureTech Foundation accepts a variety of cryptocurrency donations. Please send to the appropriate address:</p>
+                    
+                    <div class="crypto-list">
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-btc">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Bitcoin (BTC)</div>
+                                <div class="crypto-address">bc1q2q45yj3t3vua867z9367fqfuhswy2zks64cpuv</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('bc1q2q45yj3t3vua867z9367fqfuhswy2zks64cpuv')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-eth">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Ethereum (ETH)</div>
+                                <div class="crypto-address">0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('0x19Be60326c1ED6367aeb541d523bEe9e08A136F3')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-ltc">
+                                <i class="fab fa-litecoin"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Litecoin (LTC)</div>
+                                <div class="crypto-address">ltc1qecyhm59dkn3czq5u6r298nvu43sxwqzad5a83f</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('ltc1qecyhm59dkn3czq5u6r298nvu43sxwqzad5a83f')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-xrp">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Ripple (XRP)</div>
+                                <div class="crypto-address">rptBenK5peJdV5c2vxspoffjWpjaaRaoky</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('rptBenK5peJdV5c2vxspoffjWpjaaRaoky')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-doge">
+                                <i class="fas fa-dog"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Dogecoin (DOGE)</div>
+                                <div class="crypto-address">DD7UqrqFMpXBjaR9LBQn8YeG5qzY921rhg</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('DD7UqrqFMpXBjaR9LBQn8YeG5qzY921rhg')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-ada">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Cardano (ADA)</div>
+                                <div class="crypto-address">addr1q8dljrx99e8q8dxyjvtat35sccfw9w7svypxz6lvmqn6rnmdqz7uyq3xh39xqrp7us27ek9epfmywksnaayv848egfesmd6xuv</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('addr1q8dljrx99e8q8dxyjvtat35sccfw9w7svypxz6lvmqn6rnmdqz7uyq3xh39xqrp7us27ek9epfmywksnaayv848egfesmd6xuv')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon crypto-icon-dot">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Polkadot (DOT)</div>
+                                <div class="crypto-address">1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('1F62L1hZRLak3QbJDGJVSA81YoAeHP4dfJAo3kNP2KWoNiG')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Donate NFTs</h2>
+            <div class="card animate-fadeIn">
+                <div class="card-body">
+                    <div class="badge">Digital Art</div>
+                    <div class="badge badge-secondary">Collectibles</div>
+                    
+                    <p style="margin-top: 1rem;">Support FutureTech Foundation by donating NFTs to help fund our mission. We accept NFTs on the Ethereum and Solana networks:</p>
+                    
+                    <div class="crypto-list" style="grid-template-columns: 1fr;">
+                        <div class="crypto-item">
+                            <div class="crypto-icon" style="background-color: #627eea;">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Ethereum Wallet Address</div>
+                                <div class="crypto-address">0x19Be60326c1ED6367aeb541d523bEe9e08A136F3</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('0x19Be60326c1ED6367aeb541d523bEe9e08A136F3')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="crypto-item">
+                            <div class="crypto-icon" style="background-color: #9945FF;">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="crypto-details">
+                                <div class="crypto-name">Solana Wallet Address</div>
+                                <div class="crypto-address">GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845</div>
+                            </div>
+                            <button class="crypto-copy" onclick="copyToClipboard('GUVwVYvGXgEZUXcvt7ovEuZN3zyV3HJCY2zkP5skq845')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p>To donate an NFT, transfer it directly to one of the wallet addresses above. For assistance, feel free to contact us.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="mail">Mail-in Donation</h2>
+            <div class="card animate-fadeIn">
+                <div class="card-body">
+                    <div class="badge">Traditional</div>
+                    
+                    <p style="margin-top: 1rem;">If you prefer to send a check, please make it payable to "FutureTech Foundation" and mail it to:</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>FutureTech Foundation</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>1529 12th St SE 200 #129</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-city"></i>
+                            </div>
+                            <div>Rochester, MN 55904</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Other Ways to Support</h2>
+
+            <!-- Donate Physical Goods -->
+            <div class="card animate-fadeIn">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class
