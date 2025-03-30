@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Our App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .download-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+        .qr-code {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        async function checkForUpdates() {
+            try {
+                let response = await fetch('version.json');
+                let data = await response.json();
+                document.getElementById('version').innerText = "Latest Version: " + data.latest_version;
+                document.getElementById('download-link').href = data.apk_url;
+                document.getElementById('qr-code').src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + data.apk_url;
+            } catch (error) {
+                console.error('Error fetching version info:', error);
+            }
+        }
+    </script>
+</head>
+<body onload="checkForUpdates()">
+    <h1>Download Our Android App</h1>
+    <p id="version">Checking for updates...</p>
+    <a id="download-link" href="#" class="download-btn" download>Download APK</a>
+    <div class="qr-code">
+        <p>Scan to download:</p>
+        <img id="qr-code" src="" alt="QR Code">
+    </div>
+    <p>To install, enable "Install unknown apps" in your device’s settings.</p>
+</body>
+      </html>
