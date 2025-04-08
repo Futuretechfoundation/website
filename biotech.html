@@ -1,356 +1,400 @@
-import React, { useState } from 'react';
-
-const CoursePage = () => {
-  const [activeSection, setActiveSection] = useState(null);
-  
-  const menuItems = [
-    { id: 'overview', title: 'Course Overview' },
-    { id: 'week1', title: 'Week 1: Foundations of Modern Biotechnology' },
-    { id: 'week2', title: 'Week 2: Genomics and Precision Genetic Engineering' },
-    { id: 'week3', title: 'Week 3: Molecular Biology and Advanced Biochemistry' },
-    { id: 'week4', title: 'Week 4: Medical Biotechnology and Therapeutic Applications' },
-    { id: 'week5', title: 'Week 5: Synthetic Biology and Bioengineering' },
-    { id: 'week6', title: 'Week 6: Emerging and Interdisciplinary Areas' },
-    { id: 'week7', title: 'Week 7: Biotechnology Policy, Regulation, and Ethics' },
-    { id: 'week8', title: 'Week 8: Final Project & Future Frontiers' },
-    { id: 'tools', title: 'Tools & Platforms' },
-    { id: 'ai-tutor', title: 'AI Tutor' },
-    { id: 'outcomes', title: 'Learning Outcomes' },
-    { id: 'assessment', title: 'Assessment' },
-    { id: 'resources', title: 'Supplementary Resources' }
-  ];
-  
-  const renderContent = () => {
-    switch (activeSection) {
-      case 'overview':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Course Overview</h2>
-            <p className="mb-4"><strong>Track:</strong> Future of Humans</p>
-            <p className="mb-4"><strong>Duration:</strong> 8 weeks, 4 hours/week</p>
-            <h3 className="font-bold mb-2">Course Format:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Online modules (videos, readings, and quizzes)</li>
-              <li>Project-based learning with hands-on activities</li>
-              <li>Weekly formative assessments</li>
-              <li>Final comprehensive exam</li>
-            </ul>
-            <p className="mb-4">This comprehensive course explores cutting-edge biotechnology principles, applications, and future frontiers. Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest biotechnology tools and techniques.</p>
-            <p className="mb-4">From genomics and precision genetic engineering to synthetic biology and regulatory considerations, this course covers the full spectrum of modern biotechnology applications.</p>
-          </div>
-        );
-      case 'week1':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 1: Foundations of Modern Biotechnology</h2>
-            <p className="mb-4">Content for this week is being updated. Please check back soon.</p>
-          </div>
-        );
-      case 'week2':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 2: Genomics and Precision Genetic Engineering</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Explain advanced genomic technologies and their applications</li>
-              <li>Understand CRISPR-Cas9 and other gene editing systems</li>
-              <li>Analyze implications of genomic medicine and personalized healthcare</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Virtual CRISPR laboratory simulation</li>
-              <li>Genomic data analysis workshop</li>
-              <li>Ethics case study: gene editing applications</li>
-            </ul>
-          </div>
-        );
-      case 'week3':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 3: Molecular Biology and Advanced Biochemistry</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Master advanced molecular biology techniques</li>
-              <li>Understand protein engineering and structural biology</li>
-              <li>Apply biochemical principles to biotechnology applications</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Virtual molecular biology laboratory practicum</li>
-              <li>Protein structure prediction exercise</li>
-              <li>Design challenge: Engineering an enzyme for specific applications</li>
-            </ul>
-          </div>
-        );
-      case 'week4':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 4: Medical Biotechnology and Therapeutic Applications</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Evaluate current and emerging biopharmaceuticals</li>
-              <li>Understand cell and gene therapy approaches</li>
-              <li>Analyze the drug development pipeline for biologics</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Biotherapeutic development simulation</li>
-              <li>Virtual cell culture and bioprocessing laboratory</li>
-              <li>Regulatory strategy workshop for a novel therapeutic</li>
-            </ul>
-          </div>
-        );
-      case 'week5':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 5: Synthetic Biology and Bioengineering</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Design biological systems with engineered functionalities</li>
-              <li>Apply principles of synthetic biology to solve real-world problems</li>
-              <li>Understand emerging tools in biomaterials and bioengineering</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Design challenge: Creating a synthetic biological system</li>
-              <li>Metabolic pathway engineering simulation</li>
-              <li>Bioprinting virtual laboratory</li>
-            </ul>
-          </div>
-        );
-      case 'week6':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 6: Emerging and Interdisciplinary Areas</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Identify convergent technologies reshaping biotechnology</li>
-              <li>Understand the integration of AI and data science with biotechnology</li>
-              <li>Explore nanobiotechnology and biomolecular engineering</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Machine learning workshop for biological data analysis</li>
-              <li>Nanobiosensor design challenge</li>
-              <li>Multi-omics data integration exercise</li>
-            </ul>
-          </div>
-        );
-      case 'week7':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 7: Biotechnology Policy, Regulation, and Ethics</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Navigate the regulatory landscape for biotechnology products</li>
-              <li>Analyze ethical frameworks for evaluating emerging biotechnologies</li>
-              <li>Understand intellectual property considerations in biotechnology</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Regulatory strategy development exercise</li>
-              <li>Mock ethics review board</li>
-              <li>Intellectual property workshop</li>
-            </ul>
-          </div>
-        );
-      case 'week8':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Week 8: Final Project & Future Frontiers</h2>
-            <h3 className="font-bold mb-2">Learning Objectives:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Synthesize knowledge across multiple areas of biotechnology</li>
-              <li>Develop a biotechnology solution to a real-world challenge</li>
-              <li>Evaluate emerging trends and future directions in biotechnology</li>
-            </ul>
-            <h3 className="font-bold mb-2">Key Activities:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Capstone project finalization and presentation</li>
-              <li>Peer review session</li>
-              <li>Virtual biotechnology innovation showcase</li>
-            </ul>
-          </div>
-        );
-      case 'tools':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Tools & Platforms</h2>
-            <h3 className="font-bold mb-2">Virtual Laboratory Environments:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>BioSimulations Pro - for molecular biology experiments</li>
-              <li>GenomeStudio - for genomic data analysis</li>
-              <li>SynBio Designer - for synthetic biology design</li>
-            </ul>
-            <h3 className="font-bold mb-2">Computational Tools:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>BioInformatics Suite - for multi-omics data analysis</li>
-              <li>ProteinModeler - for protein structure prediction</li>
-              <li>MetabolicPathway Designer - for pathway engineering</li>
-            </ul>
-            <h3 className="font-bold mb-2">Collaboration Platforms:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>BioProject Hub - for team-based project collaboration</li>
-              <li>LabNotebook - for documentation and reporting</li>
-              <li>BioTech Forum - for community discussions</li>
-            </ul>
-          </div>
-        );
-      case 'ai-tutor':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">AI Tutor</h2>
-            <p className="mb-4">Access 24/7 personalized learning support through our AI Tutor platform, specifically designed for biotechnology education.</p>
-            <div className="bg-blue-50 p-4 rounded-md border border-blue-200 mb-4">
-              <h3 className="font-bold text-blue-800 mb-2">AI Tutor Features:</h3>
-              <ul className="list-disc pl-5 space-y-1">
-                <li>Personalized concept explanations based on your learning style</li>
-                <li>Interactive problem-solving assistance</li>
-                <li>Custom practice problem generation</li>
-                <li>Progress tracking and adaptive learning recommendations</li>
-              </ul>
-            </div>
-            <p className="mb-4">Access your AI Tutor at: <a href="#" className="text-blue-600 hover:underline">biotech.ai-tutor.edu/fh402</a></p>
-            <p className="italic text-sm">Note: Login with your course credentials to access personalized learning support.</p>
-          </div>
-        );
-      case 'outcomes':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Learning Outcomes</h2>
-            <p className="mb-2">By the end of this course, students will be able to:</p>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Apply advanced biotechnology concepts to solve real-world problems</li>
-              <li>Design and analyze genetic engineering strategies</li>
-              <li>Evaluate ethical, social, and regulatory implications</li>
-              <li>Integrate multi-omics data using computational approaches</li>
-              <li>Develop strategies for translating research into applications</li>
-              <li>Navigate the biotechnology commercialization landscape</li>
-            </ul>
-          </div>
-        );
-      case 'assessment':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Assessment</h2>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Weekly knowledge checks and problem sets (25%)</li>
-              <li>Virtual laboratory performance and data analysis (20%)</li>
-              <li>Engagement with course materials and discussions (15%)</li>
-              <li>Capstone project development, execution, and presentation (40%)</li>
-            </ul>
-          </div>
-        );
-      case 'resources':
-        return (
-          <div>
-            <h2 className="text-xl font-bold mb-4">Supplementary Resources</h2>
-            <h3 className="font-bold mb-2">AI-Powered Learning Tools:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Personalized AI tutoring for challenging concepts</li>
-              <li>Adaptive learning modules that adjust to student progress</li>
-              <li>AI-generated practice problems based on individual learning needs</li>
-            </ul>
-            <h3 className="font-bold mb-2">Interactive Learning Experiences:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Virtual reality lab simulations for hands-on experience</li>
-              <li>Gamified challenges for molecular design and engineering</li>
-              <li>Collaborative problem-solving with global student teams</li>
-            </ul>
-            <h3 className="font-bold mb-2">Career Development Resources:</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Biotechnology industry landscape analysis</li>
-              <li>Emerging job roles and required competencies</li>
-              <li>Portfolio development guidance</li>
-            </ul>
-          </div>
-        );
-      default:
-        return (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-lg text-gray-500">Select a topic from the menu to view content</p>
-          </div>
-        );
-    }
-  };
-  
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-blue-900 text-white py-6 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold">FH402: Biotech: Next-Level Applications</h1>
-          <p className="mt-2 text-blue-200">Future of Humans Track | 8-Week Comprehensive Biotechnology Course</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <style>
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .menu-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-6 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl font-bold">FH402: Biotech: Next-Level Applications</h1>
+            <p class="mt-2 text-blue-200">Future of Humans Track | 8-Week Comprehensive Biotechnology Course</p>
         </div>
-      </header>
-      
-      <div className="max-w-6xl mx-auto py-8 px-4 flex flex-col md:flex-row gap-8">
-        {/* Sidebar Menu */}
-        <aside className="md:w-1/3 lg:w-1/4">
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="font-bold text-lg mb-4 text-blue-900 border-b pb-2">Course Syllabus</h2>
-            <nav>
-              <ul className="space-y-1">
-                {menuItems.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => setActiveSection(item.id)}
-                      className={`w-full text-left px-3 py-2 rounded text-sm ${
-                        activeSection === item.id
-                          ? 'bg-blue-100 text-blue-800 font-medium'
-                          : 'hover:bg-gray-100'
-                      }`}
-                    >
-                      {item.title}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+    </header>
+    
+    <div class="max-w-6xl mx-auto py-8 px-4 flex flex-col md:flex-row gap-8">
+        <!-- Sidebar Menu -->
+        <aside class="md:w-1/3 lg:w-1/4">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="font-bold text-lg mb-4 text-blue-900 border-b pb-2">Course Syllabus</h2>
+                <nav>
+                    <ul class="space-y-1" id="menu-list">
+                        <li>
+                            <button data-section="overview" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Course Overview
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week1" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 1: Foundations of Modern Biotechnology
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week2" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 2: Genomics and Precision Genetic Engineering
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week3" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 3: Molecular Biology and Advanced Biochemistry
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week4" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 4: Medical Biotechnology and Therapeutic Applications
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week5" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 5: Synthetic Biology and Bioengineering
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week6" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 6: Emerging and Interdisciplinary Areas
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week7" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 7: Biotechnology Policy, Regulation, and Ethics
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week8" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Week 8: Final Project & Future Frontiers
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="tools" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Tools & Platforms
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="ai-tutor" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                AI Tutor
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="outcomes" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Learning Outcomes
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="assessment" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Assessment
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="resources" class="menu-item w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100">
+                                Supplementary Resources
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </aside>
         
-        {/* Main Content */}
-        <main className="md:w-2/3 lg:w-3/4">
-          <div className="bg-white rounded-lg shadow-md p-6 min-h-64">
-            {activeSection ? (
-              renderContent()
-            ) : (
-              <div>
-                <h2 className="text-2xl font-bold mb-6 text-blue-900">Welcome to FH402: Biotech: Next-Level Applications</h2>
-                <p className="mb-4">
-                  This comprehensive 8-week course explores cutting-edge biotechnology principles, applications, and future frontiers. 
-                  Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest 
-                  biotechnology tools and techniques.
-                </p>
-                <p className="mb-4">
-                  From genomics and precision genetic engineering to synthetic biology and regulatory considerations, 
-                  this course covers the full spectrum of modern biotechnology applications.
-                </p>
-                <div className="bg-blue-50 p-4 rounded-md border border-blue-200 mb-6">
-                  <h3 className="font-bold text-blue-800 mb-2">Course Highlights:</h3>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Virtual laboratory simulations for hands-on experience</li>
-                    <li>AI-powered tutoring and personalized feedback</li>
-                    <li>Industry expert sessions and real-world applications</li>
-                    <li>Capstone project tackling current biotechnology challenges</li>
-                  </ul>
+        <!-- Main Content -->
+        <main class="md:w-2/3 lg:w-3/4">
+            <div class="bg-white rounded-lg shadow-md p-6 min-h-64">
+                <!-- Default Content -->
+                <div id="default-content">
+                    <h2 class="text-2xl font-bold mb-6 text-blue-900">Welcome to FH402: Biotech: Next-Level Applications</h2>
+                    <p class="mb-4">
+                        This comprehensive 8-week course explores cutting-edge biotechnology principles, applications, and future frontiers. 
+                        Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest 
+                        biotechnology tools and techniques.
+                    </p>
+                    <p class="mb-4">
+                        From genomics and precision genetic engineering to synthetic biology and regulatory considerations, 
+                        this course covers the full spectrum of modern biotechnology applications.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-md border border-blue-200 mb-6">
+                        <h3 class="font-bold text-blue-800 mb-2">Course Highlights:</h3>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Virtual laboratory simulations for hands-on experience</li>
+                            <li>AI-powered tutoring and personalized feedback</li>
+                            <li>Industry expert sessions and real-world applications</li>
+                            <li>Capstone project tackling current biotechnology challenges</li>
+                        </ul>
+                    </div>
+                    <p>Select a topic from the menu to explore the course content.</p>
                 </div>
-                <p>Select a topic from the menu to explore the course content.</p>
-              </div>
-            )}
-          </div>
-        </main>
-      </div>
-      
-      {/* Footer */}
-      <footer className="bg-gray-100 border-t py-4 mt-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-gray-600 text-sm">
-          <p>© 2025 Future of Humans Initiative | Certificate upon successful completion</p>
-        </div>
-      </footer>
-    </div>
-  );
-};
 
-export default CoursePage;
+                <!-- Content Sections -->
+                <div id="overview" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Course Overview</h2>
+                    <p class="mb-4"><strong>Track:</strong> Future of Humans</p>
+                    <p class="mb-4"><strong>Duration:</strong> 8 weeks, 4 hours/week</p>
+                    <h3 class="font-bold mb-2">Course Format:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Online modules (videos, readings, and quizzes)</li>
+                        <li>Project-based learning with hands-on activities</li>
+                        <li>Weekly formative assessments</li>
+                        <li>Final comprehensive exam</li>
+                    </ul>
+                    <p class="mb-4">This comprehensive course explores cutting-edge biotechnology principles, applications, and future frontiers. Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest biotechnology tools and techniques.</p>
+                    <p class="mb-4">From genomics and precision genetic engineering to synthetic biology and regulatory considerations, this course covers the full spectrum of modern biotechnology applications.</p>
+                </div>
+
+                <div id="week1" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 1: Foundations of Modern Biotechnology</h2>
+                    <p class="mb-4">Content for this week is being updated. Please check back soon.</p>
+                </div>
+
+                <div id="week2" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 2: Genomics and Precision Genetic Engineering</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Explain advanced genomic technologies and their applications</li>
+                        <li>Understand CRISPR-Cas9 and other gene editing systems</li>
+                        <li>Analyze implications of genomic medicine and personalized healthcare</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Virtual CRISPR laboratory simulation</li>
+                        <li>Genomic data analysis workshop</li>
+                        <li>Ethics case study: gene editing applications</li>
+                    </ul>
+                </div>
+
+                <div id="week3" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 3: Molecular Biology and Advanced Biochemistry</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Master advanced molecular biology techniques</li>
+                        <li>Understand protein engineering and structural biology</li>
+                        <li>Apply biochemical principles to biotechnology applications</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Virtual molecular biology laboratory practicum</li>
+                        <li>Protein structure prediction exercise</li>
+                        <li>Design challenge: Engineering an enzyme for specific applications</li>
+                    </ul>
+                </div>
+
+                <div id="week4" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 4: Medical Biotechnology and Therapeutic Applications</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Evaluate current and emerging biopharmaceuticals</li>
+                        <li>Understand cell and gene therapy approaches</li>
+                        <li>Analyze the drug development pipeline for biologics</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Biotherapeutic development simulation</li>
+                        <li>Virtual cell culture and bioprocessing laboratory</li>
+                        <li>Regulatory strategy workshop for a novel therapeutic</li>
+                    </ul>
+                </div>
+
+                <div id="week5" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 5: Synthetic Biology and Bioengineering</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Design biological systems with engineered functionalities</li>
+                        <li>Apply principles of synthetic biology to solve real-world problems</li>
+                        <li>Understand emerging tools in biomaterials and bioengineering</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Design challenge: Creating a synthetic biological system</li>
+                        <li>Metabolic pathway engineering simulation</li>
+                        <li>Bioprinting virtual laboratory</li>
+                    </ul>
+                </div>
+
+                <div id="week6" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 6: Emerging and Interdisciplinary Areas</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Identify convergent technologies reshaping biotechnology</li>
+                        <li>Understand the integration of AI and data science with biotechnology</li>
+                        <li>Explore nanobiotechnology and biomolecular engineering</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Machine learning workshop for biological data analysis</li>
+                        <li>Nanobiosensor design challenge</li>
+                        <li>Multi-omics data integration exercise</li>
+                    </ul>
+                </div>
+
+                <div id="week7" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 7: Biotechnology Policy, Regulation, and Ethics</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Navigate the regulatory landscape for biotechnology products</li>
+                        <li>Analyze ethical frameworks for evaluating emerging biotechnologies</li>
+                        <li>Understand intellectual property considerations in biotechnology</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Regulatory strategy development exercise</li>
+                        <li>Mock ethics review board</li>
+                        <li>Intellectual property workshop</li>
+                    </ul>
+                </div>
+
+                <div id="week8" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Week 8: Final Project & Future Frontiers</h2>
+                    <h3 class="font-bold mb-2">Learning Objectives:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Synthesize knowledge across multiple areas of biotechnology</li>
+                        <li>Develop a biotechnology solution to a real-world challenge</li>
+                        <li>Evaluate emerging trends and future directions in biotechnology</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Key Activities:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Capstone project finalization and presentation</li>
+                        <li>Peer review session</li>
+                        <li>Virtual biotechnology innovation showcase</li>
+                    </ul>
+                </div>
+
+                <div id="tools" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Tools & Platforms</h2>
+                    <h3 class="font-bold mb-2">Virtual Laboratory Environments:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>BioSimulations Pro - for molecular biology experiments</li>
+                        <li>GenomeStudio - for genomic data analysis</li>
+                        <li>SynBio Designer - for synthetic biology design</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Computational Tools:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>BioInformatics Suite - for multi-omics data analysis</li>
+                        <li>ProteinModeler - for protein structure prediction</li>
+                        <li>MetabolicPathway Designer - for pathway engineering</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Collaboration Platforms:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>BioProject Hub - for team-based project collaboration</li>
+                        <li>LabNotebook - for documentation and reporting</li>
+                        <li>BioTech Forum - for community discussions</li>
+                    </ul>
+                </div>
+
+                <div id="ai-tutor" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">AI Tutor</h2>
+                    <p class="mb-4">Access 24/7 personalized learning support through our AI Tutor platform, specifically designed for biotechnology education.</p>
+                    <div class="bg-blue-50 p-4 rounded-md border border-blue-200 mb-4">
+                        <h3 class="font-bold text-blue-800 mb-2">AI Tutor Features:</h3>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Personalized concept explanations based on your learning style</li>
+                            <li>Interactive problem-solving assistance</li>
+                            <li>Custom practice problem generation</li>
+                            <li>Progress tracking and adaptive learning recommendations</li>
+                        </ul>
+                    </div>
+                    <p class="mb-4">Access your AI Tutor at: <a href="#" class="text-blue-600 hover:underline">biotech.ai-tutor.edu/fh402</a></p>
+                    <p class="italic text-sm">Note: Login with your course credentials to access personalized learning support.</p>
+                </div>
+
+                <div id="outcomes" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Learning Outcomes</h2>
+                    <p class="mb-2">By the end of this course, students will be able to:</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Apply advanced biotechnology concepts to solve real-world problems</li>
+                        <li>Design and analyze genetic engineering strategies</li>
+                        <li>Evaluate ethical, social, and regulatory implications</li>
+                        <li>Integrate multi-omics data using computational approaches</li>
+                        <li>Develop strategies for translating research into applications</li>
+                        <li>Navigate the biotechnology commercialization landscape</li>
+                    </ul>
+                </div>
+
+                <div id="assessment" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Assessment</h2>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Weekly knowledge checks and problem sets (25%)</li>
+                        <li>Virtual laboratory performance and data analysis (20%)</li>
+                        <li>Engagement with course materials and discussions (15%)</li>
+                        <li>Capstone project development, execution, and presentation (40%)</li>
+                    </ul>
+                </div>
+
+                <div id="resources" class="content-section">
+                    <h2 class="text-xl font-bold mb-4">Supplementary Resources</h2>
+                    <h3 class="font-bold mb-2">AI-Powered Learning Tools:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Personalized AI tutoring for challenging concepts</li>
+                        <li>Adaptive learning modules that adjust to student progress</li>
+                        <li>AI-generated practice problems based on individual learning needs</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Interactive Learning Experiences:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Virtual reality lab simulations for hands-on experience</li>
+                        <li>Gamified challenges for molecular design and engineering</li>
+                        <li>Collaborative problem-solving with global student teams</li>
+                    </ul>
+                    <h3 class="font-bold mb-2">Career Development Resources:</h3>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li>Biotechnology industry landscape analysis</li>
+                        <li>Emerging job roles and required competencies</li>
+                        <li>Portfolio development guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t py-4 mt-8">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-600 text-sm">
+            <p>© 2025 Future of Humans Initiative | Certificate upon successful completion</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to handle section toggling
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const defaultContent = document.getElementById('default-content');
+            
+            // Add click event listener to each menu item
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Hide default content
+                    defaultContent.style.display = 'none';
+                    
+                    // Hide all content sections
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show selected content section
+                    document.getElementById(sectionId).classList.add('active');
+                    
+                    // Update active menu item styles
+                    menuItems.forEach(menuItem => {
+                        menuItem.classList.remove('bg-blue-100', 'text-blue-800', 'font-medium');
+                        menuItem.classList.add('hover:bg-gray-100');
+                    });
+                    
+                    this.classList.add('bg-blue-100', 'text-blue-800', 'font-medium');
+                    this.classList.remove('hover:bg-gray-100');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
