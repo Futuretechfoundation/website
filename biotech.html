@@ -1,259 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Biotechnology Course</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        // JavaScript for Quiz Scoring and Certificate Generation
-        function calculateScore() {
-            let score = 0;
-            const totalQuestions = 10;
+import React, { useState } from 'react';
 
-            // Correct answers (update for actual questions)
-            const correctAnswers = ["q1a", "q2c", "q3b", "q4a", "q5a", "q6b", "q7a", "q8b", "q9b", "q10b"];
-
-            const answers = document.querySelectorAll('input[type="radio"]:checked');
-            answers.forEach(answer => {
-                if (correctAnswers.includes(answer.value)) {
-                    score++;
-                }
-            });
-
-            const percentage = (score / totalQuestions) * 100;
-
-            if (percentage >= 70) {
-                alert(`Congratulations! You scored ${percentage}%. Your certificate is ready!`);
-                document.getElementById("certificate").style.display = "block";
-            } else {
-                alert(`You scored ${percentage}%. Unfortunately, this is below the passing threshold.`);
-            }
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1>Comprehensive Biotechnology Course</h1>
-        <p>Explore biotechnology in depth, including principles, applications, and ethical considerations.</p>
-        <button onclick="scrollToContent()">Start Learning</button>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#genomics">Genomics and Genetic Engineering</a></li>
-            <li><a href="#molecular_biology">Molecular Biology and Biochemistry</a></li>
-            <li><a href="#medical_biotech">Medical Biotechnology</a></li>
-            <li><a href="#emerging_areas">Emerging and Interdisciplinary Areas</a></li>
-            <li><a href="#policy">Biotechnology Policy and Regulation</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <!-- Section: Genomics and Genetic Engineering -->
-        <section id="genomics">
-            <h2>Genomics and Genetic Engineering</h2>
-            <article>
-                <p>
-                    Genomics and genetic engineering have transformed modern science, enabling profound insights into the 
-                    genetic basis of life and the manipulation of genetic material for various applications. Genomics is 
-                    the study of an organism’s entire genome, including its structure, function, evolution, and mapping. 
-                    By understanding the role of individual genes and their interactions, scientists can uncover the genetic 
-                    underpinnings of diseases, develop targeted therapies, and improve agricultural yields. The field of genomics 
-                    has been accelerated by technologies like next-generation sequencing (NGS), which allows for rapid and 
-                    cost-effective sequencing of entire genomes.
+const CoursePage = () => {
+  const [activeSection, setActiveSection] = useState(null);
+  
+  const menuItems = [
+    { id: 'overview', title: 'Course Overview' },
+    { id: 'week1', title: 'Week 1: Foundations of Modern Biotechnology' },
+    { id: 'week2', title: 'Week 2: Genomics and Precision Genetic Engineering' },
+    { id: 'week3', title: 'Week 3: Molecular Biology and Advanced Biochemistry' },
+    { id: 'week4', title: 'Week 4: Medical Biotechnology and Therapeutic Applications' },
+    { id: 'week5', title: 'Week 5: Synthetic Biology and Bioengineering' },
+    { id: 'week6', title: 'Week 6: Emerging and Interdisciplinary Areas' },
+    { id: 'week7', title: 'Week 7: Biotechnology Policy, Regulation, and Ethics' },
+    { id: 'week8', title: 'Week 8: Final Project & Future Frontiers' },
+    { id: 'tools', title: 'Tools & Platforms' },
+    { id: 'ai-tutor', title: 'AI Tutor' },
+    { id: 'outcomes', title: 'Learning Outcomes' },
+    { id: 'assessment', title: 'Assessment' },
+    { id: 'resources', title: 'Supplementary Resources' }
+  ];
+  
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'overview':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Course Overview</h2>
+            <p className="mb-4"><strong>Track:</strong> Future of Humans</p>
+            <p className="mb-4"><strong>Duration:</strong> 8 weeks, 4 hours/week</p>
+            <h3 className="font-bold mb-2">Course Format:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Online modules (videos, readings, and quizzes)</li>
+              <li>Project-based learning with hands-on activities</li>
+              <li>Weekly formative assessments</li>
+              <li>Final comprehensive exam</li>
+            </ul>
+            <p className="mb-4">This comprehensive course explores cutting-edge biotechnology principles, applications, and future frontiers. Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest biotechnology tools and techniques.</p>
+            <p className="mb-4">From genomics and precision genetic engineering to synthetic biology and regulatory considerations, this course covers the full spectrum of modern biotechnology applications.</p>
+          </div>
+        );
+      case 'week1':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 1: Foundations of Modern Biotechnology</h2>
+            <p className="mb-4">Content for this week is being updated. Please check back soon.</p>
+          </div>
+        );
+      case 'week2':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 2: Genomics and Precision Genetic Engineering</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Explain advanced genomic technologies and their applications</li>
+              <li>Understand CRISPR-Cas9 and other gene editing systems</li>
+              <li>Analyze implications of genomic medicine and personalized healthcare</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Virtual CRISPR laboratory simulation</li>
+              <li>Genomic data analysis workshop</li>
+              <li>Ethics case study: gene editing applications</li>
+            </ul>
+          </div>
+        );
+      case 'week3':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 3: Molecular Biology and Advanced Biochemistry</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Master advanced molecular biology techniques</li>
+              <li>Understand protein engineering and structural biology</li>
+              <li>Apply biochemical principles to biotechnology applications</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Virtual molecular biology laboratory practicum</li>
+              <li>Protein structure prediction exercise</li>
+              <li>Design challenge: Engineering an enzyme for specific applications</li>
+            </ul>
+          </div>
+        );
+      case 'week4':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 4: Medical Biotechnology and Therapeutic Applications</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Evaluate current and emerging biopharmaceuticals</li>
+              <li>Understand cell and gene therapy approaches</li>
+              <li>Analyze the drug development pipeline for biologics</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Biotherapeutic development simulation</li>
+              <li>Virtual cell culture and bioprocessing laboratory</li>
+              <li>Regulatory strategy workshop for a novel therapeutic</li>
+            </ul>
+          </div>
+        );
+      case 'week5':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 5: Synthetic Biology and Bioengineering</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Design biological systems with engineered functionalities</li>
+              <li>Apply principles of synthetic biology to solve real-world problems</li>
+              <li>Understand emerging tools in biomaterials and bioengineering</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Design challenge: Creating a synthetic biological system</li>
+              <li>Metabolic pathway engineering simulation</li>
+              <li>Bioprinting virtual laboratory</li>
+            </ul>
+          </div>
+        );
+      case 'week6':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 6: Emerging and Interdisciplinary Areas</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Identify convergent technologies reshaping biotechnology</li>
+              <li>Understand the integration of AI and data science with biotechnology</li>
+              <li>Explore nanobiotechnology and biomolecular engineering</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Machine learning workshop for biological data analysis</li>
+              <li>Nanobiosensor design challenge</li>
+              <li>Multi-omics data integration exercise</li>
+            </ul>
+          </div>
+        );
+      case 'week7':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 7: Biotechnology Policy, Regulation, and Ethics</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Navigate the regulatory landscape for biotechnology products</li>
+              <li>Analyze ethical frameworks for evaluating emerging biotechnologies</li>
+              <li>Understand intellectual property considerations in biotechnology</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Regulatory strategy development exercise</li>
+              <li>Mock ethics review board</li>
+              <li>Intellectual property workshop</li>
+            </ul>
+          </div>
+        );
+      case 'week8':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Week 8: Final Project & Future Frontiers</h2>
+            <h3 className="font-bold mb-2">Learning Objectives:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Synthesize knowledge across multiple areas of biotechnology</li>
+              <li>Develop a biotechnology solution to a real-world challenge</li>
+              <li>Evaluate emerging trends and future directions in biotechnology</li>
+            </ul>
+            <h3 className="font-bold mb-2">Key Activities:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Capstone project finalization and presentation</li>
+              <li>Peer review session</li>
+              <li>Virtual biotechnology innovation showcase</li>
+            </ul>
+          </div>
+        );
+      case 'tools':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Tools & Platforms</h2>
+            <h3 className="font-bold mb-2">Virtual Laboratory Environments:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>BioSimulations Pro - for molecular biology experiments</li>
+              <li>GenomeStudio - for genomic data analysis</li>
+              <li>SynBio Designer - for synthetic biology design</li>
+            </ul>
+            <h3 className="font-bold mb-2">Computational Tools:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>BioInformatics Suite - for multi-omics data analysis</li>
+              <li>ProteinModeler - for protein structure prediction</li>
+              <li>MetabolicPathway Designer - for pathway engineering</li>
+            </ul>
+            <h3 className="font-bold mb-2">Collaboration Platforms:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>BioProject Hub - for team-based project collaboration</li>
+              <li>LabNotebook - for documentation and reporting</li>
+              <li>BioTech Forum - for community discussions</li>
+            </ul>
+          </div>
+        );
+      case 'ai-tutor':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">AI Tutor</h2>
+            <p className="mb-4">Access 24/7 personalized learning support through our AI Tutor platform, specifically designed for biotechnology education.</p>
+            <div className="bg-blue-50 p-4 rounded-md border border-blue-200 mb-4">
+              <h3 className="font-bold text-blue-800 mb-2">AI Tutor Features:</h3>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Personalized concept explanations based on your learning style</li>
+                <li>Interactive problem-solving assistance</li>
+                <li>Custom practice problem generation</li>
+                <li>Progress tracking and adaptive learning recommendations</li>
+              </ul>
+            </div>
+            <p className="mb-4">Access your AI Tutor at: <a href="#" className="text-blue-600 hover:underline">biotech.ai-tutor.edu/fh402</a></p>
+            <p className="italic text-sm">Note: Login with your course credentials to access personalized learning support.</p>
+          </div>
+        );
+      case 'outcomes':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Learning Outcomes</h2>
+            <p className="mb-2">By the end of this course, students will be able to:</p>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Apply advanced biotechnology concepts to solve real-world problems</li>
+              <li>Design and analyze genetic engineering strategies</li>
+              <li>Evaluate ethical, social, and regulatory implications</li>
+              <li>Integrate multi-omics data using computational approaches</li>
+              <li>Develop strategies for translating research into applications</li>
+              <li>Navigate the biotechnology commercialization landscape</li>
+            </ul>
+          </div>
+        );
+      case 'assessment':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Assessment</h2>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Weekly knowledge checks and problem sets (25%)</li>
+              <li>Virtual laboratory performance and data analysis (20%)</li>
+              <li>Engagement with course materials and discussions (15%)</li>
+              <li>Capstone project development, execution, and presentation (40%)</li>
+            </ul>
+          </div>
+        );
+      case 'resources':
+        return (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Supplementary Resources</h2>
+            <h3 className="font-bold mb-2">AI-Powered Learning Tools:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Personalized AI tutoring for challenging concepts</li>
+              <li>Adaptive learning modules that adjust to student progress</li>
+              <li>AI-generated practice problems based on individual learning needs</li>
+            </ul>
+            <h3 className="font-bold mb-2">Interactive Learning Experiences:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Virtual reality lab simulations for hands-on experience</li>
+              <li>Gamified challenges for molecular design and engineering</li>
+              <li>Collaborative problem-solving with global student teams</li>
+            </ul>
+            <h3 className="font-bold mb-2">Career Development Resources:</h3>
+            <ul className="list-disc pl-5 mb-4">
+              <li>Biotechnology industry landscape analysis</li>
+              <li>Emerging job roles and required competencies</li>
+              <li>Portfolio development guidance</li>
+            </ul>
+          </div>
+        );
+      default:
+        return (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-lg text-gray-500">Select a topic from the menu to view content</p>
+          </div>
+        );
+    }
+  };
+  
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-blue-900 text-white py-6 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl font-bold">FH402: Biotech: Next-Level Applications</h1>
+          <p className="mt-2 text-blue-200">Future of Humans Track | 8-Week Comprehensive Biotechnology Course</p>
+        </div>
+      </header>
+      
+      <div className="max-w-6xl mx-auto py-8 px-4 flex flex-col md:flex-row gap-8">
+        {/* Sidebar Menu */}
+        <aside className="md:w-1/3 lg:w-1/4">
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h2 className="font-bold text-lg mb-4 text-blue-900 border-b pb-2">Course Syllabus</h2>
+            <nav>
+              <ul className="space-y-1">
+                {menuItems.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => setActiveSection(item.id)}
+                      className={`w-full text-left px-3 py-2 rounded text-sm ${
+                        activeSection === item.id
+                          ? 'bg-blue-100 text-blue-800 font-medium'
+                          : 'hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </aside>
+        
+        {/* Main Content */}
+        <main className="md:w-2/3 lg:w-3/4">
+          <div className="bg-white rounded-lg shadow-md p-6 min-h-64">
+            {activeSection ? (
+              renderContent()
+            ) : (
+              <div>
+                <h2 className="text-2xl font-bold mb-6 text-blue-900">Welcome to FH402: Biotech: Next-Level Applications</h2>
+                <p className="mb-4">
+                  This comprehensive 8-week course explores cutting-edge biotechnology principles, applications, and future frontiers. 
+                  Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest 
+                  biotechnology tools and techniques.
                 </p>
-                <p>
-                    Genetic engineering, on the other hand, involves the direct manipulation of an organism’s DNA to modify 
-                    its characteristics. CRISPR-Cas9, a revolutionary genome-editing tool, has brought genetic engineering into 
-                    mainstream research and applications. This tool uses a guide RNA to target specific DNA sequences, enabling 
-                    precise edits that can introduce, delete, or replace genetic material. CRISPR has been employed in correcting 
-                    genetic disorders like sickle cell anemia, creating disease-resistant crops, and even developing bioengineered 
-                    organisms that produce pharmaceuticals or biofuels.
+                <p className="mb-4">
+                  From genomics and precision genetic engineering to synthetic biology and regulatory considerations, 
+                  this course covers the full spectrum of modern biotechnology applications.
                 </p>
-                <p>
-                    Beyond CRISPR, gene therapy is a rapidly evolving field that uses genetic modification to treat or prevent 
-                    diseases. This involves delivering therapeutic genes to a patient’s cells using viral or non-viral vectors. 
-                    Recent advancements have led to successful gene therapies for inherited conditions like spinal muscular 
-                    atrophy and certain types of blindness. These breakthroughs highlight the potential of gene therapy to cure 
-                    previously untreatable conditions.
-                </p>
-                <p>
-                    Synthetic biology represents another frontier in genetic engineering. This interdisciplinary field combines 
-                    biology, engineering, and computer science to design and construct new biological parts, devices, and systems. 
-                    Applications include creating synthetic organisms for environmental remediation, engineering bacteria to produce 
-                    bio-based chemicals, and developing biosensors for detecting diseases.
-                </p>
-                <p>
-                    However, these advancements also raise ethical, legal, and social challenges. Concerns about gene editing 
-                    in human embryos, the environmental impact of genetically modified organisms (GMOs), and the potential misuse 
-                    of genetic information highlight the need for robust regulatory frameworks and public engagement. Addressing 
-                    these issues will be crucial to ensuring that genetic engineering and genomics are developed and deployed 
-                    responsibly.
-                </p>
-                <p>
-                    Looking forward, the integration of AI and machine learning with genomics is expected to further accelerate 
-                    discoveries. These technologies can analyze vast datasets to identify patterns, predict outcomes, and optimize 
-                    genetic modifications. Additionally, the convergence of genomics with other “omics” fields—such as transcriptomics, 
-                    proteomics, and metabolomics—will provide a more comprehensive understanding of biological systems. This 
-                    holistic approach will undoubtedly lead to innovative solutions for global challenges in healthcare, agriculture, 
-                    and beyond.
-                </p>
-            </article>
-        </section>
- <!-- Expand Molecular Biology and Biochemistry (500 words) -->
-<section id="molecular_biology">
-    <h2>Molecular Biology and Biochemistry</h2>
-    <article>
-        Molecular biology and biochemistry are critical fields of science that focus on understanding the molecular mechanisms within living organisms. These disciplines examine the structure, function, and interactions of biomolecules, including proteins, nucleic acids, lipids, and carbohydrates. They provide insights into cellular processes such as metabolism, replication, transcription, translation, and signal transduction, and are foundational to advancements in biotechnology, medicine, and agriculture.
-
-        At the heart of molecular biology is the study of DNA, RNA, and protein synthesis. DNA holds the genetic blueprint for life, encoding instructions for building and maintaining cells. The central dogma of molecular biology, which involves the transcription of DNA into RNA and the translation of RNA into protein, forms the basis for understanding how genetic information is expressed in living systems. Researchers use techniques such as PCR (polymerase chain reaction), gel electrophoresis, and DNA sequencing to manipulate and study genes, facilitating advancements in genomics and gene therapy.
-
-        Biochemistry, on the other hand, delves into the chemical processes within cells. It explores the structures and properties of biomolecules and how they interact to drive metabolic pathways. Enzymes, which act as biological catalysts, are essential in regulating the rate of biochemical reactions. Metabolic pathways, such as glycolysis and the citric acid cycle, are vital for energy production, while signal transduction pathways help cells respond to external stimuli. The study of enzyme kinetics and metabolic regulation has broad implications for drug design, disease prevention, and understanding metabolic disorders.
-
-        Advances in molecular biology and biochemistry are closely tied to technological innovations. High-throughput sequencing technologies have revolutionized genomics, allowing for the rapid sequencing of entire genomes. Proteomics, the large-scale study of proteins, relies on techniques such as mass spectrometry and two-dimensional gel electrophoresis to identify and characterize proteins in complex samples. These tools are critical for understanding diseases at the molecular level, discovering biomarkers for early detection, and developing targeted therapies.
-
-        Additionally, the growing field of synthetic biology, which combines principles from molecular biology, engineering, and computer science, is enabling the creation of novel organisms and systems with tailored functions. Researchers are designing synthetic genes and metabolic pathways to produce valuable products such as biofuels, pharmaceuticals, and specialty chemicals. This interdisciplinary approach holds the promise of revolutionizing industrial biotechnology and environmental sustainability.
-
-        In conclusion, molecular biology and biochemistry are intertwined fields that provide a deeper understanding of life at the molecular level. They drive innovation in healthcare, agriculture, and industry, offering new solutions to pressing global challenges. By continuing to explore the molecular foundations of life, researchers can unlock new therapeutic strategies, improve biotechnological processes, and pave the way for groundbreaking discoveries in science and medicine.
-    </article>
-</section>
-
-<!-- Expand Medical Biotechnology (500 words) -->
-<section id="medical_biotech">
-    <h2>Medical Biotechnology</h2>
-    <article>
-        Medical biotechnology is an innovative field that uses biological systems, organisms, or derivatives to develop products and therapies that improve human health. It merges principles from molecular biology, biochemistry, genetics, and pharmaceutical sciences to create groundbreaking medical treatments, diagnostics, and prevention strategies. Over the years, medical biotechnology has transformed the healthcare landscape by introducing novel therapies for diseases that were once considered untreatable.
-
-        One of the most prominent applications of medical biotechnology is in the development of biopharmaceuticals. These are drugs derived from living organisms, as opposed to traditional small-molecule drugs. Biopharmaceuticals include monoclonal antibodies, recombinant proteins, and vaccines, which have revolutionized treatments for various diseases, including cancer, autoimmune disorders, and infectious diseases. For instance, monoclonal antibodies such as trastuzumab (Herceptin) have become critical in the treatment of breast cancer, while vaccines, such as the mRNA COVID-19 vaccines, have played a pivotal role in combating the global pandemic.
-
-        Gene therapy is another promising aspect of medical biotechnology. It involves modifying or replacing defective genes within a patient's cells to treat or prevent diseases. This approach holds great potential for treating genetic disorders, such as cystic fibrosis and muscular dystrophy, by directly addressing the underlying cause of the disease. Recent advances in CRISPR-Cas9 gene-editing technology have significantly improved the precision and efficiency of gene therapies, allowing for more targeted treatments and reducing the risks of off-target effects.
-
-        Regenerative medicine, which includes stem cell therapy and tissue engineering, is another critical area of medical biotechnology. Stem cells, which have the ability to differentiate into various cell types, offer the potential to repair or replace damaged tissues and organs. Stem cell-based therapies are being explored for the treatment of conditions such as heart disease, spinal cord injuries, and neurodegenerative disorders. Additionally, tissue engineering aims to create functional tissues and organs in the laboratory, providing a solution to the shortage of organ donors and offering new possibilities for personalized medicine.
-
-        Diagnostics is another vital area within medical biotechnology. Biotechnology-based diagnostic tools, such as PCR, enzyme-linked immunosorbent assays (ELISA), and next-generation sequencing (NGS), have revolutionized the early detection and diagnosis of diseases. These technologies enable the identification of genetic mutations, pathogens, and biomarkers, allowing for earlier and more accurate diagnoses. Precision medicine, which tailors treatments based on an individual's genetic makeup, is also made possible by advancements in biotechnology and genomics, offering more personalized and effective treatment options.
-
-        In addition to these therapies, biotechnology plays a key role in drug development and pharmaceutical manufacturing. The production of biopharmaceuticals often requires complex processes, including fermentation, cell culture, and purification. Biotechnology also facilitates the development of biosimilars, which are biologically similar versions of already-approved drugs, offering more affordable alternatives to expensive treatments.
-
-        In summary, medical biotechnology is at the forefront of transforming healthcare, offering groundbreaking treatments and diagnostic tools that improve patient outcomes. The continued advancements in this field hold the promise of curing previously untreatable diseases, enhancing personalized medicine, and improving global health. By harnessing the power of biological systems and cutting-edge technologies, medical biotechnology is shaping the future of medicine and healthcare.
-    </article>
-</section>
-
-<!-- Expand Emerging and Interdisciplinary Areas (500 words) -->
-<section id="emerging_areas">
-    <h2>Emerging and Interdisciplinary Areas</h2>
-    <article>
-        The field of biotechnology is rapidly evolving, with emerging areas and interdisciplinary research expanding the boundaries of what is possible. These areas not only enhance our understanding of biological systems but also open up new frontiers in medicine, environmental sustainability, and industrial applications. The integration of fields such as bioinformatics, nanotechnology, and artificial intelligence (AI) with traditional biotechnological approaches is catalyzing innovation and paving the way for novel solutions to complex global challenges.
-
-        One of the most exciting interdisciplinary areas is synthetic biology, which blends biology, engineering, and computer science to design and build new biological systems. Synthetic biologists create novel DNA sequences, pathways, and organisms with specific functions, often with the goal of producing valuable compounds or addressing environmental issues. For example, synthetic biology has led to advancements in biofuel production, enabling the development of microorganisms that can convert waste materials into renewable energy. Similarly, synthetic organisms could be designed to capture carbon dioxide or break down pollutants, offering solutions to climate change and pollution.
-
-        Another emerging area with significant potential is personalized medicine, which tailors medical treatment to an individual’s genetic makeup, lifestyle, and environmental factors. The integration of genomics, bioinformatics, and data analytics is enabling the development of therapies that are more effective and have fewer side effects. Genomic sequencing technologies allow for the identification of genetic variants that influence disease susceptibility, treatment responses, and drug metabolism. With advancements in AI and machine learning, researchers can analyze large-scale datasets to uncover patterns and develop precision treatments for conditions ranging from cancer to rare genetic disorders.
-
-        The field of bioprinting, an innovative application of 3D printing technology, is also gaining momentum. Bioprinting involves the creation of three-dimensional structures using living cells, biomaterials, and growth factors. This technology holds the potential to revolutionize tissue engineering by enabling the creation of complex tissues and even organs. While bioprinting is still in the early stages of development, researchers are optimistic that it could one day lead to personalized organ transplants, helping to address the global shortage of organ donors. Moreover, bioprinting can also be used for drug testing and disease modeling, providing more accurate platforms for understanding disease mechanisms and evaluating therapeutic options.
-
-        AI and machine learning are becoming increasingly important in biotechnology, particularly in drug discovery and development. AI algorithms can analyze vast amounts of biological and chemical data to identify potential drug candidates, predict their effectiveness, and optimize their design. This has the potential to accelerate the drug development process, which traditionally takes years and is costly. AI can also assist in diagnostics by analyzing medical imaging, genomic data, and patient records to identify disease patterns and recommend treatments. These technologies are also crucial for understanding the vast amounts of biological data generated by high-throughput sequencing and proteomics, enabling more efficient and accurate analysis.
-
-        Additionally, the fusion of biotechnology with nanotechnology is yielding significant advancements in medical applications. Nanotechnology involves the manipulation of materials at the nanoscale (1 to 100 nanometers) and has numerous applications in drug delivery, diagnostics, and imaging. Nanoparticles can be engineered to deliver drugs directly to targeted tissues, improving the precision of treatments and minimizing side effects. Nanomaterials can also be used in biosensors to detect disease markers or pathogens at ultra-low concentrations, offering highly sensitive diagnostic tools. Moreover, nanotechnology holds promise in creating advanced materials for medical devices, wound healing, and tissue regeneration.
-
-        In the environmental sector, biotechnology is contributing to sustainability through the development of bio-based solutions for waste management, pollution control, and renewable energy. Microorganisms engineered to break down pollutants or recycle waste materials are being used to clean up environmental contaminants, while algae and bacteria are being explored for biofuel production. Biotechnology is also playing a key role in the development of sustainable agriculture practices, such as genetically modified crops that are resistant to pests, diseases, and environmental stressors, ensuring food security in the face of climate change.
-
-        In conclusion, emerging and interdisciplinary areas of biotechnology are expanding the horizons of what is possible in healthcare, environmental sustainability, and industrial applications. By combining biological knowledge with cutting-edge technologies such as AI, nanotechnology, and synthetic biology, researchers are creating new solutions to address some of the most pressing global challenges. As these fields continue to evolve, the potential for innovation and discovery is vast, offering exciting prospects for the future of biotechnology and its role in shaping a more sustainable and healthier world.
-    </article>
-</section>
-
-<!-- Expand Biotechnology Policy and Regulation (500 words) -->
-<section id="policy">
-    <h2>Biotechnology Policy and Regulation</h2>
-    <article>
-        Biotechnology policy and regulation are crucial components of ensuring the safe, ethical, and effective development and application of biotechnological innovations. As biotechnology continues to advance and intersect with various aspects of society, from healthcare to agriculture and environmental management, it is essential to have clear guidelines and regulations in place to govern its use. Biotechnology policy shapes the direction of research, development, and commercialization of biotechnological products, while regulations provide the framework for safety, efficacy, and ethical considerations.
-
-        One of the primary concerns in biotechnology policy is the safe use of genetically modified organisms (GMOs). As genetic engineering techniques, such as CRISPR-Cas9, have made it easier to modify the genetic makeup of plants, animals, and microorganisms, governments around the world have established regulations to assess the risks and benefits of GMOs. These regulations typically involve a thorough review process that evaluates the potential environmental and health impacts of GMOs before they are approved for commercial release. International organizations, such as the World Health Organization (WHO) and the Food and Agriculture Organization (FAO), provide guidelines for the safe use of GMOs and promote the sharing of information and best practices among countries.
-
-        In the field of medical biotechnology, regulatory agencies such as the U.S. Food and Drug Administration (FDA) and the European Medicines Agency (EMA) play a critical role in ensuring the safety and efficacy of biopharmaceuticals and medical devices. Before a new drug or medical treatment can be marketed, it must undergo rigorous clinical trials to assess its safety and effectiveness. These trials are governed by strict ethical standards, including informed consent and the protection of participants' rights. The regulatory process also includes the approval of manufacturing processes, labeling, and post-market surveillance to monitor the safety of approved products.
-
-        Ethical considerations are central to biotechnology policy, particularly when it comes to issues such as gene editing, cloning, and stem cell research. The use of gene-editing technologies to modify human embryos, for example, raises significant ethical concerns regarding consent, genetic diversity, and potential unintended consequences. Many countries have implemented laws to regulate or ban certain genetic interventions, while others have adopted more permissive policies. Biotechnology policy must also address the ethical implications of personalized medicine, which involves tailoring medical treatments to an individual's genetic profile. Issues such as data privacy, access to healthcare, and potential discrimination based on genetic information are important areas of concern.
-
-        Additionally, biotechnology policy is influenced by public opinion, which can vary significantly across regions and cultures. In some countries, there is strong public support for the use of biotechnology to address issues such as food security, climate change, and disease prevention. In others, there is greater concern about the potential risks of GMOs and the ethical implications of genetic manipulation. Policymakers must balance scientific advancements with public perception and ensure that regulations reflect both the potential benefits and the concerns of society.
-
-        In conclusion, biotechnology policy and regulation play a crucial role in ensuring that the benefits of biotechnological innovations are realized safely and ethically. As the field continues to advance, it is essential to have a robust framework in place to address the various challenges and opportunities that arise. By fostering collaboration between policymakers, scientists, industry stakeholders, and the public, biotechnology can continue to thrive and contribute to the well-being of society while safeguarding human health and the environment.
-    </article>
-</section>
-        <section id="quiz">
-            <h2>Quiz</h2>
-            <form onsubmit="event.preventDefault(); calculateScore();">
-                <p>1. What is CRISPR-Cas9 primarily used for?</p>
-                <label><input type="radio" name="q1" value="q1a"> Editing DNA</label><br>
-                <label><input type="radio" name="q1" value="q1b"> Analyzing protein structures</label><br>
-
-                <p>2. Which technology aids in personalized medicine?</p>
-                <label><input type="radio" name="q2" value="q2a"> Synthetic biology</label><br>
-                <label><input type="radio" name="q2" value="q2c"> Genomics</label><br>
-
-                <p>3. What does bioinformatics focus on?</p>
-                <label><input type="radio" name="q3" value="q3b"> Analyzing large biological datasets</label><br>
-                <label><input type="radio" name="q3" value="q3a"> Studying ecosystem dynamics</label><br>
-
-                <p>4. What is the central dogma of molecular biology?</p>
-                <input type="radio" name="q4" value="q4a"> DNA → RNA → Protein<br>
-                <input type="radio" name="q4" value="q4b"> RNA → DNA → Protein<br>
-                <input type="radio" name="q4" value="q4c"> Protein → RNA → DNA<br>
-
-                <p>5. Which of the following techniques is used for gene amplification in molecular biology?</p>
-                <input type="radio" name="q5" value="q5a"> PCR (Polymerase Chain Reaction)<br>
-                <input type="radio" name="q5" value="q5b"> Gel Electrophoresis<br>
-                <input type="radio" name="q5" value="q5c"> Western Blotting<br>
-    
-                <p>6. What is the primary function of enzymes in biochemical reactions?</p>
-                <input type="radio" name="q6" value="q6a"> To increase the activation energy<br>
-                <input type="radio" name="q6" value="q6b"> To catalyze and speed up reactions<br>
-                <input type="radio" name="q6" value="q6c"> To store energy<br>
-    
-                <p>7. Which of the following is an application of gene therapy?</p>
-                <input type="radio" name="q7" value="q7a"> Correcting genetic mutations in cells<br>
-                <input type="radio" name="q7" value="q7b"> Creating genetically modified crops<br>
-                <input type="radio" name="q7" value="q7c"> Producing biofuels<br>
-    
-                <p>8. What is the key difference between biopharmaceuticals and traditional small-molecule drugs?</p>
-                <input type="radio" name="q8" value="q8a"> Biopharmaceuticals are made from synthetic chemicals<br>
-                <input type="radio" name="q8" value="q8b"> Biopharmaceuticals are derived from living organisms<br>
-                <input type="radio" name="q8" value="q8c"> Biopharmaceuticals are used only for viral diseases<br>
-       
-                <p>9. What is the main role of the CRISPR-Cas9 system in genetic engineering?</p>
-                <input type="radio" name="q9" value="q9a"> To create RNA molecules<br>
-                <input type="radio" name="q9" value="q9b"> To edit specific DNA sequences<br>
-                <input type="radio" name="q9" value="q9c"> To produce monoclonal antibodies<br>
-    
-                <p>10. Which of the following is a potential application of synthetic biology?</p>
-                <input type="radio" name="q10" value="q10a"> Designing new antibiotics<br>
-                <input type="radio" name="q10" value="q10b"> Engineering organisms to produce biofuels<br>
-                <input type="radio" name="q10" value="q10c"> Developing monoclonal antibodies<br>
-
-
-    <!-- Submit Button -->
-    <button onclick="calculateScore()">Submit Answers</button>
-
-    <!-- Certificate -->
-    <div id="certificate" style="display:none;">
-        <h2>Congratulations!</h2>
-        <p>You have completed the quiz and passed the course.</p>
-        <button>Download Certificate</button>
+                <div className="bg-blue-50 p-4 rounded-md border border-blue-200 mb-6">
+                  <h3 className="font-bold text-blue-800 mb-2">Course Highlights:</h3>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Virtual laboratory simulations for hands-on experience</li>
+                    <li>AI-powered tutoring and personalized feedback</li>
+                    <li>Industry expert sessions and real-world applications</li>
+                    <li>Capstone project tackling current biotechnology challenges</li>
+                  </ul>
+                </div>
+                <p>Select a topic from the menu to explore the course content.</p>
+              </div>
+            )}
+          </div>
+        </main>
+      </div>
+      
+      {/* Footer */}
+      <footer className="bg-gray-100 border-t py-4 mt-8">
+        <div className="max-w-6xl mx-auto px-4 text-center text-gray-600 text-sm">
+          <p>© 2025 Future of Humans Initiative | Certificate upon successful completion</p>
+        </div>
+      </footer>
     </div>
-</section>
-                <button type="submit">Submit Quiz</button>
-            </form>
-        </section>
+  );
+};
 
-        <!-- Certificate -->
-        <section id="certificate" style="display:none;">
-            <h2>Certificate of Completion</h2>
-            <p>Congratulations on successfully completing the Comprehensive Biotechnology Course!</p>
-            <button onclick="window.print()">Print Certificate</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 FutureTech Academy. All rights reserved.</p>
-    </footer>
-</body>
-    </html>
+export default CoursePage;
