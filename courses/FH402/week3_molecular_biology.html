@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Week 3 - Molecular Biology Fundamentals</title>
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #26a69a;
+            --accent-color: #7e57c2;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background-color: #1565c0;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .objectives-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .reading-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .reading-item:last-child {
+            border-bottom: none;
+        }
+        
+        .quiz-container {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-options {
+            margin-left: 1.5rem;
+        }
+        
+        .quiz-option {
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-link {
+            display: block;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .resource-link:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .highlight-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .video-container {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .lab-exercise {
+            background-color: #e0f7fa;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 2rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .key-concept {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        /* Quiz styles */
+        .quiz-container {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+        
+        .quiz-section {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .answer-option {
+            display: block;
+            margin: 0.5rem 0;
+        }
+        
+        .show-answer-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        .answer-explanation {
+            display: none;
+            background-color: #e8f5e9;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            const explanation = document.getElementById(id);
+            if (explanation.style.display === "none" || explanation.style.display === "") {
+                explanation.style.display = "block";
+            } else {
+                explanation.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>FH402: Biotech: Next-Level Applications</h1>
+        <h2>Week 3: Molecular Biology Fundamentals</h2>
+        <p>FutureTech Academy</p>
+    </header>
+    
+    <div class="container">
+        <div class="week-navigation">
+            <button class="nav-button">← Week 2: Introduction to Biotechnology</button>
+            <button class="nav-button">Week 4: Medical Biotechnology →</button>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Overview and Learning Objectives</h2>
+            </div>
+            <div class="card-body">
+                <p>Welcome to Week 3 of FH402! This week we'll be exploring the fundamentals of molecular biology, which forms the cornerstone of modern biotechnology applications. Understanding these principles is essential before we dive deeper into specialized areas like medical biotechnology in the coming weeks.</p>
+                
+                <h3>Learning Objectives</h3>
+                <ul class="objectives-list">
+                    <li>Understand the central dogma of molecular biology and its significance in biotechnology</li>
+                    <li>Examine the structure and function of DNA, RNA, and proteins</li>
+                    <li>Explore key molecular processes including DNA replication, transcription, and translation</li>
+                    <li>Analyze modern DNA sequencing technologies and their applications</li>
+                    <li>Investigate gene expression regulation mechanisms</li>
+                    <li>Apply knowledge of molecular techniques in practical biotechnology scenarios</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 1: Central Dogma of Molecular Biology</h2>
+            </div>
+            <div class="card-body">
+                <div class="key-concept">
+                    <h4>Key Concept:</h4>
+                    <p>The central dogma of molecular biology describes the flow of genetic information within biological systems: DNA → RNA → Proteins. This fundamental principle underpins most biotechnology applications.</p>
+                </div>
+                
+                <h3>Reading Materials</h3>
+                
+                <div class="reading-item">
+                    <h4>1.1 Understanding the Central Dogma</h4>
+                    <p>The central dogma of molecular biology, first proposed by Francis Crick in 1958, describes the flow of genetic information within a biological system. In its most basic form, it states that DNA makes RNA, which makes protein. This unidirectional flow of information (with some exceptions) is fundamental to understanding how genetic information is utilized in cells.</p>
+                    
+                    <p>DNA (deoxyribonucleic acid) serves as the blueprint or template, storing the genetic information. This information is transcribed into RNA (ribonucleic acid), which then serves as a messenger carrying the instructions from DNA. Finally, the RNA is translated into proteins, which are the functional molecules that carry out most cellular processes.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>The Process in Detail:</h4>
+                        <ol>
+                            <li><strong>Replication:</strong> DNA makes copies of itself during cell division</li>
+                            <li><strong>Transcription:</strong> DNA is used as a template to create messenger RNA (mRNA)</li>
+                            <li><strong>Translation:</strong> mRNA serves as a template for protein synthesis at ribosomes</li>
+                        </ol>
+                    </div>
+                    
+                    <p>Understanding this process allows biotechnologists to manipulate genetic information at various stages, enabling numerous applications from genetic engineering to medical treatments.</p>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>1.2 Exceptions to the Central Dogma</h4>
+                    <p>While the central dogma provides a generally accurate model of information flow in biological systems, several important exceptions have been discovered:</p>
+                    
+                    <ul>
+                        <li><strong>Reverse Transcription:</strong> RNA can be converted back to DNA by reverse transcriptase enzymes, as seen in retroviruses like HIV</li>
+                        <li><strong>RNA Replication:</strong> Some RNA viruses can replicate their RNA directly without a DNA intermediate</li>
+                        <li><strong>Prions:</strong> Infectious proteins that can transmit their abnormal folding pattern to normal proteins without nucleic acid involvement</li>
+                    </ul>
+                    
+                    <p>These exceptions have opened up new avenues in biotechnology, such as using reverse transcriptase in creating cDNA libraries from mRNA and developing RNA-based therapies.</p>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">1. According to the central dogma of molecular biology, what is the correct sequence of information flow?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q1" value="a"> a) RNA → DNA → Protein</label>
+                        <label class="answer-option"><input type="radio" name="q1" value="b"> b) DNA → RNA → Protein</label>
+                        <label class="answer-option"><input type="radio" name="q1" value="c"> c) Protein → DNA → RNA</label>
+                        <label class="answer-option"><input type="radio" name="q1" value="d"> d) DNA → Protein → RNA</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer1')">Show Answer</button>
+                    <div id="answer1" class="answer-explanation">
+                        <p><strong>Correct Answer: b) DNA → RNA → Protein</strong></p>
+                        <p>The central dogma describes the flow of genetic information from DNA to RNA through transcription, and from RNA to protein through translation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 2: DNA Structure and Function</h2>
+            </div>
+            <div class="card-body">
+                <div class="reading-item">
+                    <h4>2.1 DNA Structure</h4>
+                    <p>DNA (deoxyribonucleic acid) is a molecule that carries the genetic instructions used in the growth, development, functioning, and reproduction of all known living organisms. The DNA molecule consists of two strands that wrap around each other to form a double helix structure, resembling a twisted ladder.</p>
+                    
+                    <p>Each strand of DNA is composed of nucleotides, which include:</p>
+                    <ul>
+                        <li>A phosphate group</li>
+                        <li>A deoxyribose sugar molecule</li>
+                        <li>One of four nitrogenous bases: Adenine (A), Thymine (T), Guanine (G), or Cytosine (C)</li>
+                    </ul>
+                    
+                    <p>The two strands are held together by hydrogen bonds between complementary base pairs: A pairs with T, and G pairs with C. This complementary base pairing is crucial for DNA replication and transcription.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>Key Features of DNA Structure:</h4>
+                        <ul>
+                            <li>Double-helix structure with antiparallel strands</li>
+                            <li>Complementary base pairing (A-T, G-C)</li>
+                            <li>Sugar-phosphate backbone on the exterior</li>
+                            <li>Nitrogenous bases oriented toward the interior</li>
+                            <li>Major and minor grooves along the helix</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>2.2 DNA Replication</h4>
+                    <p>DNA replication is the process by which DNA makes a copy of itself during cell division. This process is semi-conservative, meaning that each strand of the original DNA molecule serves as a template for the synthesis of a new complementary strand.</p>
+                    
+                    <p>The major steps in DNA replication include:</p>
+                    <ol>
+                        <li><strong>Initiation:</strong> The DNA double helix unwinds at specific points called origins of replication, where the enzyme helicase breaks the hydrogen bonds between the base pairs.</li>
+                        <li><strong>Elongation:</strong> DNA polymerase adds complementary nucleotides to each template strand in the 5' to 3' direction. Due to the antiparallel nature of DNA, one strand (the leading strand) is synthesized continuously, while the other (the lagging strand) is synthesized in short fragments called Okazaki fragments.</li>
+                        <li><strong>Termination:</strong> When replication forks meet, synthesis stops, and the new DNA molecules are complete.</li>
+                    </ol>
+                    
+                    <p>DNA replication is remarkably accurate, with error rates as low as one mistake per billion base pairs. This accuracy is achieved through the proofreading capabilities of DNA polymerase and various repair mechanisms.</p>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>2.3 DNA Sequencing Technologies</h4>
+                    <p>DNA sequencing is the process of determining the precise order of nucleotides within a DNA molecule. Modern DNA sequencing technologies have revolutionized biotechnology by enabling rapid, cost-effective genome sequencing.</p>
+                    
+                    <p><strong>First-Generation Sequencing:</strong></p>
+                    <ul>
+                        <li><strong>Sanger Sequencing:</strong> Uses dideoxynucleotides to terminate DNA synthesis at specific nucleotides, followed by capillary electrophoresis to separate fragments by size.</li>
+                    </ul>
+                    
+                    <p><strong>Next-Generation Sequencing (NGS):</strong></p>
+                    <ul>
+                        <li><strong>Illumina Sequencing:</strong> Uses bridge amplification and sequencing by synthesis with fluorescently labeled nucleotides.</li>
+                        <li><strong>Ion Torrent Sequencing:</strong> Detects hydrogen ions released during nucleotide incorporation.</li>
+                        <li><strong>454 Pyrosequencing:</strong> Detects pyrophosphate release during nucleotide incorporation.</li>
+                    </ul>
+                    
+                    <p><strong>Third-Generation Sequencing:</strong></p>
+                    <ul>
+                        <li><strong>Oxford Nanopore Sequencing:</strong> Measures changes in electrical conductivity as DNA passes through a protein nanopore.</li>
+                        <li><strong>PacBio SMRT (Single Molecule Real-Time) Sequencing:</strong> Observes DNA polymerase in real-time as it incorporates nucleotides.</li>
+                    </ul>
+                    
+                    <p>These technologies have enabled numerous applications, including:</p>
+                    <ul>
+                        <li>Whole genome sequencing</li>
+                        <li>Targeted gene sequencing</li>
+                        <li>RNA sequencing (transcriptomics)</li>
+                        <li>Metagenomics</li>
+                        <li>Epigenomics</li>
+                    </ul>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">2. What is the complementary strand sequence for the DNA sequence: 5'-ATGCTA-3'?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q2" value="a"> a) 5'-TACGAT-3'</label>
+                        <label class="answer-option"><input type="radio" name="q2" value="b"> b) 3'-TACGAT-5'</label>
+                        <label class="answer-option"><input type="radio" name="q2" value="c"> c) 5'-UACGAU-3'</label>
+                        <label class="answer-option"><input type="radio" name="q2" value="d"> d) 3'-ATGCTA-5'</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer2')">Show Answer</button>
+                    <div id="answer2" class="answer-explanation">
+                        <p><strong>Correct Answer: b) 3'-TACGAT-5'</strong></p>
+                        <p>In DNA, A pairs with T and G pairs with C. Additionally, the complementary strand runs in the opposite direction (antiparallel), so the 5' end of one strand is opposite the 3' end of the other strand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 3: RNA Structure and Function</h2>
+            </div>
+            <div class="card-body">
+                <div class="reading-item">
+                    <h4>3.1 RNA Structure</h4>
+                    <p>RNA (ribonucleic acid) differs from DNA in several key ways:</p>
+                    <ul>
+                        <li>RNA is typically single-stranded (though it can form complex secondary structures)</li>
+                        <li>RNA contains ribose sugar (with an OH group on the 2' carbon) instead of deoxyribose</li>
+                        <li>RNA uses the base uracil (U) instead of thymine (T)</li>
+                        <li>RNA is generally less stable and more reactive than DNA</li>
+                    </ul>
+                    
+                    <p>Despite being single-stranded, RNA can fold into complex three-dimensional structures through intramolecular base pairing, which is crucial for its various functions.</p>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>3.2 Types of RNA and Their Functions</h4>
+                    <p>Several types of RNA play crucial roles in cellular processes:</p>
+                    
+                    <p><strong>Messenger RNA (mRNA):</strong></p>
+                    <ul>
+                        <li>Carries genetic information from DNA to ribosomes</li>
+                        <li>Serves as a template for protein synthesis</li>
+                        <li>Contains coding regions (exons) separated by non-coding regions (introns) in eukaryotes</li>
+                        <li>Undergoes post-transcriptional modifications including 5' capping, 3' polyadenylation, and splicing</li>
+                    </ul>
+                    
+                    <p><strong>Transfer RNA (tRNA):</strong></p>
+                    <ul>
+                        <li>Transports amino acids to ribosomes during translation</li>
+                        <li>Has a cloverleaf secondary structure and L-shaped tertiary structure</li>
+                        <li>Contains an anticodon loop that base-pairs with mRNA codons</li>
+                        <li>Carries specific amino acids linked to its 3' end</li>
+                    </ul>
+                    
+                    <p><strong>Ribosomal RNA (rRNA):</strong></p>
+                    <ul>
+                        <li>Major component of ribosomes (60-80% by weight)</li>
+                        <li>Catalyzes peptide bond formation (ribozyme activity)</li>
+                        <li>Forms the structural and functional core of ribosomes</li>
+                    </ul>
+                    
+                    <p><strong>Non-coding RNAs (ncRNAs):</strong></p>
+                    <ul>
+                        <li><strong>microRNAs (miRNAs):</strong> Regulate gene expression by binding to target mRNAs</li>
+                        <li><strong>Small interfering RNAs (siRNAs):</strong> Involved in RNA interference (RNAi) pathway</li>
+                        <li><strong>Long non-coding RNAs (lncRNAs):</strong> Regulate transcription and post-transcriptional processes</li>
+                        <li><strong>Small nuclear RNAs (snRNAs):</strong> Essential components of spliceosomes</li>
+                        <li><strong>CRISPR RNAs (crRNAs):</strong> Guide Cas nucleases to specific DNA sequences in CRISPR-Cas systems</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>3.3 Transcription: DNA to RNA</h4>
+                    <p>Transcription is the process by which the information in DNA is copied into RNA. This process occurs in three main stages:</p>
+                    
+                    <p><strong>1. Initiation:</strong></p>
+                    <ul>
+                        <li>RNA polymerase binds to the promoter region of DNA</li>
+                        <li>In eukaryotes, transcription factors assist RNA polymerase in recognizing promoters</li>
+                        <li>The DNA double helix unwinds to form a transcription bubble</li>
+                    </ul>
+                    
+                    <p><strong>2. Elongation:</strong></p>
+                    <ul>
+                        <li>RNA polymerase moves along the template strand of DNA in the 3' to 5' direction</li>
+                        <li>Complementary ribonucleotides are added to the growing RNA strand in the 5' to 3' direction</li>
+                        <li>The RNA strand temporarily forms a DNA-RNA hybrid with the template strand</li>
+                    </ul>
+                    
+                    <p><strong>3. Termination:</strong></p>
+                    <ul>
+                        <li>In prokaryotes, termination occurs either through intrinsic termination (hairpin formation) or rho-dependent termination</li>
+                        <li>In eukaryotes, termination involves recognition of specific sequences and cleavage of the transcript</li>
+                    </ul>
+                    
+                    <p>In eukaryotic cells, the primary RNA transcript undergoes processing to form mature mRNA:</p>
+                    <ul>
+                        <li>Addition of a 5' cap (7-methylguanosine)</li>
+                        <li>Addition of a 3' poly(A) tail</li>
+                        <li>Splicing to remove introns and join exons</li>
+                        <li>Alternative splicing can generate multiple mRNA variants from a single gene</li>
+                    </ul>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">3. Which of the following is NOT a type of RNA?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q3" value="a"> a) tRNA</label>
+                        <label class="answer-option"><input type="radio" name="q3" value="b"> b) mRNA</label>
+                        <label class="answer-option"><input type="radio" name="q3" value="c"> c) dRNA</label>
+                        <label class="answer-option"><input type="radio" name="q3" value="d"> d) rRNA</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer3')">Show Answer</button>
+                    <div id="answer3" class="answer-explanation">
+                        <p><strong>Correct Answer: c) dRNA</strong></p>
+                        <p>dRNA is not a recognized type of RNA. The main types of RNA include messenger RNA (mRNA), transfer RNA (tRNA), ribosomal RNA (rRNA), and various non-coding RNAs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 4: Protein Synthesis and Structure</h2>
+            </div>
+            <div class="card-body">
+                <div class="reading-item">
+                    <h4>4.1 Translation: RNA to Protein</h4>
+                    <p>Translation is the process by which the nucleotide sequence of mRNA is used to direct protein synthesis. This process occurs in three main stages:</p>
+                    
+                    <p><strong>1. Initiation:</strong></p>
+                    <ul>
+                        <li>In prokaryotes, the small ribosomal subunit binds to the Shine-Dalgarno sequence on mRNA</li>
+                        <li>In eukaryotes, the small ribosomal subunit binds to the 5' cap and scans for the start codon (AUG)</li>
+                        <li>The initiator tRNA carrying methionine binds to the start codon</li>
+                        <li>The large ribosomal subunit joins to form the complete ribosome</li>
+                    </ul>
+                    
+                    <p><strong>2. Elongation:</strong></p>
+                    <ul>
+                        <li>The ribosome has three sites: A (aminoacyl), P (peptidyl), and E (exit)</li>
+                        <li>Charged tRNAs enter the A site, where their anticodons base-pair with mRNA codons</li>
+                        <li>A peptide bond forms between the amino acid in the P site and the amino acid in the A site</li>
+                        <li>The ribosome translocates, moving mRNA and tRNAs through the sites</li>
+                        <li>The process repeats, adding amino acids to the growing polypeptide chain</li>
+                    </ul>
+                    
+                    <p><strong>3. Termination:</strong></p>
+                    <ul>
+                        <li>When a stop codon (UAA, UAG, or UGA) enters the A site, release factors bind instead of tRNA</li>
+                        <li>The release factors trigger hydrolysis of the bond between the polypeptide and the tRNA</li>
+                        <li>The completed polypeptide is released</li>
+                        <li>The ribosomal subunits dissociate</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>4.2 The Genetic Code</h4>
+                    <p>The genetic code is the set of rules by which nucleotide sequences in DNA and RNA are translated into proteins. Key features include:</p>
+                    
+                    <ul>
+                        <li><strong>Triplet Code:</strong> Three consecutive nucleotides (a codon) specify one amino acid</li>
+                        <li><strong>Degeneracy:</strong> Most amino acids are encoded by multiple codons</li>
+                        <li><strong>Universality:</strong> The code is largely the same in all organisms, with some exceptions</li>
+                        <li><strong>Non-overlapping:</strong> Each nucleotide belongs to only one codon</li>
+                        <li><strong>Start and Stop Signals:</strong> AUG serves as the start codon, while UAA, UAG, and UGA serve as stop codons</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h4>The Standard Genetic Code:</h4>
+                        <p>With 4 possible bases at each of 3 positions, there are 64 possible codons (4³ = 64). These encode 20 standard amino acids and the stop signals.</p>
+                        <p>Examples:</p>
+                        <ul>
+                            <li>UUU, UUC: Phenylalanine (Phe, F)</li>
+                            <li>AUG: Methionine (Met, M) and Start signal</li>
+                            <li>UAA, UAG, UGA: Stop signals</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>4.3 Protein Structure and Function</h4>
+                    <p>Proteins are complex molecules that perform a vast array of functions in the body. Their structure can be described at four levels:</p>
+                    
+                    <p><strong>1. Primary Structure:</strong></p>
+                    <ul>
+                        <li>The linear sequence of amino acids linked by peptide bonds</li>
+                        <li>Determined directly by the genetic code</li>
+                    </ul>
+                    
+                    <p><strong>2. Secondary Structure:</strong></p>
+                    <ul>
+                        <li>Local folding patterns stabilized by hydrogen bonds between backbone atoms</li>
+                        <li>Common motifs include alpha helices and beta sheets</li>
+                    </ul>
+                    
+                    <p><strong>3. Tertiary Structure:</strong></p>
+                    <ul>
+                        <li>Three-dimensional arrangement of the entire polypeptide chain</li>
+                        <li>Stabilized by various interactions including hydrophobic interactions, hydrogen bonds, ionic bonds, and disulfide bridges</li>
+                    </ul>
+                    
+                    <p><strong>4. Quaternary Structure:</strong></p>
+                    <ul>
+                        <li>The arrangement of multiple protein subunits into a functional complex</li>
+                        <li>Not all proteins have quaternary structure</li>
+                        <li>Examples include hemoglobin (four subunits) and antibodies</li>
+                    </ul>
+                    
+                    <p>Protein folding is crucial for function, and misfolding can lead to diseases such as Alzheimer's, Parkinson's, and prion diseases. Chaperone proteins assist in proper folding in the cell.</p>
+                    
+                    <p>Proteins perform numerous functions in the body, including:</p>
+                    <ul>
+                        <li><strong>Enzymes:</strong> Catalyze biochemical reactions</li>
+                        <li><strong>Structural proteins:</strong> Provide cellular and tissue structure (e.g., collagen)</li>
+                        <li><strong>Transport proteins:</strong> Move molecules across membranes or through fluids (e.g., hemoglobin)</li>
+                        <li><strong>Signaling proteins:</strong> Transmit information between cells (e.g., hormones, cytokines)</li>
+                        <li><strong>Receptor proteins:</strong> Detect signals and initiate cellular responses</li>
+                        <li><strong>Antibodies:</strong> Recognize and neutralize foreign substances</li>
+                        <li><strong>Motor proteins:</strong> Generate mechanical force for movement (e.g., myosin)</li>
+                    </ul>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">4. What is the process by which the mRNA sequence is used to create a protein called?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q4" value="a"> a) Transcription</label>
+                        <label class="answer-option"><input type="radio" name="q4" value="b"> b) Translation</label>
+                        <label class="answer-option"><input type="radio" name="q4" value="c"> c) Replication</label>
+                        <label class="answer-option"><input type="radio" name="q4" value="d"> d) Transduction</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer4')">Show Answer</button>
+                    <div id="answer4" class="answer-explanation">
+                        <p><strong>Correct Answer: b) Translation</strong></p>
+                        <p>Translation is the process by which ribosomes synthesize proteins using the information contained in mRNA. Transcription is the process of creating RNA from DNA, replication is the process of copying DNA, and transduction is a method of gene transfer between bacteria.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 5: Gene Regulation</h2>
+            </div>
+            <div class="card-body">
+                <div class="reading-item">
+                    <h4>5.1 Prokaryotic Gene Regulation</h4>
+                    <p>In prokaryotes, gene regulation primarily occurs at the transcriptional level and often involves operons—clusters of genes transcribed as a single unit. Key regulatory mechanisms include:</p>
+                    
+                    <p><strong>Operons:</strong></p>
+                    <ul>
+                        <li>Consist of structural genes, a promoter, and an operator</li>
+                        <li>May include a regulator gene that produces a repressor or activator protein</li>
+                    </ul>
+                    
+                    <p><strong>Negative Regulation:</strong></p>
+                    <ul>
+                        <li>Repressor proteins bind to operators to prevent transcription</li>
+                        <li>Example: The lac operon in E. coli, where the repressor prevents transcription in the absence of lactose</li>
+                    </ul>
+                    
+                    <p><strong>Positive Regulation:</strong></p>
+                    <ul>
+                        <li>Activator proteins bind to the promoter or nearby regions to enhance transcription</li>
+                        <li>Example: The catabolite activator protein (CAP) enhances transcription of the lac operon in the presence of glucose</li>
+                    </ul>
+                    
+                    <p><strong>Attenuation:</strong></p>
+                    <ul>
+                        <li>Regulation of gene expression based on the rate of translation</li>
+                        <li>Example: The trp operon, where transcription is terminated prematurely when tryptophan is abundant</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>5.2 Eukaryotic Gene Regulation</h4>
+                    <p>Eukaryotic gene regulation is more complex and occurs at multiple levels:</p>
+                    
+                    <p><strong>Chromatin Structure:</strong></p>
+                    <ul>
+                        <li>DNA is wrapped around histone proteins to form nucleosomes</li>
+                        <li>Chromatin remodeling affects gene accessibility</li>
+                        <li>Heterochromatin is tightly packed and transcriptionally inactive</li>
+                        <li>Euchromatin is less condensed and transcriptionally active</li>
+                    </ul>
+                    
+                    <p><strong>Epigenetic Modifications:</strong></p>
+                    <ul>
+                        <li>DNA methylation typically represses gene expression</li>
+                        <li>Histone modifications can either activate or repress transcription</li>
+                        <li>Acetylation generally activates transcription by loosening chromatin</li>
+                        <li>Methylation can activate or repress depending on the specific amino acid residue</li>
+                    </ul>
+                    
+                    <p><strong>Transcriptional Regulation:</strong></p>
+                    <ul>
+                        <li>Promoter regions contain a TATA box and other regulatory elements</li>
+                        <li>Enhancers are distant DNA sequences that increase transcription</li>
+                        <li>Silencers are distant DNA sequences that decrease transcription</li>
+                        <li>Transcription factors bind to these regulatory elements</li>
+                        <li>General transcription factors form the pre-initiation complex</li>
+                        <li>Specific transcription factors regulate particular genes</li>
+                    </ul>
+                    
+                    <p><strong>Post-transcriptional Regulation:</strong></p>
+                    <ul>
+                        <li>Alternative splicing generates multiple mRNAs from a single pre-mRNA</li>
+                        <li>mRNA stability affects how long a message persists in the cell</li>
+                        <li>RNA interference (RNAi) involves small RNAs that target specific mRNAs for degradation</li>
+                        <li>microRNAs (miRNAs) bind to target mRNAs and repress translation</li>
+                    </ul>
+                    
+                    <p><strong>Translational Regulation:</strong></p>
+                    <ul>
+                        <li>Initiation factors control the rate of translation initiation</li>
+                        <li>Upstream open reading frames (uORFs) can inhibit translation of the main ORF</li>
+                        <li>RNA-binding proteins can block or enhance translation</li>
+                    </ul>
+                    
+                    <p><strong>Post-translational Regulation:</strong></p>
+                    <ul>
+                        <li>Protein modifications such as phosphorylation, glycosylation, and ubiquitination</li>
+                        <li>Protein degradation through the ubiquitin-proteasome system</li>
+                        <li>Protein localization to specific cellular compartments</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>5.3 Gene Regulation in Biotechnology</h4>
+                    <p>Understanding gene regulation is crucial for many biotechnology applications:</p>
+                    
+                    <p><strong>Inducible Expression Systems:</strong></p>
+                    <ul>
+                        <li>Tetracycline-inducible systems allow gene expression to be turned on by adding tetracycline</li>
+                        <li>IPTG-inducible systems based on the lac operon are widely used in laboratories</li>
+                    </ul>
+                    
+                    <p><strong>Gene Silencing Technologies:</strong></p>
+                    <ul>
+                        <li>RNA interference (RNAi) using small interfering RNAs (siRNAs)</li>
+                        <li>CRISPR interference (CRISPRi) using catalytically inactive Cas9</li>
+                    </ul>
+                    
+                    <p><strong>Synthetic Biology:</strong></p>
+                    <ul>
+                        <li>Design of synthetic gene circuits with specific regulatory properties</li>
+                        <li>Creation of genetic toggle switches and oscillators</li>
+                        <li>Development of biosensors that respond to specific environmental signals</li>
+                    </ul>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">5. Which of the following is NOT a level of gene regulation in eukaryotes?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q5" value="a"> a) Chromatin remodeling</label>
+                        <label class="answer-option"><input type="radio" name="q5" value="b"> b) Operon regulation</label>
+                        <label class="answer-option"><input type="radio" name="q5" value="c"> c) Alternative splicing</label>
+                        <label class="answer-option"><input type="radio" name="q5" value="d"> d) miRNA interference</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer5')">Show Answer</button>
+                    <div id="answer5" class="answer-explanation">
+                        <p><strong>Correct Answer: b) Operon regulation</strong></p>
+                        <p>Operons are a feature of prokaryotic gene regulation, not eukaryotic. Eukaryotic genes are generally not organized into operons. Instead, each gene typically has its own promoter and regulatory elements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Topic 6: Molecular Biology Techniques</h2>
+            </div>
+            <div class="card-body">
+                <div class="reading-item">
+                    <h4>6.1 Polymerase Chain Reaction (PCR)</h4>
+                    <p>PCR is a technique used to amplify specific DNA sequences, generating millions of copies from a small amount of starting material. The process involves three main steps repeated in cycles:</p>
+                    
+                    <ol>
+                        <li><strong>Denaturation:</strong> DNA is heated to 94-98°C to separate the double strands</li>
+                        <li><strong>Annealing:</strong> Temperature is lowered to 50-65°C to allow primers to bind to the target regions</li>
+                        <li><strong>Extension:</strong> Temperature is raised to 72°C for DNA polymerase to synthesize new DNA strands</li>
+                    </ol>
+                    
+                    <p>Key components of PCR include:</p>
+                    <ul>
+                        <li><strong>DNA template:</strong> The DNA containing the target sequence</li>
+                        <li><strong>Primers:</strong> Short DNA oligonucleotides that flank the target sequence</li>
+                        <li><strong>DNA polymerase:</strong> Typically Taq polymerase, which is heat-stable</li>
+                        <li><strong>dNTPs:</strong> The building blocks for new DNA strands</li>
+                        <li><strong>Buffer and salts:</strong> Provide optimal conditions for the polymerase</li>
+                    </ul>
+                    
+                    <p>Variations of PCR include:</p>
+                    <ul>
+                        <li><strong>Quantitative PCR (qPCR):</strong> Measures the amount of DNA in real-time using fluorescent dyes</li>
+                        <li><strong>Reverse Transcription PCR (RT-PCR):</strong> Converts RNA to cDNA before amplification</li>
+                        <li><strong>Multiplex PCR:</strong> Amplifies multiple targets simultaneously</li>
+                        <li><strong>Nested PCR:</strong> Uses two sets of primers for increased specificity</li>
+                        <li><strong>Digital PCR (dPCR):</strong> Provides absolute quantification by partitioning samples into many reactions</li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>6.2 Cloning and Recombinant DNA Technology</h4>
+                    <p>Cloning involves inserting a DNA fragment of interest into a vector to create a recombinant DNA molecule, which can then be replicated in a host organism. The process typically includes:</p>
+                    
+                    <ol>
+                        <li><strong>DNA Isolation:</strong> Extract DNA containing the gene of interest</li>
+                        <li><strong>Restriction Digest:</strong> Cut the DNA and vector with restriction enzymes</li>
+                        <li><strong>Ligation:</strong> Join the DNA fragment and vector using DNA ligase</li>
+                        <li><strong>Transformation:</strong> Introduce the recombinant DNA into host cells</li>
+                        <li><strong>Selection:</strong> Identify and grow cells containing the recombinant DNA</li>
+                        <li><strong>Screening:</strong> Verify that the clone contains the correct insert</li>
+                    </ol>
+                    
+                    <p>Common vectors include:</p>
+                    <ul>
+                        <li><strong>Plasmids:</strong> Small circular DNA molecules used in bacteria</li>
+                        <li><strong>Bacteriophages:</strong> Viruses that infect bacteria</li>
+                        <li><strong>Cosmids:</strong> Plasmids with phage packaging signals</li>
+                        <li><strong>Bacterial Artificial Chromosomes (BACs):</strong> Can carry large inserts (100-300 kb)</li>
+                        <li><strong>Yeast Artificial Chromosomes (YACs):</strong> Can carry very large inserts (up to 2 Mb)</li>
+                    </ul>
+                    
+                    <p>Modern cloning often uses techniques such as Gibson Assembly, Golden Gate Assembly, or TOPO cloning, which do not rely on restriction enzymes.</p>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>6.3 Gel Electrophoresis and Blotting Techniques</h4>
+                    <p><strong>Gel Electrophoresis:</strong></p>
+                    <p>Gel electrophoresis separates DNA, RNA, or proteins based on size by applying an electric field to move the negatively charged molecules through a gel matrix.</p>
+                    <ul>
+                        <li><strong>Agarose gels:</strong> Used for DNA and larger RNA fragments</li>
+                        <li><strong>Polyacrylamide gels:</strong> Used for proteins and smaller DNA/RNA fragments</li>
+                    </ul>
+                    
+                    <p><strong>Blotting Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Southern Blot:</strong> Detects specific DNA sequences
+                            <ol>
+                                <li>DNA is digested with restriction enzymes and separated by gel electrophoresis</li>
+                                <li>DNA is transferred to a membrane</li>
+                                <li>Labeled probes hybridize to complementary sequences</li>
+                                <li>Hybridization is detected through autoradiography or chemiluminescence</li>
+                            </ol>
+                        </li>
+                        <li><strong>Northern Blot:</strong> Similar to Southern blot but detects RNA sequences</li>
+                        <li><strong>Western Blot:</strong> Detects specific proteins
+                            <ol>
+                                <li>Proteins are separated by SDS-PAGE</li>
+                                <li>Proteins are transferred to a membrane</li>
+                                <li>Primary antibodies bind to target proteins</li>
+                                <li>Secondary antibodies conjugated to enzymes or fluorophores bind to primary antibodies</li>
+                                <li>Signal is detected through various methods</li>
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="reading-item">
+                    <h4>6.4 Next-Generation Molecular Biology Techniques</h4>
+                    <p><strong>CRISPR-Cas9 Genome Editing:</strong></p>
+                    <ul>
+                        <li>Uses a guide RNA to direct Cas9 nuclease to specific DNA sequences</li>
+                        <li>Creates double-strand breaks that can be repaired by non-homologous end joining (NHEJ) or homology-directed repair (HDR)</li>
+                        <li>Applications include gene knockout, gene correction, and gene regulation</li>
+                    </ul>
+                    
+                    <p><strong>Single-Cell Technologies:</strong></p>
+                    <ul>
+                        <li><strong>Single-cell RNA sequencing (scRNA-seq):</strong> Analyzes gene expression in individual cells</li>
+                        <li><strong>Single-cell ATAC-seq:</strong> Maps open chromatin regions in individual cells</li>
+                        <li><strong>Single-cell proteomics:</strong> Measures protein levels in individual cells</li>
+                    </ul>
+                    
+                    <p><strong>Spatial Transcriptomics:</strong></p>
+                    <ul>
+                        <li>Maps gene expression within tissues while preserving spatial information</li>
+                        <li>Examples include in situ sequencing, MERFISH, and Visium spatial gene expression</li>
+                    </ul>
+                    
+                    <p><strong>Long-Read Sequencing:</strong></p>
+                    <ul>
+                        <li>Generates reads of tens to hundreds of kilobases</li>
+                        <li>Used for de novo genome assembly, detecting structural variants, and analyzing complex regions</li>
+                        <li>Technologies include Oxford Nanopore and PacBio SMRT sequencing</li>
+                    </ul>
+                </div>
+                
+                <div class="quiz-section">
+                    <h3>Quick Check</h3>
+                    <div class="quiz-question">6. Which technique would be most appropriate for measuring the expression levels of thousands of genes simultaneously in a tissue sample?</div>
+                    <div class="quiz-options">
+                        <label class="answer-option"><input type="radio" name="q6" value="a"> a) Western blotting</label>
+                        <label class="answer-option"><input type="radio" name="q6" value="b"> b) PCR</label>
+                        <label class="answer-option"><input type="radio" name="q6" value="c"> c) RNA sequencing (RNA-seq)</label>
+                        <label class="answer-option"><input type="radio" name="q6" value="d"> d) Gel electrophoresis</label>
+                    </div>
+                    <button class="show-answer-btn" onclick="toggleAnswer('answer6')">Show Answer</button>
+                    <div id="answer6" class="answer-explanation">
+                        <p><strong>Correct Answer: c) RNA sequencing (RNA-seq)</strong></p>
+                        <p>RNA sequencing allows for the comprehensive analysis of the entire transcriptome, measuring the expression levels of thousands of genes simultaneously. Western blotting detects specific proteins, PCR amplifies specific DNA sequences, and gel electrophoresis separates molecules by size but does not provide expression data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Laboratory Exercise</h2>
+            </div>
+            <div class="card-body">
+                <div class="lab-exercise">
+                    <h3>Virtual PCR Simulation</h3>
+                    <p>In this virtual lab exercise, you will simulate the Polymerase Chain Reaction (PCR) process to amplify a specific DNA sequence. You will select appropriate primers, optimize reaction conditions, and analyze the results using gel electrophoresis.</p>
+                    
+                    <h4>Objectives:</h4>
+                    <ul>
+                        <li>Design appropriate primers for a given DNA sequence</li>
+                        <li>Optimize PCR conditions (temperature, cycle number, etc.)</li>
+                        <li>Perform virtual gel electrophoresis to analyze PCR products</li>
+                        <li>Troubleshoot common PCR problems</li>
+                    </ul>
+                    
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Access the virtual PCR simulator through the course portal</li>
+                        <li>Complete the pre-lab quiz to ensure you understand PCR principles</li>
+                        <li>Follow the step-by-step guide in the simulator</li>
+                        <li>Submit your results and answers to the post-lab questions</li>
+                    </ol>
+                    
+                    <p><strong>Due Date:</strong> Submit your completed lab report by the end of Week 3.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Additional Resources</h2>
+            </div>
+            <div class="card-body">
+                <h3>Supplementary Reading Materials</h3>
+                <ul>
+                    <li><a href="#" class="resource-link">Alberts et al. (2022). Molecular Biology of the Cell. 7th Edition. Chapters 4-6.</a></li>
+                    <li><a href="#" class="resource-link">Lehninger Principles of Biochemistry. 8th Edition. Chapters 24-27.</a></li>
+                    <li><a href="#" class="resource-link">Zhang et al. (2023). "Recent Advances in CRISPR-Cas Technologies." Nature Reviews Genetics, 24(1), 32-47.</a></li>
+                </ul>
+                
+                <h3>Online Resources</h3>
+                <ul>
+                    <li><a href="#" class="resource-link">iBiology: Molecular Biology Lectures</a></li>
+                    <li><a href="#" class="resource-link">Khan Academy: Central Dogma</a></li>
+                    <li><a href="#" class="resource-link">NCBI Bookshelf: Molecular Cell Biology</a></li>
+                </ul>
+                
+                <div class="video-container">
+                    <h3>Video Lectures</h3>
+                    <p>The following video lectures cover key concepts from this week:</p>
+                    <ul>
+                        <li><a href="#" class="resource-link">Video 1: The Central Dogma Explained (25 min)</a></li>
+                        <li><a href="#" class="resource-link">Video 2: DNA Replication in Detail (35 min)</a></li>
+                        <li><a href="#" class="resource-link">Video 3: Protein Synthesis and Structure (45 min)</a></li>
+                        <li><a href="#" class="resource-link">Video 4: Modern Molecular Biology Techniques (40 min)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Weekly Assignment</h2>
+            </div>
+            <div class="card-body">
+                <h3>Assignment: Case Study Analysis</h3>
+                <p>For this week's assignment, you will analyze a case study related to a molecular biology application in biotechnology.</p>
+                
+                <h4>Instructions:</h4>
+                <ol>
+                    <li>Read the case study "CRISPR-Cas9 in Agricultural Biotechnology" available on the course portal</li>
+                    <li>Write a 1000-1500 word analysis addressing the following questions:
+                        <ul>
+                            <li>What molecular biology principles are being applied in this case study?</li>
+                            <li>What are the technical challenges involved in the application described?</li>
+                            <li>How might improvements in molecular biology techniques enhance the outcomes?</li>
+                            <li>What ethical considerations should be taken into account?</li>
+                        </ul>
+                    </li>
+                    <li>Include a minimum of 5 scholarly references (published within the last 5 years)</li>
+                    <li>Submit your analysis as a PDF document through the course portal</li>
+                </ol>
+                
+                <h4>Grading Criteria:</h4>
+                <ul>
+                    <li>Comprehension of molecular biology concepts (30%)</li>
+                    <li>Critical analysis and application of knowledge (30%)</li>
+                    <li>Research quality and integration of references (20%)</li>
+                    <li>Writing quality and organization (20%)</li>
+                </ul>
+                
+                <p><strong>Due Date:</strong> Sunday, 11:59 PM (Week 3)</p>
+            </div>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-header">
+                <h2>Week 3 Review Quiz</h2>
+            </div>
+            <div class="card-body">
+                <div class="quiz-container">
+                    <p>Test your understanding of this week's material with the following quiz. This is for self-assessment only and does not count toward your grade.</p>
+                    
+                    <div class="quiz-section">
+                        <div class="quiz-question">1. What is the primary role of mRNA in protein synthesis?</div>
+                        <div class="quiz-options">
+                            <label class="answer-option"><input type="radio" name="quiz1" value="a"> a) To transport amino acids to the ribosome</label>
+                            <label class="answer-option"><input type="radio" name="quiz1" value="b"> b) To carry genetic information from DNA to ribosomes</label>
+                            <label class="answer-option"><input type="radio" name="quiz1" value="c"> c) To catalyze peptide bond formation</label>
+                            <label class="answer-option"><input type="radio" name="quiz1" value="d"> d) To provide structural support for ribosomes</label>
+                        </div>
+                        <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer1')">Show Answer</button>
+                        <div id="quiz-answer1" class="answer-explanation">
+                            <p><strong>Correct Answer: b) To carry genetic information from DNA to ribosomes</strong></p>
+                            <p>mRNA (messenger RNA) transcribes the genetic information from DNA and carries it to the ribosomes, where it serves as a template for protein synthesis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-section">
+                        <div class="quiz-question">2. Which of the following is NOT a component of a nucleotide?</div>
+                        <div class="quiz-options">
+                            <label class="answer-option"><input type="radio" name="quiz2" value="a"> a) Phosphate group</label>
+                            <label class="answer-option"><input type="radio" name="quiz2" value="b"> b) Pentose sugar</label>
+                            <label class="answer-option"><input type="radio" name="quiz2" value="c"> c) Nitrogenous base</label>
+                            <label class="answer-option"><input type="radio" name="quiz2" value="d"> d) Amino acid</label>
+                        </div>
+                        <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer2')">Show Answer</button>
+                        <div id="quiz-answer2" class="answer-explanation">
+                            <p><strong>Correct Answer: d) Amino acid</strong></p>
+                            <p>Nucleotides consist of a phosphate group, a pentose sugar (ribose in RNA, deoxyribose in DNA), and a nitrogenous base (A, T/U, G, C). Amino acids are the building blocks of proteins, not nucleotides.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-section">
+                        <div class="quiz-question">3. In DNA replication, why are Okazaki fragments formed?</div>
+                        <div class="quiz-options">
+                            <label class="answer-option"><input type="radio" name="quiz3" value="a"> a) Because DNA polymerase can only add nucleotides to the 3' end of a growing strand</label>
+                            <label class="answer-option"><input type="radio" name="quiz3" value="b"> b) Because the DNA helix unwinds too quickly</label>
+                            <label class="answer-option"><input type="radio" name="quiz3" value="c"> c) To repair errors in DNA synthesis</label>
+                            <label class="answer-option"><input type="radio" name="quiz3" value="d"> d) To add telomeres to the ends of chromosomes</label>
+                        </div>
+                        <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer3')">Show Answer</button>
+                        <div id="quiz-answer3" class="answer-explanation">
+                            <p><strong>Correct Answer: a) Because DNA polymerase can only add nucleotides to the 3' end of a growing strand</strong></p>
+                            <p>DNA polymerase can only synthesize DNA in the 5' to 3' direction. Since the two strands of DNA are antiparallel and the replication fork moves in one direction, one strand (the lagging strand) must be synthesized in short fragments (Okazaki fragments) in the opposite direction of the fork movement.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-section">
+                        <div class="quiz-question">4. Which technique would you use to determine if a specific protein is present in a sample?</div>
+                        <div class="quiz-options">
+                            <label class="answer-option"><input type="radio" name="quiz4" value="a"> a) Southern blot</label>
+                            <label class="answer-option"><input type="radio" name="quiz4" value="b"> b) Northern blot</label>
+                            <label class="answer-option"><input type="radio" name="quiz4" value="c"> c) Western blot</label>
+                            <label class="answer-option"><input type="radio" name="quiz4" value="d"> d) Eastern blot</label>
+                        </div>
+                        <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer4')">Show Answer</button>
+                        <div id="quiz-answer4" class="answer-explanation">
+                            <p><strong>Correct Answer: c) Western blot</strong></p>
+                            <p>Western blotting is use
+                              
+```html
+<div class="quiz-section">
+    <div class="quiz-question">5. Which of the following is a difference between prokaryotic and eukaryotic gene expression?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz5" value="a"> a) Only eukaryotes use RNA polymerase for transcription</label>
+        <label class="answer-option"><input type="radio" name="quiz5" value="b"> b) Prokaryotic mRNA can be translated while still being transcribed</label>
+        <label class="answer-option"><input type="radio" name="quiz5" value="c"> c) Only prokaryotes use ribosomes for translation</label>
+        <label class="answer-option"><input type="radio" name="quiz5" value="d"> d) Only eukaryotes have codons in their mRNA</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer5')">Show Answer</button>
+    <div id="quiz-answer5" class="answer-explanation">
+        <p><strong>Correct Answer: b) Prokaryotic mRNA can be translated while still being transcribed</strong></p>
+        <p>In prokaryotes, transcription and translation can occur simultaneously since they lack a nuclear membrane. In eukaryotes, transcription occurs in the nucleus and translation occurs in the cytoplasm after the mRNA has been processed and exported.</p>
+    </div>
+</div>
+
+<div class="quiz-section">
+    <div class="quiz-question">6. What is the function of a promoter in gene expression?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz6" value="a"> a) It marks the end of transcription</label>
+        <label class="answer-option"><input type="radio" name="quiz6" value="b"> b) It provides the binding site for RNA polymerase to initiate transcription</label>
+        <label class="answer-option"><input type="radio" name="quiz6" value="c"> c) It codes for the first amino acid in a protein</label>
+        <label class="answer-option"><input type="radio" name="quiz6" value="d"> d) It removes introns from pre-mRNA</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer6')">Show Answer</button>
+    <div id="quiz-answer6" class="answer-explanation">
+        <p><strong>Correct Answer: b) It provides the binding site for RNA polymerase to initiate transcription</strong></p>
+        <p>A promoter is a sequence of DNA located upstream of a gene that provides a binding site for RNA polymerase and transcription factors, facilitating the initiation of transcription.</p>
+    </div>
+</div>
+
+<div class="quiz-section">
+    <div class="quiz-question">7. Which molecular biology technique uses a heat-stable DNA polymerase to amplify specific DNA sequences?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz7" value="a"> a) Gel electrophoresis</label>
+        <label class="answer-option"><input type="radio" name="quiz7" value="b"> b) Southern blotting</label>
+        <label class="answer-option"><input type="radio" name="quiz7" value="c"> c) Polymerase Chain Reaction (PCR)</label>
+        <label class="answer-option"><input type="radio" name="quiz7" value="d"> d) Sanger sequencing</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer7')">Show Answer</button>
+    <div id="quiz-answer7" class="answer-explanation">
+        <p><strong>Correct Answer: c) Polymerase Chain Reaction (PCR)</strong></p>
+        <p>PCR uses a heat-stable DNA polymerase (typically Taq polymerase) to amplify specific DNA sequences through repeated cycles of denaturation, annealing, and extension.</p>
+    </div>
+</div>
+
+<div class="quiz-section">
+    <div class="quiz-question">8. What type of chemical bond holds amino acids together in a protein?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz8" value="a"> a) Hydrogen bond</label>
+        <label class="answer-option"><input type="radio" name="quiz8" value="b"> b) Ionic bond</label>
+        <label class="answer-option"><input type="radio" name="quiz8" value="c"> c) Peptide bond</label>
+        <label class="answer-option"><input type="radio" name="quiz8" value="d"> d) Disulfide bridge</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer8')">Show Answer</button>
+    <div id="quiz-answer8" class="answer-explanation">
+        <p><strong>Correct Answer: c) Peptide bond</strong></p>
+        <p>Peptide bonds are covalent bonds formed between the carboxyl group of one amino acid and the amino group of another, linking amino acids together in a protein's primary structure.</p>
+    </div>
+</div>
+
+<div class="quiz-section">
+    <div class="quiz-question">9. Which of the following is a post-transcriptional modification in eukaryotes?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz9" value="a"> a) Addition of a poly-A tail</label>
+        <label class="answer-option"><input type="radio" name="quiz9" value="b"> b) Addition of a promoter</label>
+        <label class="answer-option"><input type="radio" name="quiz9" value="c"> c) DNA methylation</label>
+        <label class="answer-option"><input type="radio" name="quiz9" value="d"> d) DNA replication</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer9')">Show Answer</button>
+    <div id="quiz-answer9" class="answer-explanation">
+        <p><strong>Correct Answer: a) Addition of a poly-A tail</strong></p>
+        <p>The addition of a poly-A tail is a post-transcriptional modification that occurs in eukaryotes. Other post-transcriptional modifications include 5' capping and splicing to remove introns.</p>
+    </div>
+</div>
+
+<div class="quiz-section">
+    <div class="quiz-question">10. What is the role of CRISPR-Cas9 in genome editing?</div>
+    <div class="quiz-options">
+        <label class="answer-option"><input type="radio" name="quiz10" value="a"> a) It adds methylation marks to DNA</label>
+        <label class="answer-option"><input type="radio" name="quiz10" value="b"> b) It copies DNA sequences for amplification</label>
+        <label class="answer-option"><input type="radio" name="quiz10" value="c"> c) It creates targeted double-strand breaks in DNA</label>
+        <label class="answer-option"><input type="radio" name="quiz10" value="d"> d) It separates DNA strands during replication</label>
+    </div>
+    <button class="show-answer-btn" onclick="toggleAnswer('quiz-answer10')">Show Answer</button>
+    <div id="quiz-answer10" class="answer-explanation">
+        <p><strong>Correct Answer: c) It creates targeted double-strand breaks in DNA</strong></p>
+        <p>CRISPR-Cas9 is a genome editing system where the Cas9 protein creates precise double-strand breaks in DNA at locations specified by a guide RNA. These breaks can then be repaired by the cell's machinery, allowing for gene modification.</p>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- Week 3 Summary -->
+<div class="content-card">
+    <div class="card-header">
+        <h2>Week 3 Summary</h2>
+    </div>
+    <div class="card-body">
+        <p>In Week 3, we explored the fundamental concepts of molecular biology and their applications in biotechnology. Key topics covered include:</p>
+        
+        <ul>
+            <li>The central dogma of molecular biology: DNA → RNA → Protein</li>
+            <li>DNA replication mechanisms and the enzymes involved</li>
+            <li>Transcription process and RNA processing</li>
+            <li>Translation and protein synthesis</li>
+            <li>Protein structure and function</li>
+            <li>Gene regulation in prokaryotes and eukaryotes</li>
+            <li>Essential molecular biology techniques including PCR, cloning, and blotting</li>
+            <li>Cutting-edge technologies such as CRISPR-Cas9 and single-cell analysis</li>
+        </ul>
+        
+        <p>Understanding these concepts is crucial for biotechnology applications such as recombinant protein production, genetic engineering, disease diagnosis, and drug development. Next week, we will build on this foundation to explore genomics and bioinformatics.</p>
+        
+        <div class="coming-next">
+            <h3>Coming Up in Week 4: Genomics and Bioinformatics</h3>
+            <ul>
+                <li>Genome sequencing technologies</li>
+                <li>Genomic data analysis</li>
+                <li>Biological databases and tools</li>
+                <li>Sequence alignment and phylogenetics</li>
+                <li>Practical applications in biotech and medicine</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="course-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 Department of Biotechnology. All rights reserved.</p>
+        <p>For technical support: <a href="mailto:techsupport@university.edu">techsupport@university.edu</a></p>
+    </div>
+    <div class="footer-links">
+        <a href="#" class="footer-link">Course Syllabus</a>
+        <a href="#" class="footer-link">University Portal</a>
+        <a href="#" class="footer-link">Accessibility Statement</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+    </div>
+</footer>
+
+<!-- JavaScript for quiz functionality -->
+<script>
+    function toggleAnswer(answerId) {
+        const answerElement = document.getElementById(answerId);
+        if (answerElement.style.display === "block") {
+            answerElement.style.display = "none";
+        } else {
+            answerElement.style.display = "block";
+        }
+    }
+</script>
+                      
