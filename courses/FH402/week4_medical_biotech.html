@@ -195,21 +195,33 @@
             margin-bottom: 1rem;
         }
         
+        /* Table Styles - Enhanced for Responsiveness */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
+            min-width: 600px; /* Ensures table doesn't shrink too much */
         }
         
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
             border: 1px solid #ddd;
+            white-space: normal; /* Allows text to wrap */
+            word-wrap: break-word; /* Ensures words break properly */
         }
         
         th {
             background-color: var(--primary-color);
             color: white;
+            position: sticky;
+            top: 0; /* Makes headers sticky when scrolling vertically */
         }
         
         tr:nth-child(even) {
@@ -341,6 +353,22 @@
             .nav-buttons .btn {
                 text-align: center;
             }
+            
+            /* Additional responsive table styles for mobile */
+            .table-container {
+                margin: 1rem -1rem; /* Negative margin to allow full-width scrolling */
+                width: calc(100% + 2rem);
+                padding: 0 1rem;
+                border-left: 4px solid var(--secondary-color);
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -459,48 +487,50 @@
                 <h4>Clinical Applications of Gene Therapy</h4>
                 <p>Gene therapy has progressed from theoretical concept to clinical reality, with several approved treatments now available:</p>
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Disease</th>
-                            <th>Therapy Type</th>
-                            <th>Approach</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Spinal Muscular Atrophy</td>
-                            <td>Gene Replacement</td>
-                            <td>Delivering functional SMN1 gene</td>
-                            <td>FDA Approved</td>
-                        </tr>
-                        <tr>
-                            <td>Retinal Dystrophy</td>
-                            <td>Gene Replacement</td>
-                            <td>Delivering functional RPE65 gene</td>
-                            <td>FDA Approved</td>
-                        </tr>
-                        <tr>
-                            <td>Sickle Cell Disease</td>
-                            <td>Gene Editing</td>
-                            <td>Modifying hematopoietic stem cells</td>
-                            <td>Clinical Trials</td>
-                        </tr>
-                        <tr>
-                            <td>Hemophilia</td>
-                            <td>Gene Addition</td>
-                            <td>Adding functional clotting factor genes</td>
-                            <td>Late-stage Trials</td>
-                        </tr>
-                        <tr>
-                            <td>Cystic Fibrosis</td>
-                            <td>Gene Replacement</td>
-                            <td>Delivering functional CFTR gene</td>
-                            <td>Early Clinical Trials</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Therapy Type</th>
+                                <th>Approach</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Spinal Muscular Atrophy</td>
+                                <td>Gene Replacement</td>
+                                <td>Delivering functional SMN1 gene</td>
+                                <td>FDA Approved</td>
+                            </tr>
+                            <tr>
+                                <td>Retinal Dystrophy</td>
+                                <td>Gene Replacement</td>
+                                <td>Delivering functional RPE65 gene</td>
+                                <td>FDA Approved</td>
+                            </tr>
+                            <tr>
+                                <td>Sickle Cell Disease</td>
+                                <td>Gene Editing</td>
+                                <td>Modifying hematopoietic stem cells</td>
+                                <td>Clinical Trials</td>
+                            </tr>
+                            <tr>
+                                <td>Hemophilia</td>
+                                <td>Gene Addition</td>
+                                <td>Adding functional clotting factor genes</td>
+                                <td>Late-stage Trials</td>
+                            </tr>
+                            <tr>
+                                <td>Cystic Fibrosis</td>
+                                <td>Gene Replacement</td>
+                                <td>Delivering functional CFTR gene</td>
+                                <td>Early Clinical Trials</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
                 <div class="case-study">
                     <h5>Case Study: CAR-T Cell Therapy</h5>
@@ -609,83 +639,61 @@
                 <h4>Production Systems</h4>
                 <p>Biopharmaceuticals require sophisticated production platforms:</p>
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Expression System</th>
-                            <th>Advantages</th>
-                            <th>Limitations</th>
-                            <th>Applications</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bacterial (E. coli)</td>
-                            <td>Fast growth, high yield, cost-effective</td>
-                            <td>Limited post-translational modifications</td>
-                            <td>Simple proteins, insulin, growth factors</td>
-                        </tr>
-                        <tr>
-                            <td>Yeast (S. cerevisiae)</td>
-                            <td>Fast growth, some post-translational modifications</td>
-                            <td>Different glycosylation patterns than humans</td>
-                            <td>Vaccines, insulin, blood factors</td>
-                        </tr>
-                        <tr>
-                            <td>Mammalian Cell Lines (CHO)</td>
-                            <td>Human-like post-translational modifications</td>
-                            <td>Expensive, slow growth, complex media requirements</td>
-                            <td>Monoclonal antibodies, complex glycoproteins</td>
-                        </tr>
-                        <tr>
-                            <td>Insect Cells</td>
-                            <td>Higher yield than mammalian cells, some modifications</td>
-                            <td>Different glycosylation than humans</td>
-                            <td>Vaccines, recombinant proteins</td>
-                        </tr>
-                        <tr>
-                            <td>Plant-Based Systems</td>
-                            <td>Low cost, scalable, no animal pathogens</td>
-                            <td>Different post-translational modifications</td>
-                            <td>Vaccines, antibodies</td>
-                        </tr>
-                        <tr>
-                            <td>Cell-Free Systems</td>
-                            <td>Rapid production, no cell viability concerns</td>
-                            <td>Lower yields, higher cost</td>
-                            <td>Rapid vaccine prototyping, proteins toxic to cells</td>
-                        </tr>
-                        <tr>
-                            <td>Transgenic Animals</td>
-                            <td>Complex proteins in milk or eggs</td>
-                            <td>Regulatory concerns, long development time</td>
-                            <td>Specialized proteins, antibodies</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="key-concept">
-                    <h5>Key Concept: Biopharmaceutical Manufacturing Process</h5>
-                    <p>Biopharmaceutical production involves upstream processing (cell culture/fermentation), downstream processing (separation and purification), formulation, and quality control testing. Unlike chemical synthesis, biopharmaceutical manufacturing depends on living systems, making process control and consistency critical factors in ensuring product quality and safety.</p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Expression System</th>
+                                <th>Advantages</th>
+                                <th>Limitations</th>
+                                <th>Applications</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bacterial (E. coli)</td>
+                                <td>Fast growth, high yield, cost-effective</td>
+                                <td>Limited post-translational modifications</td>
+                                <td>Simple proteins, insulin, growth factors</td>
+                            </tr>
+                            <tr>
+                                <td>Yeast (S. cerevisiae)</td>
+                                <td>Fast growth, some post-translational modifications</td>
+                                <td>Different glycosylation patterns than humans</td>
+                                <td>Vaccines, insulin, blood factors</td>
+                            </tr>
+                            <tr>
+                                <td>Mammalian Cell Lines (CHO)</td>
+                                <td>Human-like post-translational modifications</td>
+                                <td>Expensive, slow growth, complex media requirements</td>
+                                <td>Monoclonal antibodies, complex glycoproteins</td>
+                            </tr>
+                            <tr>
+                                <td>Insect Cells</td>
+                                <td>Higher yield than mammalian cells, some modifications</td>
+                                <td>Different glycosylation than humans</td>
+                                <td>Vaccines, recombinant proteins</td>
+                            </tr>
+                            <tr>
+                                <td>Plant-Based Systems</td>
+                                <td>Low cost, scalable, no animal pathogens</td>
+                                <td>Different post-translational modifications</td>
+                                <td>Vaccines, antibodies</td>
+                            </tr>
+                            <tr>
+                                <td>Cell-Free Systems</td>
+                                <td>Rapid production, no cell viability concerns</td>
+                                <td>Lower yields, higher cost</td>
+                                <td>Rapid vaccine prototyping, proteins toxic to cells</td>
+                            </tr>
+                            <tr>
+                                <td>Transgenic Animals</td>
+                                <td>Complex proteins in milk or eggs</td>
+                                <td>Regulatory concerns, long development time</td>
+                                <td>Specialized proteins, antibodies</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 
-                <div class="image-container">
-                    <figure>
-                        <img src="/api/placeholder/600/350" alt="Biopharmaceutical Production Process">
-                        <figcaption>Figure 4.3: Overview of the biopharmaceutical manufacturing process from cell line development to final product</figcaption>
-                    </figure>
-                </div>
-                
-                <h4>Innovative Drug Development Approaches</h4>
-                <p>Modern biotechnology has introduced new paradigms in pharmaceutical development:</p>
-                
-                <div class="biotech-grid">
-                    <div class="biotech-card">
-                        <h4>High-Throughput Screening</h4>
-                        <p>Automated testing of thousands of compounds against biological targets to identify potential drug candidates more efficiently.</p>
-                    </div>
-                    <div class="biotech-card">
-                        <h4>Computational Drug Design</h4>
-                        <p>Using AI and molecular modeling to predict drug-target interactions and design more effective therapeutic molecules.</p>
-                    </div>
-                    <div class="biotech-card">
+                <div class="key-concept
