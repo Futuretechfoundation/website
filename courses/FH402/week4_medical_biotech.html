@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Week 4 - Medical Biotechnology | Future Tech Academy</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --header-font: 'Montserrat', sans-serif;
+            --body-font: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .course-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-family: var(--header-font);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumb {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .week-intro {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives {
+            background: linear-gradient(to right, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .learning-objectives ul {
+            padding-left: 1.5rem;
+        }
+        
+        .learning-objectives li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .module {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .module-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-family: var(--header-font);
+        }
+        
+        .module-content {
+            padding: 1.5rem;
+        }
+        
+        .module-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .module-content h4 {
+            margin: 1.5rem 0 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .module-content ul, .module-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .module-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .key-concept {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .key-concept h5 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-study {
+            background-color: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .case-study h5 {
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+        }
+        
+        .biotech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .biotech-card {
+            background-color: rgba(52, 152, 219, 0.05);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .biotech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .biotech-card h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .image-container {
+            max-width: 100%;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-container figcaption {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .resources {
+            background-color: rgba(241, 196, 15, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .resources h3 {
+            color: #f39c12;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(241, 196, 15, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .assignment {
+            background: linear-gradient(to right, rgba(155, 89, 182, 0.1), rgba(155, 89, 182, 0.05));
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .assignment h3 {
+            color: #8e44ad;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+        
+        .footer-nav a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .biotech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-buttons .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="course-title">FH402: BIOTECH: NEXT-LEVEL APPLICATIONS</div>
+            <h1>Week 4: Medical Biotechnology</h1>
+            <p>Exploring the frontier of biotechnology applications in modern medicine</p>
+            <div class="breadcrumb">
+                <a href="#">Home</a> / <a href="#">Courses</a> / <a href="#">FH402</a> / <a href="#">Week 4</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="week-intro">
+            <h2>Introduction to Medical Biotechnology</h2>
+            <p>Welcome to Week 4 of FH402: Biotech: Next-Level Applications. This week, we delve into the revolutionary world of medical biotechnology, exploring how biotechnological innovations are transforming healthcare, diagnostics, therapeutics, and pharmaceutical development.</p>
+            <p>Medical biotechnology represents one of the most impactful domains where biotech applications are improving human lives. From gene therapy to personalized medicine, from synthetic biology to tissue engineering, this module introduces you to cutting-edge applications that are reshaping medical practice and patient care.</p>
+        </section>
+        
+        <section class="learning-objectives">
+            <h3>Learning Objectives</h3>
+            <ul>
+                <li>Understand the fundamental principles and techniques of medical biotechnology</li>
+                <li>Analyze the impact of gene therapy, CRISPR, and genetic engineering in treating genetic disorders</li>
+                <li>Evaluate the development and applications of regenerative medicine and tissue engineering</li>
+                <li>Comprehend the technology behind biopharmaceuticals and their production methods</li>
+                <li>Explore emerging fields such as nanomedicine and precision medicine</li>
+                <li>Assess ethical considerations surrounding medical biotechnology applications</li>
+            </ul>
+        </section>
+        
+        <div class="module">
+            <div class="module-header">
+                <h3>Module 4.1: Fundamentals of Medical Biotechnology</h3>
+            </div>
+            <div class="module-content">
+                <p>Medical biotechnology applies biological processes, organisms, or systems to develop technologies and products that help improve our health and treat diseases. This field has evolved rapidly over the past few decades, leading to groundbreaking discoveries and applications that were once considered science fiction.</p>
+                
+                <h4>Historical Development</h4>
+                <p>The journey of medical biotechnology began with simple applications like using yeast for fermentation but has evolved into sophisticated techniques for manipulating DNA and creating targeted therapies.</p>
+                
+                <ul>
+                    <li><strong>1920s-1940s:</strong> Discovery of antibiotics and early vaccine development</li>
+                    <li><strong>1953:</strong> Watson and Crick discovered the structure of DNA</li>
+                    <li><strong>1970s:</strong> Development of recombinant DNA technology</li>
+                    <li><strong>1982:</strong> First recombinant human insulin produced</li>
+                    <li><strong>1990s:</strong> Human Genome Project initiated</li>
+                    <li><strong>2003:</strong> Completion of Human Genome Project</li>
+                    <li><strong>2012:</strong> CRISPR-Cas9 gene editing technique developed</li>
+                    <li><strong>Present:</strong> Era of personalized medicine and gene therapy</li>
+                </ul>
+                
+                <div class="key-concept">
+                    <h5>Key Concept: Recombinant DNA Technology</h5>
+                    <p>Recombinant DNA technology involves combining DNA molecules from different sources to create sequences not found in the genome. This fundamental technique enables the production of therapeutic proteins, development of vaccines, and genetic modification of cells for various medical applications.</p>
+                </div>
+                
+                <h4>Core Technologies in Medical Biotechnology</h4>
+                <p>Several key technologies form the foundation of modern medical biotechnology:</p>
+                
+                <div class="biotech-grid">
+                    <div class="biotech-card">
+                        <h4>Genetic Engineering</h4>
+                        <p>Manipulation of genetic material to alter organism traits or produce therapeutic proteins. Applications include creating insulin-producing bacteria and developing gene therapies.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Genomics &amp; Proteomics</h4>
+                        <p>Study of genomes and proteomes to understand disease mechanisms, identify biomarkers, and develop targeted treatments based on genetic information.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Cell Culture</h4>
+                        <p>Growth of cells in controlled conditions outside their natural environment, enabling drug testing, vaccine production, and tissue engineering.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Monoclonal Antibodies</h4>
+                        <p>Lab-created proteins that can target specific antigens, used in diagnostics, targeted cancer therapies, and treatment of autoimmune disorders.</p>
+                    </div>
+                </div>
+                
+                <div class="image-container">
+                    <figure>
+                        <img src="/api/placeholder/600/400" alt="Medical Biotechnology Core Technologies Diagram">
+                        <figcaption>Figure 4.1: Interconnections between core technologies in medical biotechnology</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        
+        <div class="module">
+            <div class="module-header">
+                <h3>Module 4.2: Gene Therapy and Genetic Engineering</h3>
+            </div>
+            <div class="module-content">
+                <p>Gene therapy represents one of the most promising frontiers in medical biotechnology, offering potential treatments for genetic disorders that were previously considered untreatable.</p>
+                
+                <h4>Principles of Gene Therapy</h4>
+                <p>Gene therapy aims to treat or prevent disease by correcting genetic abnormalities. This can be accomplished through several approaches:</p>
+                
+                <ul>
+                    <li><strong>Gene Addition:</strong> Introducing a functional copy of a gene to compensate for a dysfunctional one</li>
+                    <li><strong>Gene Silencing:</strong> Blocking the expression of a mutated gene that produces harmful proteins</li>
+                    <li><strong>Gene Editing:</strong> Directly modifying the DNA sequence to correct mutations</li>
+                </ul>
+                
+                <h4>CRISPR-Cas9: Revolutionary Gene Editing</h4>
+                <p>CRISPR-Cas9 has transformed genetic engineering with its precision, efficiency, and versatility. This technology utilizes cellular machinery to target specific DNA sequences and make precise edits.</p>
+                
+                <div class="key-concept">
+                    <h5>Key Concept: How CRISPR Works</h5>
+                    <p>The CRISPR-Cas9 system consists of two major components: a guide RNA (gRNA) that targets specific DNA sequences and the Cas9 enzyme that cuts the DNA at the targeted location. Once cut, the cell's natural repair mechanisms can be leveraged to delete, modify, or insert genetic material.</p>
+                </div>
+                
+                <h4>Clinical Applications of Gene Therapy</h4>
+                <p>Gene therapy has progressed from theoretical concept to clinical reality, with several approved treatments now available:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Disease</th>
+                            <th>Therapy Type</th>
+                            <th>Approach</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Spinal Muscular Atrophy</td>
+                            <td>Gene Replacement</td>
+                            <td>Delivering functional SMN1 gene</td>
+                            <td>FDA Approved</td>
+                        </tr>
+                        <tr>
+                            <td>Retinal Dystrophy</td>
+                            <td>Gene Replacement</td>
+                            <td>Delivering functional RPE65 gene</td>
+                            <td>FDA Approved</td>
+                        </tr>
+                        <tr>
+                            <td>Sickle Cell Disease</td>
+                            <td>Gene Editing</td>
+                            <td>Modifying hematopoietic stem cells</td>
+                            <td>Clinical Trials</td>
+                        </tr>
+                        <tr>
+                            <td>Hemophilia</td>
+                            <td>Gene Addition</td>
+                            <td>Adding functional clotting factor genes</td>
+                            <td>Late-stage Trials</td>
+                        </tr>
+                        <tr>
+                            <td>Cystic Fibrosis</td>
+                            <td>Gene Replacement</td>
+                            <td>Delivering functional CFTR gene</td>
+                            <td>Early Clinical Trials</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="case-study">
+                    <h5>Case Study: CAR-T Cell Therapy</h5>
+                    <p>Chimeric Antigen Receptor T-cell (CAR-T) therapy represents a revolutionary form of genetic engineering where a patient's T cells are modified to express receptors that recognize and attack cancer cells. This technology has shown remarkable success in treating certain blood cancers, achieving remission rates of over 80% in some previously untreatable cases of leukemia. The FDA-approved treatments Kymriah and Yescarta exemplify how genetic engineering is transforming cancer treatment paradigms.</p>
+                </div>
+                
+                <h4>Challenges and Future Directions</h4>
+                <p>Despite significant progress, gene therapy faces several challenges:</p>
+                
+                <ul>
+                    <li><strong>Delivery Systems:</strong> Developing effective vectors to deliver genetic material to target cells</li>
+                    <li><strong>Immune Responses:</strong> Managing potential immune reactions to the therapy</li>
+                    <li><strong>Off-target Effects:</strong> Minimizing unintended genetic modifications</li>
+                    <li><strong>Accessibility:</strong> Reducing the high cost of gene therapies to improve patient access</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module">
+            <div class="module-header">
+                <h3>Module 4.3: Regenerative Medicine and Tissue Engineering</h3>
+            </div>
+            <div class="module-content">
+                <p>Regenerative medicine aims to replace or regenerate human cells, tissues, or organs to restore normal function. This field combines principles of bioengineering, cell biology, materials science, and genetics to develop innovative therapeutic approaches.</p>
+                
+                <h4>Stem Cell Technology</h4>
+                <p>Stem cells are undifferentiated cells with the potential to develop into various specialized cell types, making them invaluable for regenerative applications.</p>
+                
+                <ul>
+                    <li><strong>Embryonic Stem Cells:</strong> Derived from embryos, offering pluripotency but raising ethical considerations</li>
+                    <li><strong>Adult Stem Cells:</strong> Found in various tissues, with more limited differentiation potential</li>
+                    <li><strong>Induced Pluripotent Stem Cells (iPSCs):</strong> Adult cells reprogrammed to an embryonic-like state, offering personalized regenerative options</li>
+                    <li><strong>Mesenchymal Stem Cells:</strong> Multipotent stromal cells that can differentiate into various cell types</li>
+                </ul>
+                
+                <div class="key-concept">
+                    <h5>Key Concept: Induced Pluripotent Stem Cells</h5>
+                    <p>The 2012 Nobel Prize-winning discovery of iPSCs by Shinya Yamanaka revolutionized regenerative medicine. By introducing specific transcription factors, adult cells can be reprogrammed into a pluripotent state, bypassing ethical concerns of embryonic stem cells while offering patient-specific treatment possibilities.</p>
+                </div>
+                
+                <h4>Tissue Engineering Principles</h4>
+                <p>Tissue engineering creates functional three-dimensional tissues by combining cells, scaffolds, and growth factors.</p>
+                
+                <div class="biotech-grid">
+                    <div class="biotech-card">
+                        <h4>Scaffolds</h4>
+                        <p>Biocompatible structures that provide physical support for cell attachment and tissue development. Materials include natural polymers (collagen, alginate) and synthetic materials (PLA, PCL).</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Cells</h4>
+                        <p>Source cells that will populate the scaffold and develop into functional tissue. May include autologous cells, allogeneic cells, or stem cells.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Bioactive Factors</h4>
+                        <p>Growth factors, cytokines, and other signaling molecules that guide cell behavior, promoting proliferation, differentiation, and tissue formation.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Bioreactors</h4>
+                        <p>Systems that provide controlled environments for tissue growth, ensuring proper nutrient supply, waste removal, and mechanical stimulation.</p>
+                    </div>
+                </div>
+                
+                <h4>Clinical Applications of Regenerative Medicine</h4>
+                <p>Regenerative medicine has moved beyond theoretical research to clinical applications:</p>
+                
+                <ul>
+                    <li><strong>Skin Grafts:</strong> Engineered skin substitutes for burn victims and chronic wound treatment</li>
+                    <li><strong>Cartilage Repair:</strong> Autologous chondrocyte implantation for joint damage</li>
+                    <li><strong>Bone Regeneration:</strong> 3D-printed bone grafts and scaffolds for orthopedic applications</li>
+                    <li><strong>Corneal Regeneration:</strong> Cultured corneal epithelial transplantation</li>
+                    <li><strong>Cardiac Tissue:</strong> Early-stage development of cardiac patches for heart attack patients</li>
+                </ul>
+                
+                <div class="image-container">
+                    <figure>
+                        <img src="/api/placeholder/600/400" alt="Tissue Engineering Process">
+                        <figcaption>Figure 4.2: The tissue engineering process from cell harvesting to transplantation</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="case-study">
+                    <h5>Case Study: 3D Bioprinting of Organs</h5>
+                    <p>3D bioprinting represents the cutting edge of tissue engineering, allowing precise deposition of bioinks containing cells and materials to create complex tissue structures. Companies like Organovo have demonstrated the ability to print liver and kidney tissues for pharmaceutical testing, while research teams worldwide are working toward printing functional organ components. While complete functional organs remain a future goal, bioprinted tissues already serve valuable roles in drug development and disease modeling.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="module">
+            <div class="module-header">
+                <h3>Module 4.4: Biopharmaceuticals and Drug Development</h3>
+            </div>
+            <div class="module-content">
+                <p>Biopharmaceuticals are medical drugs produced using biotechnology methods, primarily involving recombinant DNA technology. Unlike traditional small-molecule pharmaceuticals, biopharmaceuticals are complex proteins or nucleic acids manufactured in living systems.</p>
+                
+                <h4>Types of Biopharmaceuticals</h4>
+                <p>The biopharmaceutical landscape includes diverse products:</p>
+                
+                <ul>
+                    <li><strong>Recombinant Proteins:</strong> Human insulin, growth hormones, clotting factors</li>
+                    <li><strong>Monoclonal Antibodies:</strong> Targeted therapies for cancer, autoimmune diseases</li>
+                    <li><strong>Vaccines:</strong> Recombinant vaccines for hepatitis B, HPV</li>
+                    <li><strong>Cell and Gene Therapies:</strong> CAR-T cell treatments, gene therapies</li>
+                    <li><strong>RNA-based Therapeutics:</strong> mRNA vaccines, siRNA treatments</li>
+                </ul>
+                
+                <h4>Production Systems</h4>
+                <p>Biopharmaceuticals require sophisticated production platforms:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expression System</th>
+                            <th>Advantages</th>
+                            <th>Limitations</th>
+                            <th>Applications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bacterial (E. coli)</td>
+                            <td>Fast growth, high yield, cost-effective</td>
+                            <td>Limited post-translational modifications</td>
+                            <td>Simple proteins, insulin, growth factors</td>
+                        </tr>
+                        <tr>
+                            <td>Yeast (S. cerevisiae)</td>
+                            <td>Fast growth, some post-translational modifications</td>
+                            <td>Different glycosylation patterns than humans</td>
+                            <td>Vaccines, insulin, blood factors</td>
+                        </tr>
+                        <tr>
+                            <td>Mammalian Cell Lines (CHO)</td>
+                            <td>Human-like post-translational modifications</td>
+                            <td>Expensive, slow growth, complex media requirements</td>
+                            <td>Monoclonal antibodies, complex glycoproteins</td>
+                        </tr>
+                        <tr>
+                            <td>Insect Cells</td>
+                            <td>Higher yield than mammalian cells, some modifications</td>
+                            <td>Different glycosylation than humans</td>
+                            <td>Vaccines, recombinant proteins</td>
+                        </tr>
+                        <tr>
+                            <td>Plant-Based Systems</td>
+                            <td>Low cost, scalable, no animal pathogens</td>
+                            <td>Different post-translational modifications</td>
+                            <td>Vaccines, antibodies</td>
+                        </tr>
+                        <tr>
+                            <td>Cell-Free Systems</td>
+                            <td>Rapid production, no cell viability concerns</td>
+                            <td>Lower yields, higher cost</td>
+                            <td>Rapid vaccine prototyping, proteins toxic to cells</td>
+                        </tr>
+                        <tr>
+                            <td>Transgenic Animals</td>
+                            <td>Complex proteins in milk or eggs</td>
+                            <td>Regulatory concerns, long development time</td>
+                            <td>Specialized proteins, antibodies</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="key-concept">
+                    <h5>Key Concept: Biopharmaceutical Manufacturing Process</h5>
+                    <p>Biopharmaceutical production involves upstream processing (cell culture/fermentation), downstream processing (separation and purification), formulation, and quality control testing. Unlike chemical synthesis, biopharmaceutical manufacturing depends on living systems, making process control and consistency critical factors in ensuring product quality and safety.</p>
+                </div>
+                
+                <div class="image-container">
+                    <figure>
+                        <img src="/api/placeholder/600/350" alt="Biopharmaceutical Production Process">
+                        <figcaption>Figure 4.3: Overview of the biopharmaceutical manufacturing process from cell line development to final product</figcaption>
+                    </figure>
+                </div>
+                
+                <h4>Innovative Drug Development Approaches</h4>
+                <p>Modern biotechnology has introduced new paradigms in pharmaceutical development:</p>
+                
+                <div class="biotech-grid">
+                    <div class="biotech-card">
+                        <h4>High-Throughput Screening</h4>
+                        <p>Automated testing of thousands of compounds against biological targets to identify potential drug candidates more efficiently.</p>
+                    </div>
+                    <div class="biotech-card">
+                        <h4>Computational Drug Design</h4>
+                        <p>Using AI and molecular modeling to predict drug-target interactions and design more effective therapeutic molecules.</p>
+                    </div>
+                    <div class="biotech-card">
