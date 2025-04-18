@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .menu-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .gradient-header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+        }
+        
+        .week4-left-aligned {
+            text-align: left !important;
+        }
+        
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="gradient-header text-white py-8 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight">FH402: Biotech: Next-Level Applications</h1>
+                    <p class="mt-2 text-blue-100 font-light">Future of Humans Track | 8-Week Comprehensive Biotechnology Course</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <button class="bg-white text-blue-700 hover:bg-blue-50 px-5 py-2 rounded-full font-medium transition-colors duration-200 flex items-center">
+                        <i class="fas fa-user-circle mr-2"></i> Student Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="max-w-6xl mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Menu -->
+        <aside class="lg:w-1/4">
+            <div class="bg-white p-5 rounded-xl shadow-sm sticky top-8">
+                <h2 class="font-bold text-lg mb-5 text-blue-900 border-b border-gray-100 pb-3 flex items-center">
+                    <i class="fas fa-book-open mr-2"></i> Course Syllabus
+                </h2>
+                <nav>
+                    <ul class="space-y-1" id="menu-list">
+                        <li>
+                            <a href="courses/FH402/week_one.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-flask mr-2 text-blue-500 w-5"></i> Week 1: Foundations
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="courses/FH402/week2_genomics.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-dna mr-2 text-blue-500 w-5"></i> Week 2: Genomics
+                            </a>
+                            
+                        </li>
+
+                        <li>
+                            <a href="courses/FH402/week3_molecular_biology.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-atom mr-2 text-blue-500 w-5"></i> Week 3: Molecular Biology 
+                            </a>
+                            
+                        </li>
+<li>
+                            <a href="courses/FH402/week4_medical_biotech.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-atom mr-2 text-blue-500 w-5"></i> Week 4: Medical Biotech
+                            </a>
+                            
+                        </li>
+
+                        <li>
+                            <a href="courses/FH402/week5_synthetic_biology.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-atom mr-2 text-blue-500 w-5"></i> Week 5: Synthetic Biology 
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="courses/FH402/week6_emerging_areas.html" data-section="week1" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+    <i class="fas fa-atom mr-2 text-blue-500 w-5"></i> Week 6: Emerging Areas 
+                            </a>
+                            
+                        </li>
+                        
+                        <li>
+                            <button data-section="week2" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-dna mr-2 text-blue-500 w-5"></i> Week 2: Genomics
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week3" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-atom mr-2 text-blue-500 w-5"></i> Week 3: Molecular Biology
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week4" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-pills mr-2 text-blue-500 w-5"></i> Week 4: Medical Biotech
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week5" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-vial-circle-check mr-2 text-blue-500 w-5"></i> Week 5: Synthetic Biology
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week6" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-microchip mr-2 text-blue-500 w-5"></i> Week 6: Emerging Areas
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week7" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-scale-balanced mr-2 text-blue-500 w-5"></i> Week 7: Policy & Ethics
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="week8" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-rocket mr-2 text-blue-500 w-5"></i> Week 8: Final Project
+                            </button>
+                        </li>
+                        <li class="pt-2 mt-2 border-t border-gray-100">
+                            <button data-section="tools" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-toolbox mr-2 text-blue-500 w-5"></i> Tools & Platforms
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="ai-tutor" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-robot mr-2 text-blue-500 w-5"></i> AI Tutor
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="outcomes" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-bullseye mr-2 text-blue-500 w-5"></i> Learning Outcomes
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="assessment" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-chart-simple mr-2 text-blue-500 w-5"></i> Assessment
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="resources" class="menu-item w-full text-left px-4 py-3 rounded-lg text-sm hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                                <i class="fas fa-bookmark mr-2 text-blue-500 w-5"></i> Resources
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="lg:w-3/4">
+            <div class="bg-white rounded-xl shadow-sm p-8 min-h-64">
+                <!-- Default Content -->
+                <div id="default-content">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Welcome to Biotech: Next-Level Applications</h2>
+                        <span class="mt-2 lg:mt-0 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Spring 2025</span>
+                    </div>
+                    
+                    <p class="mb-6 text-lg">
+                        This comprehensive 8-week course explores cutting-edge biotechnology principles, applications, and future frontiers. 
+                        Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest 
+                        biotechnology tools and techniques.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 card-hover">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-flask-vial text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-blue-900 mb-2">Hands-on Virtual Labs</h3>
+                            <p class="text-gray-700">Experience realistic laboratory simulations that develop practical skills in genomics, protein engineering, and synthetic biology.</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 card-hover">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-robot text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-blue-900 mb-2">AI-Powered Learning</h3>
+                            <p class="text-gray-700">Receive personalized feedback and guidance through our cutting-edge AI tutoring system designed specifically for biotechnology education.</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 card-hover">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-users text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-blue-900 mb-2">Industry Experts</h3>
+                            <p class="text-gray-700">Learn from leading biotech professionals through guest lectures, case studies, and real-world application scenarios.</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 card-hover">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-lightbulb text-3xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-blue-900 mb-2">Capstone Project</h3>
+                            <p class="text-gray-700">Develop a comprehensive solution to a current biotechnology challenge, showcasing your integration of course concepts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-xl shadow-md">
+                        <div class="flex items-start">
+                            <div class="mr-4 text-blue-200">
+                                <i class="fas fa-calendar-alt text-4xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Course Begins May 15, 2025</h3>
+                                <p class="mb-4">Registration is now open with limited spots available.</p>
+                                <button class="bg-white text-blue-700 hover:bg-blue-50 px-5 py-2 rounded-lg font-medium transition-colors duration-200">
+                                    Enroll Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Sections -->
+                <div id="overview" class="content-section">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Course Overview</h2>
+                        <span class="mt-2 lg:mt-0 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">8 Weeks | 4 Hours/Week</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-graduation-cap text-3xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-blue-900">Track</h3>
+                            <p>Future of Humans</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-clock text-3xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-blue-900">Duration</h3>
+                            <p>8 weeks, 4 hours/week</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <div class="text-blue-500 mb-3">
+                                <i class="fas fa-certificate text-3xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-blue-900">Certification</h3>
+                            <p>Certificate upon completion</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-bold text-xl mb-4 text-blue-800">Course Format</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm flex items-start">
+                            <div class="mr-3 text-blue-500">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Online Modules</h4>
+                                <p class="text-sm text-gray-600">Videos, readings, and interactive quizzes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm flex items-start">
+                            <div class="mr-3 text-blue-500">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Project-Based Learning</h4>
+                                <p class="text-sm text-gray-600">Hands-on activities and challenges</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm flex items-start">
+                            <div class="mr-3 text-blue-500">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Weekly Assessments</h4>
+                                <p class="text-sm text-gray-600">Formative feedback on your progress</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm flex items-start">
+                            <div class="mr-3 text-blue-500">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Final Examination</h4>
+                                <p class="text-sm text-gray-600">Comprehensive evaluation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mb-6">This comprehensive course explores cutting-edge biotechnology principles, applications, and future frontiers. Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest biotechnology tools and techniques.</p>
+                    
+                    <p>From genomics and precision genetic engineering to synthetic biology and regulatory considerations, this course covers the full spectrum of modern biotechnology applications.</p>
+                </div>
+
+                <div id="week1" class="content-section">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Week 1: Foundations of Modern Biotechnology</h2>
+                        <span class="mt-2 lg:mt-0 px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Content Updating</span>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-circle text-yellow-500"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">Content for this week is being updated with the latest advancements in biotechnology. Please check back soon.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="week2" class="content-section">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Week 2: Genomics and Precision Genetic Engineering</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                                <i class="fas fa-bullseye mr-2 text-blue-600"></i> Learning Objectives
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Explain advanced genomic technologies and their applications</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Understand CRISPR-Cas9 and other gene editing systems</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Analyze implications of genomic medicine and personalized healthcare</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                                <i class="fas fa-flask-vial mr-2 text-blue-600"></i> Key Activities
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 mt-1 mr-2"></i>
+                                    <span>Virtual CRISPR laboratory simulation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-laptop-code text-purple-500 mt-1 mr-2"></i>
+                                    <span>Genomic data analysis workshop</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-users text-purple-500 mt-1 mr-2"></i>
+                                    <span>Ethics case study: gene editing applications</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-lg mb-3 text-blue-800">Recommended Preparation</h3>
+                        <p>Review basic principles of DNA structure, replication, and gene expression. Familiarize yourself with the general concepts of PCR and DNA sequencing technologies.</p>
+                    </div>
+                </div>
+
+                <div id="week3" class="content-section">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Week 3: Molecular Biology and Advanced Biochemistry</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                                <i class="fas fa-bullseye mr-2 text-blue-600"></i> Learning Objectives
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Master advanced molecular biology techniques</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Understand protein engineering and structural biology</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>Apply biochemical principles to biotechnology applications</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                                <i class="fas fa-flask-vial mr-2 text-blue-600"></i> Key Activities
+                            </h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-vial text-purple-500 mt-1 mr-2"></i>
+                                    <span>Virtual molecular biology laboratory practicum</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-laptop-code text-purple-500 mt-1 mr-2"></i>
+                                    <span>Protein structure prediction exercise</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lightbulb text-purple-500 mt-1 mr-2"></i>
+                                    <span>Design challenge: Engineering an enzyme for specific applications</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-lg mb-3 text-blue-800">Virtual Lab Access</h3>
+                        <p class="mb-3">Access to the virtual molecular biology lab will be available starting Monday of Week 3. Make sure your BioSimulations Pro account is set up before lab sessions.</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span>Setup Instructions</span>
+                            <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="week4" class="content-section week4-left-aligned">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                        <h2 class="text-3xl font-bold text-blue-900">Week 4: Medical Biotechnology and Therapeutic Applications</h2>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                            <i class="fas fa-bullseye mr-2 text-blue-600"></i> Learning Objectives
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>Evaluate current and emerging biopharmaceuticals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>Understand cell and gene therapy approaches</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>Analyze the drug development pipeline for biologics</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 text-blue-800 flex items-center">
+                            <i class="fas fa-flask-vial mr-2 text-blue-600"></i> Key Activities
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-vial text-purple-500 mt-1 mr-2"></i>
+                                <span>Biotherapeutic development simulation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-laptop-code text-purple-500 mt-1 mr-2"></i>
+                                <span>Virtual cell culture and bioprocessing laboratory</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-users text-purple-500 mt-1 mr-2"></i>
+                                <span>Regulatory strategy workshop for a novel therapeutic</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-lg mb-3 text-blue-800">Guest Speaker</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-blue-600
