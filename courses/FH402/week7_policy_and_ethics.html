@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications - Week 7</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a5276;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #1a5276;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2874a6;
+        }
+        .module-info {
+            background-color: #ebf5fb;
+            border-left: 4px solid #2874a6;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .learning-objectives {
+            background-color: #e8f8f5;
+            border-left: 4px solid #16a085;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .case-study {
+            background-color: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .ethics-debate {
+            background-color: #f8f9f9;
+            border: 1px solid #d5d8dc;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .assignment {
+            background-color: #eaecee;
+            border-left: 4px solid #566573;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #1a5276;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #1a5276;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #1a5276;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #1a5276;
+        }
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #1a5276;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #1a5276 transparent transparent;
+        }
+        .right::after {
+            left: -10px;
+        }
+        .content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            .left::after, .right::after {
+                left: 21px;
+            }
+            .right {
+                left: 0%;
+            }
+        }
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .resource-link {
+            background-color: #1a5276;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .resource-link:hover {
+            background-color: #154360;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FH402: Biotech: Next-Level Applications</h1>
+        <p>Week 7: Policy & Ethics in Advanced Biotechnology</p>
+    </header>
+
+    <div class="module-info">
+        <h2>Module Overview</h2>
+        <p>Welcome to Week 7 of FH402! This week, we focus on the complex policy frameworks and ethical considerations surrounding cutting-edge biotechnology applications. As technology advances rapidly, our regulatory frameworks and ethical thinking must evolve to keep pace. This module provides a comprehensive examination of current policies governing biotechnology and explores the ethical implications of next-generation biotech applications.</p>
+    </div>
+
+    <div class="learning-objectives">
+        <h2>Learning Objectives</h2>
+        <p>By the end of this week, students will be able to:</p>
+        <ul>
+            <li>Analyze existing policy frameworks governing biotechnology across different jurisdictions</li>
+            <li>Evaluate the ethical implications of emerging biotech applications including CRISPR, synthetic biology, and AI-driven biotech</li>
+            <li>Formulate evidence-based positions on controversial bioethical issues</li>
+            <li>Identify regulatory gaps that may pose risks to health, environment, or social equity</li>
+            <li>Apply ethical frameworks to real-world case studies in advanced biotechnology</li>
+        </ul>
+    </div>
+
+    <h2>Key Policy Frameworks</h2>
+    
+    <table>
+        <tr>
+            <th>Jurisdiction</th>
+            <th>Key Regulations</th>
+            <th>Governing Bodies</th>
+            <th>Unique Approaches</th>
+        </tr>
+        <tr>
+            <td>United States</td>
+            <td>FDA Guidance on Human Gene Therapy, NIH Guidelines for Research Involving Recombinant DNA, EPA Regulations</td>
+            <td>FDA, EPA, USDA, NIH</td>
+            <td>Product-based regulation; coordinated framework approach</td>
+        </tr>
+        <tr>
+            <td>European Union</td>
+            <td>GMO Directive 2001/18/EC, Clinical Trials Regulation, REACH Regulation</td>
+            <td>European Medicines Agency, EFSA</td>
+            <td>Process-based regulation; precautionary principle emphasis</td>
+        </tr>
+        <tr>
+            <td>China</td>
+            <td>Biosecurity Law (2021), Regulations on Administration of Human Genetic Resources</td>
+            <td>National Health Commission, Ministry of Science and Technology</td>
+            <td>State-driven innovation with expanding regulatory oversight</td>
+        </tr>
+        <tr>
+            <td>International</td>
+            <td>Cartagena Protocol on Biosafety, Convention on Biological Diversity</td>
+            <td>WHO, UN Environmental Programme</td>
+            <td>Focus on transboundary movements and global cooperation</td>
+        </tr>
+    </table>
+
+    <h2>Ethical Frameworks in Biotechnology</h2>
+    
+    <p>Understanding different ethical frameworks helps us navigate complex decisions in biotechnology development and application:</p>
+    
+    <div class="ethics-debate">
+        <h3>Utilitarianism</h3>
+        <p><strong>Core principle:</strong> Maximize benefit, minimize harm across populations</p>
+        <p><strong>Application:</strong> Often used to justify innovations that may carry risks but promise significant benefits, such as gene therapy for previously untreatable conditions.</p>
+        <p><strong>Limitation:</strong> May undervalue individual rights when pursuing "greater good"</p>
+    </div>
+    
+    <div class="ethics-debate">
+        <h3>Deontological Ethics</h3>
+        <p><strong>Core principle:</strong> Actions must align with universal moral duties and obligations</p>
+        <p><strong>Application:</strong> Emphasizes informed consent, human dignity, and refraining from using humans solely as means to ends.</p>
+        <p><strong>Limitation:</strong> May be too rigid when facing novel ethical scenarios created by new technologies</p>
+    </div>
+    
+    <div class="ethics-debate">
+        <h3>Biocentrism</h3>
+        <p><strong>Core principle:</strong> All living beings have inherent value and moral standing</p>
+        <p><strong>Application:</strong> Extends ethical consideration beyond humans to ecosystems when evaluating genetic engineering of non-human species.</p>
+        <p><strong>Limitation:</strong> Difficulty in practical application when balancing competing interests across species</p>
+    </div>
+    
+    <div class="ethics-debate">
+        <h3>Justice and Equity</h3>
+        <p><strong>Core principle:</strong> Fair distribution of benefits and burdens across society</p>
+        <p><strong>Application:</strong> Questions of access to expensive therapies, global North-South divides in technology access, and addressing historical injustices.</p>
+        <p><strong>Limitation:</strong> Competing definitions of what constitutes "fairness" in distribution</p>
+    </div>
+
+    <h2>Timeline: Key Policy Developments in Biotechnology</h2>
+    
+    <div class="timeline">
+        <div class="container left">
+            <div class="content">
+                <h3>1975</h3>
+                <p>Asilomar Conference on Recombinant DNA establishes first voluntary guidelines for genetic research safety</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h3>1982</h3>
+                <p>First genetically engineered drug approved (human insulin)</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h3>1990s</h3>
+                <p>First gene therapy trials; establishment of bioethics committees globally</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h3>2000</h3>
+                <p>Cartagena Protocol on Biosafety adopted to regulate transboundary movement of GMOs</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h3>2012</h3>
+                <p>CRISPR-Cas9 gene editing technique published, triggering new wave of regulatory discussions</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h3>2018</h3>
+                <p>He Jiankui announces CRISPR-edited babies, prompting global moratorium discussions</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h3>2020-2023</h3>
+                <p>COVID-19 accelerates regulatory frameworks for mRNA technologies and approval processes</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h3>2024</h3>
+                <p>Growing integration of AI in biotech development prompts new regulatory approaches</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Critical Ethical Issues in Advanced Biotechnology</h2>
+
+    <h3>1. Germline Editing and Human Enhancement</h3>
+    <p>The ability to make heritable genetic modifications raises profound questions about human identity, future generations' autonomy, and potential societal inequalities. While therapeutic applications may prevent serious diseases, enhancements for non-medical purposes remain highly controversial.</p>
+    
+    <div class="case-study">
+        <h4>Case Study: CRISPR Human Trials</h4>
+        <p>Examine the evolution of regulatory approaches following the 2018 announcement of CRISPR-edited babies in China. Compare the international responses, including the WHO's governance framework and national moratoria on clinical applications of germline editing.</p>
+    </div>
+
+    <h3>2. Synthetic Biology and Biosecurity</h3>
+    <p>As DNA synthesis becomes more accessible and AI-driven design tools advance, concerns grow about dual-use research and biosecurity risks. The democratization of biotechnology creates tension between innovation and necessary safeguards against misuse.</p>
+    
+    <div class="case-study">
+        <h4>Case Study: DIYbio Movement</h4>
+        <p>Analyze the community biology movement's self-governance mechanisms and their relationship with traditional regulatory frameworks. Consider the benefits of democratized science against biosafety and biosecurity concerns.</p>
+    </div>
+
+    <h3>3. Data Privacy and Genetic Information</h3>
+    <p>The proliferation of genetic testing, biobanks, and health data aggregation creates complex privacy challenges. Questions of consent, data ownership, and protection against genetic discrimination remain inadequately addressed in many jurisdictions.</p>
+    
+    <div class="case-study">
+        <h4>Case Study: Population Biobanks</h4>
+        <p>Evaluate the ethical frameworks established by major biobank initiatives like the UK Biobank and All of Us Research Program. Compare their approaches to informed consent, data sharing, and benefit distribution.</p>
+    </div>
+
+    <h3>4. Environmental Impact and Ecological Engineering</h3>
+    <p>Applications like gene drives for pest control or engineered microbiomes for environmental remediation pose questions about ecological disruption, unintended consequences, and humanity's relationship with natural systems.</p>
+    
+    <div class="case-study">
+        <h4>Case Study: Gene Drive Technology</h4>
+        <p>Examine the governance challenges of gene drive technologies designed to suppress disease vectors. Consider the ethical implications of releasing self-perpetuating genetic modifications into wild populations without full ecosystem impact understanding.</p>
+    </div>
+
+    <h3>5. Global Justice and Access</h3>
+    <p>Advanced biotechnologies often develop within a context of global inequality. Consideration must be given to ensuring equitable access to benefits, preventing exploitation of vulnerable populations, and respecting indigenous knowledge and genetic resources.</p>
+    
+    <div class="case-study">
+        <h4>Case Study: mRNA Vaccine Distribution</h4>
+        <p>Analyze the patterns of access to mRNA vaccines during the COVID-19 pandemic and the ethical frameworks that guided or failed to guide global distribution. Consider proposals for more equitable technology transfer and capacity building.</p>
+    </div>
+
+    <h2>Current Regulatory Gaps</h2>
+    <p>Despite extensive regulatory frameworks, several areas remain inadequately addressed:</p>
+    <ul>
+        <li><strong>AI-Biotech Integration:</strong> Current regulations struggle to keep pace with AI-driven drug discovery, protein design, and synthetic biology applications</li>
+        <li><strong>International Harmonization:</strong> Regulatory divergence creates challenges for global research collaboration and technology deployment</li>
+        <li><strong>Emerging Technologies:</strong> Novel approaches like organoid research, neurological interfaces, and biological computing outpace existing regulatory categories</li>
+        <li><strong>Participatory Governance:</strong> Limited mechanisms exist for broader stakeholder and public engagement in biotechnology governance</li>
+    </ul>
+
+    <h2>Week 7 Assignments</h2>
+    
+    <div class="assignment">
+        <h3>Discussion Forum: Ethical Dilemma Analysis</h3>
+        <p><strong>Due:</strong> Thursday, 11:59 PM</p>
+        <p><strong>Instructions:</strong> Select one of the case studies presented in this module. Analyze the ethical dilemma using at least two different ethical frameworks. Respond thoughtfully to at least two classmates' posts, offering alternative perspectives or additional considerations.</p>
+        <p><strong>Grading criteria:</strong> Depth of ethical analysis, engagement with course concepts, quality of peer responses.</p>
+    </div>
+    
+    <div class="assignment">
+        <h3>Policy Brief: Regulatory Innovation</h3>
+        <p><strong>Due:</strong> Sunday, 11:59 PM</p>
+        <p><strong>Instructions:</strong> Develop a 2-3 page policy brief addressing a regulatory gap in advanced biotechnology. Your brief should:</p>
+        <ul>
+            <li>Identify a specific regulatory challenge</li>
+            <li>Analyze existing approaches across different jurisdictions</li>
+            <li>Propose evidence-based recommendations</li>
+            <li>Consider implementation factors and stakeholder concerns</li>
+        </ul>
+        <p><strong>Grading criteria:</strong> Problem definition, policy analysis quality, feasibility of recommendations, writing clarity and professionalism.</p>
+    </div>
+
+    <h2>Additional Resources</h2>
+    
+    <div class="resource-links">
+        <a href="#" class="resource-link">WHO Governance Framework for Human Genome Editing</a>
+        <a href="#" class="resource-link">Nuffield Council on Bioethics Reports</a>
+        <a href="#" class="resource-link">International Bioethics Committee Statements</a>
+        <a href="#" class="resource-link">OECD Biotechnology Policy Database</a>
+    </div>
+    
+    <h3>Suggested Readings</h3>
+    <ul>
+        <li>Jasanoff, S., Hurlbut, J.B., & Saha, K. (2023). "The Ethics of Experimentation: CRISPR-Cas9 and Beyond." <em>Science, Technology, & Human Values</em>, 48(2), 300-325.</li>
+        <li>Thompson, P.B. (2022). "From Bench to Society: Navigating Biotechnology's Ethical Landscape." <em>Journal of Responsible Innovation</em>, 9(1), 78-96.</li>
+        <li>Gutmann, A. (2021). "Ethics, Policy, and Governance in Emerging Biotechnologies." <em>Cambridge Quarterly of Healthcare Ethics</em>, 30(2), 205-217.</li>
+        <li>Jasanoff, S. & Hurlbut, J.B. (2018). "A global observatory for gene editing." <em>Nature</em>, 555, 435-437.</li>
+        <li>Marden, E. & Godfrey, R. (2024). "Platform Governance in Biotechnology: Regulatory Challenges of Convergent Technologies." <em>Annual Review of Law and Social Science</em>, 16.</li>
+    </ul>
+
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
+        <p>© 2025 FutureTech Academy | FH402: Biotech: Next-Level Applications | Week 7: Policy & Ethics</p>
+    </footer>
+</body>
+  </html>
