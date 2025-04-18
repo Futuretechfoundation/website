@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications - Week 6</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #1abc9c;
+            --accent-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="5"/><path d="M30,50 L45,50 M55,50 L70,50 M50,30 L50,45 M50,55 L50,70" stroke="rgba(255,255,255,0.1)" stroke-width="5"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-top: 0;
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-item i {
+            font-size: 1.2rem;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .week-overview {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .learning-objectives {
+            background-color: var(--light-bg);
+            border-left: 5px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+        
+        .objectives-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .objectives-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .objectives-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img {
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .assignment {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .resources ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .resources li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .resources li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+        }
+        
+        .article-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom-color 0.3s ease;
+        }
+        
+        .article-link:hover {
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .discussion-questions {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .discussion-questions ol {
+            padding-left: 1.5rem;
+        }
+        
+        .discussion-questions li {
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-container {
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .timer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #16a085;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .technology-comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .technology-comparison th, 
+        .technology-comparison td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .technology-comparison th {
+            background-color: var(--light-bg);
+            font-weight: 600;
+        }
+        
+        .technology-comparison tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .course-info {
+                gap: 1rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>FH402: Biotech: Next-Level Applications</h1>
+            <p class="subtitle">Week 6: Emerging Areas in Biotechnology</p>
+            <div class="course-info">
+                <div class="info-item">
+                    <i>📅</i>
+                    <span>Spring 2025</span>
+                </div>
+                <div class="info-item">
+                    <i>👨‍🏫</i>
+                    <span>Prof. Elena Rodriguez, Ph.D.</span>
+                </div>
+                <div class="info-item">
+                    <i>🕒</i>
+                    <span>3 Credit Hours</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="week-overview">
+            <h2>Week 6 Overview</h2>
+            <p>Welcome to Week 6 of FH402: Biotech: Next-Level Applications! This week, we'll explore cutting-edge emerging areas in biotechnology that are poised to revolutionize healthcare, agriculture, and industrial processes. As we reach the halfway point of our course, we'll examine how interdisciplinary approaches are creating entirely new fields and possibilities within biotechnology.</p>
+            <p>Through case studies, research discussions, and practical applications, you'll gain insight into how these emerging areas are addressing global challenges and opening up new frontiers for innovation. Get ready to explore the bleeding edge of biotechnology!</p>
+        </section>
+        
+        <section class="learning-objectives">
+            <h2>Learning Objectives</h2>
+            <p>By the end of this week, you will be able to:</p>
+            <ul class="objectives-list">
+                <li>Identify and describe at least five emerging areas within biotechnology</li>
+                <li>Analyze the potential impact of synthetic biology on medicine, agriculture, and industrial manufacturing</li>
+                <li>Evaluate the technical challenges and ethical considerations in gene editing technologies</li>
+                <li>Compare different approaches to regenerative medicine and tissue engineering</li>
+                <li>Discuss how AI and machine learning are accelerating drug discovery and precision medicine</li>
+                <li>Articulate the opportunities and barriers in developing sustainable biofuels and biomaterials</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h3>Key Emerging Areas in Biotechnology</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Synthetic Biology Illustration">
+                    </div>
+                    <div class="card-content">
+                        <h4>Synthetic Biology</h4>
+                        <p>The design and construction of new biological parts, devices, and systems, or the redesign of existing natural biological systems for useful purposes.</p>
+                        <p><span class="highlight">Key Innovation:</span> Engineered microorganisms that produce pharmaceuticals, biofuels, and novel biomaterials</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="CRISPR Gene Editing">
+                    </div>
+                    <div class="card-content">
+                        <h4>Advanced Gene Editing</h4>
+                        <p>Beyond CRISPR-Cas9, next-generation gene editing technologies are enabling unprecedented precision in genetic modifications.</p>
+                        <p><span class="highlight">Key Innovation:</span> Base editing and prime editing technologies that minimize off-target effects</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Organoid Development">
+                    </div>
+                    <div class="card-content">
+                        <h4>Organoids & Tissue Engineering</h4>
+                        <p>Development of three-dimensional tissue constructs that mimic the structure and function of human organs for research and therapeutic applications.</p>
+                        <p><span class="highlight">Key Innovation:</span> Brain organoids for neurological disease modeling and drug testing</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="AI Drug Discovery">
+                    </div>
+                    <div class="card-content">
+                        <h4>AI-Powered Biotechnology</h4>
+                        <p>Application of artificial intelligence and machine learning to accelerate biomedical research, drug discovery, and personalized medicine.</p>
+                        <p><span class="highlight">Key Innovation:</span> AlphaFold and similar AI systems for protein structure prediction</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Microbiome Research">
+                    </div>
+                    <div class="card-content">
+                        <h4>Microbiome Engineering</h4>
+                        <p>Manipulation of microbial communities to improve health outcomes, agricultural productivity, and environmental remediation.</p>
+                        <p><span class="highlight">Key Innovation:</span> Engineered bacterial consortia for precision microbiome therapies</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/300" alt="Biofabrication">
+                    </div>
+                    <div class="card-content">
+                        <h4>Biofabrication & Bioprinting</h4>
+                        <p>Automated production of complex biological products using 3D bioprinting, cell culturing, and tissue engineering approaches.</p>
+                        <p><span class="highlight">Key Innovation:</span> 3D bioprinted tissues with integrated vascular networks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>Synthetic Biology: Redesigning Life for Purpose</h3>
+            <p>Synthetic biology represents a paradigm shift in how we approach biological systems. By applying engineering principles to biology, scientists are creating standardized biological parts, devices, and systems that can be assembled into complex biological machines with specific functions.</p>
+            
+            <h4>Key Concepts in Synthetic Biology:</h4>
+            <ul>
+                <li><strong>BioBricks and Standardized Parts:</strong> Modular genetic components with defined functions that can be assembled into genetic circuits</li>
+                <li><strong>Genetic Circuits:</strong> Engineered gene networks that process inputs and produce specific outputs</li>
+                <li><strong>Minimal Genomes:</strong> Stripped-down genomes containing only essential genes for life, providing a chassis for synthetic biology applications</li>
+                <li><strong>Xenobiology:</strong> Creation of biological systems with components not found in nature, such as expanded genetic codes</li>
+            </ul>
+            
+            <h4>Applications and Implications:</h4>
+            <table class="technology-comparison">
+                <thead>
+                    <tr>
+                        <th>Application Area</th>
+                        <th>Current Developments</th>
+                        <th>Future Potential</th>
+                        <th>Ethical Considerations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Medicine</td>
+                        <td>Engineered bacteria producing insulin and other therapeutics</td>
+                        <td>Living diagnostics and therapeutics that respond to specific disease biomarkers</td>
+                        <td>Safety, accessibility, and unintended consequences</td>
+                    </tr>
+                    <tr>
+                        <td>Agriculture</td>
+                        <td>Nitrogen-fixing microbes to reduce fertilizer dependence</td>
+                        <td>Crops engineered for extreme climate resilience</td>
+                        <td>Ecological impact, biodiversity concerns</td>
+                    </tr>
+                    <tr>
+                        <td>Materials</td>
+                        <td>Microbially produced spider silk and biodegradable plastics</td>
+                        <td>Self-healing materials with programmable properties</td>
+                        <td>Environmental release, sustainable production</td>
+                    </tr>
+                    <tr>
+                        <td>Energy</td>
+                        <td>Enhanced algae for biofuel production</td>
+                        <td>Direct conversion of sunlight to liquid fuels</td>
+                        <td>Land use conflicts, energy equity</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section class="section">
+            <h3>Beyond CRISPR: Next-Generation Gene Editing</h3>
+            <p>While CRISPR-Cas9 revolutionized genome editing with its simplicity and versatility, researchers are now developing more precise and versatile gene editing tools to address limitations of first-generation CRISPR systems.</p>
+            
+            <h4>Advanced Gene Editing Technologies:</h4>
+            <ul>
+                <li><strong>Base Editors:</strong> Chemical modifications to CRISPR that convert one DNA base to another without double-strand breaks</li>
+                <li><strong>Prime Editing:</strong> "Search-and-replace" editing that can perform all possible base-to-base conversions, insertions, and deletions</li>
+                <li><strong>Cas13 Systems:</strong> RNA-targeting CRISPR enzymes enabling direct manipulation of RNA transcripts</li>
+                <li><strong>Epigenome Editing:</strong> Modifying gene expression without changing the underlying DNA sequence</li>
+            </ul>
+            
+            <h4>Clinical Applications in Development:</h4>
+            <ul>
+                <li>In vivo editing for inherited retinal diseases</li>
+                <li>Ex vivo editing of hematopoietic stem cells for blood disorders</li>
+                <li>Targeted editing of T cells for cancer immunotherapy</li>
+                <li>RNA editing approaches for temporary genetic modifications</li>
+            </ul>
+            
+            <p>These technologies are enabling new approaches to treating genetic disorders, infectious diseases, and cancer, while raising important questions about safety, off-target effects, and equitable access.</p>
+        </section>
+        
+        <section class="section">
+            <h3>Regenerative Medicine & Tissue Engineering</h3>
+            <p>The field of regenerative medicine aims to restore structure and function to damaged tissues and organs through a combination of cellular therapies, tissue engineering, and molecular approaches.</p>
+            
+            <h4>Key Technology Platforms:</h4>
+            <ul>
+                <li><strong>Organoids:</strong> Self-organizing 3D tissue cultures derived from stem cells that mimic the structure and function of organs</li>
+                <li><strong>3D Bioprinting:</strong> Layer-by-layer deposition of cells and biomaterials to create tissue constructs</li>
+                <li><strong>Biomaterials:</strong> Scaffolds and matrices that provide structural support and biochemical cues for tissue development</li>
+                <li><strong>Induced Pluripotent Stem Cells (iPSCs):</strong> Reprogrammed adult cells that can differentiate into various cell types</li>
+            </ul>
+            
+            <h4>Emerging Applications:</h4>
+            <ul>
+                <li>Patient-specific organoids for personalized drug testing</li>
+                <li>Bioprinted tissues for transplantation</li>
+                <li>In vitro disease models for drug development</li>
+                <li>Organs-on-chips for toxicology testing and personalized medicine</li>
+            </ul>
+            
+            <p>Despite significant progress, challenges remain in vascularization of engineered tissues, scaling up production, and integrating with host tissues.</p>
+        </section>
+        
+        <section class="section">
+            <h3>AI & Computational Biology</h3>
+            <p>Artificial intelligence and machine learning are transforming biotechnology by enabling the analysis of massive biological datasets, predicting protein structures, optimizing experiments, and accelerating drug discovery.</p>
+            
+            <h4>Transformative Applications:</h4>
+            <ul>
+                <li><strong>Protein Structure Prediction:</strong> AI systems like AlphaFold have revolutionized our ability to predict protein structures with unprecedented accuracy</li>
+                <li><strong>Drug Discovery:</strong> Machine learning models that predict drug-target interactions and identify promising lead compounds</li>
+                <li><strong>Genetic Analysis:</strong> Deep learning systems for interpreting genomic data and predicting phenotypic outcomes</li>
+                <li><strong>Experimental Design:</strong> AI-guided experimental approaches that optimize protocols and reduce trial-and-error</li>
+            </ul>
+            
+            <p>The integration of AI with laboratory automation is creating "closed-loop" discovery systems that can design, execute, and analyze experiments with minimal human intervention, potentially accelerating the pace of scientific discovery.</p>
+        </section>
+        
+        <section class="assignment">
+            <h3>Week 6 Assignment: Emerging Biotech Analysis</h3>
+            <p><strong>Due Date:</strong> Sunday by 11:59 PM</p>
+            <p><strong>Assignment Description:</strong> Select one emerging area in biotechnology that interests you from those discussed this week (or propose another with instructor approval). Research this area in depth and prepare a technical brief (1000-1500 words) that addresses:</p>
+            <ol>
+                <li>The fundamental scientific principles and technological innovations enabling this field</li>
+                <li>Current state-of-the-art applications and case studies</li>
+                <li>Technical challenges and proposed solutions</li>
+                <li>Economic potential and market landscape</li>
+                <li>Ethical, legal, and social implications</li>
+                <li>Your assessment of the field's potential impact over the next decade</li>
+            </ol>
+            <p>Include at least 8 peer-reviewed sources and 2-3 industry reports/white papers in your bibliography.</p>
+            <p><strong>Submission Format:</strong> PDF document uploaded to the course management system.</p>
+            <p><a href="#" class="btn">Assignment Submission Portal</a></p>
+        </section>
+        
+        <section class="section">
+            <h3>Discussion Questions</h3>
+            <div class="discussion-questions">
+                <p>Participate in our class discussion board by responding to at least two of the following questions and engaging with your classmates' posts:</p>
+                <ol>
+                    <li>How might synthetic biology approaches be applied to address climate change challenges? What are the potential benefits and risks?</li>
+                    <li>Should there be international governance frameworks for emerging gene editing technologies? If so, what principles should guide their development?</li>
+                    <li>Compare and contrast cell-based meat production with traditional agriculture in terms of environmental impact, scalability, and consumer acceptance.</li>
+                    <li>How might AI-driven biotechnology exacerbate or reduce existing healthcare disparities?</li>
+                    <li>What ethical frameworks should guide the development of human-machine interfaces and neural engineering?</li>
+                </ol>
+                <p><strong>Initial Post Due:</strong> Wednesday by 11:59 PM</p>
+                <p><strong>Response Posts Due:</strong> Friday by 11:59 PM</p>
+                <p><a href="#" class="btn btn-outline">Access Discussion Board</a></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>Required Readings & Resources</h3>
+            <div class="resources">
+                <ul>
+                    <li>
+                        <a href="#" class="article-link">Stephens, N., et al. (2024). "Synthetic Biology's Second Decade: Technology Democratization and Societal Impact." <em>Nature Reviews Biotechnology, 42</em>(1), 23-35.</a>
+                        <p>A comprehensive review of how synthetic biology has evolved and its implications across multiple sectors.</p>
+                    </li>
+                    <li>
+                        <a href="#" class="article-link">Wong, J.Y. & Liu, C. (2024). "Base and Prime Editing: Precision Tools for Genetic Medicine." <em>Annual Review of Biomedical Engineering, 26</em>, 111-134.</a>
+                        <p>Explores the technical advances and clinical applications of next-generation gene editing technologies.</p>
+                    </li>
+                    <li>
+                        <a href="#" class="article-link">Kim, H., et al. (2024). "Multi-Organ-on-a-Chip Systems for Drug Development and Personalized Medicine." <em>Cell Stem Cell, 30</em>(2), 205-224.</a>
+                        <p>Details recent advances in integrated organoid systems and their applications in drug testing.</p>
+                    </li>
+                    <li>
+                        <a href="#" class="article-link">Alvarez, M.M., et al. (2024). "Machine Learning at the Interface of Structural Biology and Drug Design." <em>Science, 385</em>(6665), 125-138.</a>
+                        <p>Discusses how AI is revolutionizing protein structure prediction and drug discovery.</p>
+                    </li>
+                    <li>
+                        <a href="#" class="article-link">FutureTech Academy Video Series: "Frontiers in Biotechnology" (Episodes 12-15)</a>
+                        <p>Watch these episodes for additional context on this week's topics.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>Supplementary Resources</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Interactive Learning</h4>
+                        <ul>
+                            <li><a href="#" class="article-link">Virtual Lab: Bacterial Genome Engineering</a></li>
+                            <li><a href="#" class="article-link">Synthetic Biology Design Studio (Online Tool)</a></li>
+                            <li><a href="#" class="article-link">3D Bioprinting Simulation Exercise</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Industry Perspectives</h4>
+                        <ul>
+                            <li><a href="#" class="article-link">McKinsey Global Institute: "The Bio Revolution" (2024 Update)</a></li>
+                            <li><a href="#" class="article-link">World Economic Forum: "Top 10 Emerging Technologies in Bioengineering"</a></li>
+                            <li><a href="#" class="article-link">Biotech Industry Report: "Investment Trends in Emerging Areas"</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Policy & Ethics</h4>
+                        <ul>
+                            <li><a href="#" class="article-link">WHO Guidelines on Human Genome Editing (2024)</a></li>
+                            <li><a href="#" class="article-link">National Academies Report: "Governance of Emerging Biotechnologies"</a></li>
+                            <li><a href="#" class="article-link">Ethics Case Studies in Synthetic Biology</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3>Guest Expert Interview</h3>
+            <p>This week features a special interview with Dr. Jennifer Chang, Director of the Synthetic Biology Innovation Lab at TechFuture Institute. Dr. Chang discusses her work developing engineered microorganisms for environmental remediation and sustainable chemical production.</p>
+            <p><strong>Key Topics Covered:</strong></p>
+            <ul>
+                <li>Challenges in scaling up synthetic biology from lab to industrial application</li>
+                <li>Regulatory considerations for engineered biological systems</li>
+                <li>Career opportunities in emerging biotechnology fields</li>
+                <li>Interdisciplinary collaboration between biologists, engineers, and data scientists</li>
+            </ul>
+            <p><a href="#" class="btn">Watch Interview (35 minutes)</a></p>
+        </section>
+        
+        <section class="section">
+            <h3>Looking Ahead</h3>
+            <p>Next week, we'll build on this foundation to explore biotechnology applications in medicine and healthcare, with a focus on precision medicine, gene and cell therapies, and novel therapeutic approaches.</p>
+            <p><strong>Preparation for Week 7:</strong></p>
+            <ul>
+                <li>Complete the assigned readings for Week 7</li>
+                <li>Begin thinking about your final project proposal (due in Week 8)</li>
+                <li>
