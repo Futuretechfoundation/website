@@ -1,241 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuretech Foundation Membership</title>
-    <style>
-        /* Inline CSS for styling */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 90%;
-            margin: auto;
-            max-width: 1000px;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        h2 {
-            margin-top: 40px;
-            color: #4CAF50;
-        }
-
-        .membership-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 10px;
-            margin: 30px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .membership-card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .membership-card p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .membership-features {
-            text-align: left;
-            width: 80%;
-            margin: 0 auto;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .membership-features ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .membership-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .membership-features li:last-child {
-            border-bottom: none;
-        }
-
-        .price-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .price {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .price-bitcoin {
-            background-color: #f5a623;
-            padding: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 5px;
-            color: white;
-        }
-
-        button {
-            padding: 12px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        p {
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .payment-link {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .payment-link img {
-            max-width: 200px;
-            cursor: pointer;
-        }
-
-        .connect-wallet-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Futuretech Membership</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    button {
+      padding: 1em;
+      background: #27ae60;
+      color: white;
+      border: none;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #219150;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Futuretech Foundation Membership</h1>
+  <h1>Become a Futuretech Pro Member</h1>
+  <p>1. Please complete your payment through NowPayments.<br>
+     2. After payment, click the button below to confirm and save your membership.</p>
 
-    <div class="membership-card">
-        <h3>Pro Membership</h3>
-        <p>Become a Pro Member for only $50 per year to unlock the following exclusive features:</p>
+  <button id="membership-button">Confirm Payment and Submit Membership</button>
 
-        <div class="membership-features">
-            <ul>
-                <li>Private Discussion Channels</li>
-                <li>Exclusive Webinars & Q&A</li>
-                <li>1-on-1 Expert Mentorship</li>
-                <li>Full Access to Modular Learning Courses</li>
-                <li>Certificate of Completion</li>
-                <li>Early Access to Events</li>
-                <li>Networking with Industry Leaders</li>
-                <li>Full Access to Resource Library</li>
-            </ul>
-        </div>
+  <script type="module">
+    // Firebase setup
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-        <div class="price-container">
-            <div class="price">$50/year</div>
-            <div class="price-bitcoin" id="bitcoin-price">≈ Loading...</div> <!-- This will be updated dynamically -->
-        </div>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMbMi7FW3rpuOpSGYz2JTxnfue3Gj4Bjk",
+      authDomain: "membership-form-fc28b.firebaseapp.com",
+      projectId: "membership-form-fc28b",
+      storageBucket: "membership-form-fc28b.appspot.com",
+      messagingSenderId: "710162789549",
+      appId: "1:710162789549:web:5b28412dd3bf9ad831c224"
+    };
 
-        <button onclick="window.location.href='https://nowpayments.io/payment/?iid=4387220382'">
-            Become a Pro Member
-        </button>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-        <div class="payment-link">
-            <a href="https://nowpayments.io/payment/?iid=4387220382" target="_blank" rel="noreferrer noopener">
-                <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
-            </a>
-        </div>
-    </div>
-
-    <h2>Existing Member Login</h2>
-    <div class="connect-wallet-container">
-        <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
-    </div>
-    <p id="wallet-address"></p>
-
-    <p>Need Help? Contact us at <a href="mailto:futuretechfoundationX@gmail.com">futuretechfoundationX@gmail.com</a>.</p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.4.0/dist/ethers.min.js"></script>
-<script>
-    // Fetch the current Bitcoin price dynamically and calculate the equivalent amount for $50
-    async function fetchBitcoinPrice() {
-        try {
-            // Fetch the current Bitcoin price from CoinGecko API
-            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-            const data = await response.json();
-            const bitcoinPriceUSD = data.bitcoin.usd;
-            
-            // Calculate the equivalent Bitcoin amount for $50
-            const bitcoinEquivalent = (50 / bitcoinPriceUSD).toFixed(6);
-            
-            // Update the displayed Bitcoin price
-            document.getElementById('bitcoin-price').textContent = `≈ ${bitcoinEquivalent} BTC`;
-        } catch (error) {
-            console.error("Error fetching Bitcoin price:", error);
-            document.getElementById('bitcoin-price').textContent = "Error fetching price";
-        }
+    async function saveMember(name, email) {
+      try {
+        await addDoc(collection(db, "memberships"), {
+          name,
+          email,
+          paymentConfirmed: true,
+          timestamp: new Date()
+        });
+        alert("Membership saved! Thank you.");
+      } catch (e) {
+        console.error("Error saving data:", e);
+        alert("Something went wrong. Try again.");
+      }
     }
 
-    // Call the function to fetch Bitcoin price
-    fetchBitcoinPrice();
-
-    // MetaMask connection function
-    async function connectWallet() {
-        if (window.ethereum) {
-            try {
-                const provider = new ethers.providers.Web3Provider(window.ethereum);
-                await provider.send("eth_requestAccounts", []);
-                const signer = provider.getSigner();
-                const walletAddress = await signer.getAddress();
-                document.getElementById('wallet-address').innerText = `Connected Wallet Address: ${walletAddress}`;
-            } catch (error) {
-                alert("Error connecting to MetaMask.");
-            }
-        } else {
-            alert("MetaMask is not installed. Please install MetaMask.");
-        }
-    }
-</script>
+    document.querySelector("#membership-button").addEventListener("click", async () => {
+      const name = prompt("Enter your full name:");
+      const email = prompt("Enter your email:");
+      const paid = confirm("Did you complete your payment on NowPayments?");
+      if (paid && name && email) {
+        await saveMember(name, email);
+      } else {
+        alert("Please fill in your info and make sure you’ve paid.");
+      }
+    });
+  </script>
 
 </body>
-    </html>
+</html>
