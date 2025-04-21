@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Futuretech Volunteer Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Volunteer Signup</h2>
+  <form id="signupForm">
+    <input type="text" id="name" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="text" id="interest" placeholder="Area of Interest" />
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "your-app.firebaseapp.com",
+      projectId: "your-app-id",
+      storageBucket: "your-app.appspot.com",
+      messagingSenderId: "XXXXXX",
+      appId: "1:XXXX:web:XXXX"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const interest = document.getElementById('interest').value.trim();
+
+      try {
+        await db.collection("volunteers").add({
+          name,
+          email,
+          interest,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert("Thanks for signing up!");
+        document.getElementById('signupForm').reset();
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+  </script>
+</body>
+    </html>
