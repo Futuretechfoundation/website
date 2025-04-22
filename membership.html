@@ -1,82 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Futuretech Membership</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Futuretech Foundation Membership</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2em;
-      background: #f4f4f4;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    button {
-      padding: 1em;
-      background: #27ae60;
-      color: white;
-      border: none;
-      font-size: 1em;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #219150;
-    }
+    /* [Your existing CSS styles here] */
   </style>
 </head>
 <body>
 
-  <h1>Become a Futuretech Pro Member</h1>
-  <p>1. Please complete your payment through NowPayments.<br>
-     2. After payment, click the button below to confirm and save your membership.</p>
+<div class="container">
+  <h1>Futuretech Foundation Membership</h1>
 
-  <button id="membership-button">Confirm Payment and Submit Membership</button>
+  <div class="membership-card">
+    <h3>Pro Membership</h3>
+    <p>Become a Pro Member for only $50 per year to unlock the following exclusive features:</p>
 
-  <script type="module">
-    // Firebase setup
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    <div class="membership-features">
+      <ul>
+        <li>Private Discussion Channels</li>
+        <li>Exclusive Webinars & Q&A</li>
+        <li>1-on-1 Expert Mentorship</li>
+        <li>Full Access to Modular Learning Courses</li>
+        <li>Certificate of Completion</li>
+        <li>Early Access to Events</li>
+        <li>Networking with Industry Leaders</li>
+        <li>Full Access to Resource Library</li>
+        <li>Access to 3D Printing Projects</li>
+        <li>Join Field Research Projects (UAPs, Biotech, etc.)</li>
+        <li>Collaborate on Open Source AI Tools</li>
+        <li>Vote on New Initiatives and Tech Pilots</li>
+        <li>Access to Volunteer Leadership Opportunities</li>
+        <li>Receive a Custom NFT Badge as a Member</li>
+      </ul>
+    </div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAMbMi7FW3rpuOpSGYz2JTxnfue3Gj4Bjk",
-      authDomain: "membership-form-fc28b.firebaseapp.com",
-      projectId: "membership-form-fc28b",
-      storageBucket: "membership-form-fc28b.appspot.com",
-      messagingSenderId: "710162789549",
-      appId: "1:710162789549:web:5b28412dd3bf9ad831c224"
-    };
+    <div class="price-container">
+      <div class="price">$50/year</div>
+      <div class="price-bitcoin" id="bitcoin-price">≈ Loading...</div>
+    </div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    <button onclick="window.location.href='https://nowpayments.io/payment/?iid=4387220382'">
+      Become a Pro Member
+    </button>
 
-    async function saveMember(name, email) {
-      try {
-        await addDoc(collection(db, "memberships"), {
-          name,
-          email,
-          paymentConfirmed: true,
-          timestamp: new Date()
-        });
-        alert("Membership saved! Thank you.");
-      } catch (e) {
-        console.error("Error saving data:", e);
-        alert("Something went wrong. Try again.");
-      }
+    <div class="payment-link">
+      <a href="https://nowpayments.io/payment/?iid=4387220382" target="_blank" rel="noreferrer noopener">
+        <img src="https://nowpayments.io/images/embeds/payment-button-black.svg" alt="Crypto payment button by NOWPayments">
+      </a>
+    </div>
+  </div>
+
+  <h2>Existing Member Login</h2>
+  <div class="connect-wallet-container">
+    <button id="connect-wallet" onclick="connectWallet()">Connect with MetaMask</button>
+  </div>
+  <p id="wallet-address"></p>
+
+  <h2>New Member Registration</h2>
+  <form id="membership-form">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" required /><br />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required /><br />
+
+    <label for="walletAddress">Wallet Address:</label>
+    <input type="text" id="walletAddress" name="walletAddress" required /><br />
+
+    <label for="membershipType">Membership Type:</label>
+    <select id="membershipType" name="membershipType" required>
+      <option value="pro">Pro Membership</option>
+    </select><br />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p>Need Help? Contact us at <a href="mailto:futuretechfoundationX@gmail.com">futuretechfoundationX@gmail.com</a>.</p>
+</div>
+
+<!-- Firebase SDKs -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAMbMi7FW3rpuOpSGYz2JTxnfue3Gj4Bjk",
+    authDomain: "membership-form-fc28b.firebaseapp.com",
+    projectId: "membership-form-fc28b",
+    storageBucket: "membership-form-fc28b.firebasestorage.app",
+    messagingSenderId: "710162789549",
+    appId: "1:710162789549:web:5b28412dd3bf9ad831c224"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Handle form submission and save data to Firestore
+  const form = document.getElementById("membership-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const walletAddress = document.getElementById("walletAddress").value;
+    const membershipType = document.getElementById("membershipType").value;
+
+    try {
+      // Add the new member's data to Firestore
+      const docRef = await addDoc(collection(db, "members"), {
+        fullName,
+        email,
+        walletAddress,
+        membershipType,
+        timestamp: new Date(),
+      });
+
+      alert("Member registered successfully!");
+      form.reset();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("Error registering member.");
     }
+  });
 
-    document.querySelector("#membership-button").addEventListener("click", async () => {
-      const name = prompt("Enter your full name:");
-      const email = prompt("Enter your email:");
-      const paid = confirm("Did you complete your payment on NowPayments?");
-      if (paid && name && email) {
-        await saveMember(name, email);
-      } else {
-        alert("Please fill in your info and make sure you’ve paid.");
+  // Fetch the current Bitcoin price dynamically and calculate the equivalent amount for $50
+  async function fetchBitcoinPrice() {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+      const data = await response.json();
+      const bitcoinPriceUSD = data.bitcoin.usd;
+      const bitcoinEquivalent = (50 / bitcoinPriceUSD).toFixed(6);
+      document.getElementById('bitcoin-price').textContent = `≈ ${bitcoinEquivalent} BTC`;
+    } catch (error) {
+      console.error("Error fetching Bitcoin price:", error);
+      document.getElementById('bitcoin-price').textContent = "Error fetching price";
+    }
+  }
+
+  // Call the function to fetch Bitcoin price
+  fetchBitcoinPrice();
+
+  // MetaMask connection and Firebase authentication (same as before)
+  async function connectWallet() {
+    if (window.ethereum) {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const walletAddress = await signer.getAddress();
+        document.getElementById('wallet-address').innerText = `Connected Wallet Address: ${walletAddress}`;
+
+        // Get the signature from the user
+        const message = "Authenticate with Futuretech Foundation";
+        const signature = await signer.signMessage(message);
+
+        // Create a Firebase custom token on your server using the wallet address and signature
+        const tokenResponse = await fetch('https://your-backend.com/getCustomToken', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ walletAddress, signature })
+        });
+
+        const tokenData = await tokenResponse.json();
+        const customToken = tokenData.token;
+
+        // Sign in with the custom token
+        await auth.signInWithCustomToken(customToken);
+        console.log("User signed in with Firebase");
+      } catch (error) {
+        console.error("Error connecting to MetaMask or signing in:", error);
+        alert("Error connecting to MetaMask or signing in.");
       }
-    });
-  </script>
+    } else {
+      alert("MetaMask is not installed. Please install MetaMask.");
+    }
+  }
+</script>
+
+<!-- Ethers.js for MetaMask integration -->
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.4.0/dist/ethers.min.js"></script>
 
 </body>
-</html>
+  </html>
