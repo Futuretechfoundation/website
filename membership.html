@@ -259,39 +259,22 @@
         form.reset();
       } catch (err) {
         console.error("Error saving data:", err);
-        alert("Error: " + err.message);
+        alert("There was an error submitting your form. Please try again.");
       }
     });
   });
 
-  async function fetchBitcoinPrice() {
-    try {
-      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-      const data = await response.json();
-      const bitcoinPriceUSD = data.bitcoin.usd;
-      const bitcoinEquivalent = (50 / bitcoinPriceUSD).toFixed(6);
-      document.getElementById('bitcoin-price').textContent = `≈ ${bitcoinEquivalent} BTC`;
-    } catch (error) {
-      console.error("Error fetching Bitcoin price:", error);
-      document.getElementById('bitcoin-price').textContent = "Error fetching price";
-    }
-  }
-
-  fetchBitcoinPrice();
-
   async function connectWallet() {
-    if (window.ethereum) {
+    if (typeof window.ethereum !== 'undefined') {
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const walletAddress = await signer.getAddress();
-        document.getElementById('wallet-address').innerText = `Connected Wallet Address: ${walletAddress}`;
-      } catch (error) {
-        alert("Error connecting to MetaMask.");
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        document.getElementById('wallet-address').textContent = 'Wallet Connected: ' + accounts[0];
+      } catch (err) {
+        console.error(err);
+        alert("MetaMask connection failed.");
       }
     } else {
-      alert("MetaMask is not installed. Please install MetaMask.");
+      alert("Please install MetaMask to connect.");
     }
   }
 </script>
