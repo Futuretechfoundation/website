@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech Tools and Platforms | Future Tech Academy</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-color: #212529;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hero {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .tool-image {
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tool-content {
+            padding: 1.5rem;
+        }
+        
+        .tool-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0.5rem 0;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #2980b9;
+        }
+        
+        .resources-section {
+            margin-top: 4rem;
+        }
+        
+        .resources-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .resource-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .resource-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .resource-item p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .faq-section {
+            margin-top: 4rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #495057;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="/api/placeholder/80/40" alt="Future Tech Academy Logo">
+                    Future Tech Academy
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="hero">
+        <div class="container">
+            <h1>FH402: Biotech: Next-Level Applications</h1>
+            <p>Cutting-edge tools and platforms for advanced biotechnology research and development</p>
+        </div>
+    </div>
+    
+    <main class="container">
+        <section class="tools-section">
+            <h2 class="section-title">Biotechnology Tools & Platforms</h2>
+            <p>This comprehensive guide provides an overview of the most advanced biotechnology tools and platforms used in modern research and industry applications. These resources will support your learning throughout the FH402 course.</p>
+            
+            <div class="tools-grid">
+                <!-- Tool Card 1 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="CRISPR-Cas9 Toolkit">
+                    </div>
+                    <div class="tool-content">
+                        <h3>CRISPR-Cas9 Toolkit</h3>
+                        <div class="tool-tags">
+                            <span class="tag">Gene Editing</span>
+                            <span class="tag">Essential</span>
+                        </div>
+                        <p>Industry-standard gene editing platform with enhanced precision and expanded targeting capabilities for complex genomic modifications.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 2 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="Nanopore Sequencing">
+                    </div>
+                    <div class="tool-content">
+                        <h3>Nanopore Sequencing</h3>
+                        <div class="tool-tags">
+                            <span class="tag">DNA/RNA Sequencing</span>
+                            <span class="tag">Real-time Analysis</span>
+                        </div>
+                        <p>Portable DNA and RNA sequencing technology allowing for real-time analysis with increasingly longer read lengths and higher accuracy.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 3 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="Organ-on-a-Chip">
+                    </div>
+                    <div class="tool-content">
+                        <h3>Organ-on-a-Chip</h3>
+                        <div class="tool-tags">
+                            <span class="tag">Tissue Engineering</span>
+                            <span class="tag">Drug Testing</span>
+                        </div>
+                        <p>Microfluidic cell culture devices that simulate the activities, mechanics and physiological response of entire organs and organ systems.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 4 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="AlphaFold">
+                    </div>
+                    <div class="tool-content">
+                        <h3>AlphaFold & Open Protein AI</h3>
+                        <div class="tool-tags">
+                            <span class="tag">Protein Structure</span>
+                            <span class="tag">AI-powered</span>
+                        </div>
+                        <p>Revolutionary AI systems for highly accurate protein structure prediction, enabling rapid advances in drug discovery and protein engineering.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 5 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="Automated Lab Systems">
+                    </div>
+                    <div class="tool-content">
+                        <h3>Cloud Lab Automation</h3>
+                        <div class="tool-tags">
+                            <span class="tag">Lab Automation</span>
+                            <span class="tag">Remote Research</span>
+                        </div>
+                        <p>Cloud-based laboratory platforms enabling remote experiment design, execution, and monitoring with robotic systems and IoT integration.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 6 -->
+                <div class="tool-card">
+                    <div class="tool-image">
+                        <img src="/api/placeholder/300/180" alt="Synthetic Biology Platforms">
+                    </div>
+                    <div class="tool-content">
+                        <h3>Synthetic Biology Platforms</h3>
+                        <div class="tool-tags">
+                            <span class="tag">DNA Synthesis</span>
+                            <span class="tag">Genetic Engineering</span>
+                        </div>
+                        <p>Integrated platforms for designing, building, and testing novel biological systems with standardized genetic parts and automated assembly.</p>
+                        <a href="#" class="button">Explore Tool</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="comparison-section">
+            <h2 class="section-title">Platform Comparison</h2>
+            <p>This comparison table highlights the key differences between major biotechnology platforms to help you select the appropriate tools for your research projects.</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Key Applications</th>
+                        <th>Cost Level</th>
+                        <th>Learning Curve</th>
+                        <th>Industry Adoption</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CRISPR Systems</td>
+                        <td>Gene editing, gene therapy, diagnostics</td>
+                        <td>Medium-High</td>
+                        <td>Moderate</td>
+                        <td>Widespread</td>
+                    </tr>
+                    <tr>
+                        <td>Next-Gen Sequencing</td>
+                        <td>Genomics, diagnostics, metagenomics</td>
+                        <td>High</td>
+                        <td>Steep</td>
+                        <td>Universal</td>
+                    </tr>
+                    <tr>
+                        <td>Bioinformatics Suites</td>
+                        <td>Data analysis, modeling, genomics</td>
+                        <td>Low-Medium</td>
+                        <td>Steep</td>
+                        <td>Essential</td>
+                    </tr>
+                    <tr>
+                        <td>Microfluidics</td>
+                        <td>Single-cell analysis, drug screening</td>
+                        <td>Medium</td>
+                        <td>Moderate</td>
+                        <td>Growing</td>
+                    </tr>
+                    <tr>
+                        <td>Bioprinting</td>
+                        <td>Tissue engineering, regenerative medicine</td>
+                        <td>Very High</td>
+                        <td>Steep</td>
+                        <td>Emerging</td>
+                    </tr>
+                    <tr>
+                        <td>Lab Automation</td>
+                        <td>High-throughput screening, standardization</td>
+                        <td>High</td>
+                        <td>Moderate</td>
+                        <td>Increasing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section class="resources-section">
+            <h2 class="section-title">Learning Resources</h2>
+            <p>Access these specialized resources to deepen your understanding of biotechnology tools and their applications in research and industry.</p>
+            
+            <div class="resources-list">
+                <div class="resource-item">
+                    <h3>Interactive Tutorials</h3>
+                    <p>Step-by-step guides for using various biotech platforms with practical exercises and assessments.</p>
+                    <a href="#" class="button">Access Tutorials</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h3>Virtual Labs</h3>
+                    <p>Simulated laboratory environments where you can practice techniques without physical equipment.</p>
+                    <a href="#" class="button">Enter Virtual Lab</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h3>Case Studies</h3>
+                    <p>Real-world applications of biotechnology tools across different industries and research fields.</p>
+                    <a href="#" class="button">Browse Cases</a>
+                </div>
+                
+                <div class="resource-item">
+                    <h3>Expert Webinars</h3>
+                    <p>Recorded sessions with industry experts discussing advanced applications and emerging trends.</p>
+                    <a href="#" class="button">Watch Webinars</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Which platform should I learn first as a beginner in biotechnology?</div>
+                <div class="faq-answer">
+                    <p>For beginners, we recommend starting with bioinformatics platforms like Galaxy or R/Bioconductor as they require minimal lab equipment and provide a foundation in data analysis. From there, CRISPR systems offer accessible gene editing capabilities with widespread protocols available.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How much practical experience will I gain with these tools during the course?</div>
+                <div class="faq-answer">
+                    <p>FH402 includes 15 hours of hands-on laboratory work using key platforms introduced in the course. Additionally, students will complete a capstone project requiring application of multiple tools to solve a complex biotech challenge.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are there opportunities to access expensive equipment beyond class time?</div>
+                <div class="faq-answer">
+                    <p>Yes, enrolled students can book additional lab time through our online reservation system. We also offer cloud-based access to certain computational platforms 24/7, and partnerships with industry labs for advanced equipment access.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How are these tools relevant to industry careers?</div>
+                <div class="faq-answer">
+                    <p>Each tool featured in this course was selected based on industry adoption rates and future growth projections. Our Industry Advisory Board reviews the curriculum annually to ensure alignment with current biotech sector needs and hiring requirements.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Future Tech Academy</h3>
+                    <p>Pioneering education in emerging technologies for tomorrow's innovators.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Course Catalog</a></li>
+                        <li><a href="#">Student Portal</a></li>
+                        <li><a href="#">Research Labs</a></li>
+                        <li><a href="#">Career Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Library Access</a></li>
+                        <li><a href="#">Equipment Reservation</a></li>
+                        <li><a href="#">Online Learning</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>info@futuretechacademy.edu</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>123 Innovation Way</li>
+                        <li>Tech Hub, CA 94103</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Future Tech Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
