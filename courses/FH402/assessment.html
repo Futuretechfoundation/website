@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications - Assessment</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #27ae60;
+            --accent-color: #e74c3c;
+            --light-bg: #f5f7fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+        
+        .question-container {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+        
+        .question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .options {
+            margin-left: 1.5rem;
+        }
+        
+        .option {
+            margin-bottom: 0.8rem;
+        }
+        
+        .option label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .file-upload {
+            margin-top: 1rem;
+        }
+        
+        .file-upload label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            background-color: #219653;
+        }
+        
+        .submit-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .matching-question {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .matching-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .diagram-question img {
+            max-width: 100%;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            margin: 20px 0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--secondary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .feedback {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .feedback.correct {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: #27ae60;
+        }
+        
+        .feedback.incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer" id="timer">Time remaining: 60:00</div>
+    
+    <header>
+        <h1>FH402: Biotech: Next-Level Applications</h1>
+        <div class="subtitle">Final Assessment | FutureTech Academy</div>
+    </header>
+    
+    <div class="container">
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <p>This assessment consists of multiple choice, short answer, and analytical questions designed to test your understanding of advanced biotechnology applications. You have 60 minutes to complete this assessment.</p>
+            <p><strong>Grading:</strong> Multiple choice questions are worth 5 points each. Short answer questions are worth 10 points each. The case study is worth 20 points.</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <form id="assessment-form">
+            <!-- Multiple Choice Questions -->
+            <div class="question-container">
+                <div class="question">1. Which of the following CRISPR systems has been engineered for increased specificity in gene editing?</div>
+                <div class="options">
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q1" value="a">
+                            <div>CRISPR-Cas9</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q1" value="b">
+                            <div>CRISPR-Cas12a (Cpf1)</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q1" value="c">
+                            <div>CRISPR-Cas13</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q1" value="d">
+                            <div>All of the above</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q1"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">2. Which synthetic biology approach involves redesigning entire genomes?</div>
+                <div class="options">
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q2" value="a">
+                            <div>Metabolic engineering</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q2" value="b">
+                            <div>Genome minimization</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q2" value="c">
+                            <div>Xenobiology</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q2" value="d">
+                            <div>Orthogonal biosynthesis</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q2"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">3. What is the main advantage of cell-free protein synthesis over traditional cell-based methods?</div>
+                <div class="options">
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q3" value="a">
+                            <div>Higher protein yield</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q3" value="b">
+                            <div>No need for genetic manipulation</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q3" value="c">
+                            <div>Direct control over reaction environment and elimination of cell viability constraints</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q3" value="d">
+                            <div>Lower production costs</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q3"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">4. Which biotechnology application involves engineering microorganisms to produce compounds through fermentation processes?</div>
+                <div class="options">
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q4" value="a">
+                            <div>Bioremediation</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q4" value="b">
+                            <div>Bioprospecting</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q4" value="c">
+                            <div>Biomanufacturing</div>
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label>
+                            <input type="radio" name="q4" value="d">
+                            <div>Bioinformatics</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q4"></div>
+            </div>
+            
+            <!-- Matching Question -->
+            <div class="question-container">
+                <div class="question">5. Match each biosensor type with its appropriate application:</div>
+                <div class="matching-question">
+                    <div class="matching-column">
+                        <div class="matching-item">
+                            <span>A. Whole-cell biosensors</span>
+                            <select name="matching-a">
+                                <option value="">Select...</option>
+                                <option value="1">1. Point-of-care diagnostics</option>
+                                <option value="2">2. Environmental monitoring</option>
+                                <option value="3">3. Drug discovery</option>
+                                <option value="4">4. Continuous health monitoring</option>
+                            </select>
+                        </div>
+                        <div class="matching-item">
+                            <span>B. Electrochemical biosensors</span>
+                            <select name="matching-b">
+                                <option value="">Select...</option>
+                                <option value="1">1. Point-of-care diagnostics</option>
+                                <option value="2">2. Environmental monitoring</option>
+                                <option value="3">3. Drug discovery</option>
+                                <option value="4">4. Continuous health monitoring</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="matching-column">
+                        <div class="matching-item">
+                            <span>C. Aptamer-based biosensors</span>
+                            <select name="matching-c">
+                                <option value="">Select...</option>
+                                <option value="1">1. Point-of-care diagnostics</option>
+                                <option value="2">2. Environmental monitoring</option>
+                                <option value="3">3. Drug discovery</option>
+                                <option value="4">4. Continuous health monitoring</option>
+                            </select>
+                        </div>
+                        <div class="matching-item">
+                            <span>D. Wearable biosensors</span>
+                            <select name="matching-d">
+                                <option value="">Select...</option>
+                                <option value="1">1. Point-of-care diagnostics</option>
+                                <option value="2">2. Environmental monitoring</option>
+                                <option value="3">3. Drug discovery</option>
+                                <option value="4">4. Continuous health monitoring</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q5"></div>
+            </div>
+            
+            <!-- Diagram Labeling -->
+            <div class="question-container">
+                <div class="question">6. Identify the steps in this CRISPR-Cas9 gene editing process:</div>
+                <div class="diagram-question">
+                    <img src="/api/placeholder/600/400" alt="CRISPR-Cas9 process diagram">
+                    <div class="options">
+                        <div class="option">
+                            <label>
+                                <input type="radio" name="q6" value="a">
+                                <div>A. Cas9 protein recognizes target DNA → sgRNA guides Cas9 → DNA cleavage → DNA repair</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <label>
+                                <input type="radio" name="q6" value="b">
+                                <div>B. sgRNA guides Cas9 → Cas9 protein recognizes target DNA → DNA cleavage → DNA repair</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <label>
+                                <input type="radio" name="q6" value="c">
+                                <div>C. DNA cleavage → Cas9 protein recognizes target DNA → sgRNA guides Cas9 → DNA repair</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <label>
+                                <input type="radio" name="q6" value="d">
+                                <div>D. sgRNA binds to DNA → Cas9 protein cleaves DNA → DNA repair → Cas9 dissociates</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback-q6"></div>
+            </div>
+            
+            <!-- Short Answer Questions -->
+            <div class="question-container">
+                <div class="question">7. Explain the concept of "gene drives" and discuss one potential environmental application and one ethical concern associated with this technology. (10 points)</div>
+                <textarea name="q7" placeholder="Type your answer here..."></textarea>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">8. Compare and contrast traditional antibody production with the newer approach of using synthetic antibodies or nanobodies. Include at least three advantages and one limitation of the newer approach. (10 points)</div>
+                <textarea name="q8" placeholder="Type your answer here..."></textarea>
+            </div>
+            
+            <!-- Case Study -->
+            <div class="question-container">
+                <div class="question">9. Case Study: Engineered Microbiome Therapy (20 points)</div>
+                <p>A biotechnology startup is developing an engineered probiotic therapy to treat inflammatory bowel disease (IBD). Their approach involves genetically modifying commensal gut bacteria to sense inflammation signals and respond by producing anti-inflammatory compounds only when and where they are needed.</p>
+                <ol type="a">
+                    <li>Identify and explain two key biological circuit components this engineered microbiome therapy would require. (5 points)</li>
+                    <li>Discuss two potential advantages of this approach compared to conventional IBD therapies. (5 points)</li>
+                    <li>Outline two technical challenges that might arise in developing this therapy and propose solutions. (5 points)</li>
+                    <li>Describe one regulatory and one safety consideration specific to this type of therapeutic approach. (5 points)</li>
+                </ol>
+                <textarea name="q9" placeholder="Type your answer here..."></textarea>
+            </div>
+            
+            <!-- File Upload Question -->
+            <div class="question-container">
+                <div class="question">10. Optional: Upload your biotechnology research proposal from the course project (Bonus: up to 10 points)</div>
+                <div class="file-upload">
+                    <label for="research-proposal">Research Proposal PDF:</label>
+                    <input type="file" id="research-proposal" name="research-proposal" accept=".pdf,.doc,.docx">
+                </div>
+            </div>
+            
+            <div class="submit-container">
+                <button type="submit" id="submit-btn">Submit Assessment</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Assessment timer functionality
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            let countdown = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                display.textContent = "Time remaining: " + minutes + ":" + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(countdown);
+                    display.textContent = "Time's up!";
+                    document.getElementById("submit-btn").click();
+                }
+            }, 1000);
+        }
+        
+        // Progress tracking
+        function updateProgress() {
+            const form = document.getElementById('assessment-form');
+            const inputs = form.querySelectorAll('input[type="radio"]:checked, textarea');
+            const selects = form.querySelectorAll('select');
+            
+            let answered = 0;
+            let hasValue = 0;
+            
+            inputs.forEach(input => {
+                if (input.type === 'radio' || input.value.trim() !== '') {
+                    answered++;
+                }
+            });
+            
+            selects.forEach(select => {
+                if (select.value !== '') {
+                    hasValue++;
+                }
+            });
+            
+            // Calculate progress (9 questions + matching question treated as 1)
+            const progress = Math.min(100, Math.round((answered + (hasValue/4)) / 10 * 100));
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        // Form validation and submission
+        document.getElementById('assessment-form').addEventListener('change', updateProgress);
+        document.getElementById('assessment-form').addEventListener('input', updateProgress);
+        
+        document.getElementById('assessment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would normally send the data to a server
+            // For this demo, we'll just show an alert
+            alert('Assessment submitted successfully!');
+            
+            // In a real application, you would redirect to a confirmation page
+            // window.location.href = 'confirmation.html';
+        });
+        
+        // Initialize timer when page loads
+        window.onload = function () {
+            let sixtyMinutes = 60 * 60,
+                display = document.querySelector('#timer');
+            startTimer(sixtyMinutes, display);
+            updateProgress();
+            
+            // Initialize immediate feedback for practice questions
+            document.querySelectorAll('input[name="q1"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const feedback = document.getElementById('feedback-q1');
+                    feedback.style.display = 'block';
+                    if (this.value === 'd') {
+                        feedback.textContent = 'Correct! All these CRISPR systems have been engineered for increased specificity.';
+                        feedback.className = 'feedback correct';
+                    } else {
+                        feedback.textContent = 'Incorrect. All of these CRISPR systems have been engineered for increased specificity.';
+                        feedback.className = 'feedback incorrect';
+                    }
+                });
+            });
+        };
+    </script>
+</body>
+  </html>
