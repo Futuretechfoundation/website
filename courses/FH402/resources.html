@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications - Resources</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #16a085;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+        }
+        
+        nav ul li a:hover {
+            border-bottom: 2px solid white;
+        }
+        
+        main {
+            padding: 30px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 15px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .resource-card {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .resource-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .tag.required {
+            background-color: #e74c3c;
+        }
+        
+        .tag.recommended {
+            background-color: var(--accent-color);
+        }
+        
+        .tag.advanced {
+            background-color: #9b59b6;
+        }
+        
+        .labs-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .lab-card {
+            flex: 1 1 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .lab-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+            left: 20px;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 30px;
+            }
+            
+            .timeline-item::before {
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FH402: Biotech: Next-Level Applications</h1>
+            <p>Resources and Materials for Future Tech Academy Students</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#textbooks">Textbooks</a></li>
+                <li><a href="#journals">Journals & Papers</a></li>
+                <li><a href="#labs">Lab Resources</a></li>
+                <li><a href="#software">Software Tools</a></li>
+                <li><a href="#course-schedule">Course Schedule</a></li>
+                <li><a href="#additional">Additional Resources</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section id="textbooks">
+                <h2>Textbooks & Reference Materials</h2>
+                
+                <div class="resource-card">
+                    <h3>Advanced Biotechnology: Principles and Applications (5th Edition)</h3>
+                    <p><strong>Author:</strong> Dr. Mariana Chen & Dr. Robert Keller</p>
+                    <p><strong>Publisher:</strong> Oxford Scientific Press, 2024</p>
+                    <p>This comprehensive textbook covers the latest advances in biotechnology applications, with special focus on CRISPR-Cas9 systems, synthetic biology, and biopharmaceutical production platforms.</p>
+                    <div>
+                        <span class="tag required">Required</span>
+                        <span class="tag">Primary Textbook</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Synthetic Biology: Engineering Life for Sustainable Solutions</h3>
+                    <p><strong>Author:</strong> Dr. Jason Miller</p>
+                    <p><strong>Publisher:</strong> Cambridge University Press, 2023</p>
+                    <p>This book explores how synthetic biology principles are being applied to address global challenges in health, environment, and industry.</p>
+                    <div>
+                        <span class="tag recommended">Recommended</span>
+                        <span class="tag">Supplementary</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Bioethics in the Age of Genetic Engineering</h3>
+                    <p><strong>Author:</strong> Dr. Sarah Johnson & Dr. Michael Patel</p>
+                    <p><strong>Publisher:</strong> MIT Press, 2024</p>
+                    <p>Explores the ethical implications of modern biotechnology applications, including gene editing, xenotransplantation, and genetic enhancement.</p>
+                    <div>
+                        <span class="tag recommended">Recommended</span>
+                        <span class="tag">Ethics</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="journals">
+                <h2>Journals & Scientific Papers</h2>
+                
+                <div class="resource-card">
+                    <h3>Nature Biotechnology</h3>
+                    <p>A premier journal publishing research in biotechnology with high impact factor and coverage of cutting-edge developments in the field.</p>
+                    <p><strong>Access:</strong> Available through university library subscription</p>
+                    <div>
+                        <span class="tag">Journal</span>
+                        <span class="tag recommended">Recommended</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Cell Systems</h3>
+                    <p>A journal focused on systems biology and quantitative approaches to understanding biological processes.</p>
+                    <p><strong>Access:</strong> Available through university library subscription</p>
+                    <div>
+                        <span class="tag">Journal</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Recent Course-Relevant Papers</h3>
+                    <ul>
+                        <li>Wang et al. (2024) "Next-Generation Base Editors for Precise Genetic Modification in Human Cells" - <em>Nature Methods</em></li>
+                        <li>Kim et al. (2023) "Engineered Microbiomes for Sustainable Bioremediation of Heavy Metals" - <em>Science Advances</em></li>
+                        <li>Garcia & Smith (2024) "CRISPR-Based Diagnostic Tools for Infectious Disease Detection" - <em>Nature Biotechnology</em></li>
+                        <li>Patel et al. (2023) "Synthetic Biology Approaches for Biofuel Production: Advances and Challenges" - <em>Metabolic Engineering</em></li>
+                    </ul>
+                    <div>
+                        <span class="tag required">Required Reading</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="labs">
+                <h2>Laboratory Resources</h2>
+                
+                <p>The following resources will be essential for your laboratory sessions during this course. Please familiarize yourself with these materials before attending lab sessions.</p>
+                
+                <h3>Lab Safety Guidelines</h3>
+                <p>All students must review the Biosafety Level 2 (BSL-2) lab safety protocols prior to the first lab session. Download the complete lab safety manual from the course LMS.</p>
+                
+                <h3>Lab Techniques Documentation</h3>
+                <p>Comprehensive guides for all techniques used in this course are available in the Lab Resources section of the course LMS.</p>
+                
+                <div class="labs-section">
+                    <div class="lab-card">
+                        <h4>Lab 1: CRISPR-Cas9 Gene Editing</h4>
+                        <p><strong>Equipment:</strong> PCR thermocyclers, gel electrophoresis apparatus, microcentrifuges</p>
+                        <p><strong>Materials:</strong> gRNA design templates, Cas9 protein, competent cells</p>
+                        <p><strong>Pre-lab:</strong> Complete online CRISPR tutorial and quiz</p>
+                    </div>
+                    
+                    <div class="lab-card">
+                        <h4>Lab 2: Bioproduction Systems</h4>
+                        <p><strong>Equipment:</strong> Bioreactors, spectrophotometers, HPLC system</p>
+                        <p><strong>Materials:</strong> Yeast strains, culture media, enzyme assay kits</p>
+                        <p><strong>Pre-lab:</strong> Review bioreactor operations manual</p>
+                    </div>
+                    
+                    <div class="lab-card">
+                        <h4>Lab 3: Biosensors Development</h4>
+                        <p><strong>Equipment:</strong> Arduino kits, microplate readers, fluorescence microscopes</p>
+                        <p><strong>Materials:</strong> Biosensor components, reporter systems, sample analytes</p>
+                        <p><strong>Pre-lab:</strong> Complete Arduino programming basics tutorial</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="software">
+                <h2>Software Tools & Digital Resources</h2>
+                
+                <div class="resource-card">
+                    <h3>Benchling</h3>
+                    <p>Cloud-based platform for DNA design, CRISPR guide RNA design, and molecular biology annotations.</p>
+                    <p><strong>Access:</strong> Free academic accounts available with university email</p>
+                    <div>
+                        <span class="tag required">Required</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>SnapGene</h3>
+                    <p>Software for plasmid mapping, primer design, and virtual cloning.</p>
+                    <p><strong>Access:</strong> Available in computer labs and through university software portal</p>
+                    <div>
+                        <span class="tag recommended">Recommended</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>BioBricks Repository</h3>
+                    <p>Database of standardized genetic parts for synthetic biology applications.</p>
+                    <p><strong>Access:</strong> Open-access online resource</p>
+                    <div>
+                        <span class="tag">Database</span>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>KEGG Pathway Database</h3>
+                    <p>Collection of metabolic pathway maps for understanding biological systems.</p>
+                    <p><strong>Access:</strong> Open-access online resource</p>
+                    <div>
+                        <span class="tag">Database</span>
+                    </div>
+                </div>
+                
+                <h3>Programming Languages & Tools</h3>
+                <ul>
+                    <li><strong>Python with Biopython:</strong> For biological sequence analysis and computational tasks</li>
+                    <li><strong>R with Bioconductor:</strong> For statistical analysis of biological data</li>
+                    <li><strong>MATLAB:</strong> For modeling biological systems and analyzing experimental data</li>
+                </ul>
+            </section>
+            
+            <section id="course-schedule">
+                <h2>Course Schedule & Important Dates</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 1-2: Foundations of Modern Biotechnology</h4>
+                            <p>Introduction to advanced biotech applications, CRISPR systems, and synthetic biology principles.</p>
+                            <p><strong>Assessment:</strong> Concept map assignment due end of Week 2</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 3-4: Gene Editing Technologies</h4>
+                            <p>CRISPR-Cas systems, base editors, prime editors, and applications in medicine and agriculture.</p>
+                            <p><strong>Lab:</strong> CRISPR-Cas9 Gene Editing practical session</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 5-6: Synthetic Biology Applications</h4>
+                            <p>Engineering biological systems, metabolic pathway design, and bioproduction platforms.</p>
+                            <p><strong>Lab:</strong> Bioproduction Systems practical session</p>
+                            <p><strong>Assessment:</strong> Midterm exam in Week 6</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 7-8: Biosensors and Bioelectronics</h4>
+                            <p>Principles of biosensor design, cell-free systems, and applications in diagnostics and environmental monitoring.</p>
+                            <p><strong>Lab:</strong> Biosensors Development practical session</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 9-10: Ethical and Regulatory Frameworks</h4>
+                            <p>Bioethics, biosafety considerations, global regulations, and responsible innovation.</p>
+                            <p><strong>Assessment:</strong> Ethics case study analysis due end of Week 10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Week 11-12: Future Horizons in Biotechnology</h4>
+                            <p>Emerging technologies, interdisciplinary applications, and career pathways.</p>
+                            <p><strong>Assessment:</strong> Final project presentations in Week 12</p>
+                            <p><strong>Final Exam:</strong> Comprehensive assessment in examination period</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="additional">
+                <h2>Additional Resources</h2>
+                
+                <h3>Online Learning Resources</h3>
+                <ul>
+                    <li><strong>EdX Synthetic Biology Course:</strong> Self-paced online course offering additional background on synthetic biology principles</li>
+                    <li><strong>iBiology Talks:</strong> Video lectures from leading biotechnology researchers</li>
+                    <li><strong>Biotech Connection:</strong> Industry news and career development resources</li>
+                </ul>
+                
+                <h3>Scientific Societies & Organizations</h3>
+                <ul>
+                    <li><strong>International Society for Synthetic Biology (ISSB):</strong> Professional organization with student memberships available</li>
+                    <li><strong>Biotech Innovation Organization (BIO):</strong> Industry association with educational resources</li>
+                    <li><strong>iGEM Foundation:</strong> International synthetic biology competition and community</li>
+                </ul>
+                
+                <h3>Career Development Resources</h3>
+                <div class="resource-card">
+                    <h3>Biotechnology Career Pathways Guide</h3>
+                    <p>Comprehensive guide to career options in the biotechnology sector, including industry profiles, job descriptions, and skill requirements.</p>
+                    <p>Available in the Career Resources section of the university portal.</p>
+                </div>
+                
+                <h3>Office Hours & Support</h3>
+                <ul>
+                    <li><strong>Professor Office Hours:</strong> Tuesdays 2-4pm and Thursdays 10am-12pm in Room SB-425</li>
+                    <li><strong>Teaching Assistant Hours:</strong> Mondays and Wednesdays 1-3pm in the Biotech Learning Commons</li>
+                    <li><strong>Lab Support:</strong> Technical staff available during scheduled lab sessions and by appointment</li>
+                </ul>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Future Tech Academy | FH402: Biotech: Next-Level Applications</p>
+            <p>Last Updated: April 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
