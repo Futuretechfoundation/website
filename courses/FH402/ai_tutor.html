@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH402: Biotech: Next-Level Applications - AdaptiveAva AI Tutor</title>
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --secondary: #00d2ff;
+            --accent: #7b2cbf;
+            --bg-light: #f5f7fa;
+            --bg-dark: #2c3e50;
+            --text-dark: #333;
+            --text-light: #f5f7fa;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(120deg, var(--bg-light), #e0e8ff);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--text-light);
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+        
+        .sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .module-list {
+            list-style: none;
+        }
+        
+        .module-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .module-list li a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 0.8rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .module-list li a:hover {
+            background: var(--bg-light);
+            transform: translateX(5px);
+        }
+        
+        .module-list li a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .module-icon {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: rgba(58, 123, 213, 0.1);
+            color: var(--primary);
+        }
+        
+        .progress-container {
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 45%;
+            border-radius: 4px;
+        }
+        
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .welcome-banner {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .welcome-banner h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .tutor-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        
+        .tutor-header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .tutor-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .tutor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tutor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tutor-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .tutor-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .tutor-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 68px);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            display: flex;
+            gap: 0.8rem;
+            max-width: 80%;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .message.tutor .message-avatar {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .message.user .message-avatar {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .message-content {
+            background: #f0f2f5;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .message.tutor .message-content {
+            border-top-left-radius: 4px;
+        }
+        
+        .message.user .message-content {
+            background: var(--primary);
+            color: white;
+            border-top-right-radius: 4px;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 0.3rem;
+            text-align: right;
+        }
+        
+        .message.user .message-time {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .chat-input {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .chat-input textarea {
+            flex: 1;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            resize: none;
+            height: 50px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border 0.2s ease;
+        }
+        
+        .chat-input textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .chat-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 1.2rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .chat-input button:hover {
+            background: #2d62b3;
+        }
+        
+        .learning-resources {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .learning-resources h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        
+        .resource-card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(58, 123, 213, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .resource-card h3 {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .resource-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+        
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            main {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+        }
+        
+        /* Typing indicator animation */
+        @keyframes typing {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 0.5rem 0;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #888;
+            border-radius: 50%;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation: typing 1s infinite 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation: typing 1s infinite 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation: typing 1s infinite 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="/api/placeholder/50/50" alt="FutureTech Academy Logo">
+                <h1>FutureTech Academy</h1>
+            </div>
+            <div>
+                <button style="background: rgba(255,255,255,0.2); border:none; color:white; padding: 8px 12px; border-radius: 4px; cursor:pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                    My Account
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="active">FH402 Course</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Grades</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <h2>Course Modules</h2>
+            <ul class="module-list">
+                <li>
+                    <a href="#" class="active">
+                        <div class="module-icon">1</div>
+                        Introduction to Advanced Biotech
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">2</div>
+                        CRISPR Applications
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">3</div>
+                        Synthetic Biology
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">4</div>
+                        Bioinformatics & Big Data
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">5</div>
+                        Bioprinting & Tissue Engineering
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">6</div>
+                        Nanobiotechnology
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">7</div>
+                        Biomedical Applications
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="module-icon">8</div>
+                        Ethics & Future Implications
+                    </a>
+                </li>
+            </ul>
+
+            <div class="progress-container">
+                <h2>Your Progress</h2>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">45% Complete</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #666;">Next deadline: Lab Report (May 5)</p>
+            </div>
+        </aside>
+
+        <div class="content">
+            <section class="welcome-banner">
+                <h2>Welcome to FH402: Biotech: Next-Level Applications</h2>
+                <p>This course explores cutting-edge biotechnology applications that are reshaping medicine, agriculture, and industry. You'll gain hands-on experience with the latest tools and techniques while exploring the ethical dimensions of these transformative technologies.</p>
+                <p style="margin-top: 1rem; font-weight: 500;">Your AI tutor AdaptiveAva is here to help you master these concepts through personalized guidance.</p>
+            </section>
+
+            <section class="tutor-section">
+                <div class="tutor-header">
+                    <h2>
+                        <div class="tutor-avatar">
+                            <img src="/api/placeholder/40/40" alt="AdaptiveAva Avatar">
+                        </div>
+                        AdaptiveAva AI Tutor
+                    </h2>
+                    <div class="tutor-controls">
+                        <button title="Settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                            </svg>
+                        </button>
+                        <button title="Help">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message tutor">
+                            <div class="message-avatar">A</div>
+                            <div class="message-content">
+                                <p>Hi there! I'm AdaptiveAva, your AI tutor for FH402: Biotech: Next-Level Applications. I'm here to help you understand complex concepts, provide feedback on your assignments, and adapt to your learning style. What would you like to explore today?</p>
+                                <div class="message-time">10:30 AM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message user">
+                            <div class="message-avatar">S</div>
+                            <div class="message-content">
+                                <p>Hi Ava! I'm struggling to understand the difference between CRISPR-Cas9 and the newer CRISPR-Cas12 and Cas13 systems. Can you explain?</p>
+                                <div class="message-time">10:32 AM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message tutor">
+                            <div class="message-avatar">A</div>
+                            <div class="message-content">
+                                <p>Great question! Let me break down the key differences between these CRISPR systems:</p>
+                                <p><strong>CRISPR-Cas9:</strong></p>
+                                <ul style="padding-left: 20px; margin: 5px 0;">
+                                    <li>Targets DNA specifically</li>
+                                    <li>Creates double-strand breaks</li>
+                                    <li>Requires NGG PAM sequence</li>
+                                    <li>The original and most widely used system</li>
+                                </ul>
+                                <p><strong>CRISPR-Cas12:</strong></p>
+                                <ul style="padding-left: 20px; margin: 5px 0;">
+                                    <li>Also targets DNA but with different PAM requirements (often TTTV)</li>
+                                    <li>Creates staggered cuts rather than blunt cuts</li>
+                                    <li>Has collateral activity - once activated, can cleave nearby single-stranded DNA</li>
+                                    <li>Often smaller protein size, helpful for delivery</li>
+                                </ul>
+                                <p><strong>CRISPR-Cas13:</strong></p>
+                                <ul style="padding-left: 20px; margin: 5px 0;">
+                                    <li>Targets RNA instead of DNA</li>
+                                    <li>No PAM requirement (instead has PFS - Protospacer Flanking Site)</li>
+                                    <li>Exhibits robust collateral RNA cleavage</li>
+                                    <li>Useful for RNA editing and diagnostics</li>
+                                </ul>
+                                <p>Would you like to know more about applications where one system might be preferred over another?</p>
+                                <div class="message-time">10:35 AM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input">
+                        <textarea id="message-input" placeholder="Type your question here..."></textarea>
+                        <button id="send-button">
+                            Send
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="learning-resources">
+                <h2>Recommended Resources</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5
