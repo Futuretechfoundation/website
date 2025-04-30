@@ -6,6 +6,13 @@
   <title>Future Technologies VR Course</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.5.0/aframe.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Add physics system -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe-physics-system/4.0.1/aframe-physics-system.min.js"></script>
+  <!-- Add environment component -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe-environment-component/1.3.1/aframe-environment-component.min.js"></script>
+  <!-- Add super hands for grabbing -->
+  <script src="https://cdn.jsdelivr.net/gh/wmurphyrd/aframe-super-hands-component@v3.0.0/dist/super-hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-extras@master/dist/aframe-physics-extras.min.js"></script>
   <style>
     body { 
       margin: 0; 
@@ -171,6 +178,10 @@
       background: rgba(33, 150, 243, 0.9);
     }
     
+    .physics-toggle-btn {
+      background: rgba(255, 152, 0, 0.9);
+    }
+    
     .loading-screen {
       position: absolute;
       top: 0;
@@ -258,6 +269,20 @@
       100% { transform: rotate(0deg); }
     }
     
+    /* Interaction instructions */
+    .interaction-tips {
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      font-size: 12px;
+      z-index: 100;
+    }
+    
     @media (max-width: 600px) {
       .ui-overlay {
         font-size: 12px;
@@ -304,8 +329,13 @@
   <!-- UI Overlay -->
   <div class="ui-overlay" id="info-overlay">
     <h2>Future Technologies VR Course</h2>
-    <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Select a module below or tap on objects in the virtual space.</p>
-    <p>Use touch and drag to look around. On mobile, tap the modules to learn more about each technology.</p>
+    <p>Welcome to this immersive learning experience exploring emerging technologies of 2025 and beyond. Select a module below or interact with physical objects in the virtual space.</p>
+    <p>Use touch and drag to look around. You can grab and manipulate objects. Try tossing the physics objects around!</p>
+  </div>
+  
+  <!-- Interaction Tips -->
+  <div class="interaction-tips" id="interaction-tips">
+    Click/tap and hold on objects to grab them. Release to throw!
   </div>
   
   <!-- VR Controls -->
@@ -326,6 +356,17 @@
         <path d="M12 8h.01"></path>
       </svg>
     </button>
+    <button class="control-btn physics-toggle-btn" id="physics-toggle-btn" aria-label="Toggle Physics">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M14.31 8l5.74 9.94"></path>
+        <path d="M9.69 8h11.48"></path>
+        <path d="M7.38 12l5.74-9.94"></path>
+        <path d="M9.69 16L3.95 6.06"></path>
+        <path d="M14.31 16H2.83"></path>
+        <path d="M16.62 12l-5.74 9.94"></path>
+      </svg>
+    </button>
   </div>
   
   <!-- Module Buttons -->
@@ -344,318 +385,203 @@
   </div>
 
   <!-- A-Frame VR Scene -->
-  <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false" renderer="antialias: false; precision: medium; physicallyCorrectLights: false" stats="false">
+  <a-scene loading-screen="enabled: false" 
+           vr-mode-ui="enabled: false" 
+           renderer="antialias: true; physicallyCorrectLights: true; colorManagement: true;"
+           physics="driver: local; debug: false; gravity: 0 -9.8 0;">
+           
+    <!-- Component Definitions -->
     <a-assets>
-      <!-- Textures - Using smaller placeholder sizes for mobile -->
-      <img id="floor-texture" src="/api/placeholder/512/512" alt="Floor Texture">
-      <img id="sky-texture" src="/api/placeholder/1024/1024" alt="Sky Texture">
+      <!-- Textures for materials -->
+      <img id="floor-texture" src="/api/placeholder/1024/1024" alt="Floor Texture">
+      <img id="wood-texture" src="/api/placeholder/512/512" alt="Wood Texture">
+      <img id="metal-texture" src="/api/placeholder/512/512" alt="Metal Texture">
+      <img id="plastic-texture" src="/api/placeholder/512/512" alt="Plastic Texture">
+      <img id="circuit-texture" src="/api/placeholder/512/512" alt="Circuit Texture">
+      <img id="dna-texture" src="/api/placeholder/512/512" alt="DNA Texture">
+      <img id="brain-texture" src="/api/placeholder/512/512" alt="Brain Texture">
+      <img id="quantum-texture" src="/api/placeholder/512/512" alt="Quantum Texture">
+      
+      <!-- Material definitions -->
+      <a-mixin id="dynamic-object" dynamic-body="mass: 2; linearDamping: 0.2; angularDamping: 0.2"
+               hoverable grabbable stretchable draggable
+               shadow></a-mixin>
+               
+      <a-mixin id="table-leg" geometry="primitive: box; width: 0.1; height: 0.8; depth: 0.1"
+               material="color: #654321; src: #wood-texture"></a-mixin>
+                
+      <a-mixin id="button" geometry="primitive: cylinder; radius: 0.05; height: 0.02"
+               material="color: red"></a-mixin>
     </a-assets>
     
-    <!-- Environment - Simplified for mobile -->
-    <a-sky color="#0c0c2c"></a-sky>
-    <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#333" material="src: #floor-texture; repeat: 5 5"></a-plane>
+    <!-- Environment (Improved) -->
+    <a-entity environment="preset: default; 
+                         groundColor: #445566; 
+                         groundColor2: #667788; 
+                         groundTexture: squares; 
+                         grid: 1x1; 
+                         skyType: atmosphere;
+                         lighting: distant;
+                         lightPosition: 1 5 -2;
+                         shadow: true;
+                         fog: 0.4;
+                         dressing: none;"></a-entity>
     
-    <!-- Ambient Lighting - Reduced for performance -->
-    <a-light type="ambient" color="#445" intensity="0.5"></a-light>
-    <a-light type="directional" color="#aaf" position="1 1 1" intensity="0.8"></a-light>
+    <!-- Lighting -->
+    <a-light type="ambient" color="#BBB" intensity="0.5"></a-light>
+    <a-light type="directional" color="#FFF" intensity="0.8" position="1 1 1" castShadow="true" 
+             shadow="mapSize: 2048x2048; bias: -0.001; radius: 1"></a-light>
+    <a-light type="point" color="#FFF" intensity="0.4" position="0 3 0"></a-light>
     
-    <!-- Quantum Computing Module - Simplified -->
-    <a-entity position="-5 1.6 -5">
-      <a-sphere radius="1" color="#4a4acf" opacity="0.8" animation="property: opacity; to: 0.6; dir: alternate; dur: 3000; loop: true">
-        <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
-      </a-sphere>
-      <a-entity position="0 -1.8 0">
+    <!-- Central Hub - Enhanced -->
+    <a-entity position="0 0.01 0">
+      <a-cylinder height="0.1" radius="3" color="#222" shadow="cast: true" static-body></a-cylinder>
+      <a-entity position="0 0.06 0" rotation="-90 0 0">
+        <a-text value="FUTURE TECH HUB" width="8" color="#4FC3F7" align="center"></a-text>
+      </a-entity>
+      
+      <!-- Central holographic display -->
+      <a-entity position="0 1.5 0" id="hologram-display">
+        <a-sphere radius="0.5" color="#4FC3F7" opacity="0.2" material="side: double">
+          <a-animation attribute="scale" from="1 1 1" to="1.05 1.05 1.05" dir="alternate" dur="2000" repeat="indefinite" easing="ease-in-out"></a-animation>
+        </a-sphere>
+        <a-sphere radius="0.4" color="#4FC3F7" opacity="0.1" material="side: double">
+          <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
+        </a-sphere>
+        <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+          <a-torus radius="0.6" radius-tubular="0.01" color="#4FC3F7" segments-tubular="32" rotation="90 0 0"></a-torus>
+          <a-torus radius="0.6" radius-tubular="0.01" color="#4FC3F7" segments-tubular="32" rotation="0 0 90"></a-torus>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Physical Objects: Tables and displays for each technology -->
+    
+    <!-- Quantum Computing Module - Enhanced with Physical Objects -->
+    <a-entity position="-5 0 -5" class="module-area">
+      <!-- Physical display table -->
+      <a-entity class="table" position="0 0.4 0">
+        <a-box width="2" height="0.1" depth="1.5" color="#333" material="src: #wood-texture" shadow="cast: true" static-body></a-box>
+        <a-entity position="-0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="-0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        
+        <!-- Quantum computing model - interactive -->
+        <a-entity position="0 0.8 0" class="quantum-model">
+          <a-sphere radius="0.3" color="#4a4acf" opacity="0.8" material="src: #quantum-texture; metalness: 0.5; roughness: 0.2" 
+                   mixin="dynamic-object" class="interactive"
+                   animation="property: rotation; to: 0 360 0; dur: 10000; easing: linear; loop: true">
+            <!-- Orbiting particles -->
+            <a-entity class="orbiting-particles" animation="property: rotation; to: 0 360 360; dur: 12000; easing: linear; loop: true">
+              <a-sphere position="0 0 0.6" radius="0.05" color="#00ffff"></a-sphere>
+              <a-sphere position="0.6 0 0" radius="0.05" color="#00ffff"></a-sphere>
+              <a-sphere position="0 0.6 0" radius="0.05" color="#00ffff"></a-sphere>
+              <a-sphere position="-0.6 0 0" radius="0.05" color="#00ffff"></a-sphere>
+              <a-sphere position="0 -0.6 0" radius="0.05" color="#00ffff"></a-sphere>
+              <a-sphere position="0 0 -0.6" radius="0.05" color="#00ffff"></a-sphere>
+            </a-entity>
+          </a-sphere>
+          
+          <!-- Interactive quantum bits (qubits) -->
+          <a-entity position="0.5 0 0.3" class="qubit" mixin="dynamic-object">
+            <a-dodecahedron radius="0.1" color="#4a4acf" material="opacity: 0.9; metalness: 0.8; roughness: 0.2"></a-dodecahedron>
+          </a-entity>
+          
+          <a-entity position="-0.5 0 0.3" class="qubit" mixin="dynamic-object">
+            <a-dodecahedron radius="0.1" color="#00ffff" material="opacity: 0.9; metalness: 0.8; roughness: 0.2"></a-dodecahedron>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+      
+      <!-- Module Title -->
+      <a-entity position="0 0.1 0">
         <a-text value="Quantum Computing" width="4" color="white" align="center"></a-text>
       </a-entity>
     </a-entity>
     
-    <!-- Neural Interfaces Module - Simplified -->
-    <a-entity position="5 1.6 -5">
-      <a-box width="1.4" height="1.4" depth="1.4" color="#4fcf4f" opacity="0.8" animation="property: rotation; to: 360 360 0; dur: 10000; loop: true"></a-box>
-      <a-entity position="0 -1.8 0">
+    <!-- Neural Interfaces Module - Enhanced with Physical Objects -->
+    <a-entity position="5 0 -5" class="module-area">
+      <!-- Physical display table -->
+      <a-entity class="table" position="0 0.4 0">
+        <a-box width="2" height="0.1" depth="1.5" color="#333" material="src: #wood-texture" shadow="cast: true" static-body></a-box>
+        <a-entity position="-0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="-0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        
+        <!-- Neural interface model -->
+        <a-entity position="0 0.4 0" class="brain-model">
+          <!-- Brain model - physical interactive object -->
+          <a-entity position="0 0.3 0" class="brain" mixin="dynamic-object">
+            <a-sphere radius="0.3" color="#ff9966" material="src: #brain-texture; roughness: 0.8" 
+                     animation="property: material.emissive; from: #000000; to: #331100; dur: 2000; dir: alternate; loop: true"></a-sphere>
+            <a-entity position="0 0 0.35" rotation="0 0 0">
+              <a-cone height="0.15" radius-bottom="0.05" radius-top="0.01" color="#66ffff" opacity="0.8"></a-cone>
+            </a-entity>
+          </a-entity>
+          
+          <!-- Neural interface headset -->
+          <a-entity position="0.6 0.3 0" class="headset" mixin="dynamic-object">
+            <a-torus-knot radius="0.15" radius-tubular="0.02" p="2" q="3" color="#4fcf4f"></a-torus-knot>
+            <a-entity position="0 0 0" rotation="0 0 0" scale="0.8 0.8 0.8">
+              <a-torus position="0 0 0" rotation="90 0 0" radius="0.12" radius-tubular="0.01" color="#4fcf4f"></a-torus>
+              <a-sphere position="0.1 0 0" radius="0.02" color="#00ffff"></a-sphere>
+              <a-sphere position="-0.1 0 0" radius="0.02" color="#00ffff"></a-sphere>
+            </a-entity>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+      
+      <!-- Module Title -->
+      <a-entity position="0 0.1 0">
         <a-text value="Neural Interfaces" width="4" color="white" align="center"></a-text>
       </a-entity>
     </a-entity>
     
-    <!-- Advanced AI Systems Module - Simplified -->
-    <a-entity position="-5 1.6 3">
-      <a-torus-knot radius="0.8" radius-tubular="0.1" p="3" q="7" color="#cf4f4f" opacity="0.8" animation="property: rotation; to: 360 360 360; dur: 15000; loop: true"></a-torus-knot>
-      <a-entity position="0 -1.8 0">
+    <!-- Advanced AI Systems Module - Enhanced with Physical Objects -->
+    <a-entity position="-5 0 3" class="module-area">
+      <!-- Physical display table -->
+      <a-entity class="table" position="0 0.4 0">
+        <a-box width="2" height="0.1" depth="1.5" color="#333" material="src: #wood-texture" shadow="cast: true" static-body></a-box>
+        <a-entity position="-0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="-0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 0.65" mixin="table-leg" static-body></a-entity>
+        
+        <!-- AI model - physical interactive objects -->
+        <a-entity position="0 0.6 0" class="ai-model">
+          <!-- Neural network representation -->
+          <a-entity position="0 0.4 0" class="neural-net" mixin="dynamic-object">
+            <a-torus-knot radius="0.3" radius-tubular="0.03" p="3" q="7" color="#cf4f4f" material="metalness: 0.5; roughness: 0.3; src: #circuit-texture" 
+                         animation="property: rotation; to: 360 360 360; dur: 15000; easing: linear; loop: true"></a-torus-knot>
+          </a-entity>
+          
+          <!-- AI processing units - physical interactive objects -->
+          <a-entity position="-0.5 0 0" class="ai-unit" mixin="dynamic-object">
+            <a-box width="0.3" height="0.1" depth="0.3" color="#cf4f4f" 
+                  material="src: #circuit-texture; emissive: #330000; emissiveIntensity: 0.3"></a-box>
+            <a-entity position="0 0.06 0" mixin="button"></a-entity>
+          </a-entity>
+          
+          <a-entity position="0.5 0 0" class="ai-unit" mixin="dynamic-object">
+            <a-box width="0.3" height="0.1" depth="0.3" color="#4fcf4f" 
+                  material="src: #circuit-texture; emissive: #003300; emissiveIntensity: 0.3"></a-box>
+            <a-entity position="0 0.06 0" mixin="button" material="color: green"></a-entity>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+      
+      <!-- Module Title -->
+      <a-entity position="0 0.1 0">
         <a-text value="Advanced AI Systems" width="4" color="white" align="center"></a-text>
       </a-entity>
     </a-entity>
     
-    <!-- Synthetic Biology Module - Simplified -->
-    <a-entity position="5 1.6 3">
-      <a-cylinder height="1.8" radius="0.5" color="#cfcf4f" segments-height="6" segments-radial="24" open-ended="true" opacity="0.8" animation="property: rotation; to: 0 360 0; dur: 8000; loop: true">
-        <a-torus position="0 0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
-        <a-torus position="0 -0.8 0" rotation="90 0 0" radius="0.5" radius-tubular="0.05" color="#cfcf4f"></a-torus>
-      </a-cylinder>
-      <a-entity position="0 -1.8 0">
-        <a-text value="Synthetic Biology" width="4" color="white" align="center"></a-text>
-      </a-entity>
-    </a-entity>
-    
-    <!-- Central Hub - Simplified -->
-    <a-entity position="0 0.1 0">
-      <a-cylinder height="0.1" radius="3" color="#222" opacity="0.7"></a-cylinder>
-      <a-text value="FUTURE TECH HUB" position="0 0.1 0" rotation="-90 0 0" width="8" color="#4FC3F7" align="center"></a-text>
-    </a-entity>
-    
-    <!-- Camera and Controls - Optimized for mobile -->
-    <a-entity position="0 1.6 7">
-      <a-camera look-controls="touchEnabled: true; reverseMouseDrag: false" wasd-controls="enabled: false">
-        <a-cursor color="#4FC3F7" raycaster="objects: .interactive" fuse="true" fuse-timeout="1000">
-          <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1" to="0.5 0.5 0.5" dur="1000"></a-animation>
-          <a-animation begin="click" easing="ease-in" attribute="scale" from="0.5 0.5 0.5" to="1 1 1" dur="300"></a-animation>
-        </a-cursor>
-      </a-camera>
-    </a-entity>
-  </a-scene>
-
-  <!-- JavaScript for interactivity -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Elements
-      const loadingScreen = document.getElementById('loading-screen');
-      const loadingProgress = document.getElementById('loading-progress');
-      const moduleButtons = document.querySelectorAll('.module-btn');
-      const moduleContent = document.getElementById('module-content');
-      const moduleTitle = document.getElementById('module-title');
-      const moduleDescription = document.getElementById('module-description');
-      const closeModuleBtn = document.getElementById('close-module');
-      const enterVRBtn = document.getElementById('enter-vr-btn');
-      const infoOverlay = document.getElementById('info-overlay');
-      const infoToggleBtn = document.getElementById('info-toggle-btn');
-      const orientationWarning = document.getElementById('orientation-warning');
-      
-      // Check if we're on a mobile device
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      // Check orientation on mobile
-      function checkOrientation() {
-        if (isMobile && window.innerHeight > window.innerWidth) {
-          orientationWarning.style.display = 'flex';
-        } else {
-          orientationWarning.style.display = 'none';
-        }
-      }
-      
-      // Initial check
-      checkOrientation();
-      
-      // Listen for orientation changes
-      window.addEventListener('resize', checkOrientation);
-      window.addEventListener('orientationchange', checkOrientation);
-      
-      // Toggle info overlay
-      infoToggleBtn.addEventListener('click', () => {
-        if (infoOverlay.style.display === 'none') {
-          infoOverlay.style.display = 'block';
-        } else {
-          infoOverlay.style.display = 'none';
-        }
-      });
-      
-      // Module content
-      const modules = {
-        quantum: {
-          title: 'Quantum Computing',
-          description: `
-            <p>Explore the fundamentals of quantum computing and its applications in 2025 and beyond. This module covers:</p>
-            <ul>
-              <li>Quantum bits (qubits) and quantum gates</li>
-              <li>Quantum entanglement and superposition principles</li>
-              <li>Quantum algorithms and their real-world applications</li>
-              <li>Recent breakthroughs in quantum error correction</li>
-              <li>Hands-on exercises with quantum circuit simulators</li>
-            </ul>
-            <p>Through interactive simulations, you'll learn how quantum computers are revolutionizing fields like cryptography, materials science, and artificial intelligence.</p>
-          `
-        },
-        neurotech: {
-          title: 'Neural Interfaces',
-          description: `
-            <p>Dive into the cutting-edge world of brain-computer interfaces and neural technology. This module covers:</p>
-            <ul>
-              <li>Non-invasive and invasive neural recording technologies</li>
-              <li>Neural decoding algorithms and thought-to-text applications</li>
-              <li>Sensory feedback mechanisms and neural implants</li>
-              <li>Ethical considerations and regulatory frameworks</li>
-              <li>Virtual simulations of neural interface technologies</li>
-            </ul>
-            <p>Experience simulated neural interfaces and explore how these technologies are transforming healthcare, communication, and human-computer interaction.</p>
-          `
-        },
-        ai: {
-          title: 'Advanced AI Systems',
-          description: `
-            <p>Understand the most sophisticated AI architectures and their impact on society. This module covers:</p>
-            <ul>
-              <li>Multimodal foundation models and their capabilities</li>
-              <li>Autonomous AI agents and emergent behaviors</li>
-              <li>AI alignment techniques and safety mechanisms</li>
-              <li>Neuromorphic computing and brain-inspired architectures</li>
-              <li>Practical applications across industries</li>
-            </ul>
-            <p>Through interactive demonstrations, you'll explore how advanced AI systems are reshaping creative processes, scientific discovery, and decision-making across every sector.</p>
-          `
-        },
-        biotech: {
-          title: 'Synthetic Biology',
-          description: `
-            <p>Explore the frontier of engineered biological systems and their applications. This module covers:</p>
-            <ul>
-              <li>CRISPR-Cas9 and next-generation gene editing tools</li>
-              <li>Synthetic genomics and minimal cell design</li>
-              <li>Engineered protein design and biological computation</li>
-              <li>Biofabrication techniques and living materials</li>
-              <li>Biosafety protocols and ethical frameworks</li>
-            </ul>
-            <p>Through virtual laboratory simulations, you'll learn how synthetic biology is addressing challenges in medicine, agriculture, materials science, and environmental sustainability.</p>
-          `
-        }
-      };
-      
-      // Faster loading for mobile
-      let loadingSpeed = isMobile ? 15 : 10;
-      let progress = 0;
-      const loadingInterval = setInterval(() => {
-        progress += Math.random() * loadingSpeed;
-        if (progress >= 100) {
-          progress = 100;
-          clearInterval(loadingInterval);
-          
-          // Fade out loading screen
-          setTimeout(() => {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-              loadingScreen.style.display = 'none';
-            }, 1000);
-          }, 500);
-        }
-        loadingProgress.style.width = progress + '%';
-      }, 200);
-      
-      // Module button click handlers
-      moduleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const moduleId = button.getAttribute('data-module');
-          moduleTitle.textContent = modules[moduleId].title;
-          moduleDescription.innerHTML = modules[moduleId].description;
-          moduleContent.classList.remove('hidden');
-        });
-      });
-      
-      // Add touch events for mobile
-      if (isMobile) {
-        moduleButtons.forEach(button => {
-          button.addEventListener('touchstart', () => {
-            button.style.transform = 'scale(0.95)';
-          });
-          button.addEventListener('touchend', () => {
-            button.style.transform = 'scale(1)';
-          });
-        });
-      }
-      
-      // Close module content
-      closeModuleBtn.addEventListener('click', () => {
-        moduleContent.classList.add('hidden');
-      });
-      
-      // Enter VR mode
-      enterVRBtn.addEventListener('click', () => {
-        const scene = document.querySelector('a-scene');
-        if (scene.hasAttribute('vr-mode')) {
-          scene.exitVR();
-        } else {
-          scene.enterVR();
-        }
-      });
-      
-      // Make A-Frame entities interactive
-      const interactiveEntities = ['a-sphere', 'a-box', 'a-torus-knot', 'a-cylinder'].map(selector => 
-        Array.from(document.querySelectorAll(selector))
-      ).flat().filter(entity => {
-        // Filter out entities that are not main module representations
-        return entity.parentNode && 
-               entity.parentNode.childNodes.length > 1 && 
-               Array.from(entity.parentNode.childNodes).some(node => 
-                 node.nodeName === 'A-ENTITY' && 
-                 node.querySelector && 
-                 node.querySelector('a-text')
-               );
-      });
-      
-      interactiveEntities.forEach(entity => {
-        entity.setAttribute('class', 'interactive');
-        
-        // For mobile, add animation on hover to indicate interactivity
-        entity.addEventListener('mouseenter', function() {
-          gsap.to(this.object3D.scale, {x: 1.1, y: 1.1, z: 1.1, duration: 0.3});
-        });
-        
-        entity.addEventListener('mouseleave', function() {
-          gsap.to(this.object3D.scale, {x: 1, y: 1, z: 1, duration: 0.3});
-        });
-        
-        entity.addEventListener('click', function() {
-          // Find nearest module text
-          const parentEntity = this.parentNode;
-          const textEntity = parentEntity.querySelector('a-entity a-text');
-          
-          if (textEntity) {
-            const moduleText = textEntity.getAttribute('value').toLowerCase();
-            
-            // Find matching module
-            let matchedModule = null;
-            Object.keys(modules).forEach(key => {
-              if (moduleText.includes(key) || modules[key].title.toLowerCase().includes(moduleText)) {
-                matchedModule = key;
-              }
-            });
-            
-            if (matchedModule) {
-              moduleTitle.textContent = modules[matchedModule].title;
-              moduleDescription.innerHTML = modules[matchedModule].description;
-              moduleContent.classList.remove('hidden');
-            }
-          }
-        });
-      });
-      
-      // Add component for better mobile touch controls
-      AFRAME.registerComponent('touch-look-controls', {
-        init: function () {
-          this.el.setAttribute('look-controls', {
-            touchEnabled: true,
-            magicWindowTrackingEnabled: true
-          });
-        }
-      });
-      
-      // Disable page scrolling when interacting with A-Frame scene
-      const scene = document.querySelector('a-scene');
-      scene.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-      });
-      
-      // Detect VR capability
-      if (!navigator.xr && !navigator.getVRDisplays) {
-        enterVRBtn.style.display = 'none';
-      }
-      
-      // Performance optimization - reduce scene complexity if on a mobile device
-      if (isMobile) {
-        // Remove some of the decorative elements to improve performance
-        document.querySelectorAll('.particles, .neuron-network, .ai-network, .dna-helix').forEach(el => {
-          if (el && el.parentNode) {
-            el.parentNode.removeChild(el);
-          }
-        });
-      }
-    });
-  </script>
-</body>
-        </html>
+    <!-- Synthetic Biology Module - Enhanced with Physical Objects -->
+    <a-entity position="5 0 3" class="module-area">
+      <!-- Physical display table -->
+      <a-entity class="table" position="0 0.4 0">
+        <a-box width="2" height="0.1" depth="1.5" color="#333" material="src: #wood-texture" shadow="cast: true" static-body></a-box>
+        <a-entity position="-0.9 -0.45 -0.65" mixin="table-leg" static-body></a-entity>
+        <a-entity position="0.9 -0.45 -
