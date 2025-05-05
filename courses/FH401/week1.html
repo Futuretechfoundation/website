@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH401: Week 1 - Introduction to 3D Bioprinting</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f5f7f9;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            margin-bottom: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+        }
+        
+        .learning-objectives {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .learning-objectives ul {
+            padding-left: 1.5rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .tech-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            background-color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #ddd;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #ddd;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #ddd;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #ddd transparent transparent;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .assignments {
+            background-color: #fff8dc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .bioprinting-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .principle-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .principle-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-top: 5px solid var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FH401: Advanced 3D Bioprinting</h1>
+        <p class="subtitle">Week 1: Introduction to 3D Bioprinting</p>
+        <p>Future Tech Academy</p>
+    </header>
+    
+    <main>
+        <section class="learning-objectives">
+            <h2>Learning Objectives</h2>
+            <ul>
+                <li>Understand the fundamental principles of 3D bioprinting technology</li>
+                <li>Identify the key components of a bioprinting system</li>
+                <li>Compare different bioprinting techniques and their applications</li>
+                <li>Evaluate the current challenges and future potential of bioprinting in medicine</li>
+                <li>Analyze case studies of successful bioprinting implementations</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>What is 3D Bioprinting?</h2>
+            <p>3D bioprinting is an additive manufacturing process where biological materials, biochemicals, and living cells are combined to create tissue-like structures that imitate natural tissues. Unlike conventional 3D printing, bioprinting aims to create constructs that are biocompatible and can eventually serve functions similar to native tissue.</p>
+            
+            <div class="bioprinting-diagram">
+                <svg viewBox="0 0 800 400">
+                    <!-- Bioprinter System Diagram -->
+                    <rect x="50" y="50" width="700" height="300" rx="10" fill="#f5f7f9" stroke="#2c3e50" stroke-width="2"/>
+                    
+                    <!-- Bioprinter Components -->
+                    <rect x="100" y="100" width="200" height="100" rx="5" fill="#3498db" opacity="0.7"/>
+                    <text x="200" y="150" font-size="16" text-anchor="middle" fill="#fff">Bioink Reservoir</text>
+                    
+                    <rect x="350" y="100" width="200" height="100" rx="5" fill="#2ecc71" opacity="0.7"/>
+                    <text x="450" y="150" font-size="16" text-anchor="middle" fill="#fff">Print Head</text>
+                    
+                    <rect x="400" y="230" width="100" height="80" rx="5" fill="#e74c3c" opacity="0.7"/>
+                    <text x="450" y="270" font-size="14" text-anchor="middle" fill="#fff">Print Bed</text>
+                    
+                    <!-- Flow Arrows -->
+                    <path d="M300 150 L350 150" stroke="#2c3e50" stroke-width="3" fill="none"/>
+                    <polygon points="350,150 340,145 340,155" fill="#2c3e50"/>
+                    
+                    <path d="M450 200 L450 230" stroke="#2c3e50" stroke-width="3" fill="none"/>
+                    <polygon points="450,230 445,220 455,220" fill="#2c3e50"/>
+                    
+                    <!-- Labels -->
+                    <text x="400" y="70" font-size="18" text-anchor="middle" font-weight="bold" fill="#2c3e50">Basic Bioprinting System</text>
+                    
+                    <text x="100" y="220" font-size="12" fill="#2c3e50">1. Bioink preparation</text>
+                    <text x="350" y="220" font-size="12" fill="#2c3e50">2. Controlled deposition</text>
+                    <text x="530" y="270" font-size="12" fill="#2c3e50">3. Layer-by-layer construction</text>
+                    
+                    <text x="400" y="350" font-size="14" text-anchor="middle" font-style="italic" fill="#2c3e50">From digital design to biological construct</text>
+                </svg>
+            </div>
+            
+            <p>Bioprinting combines principles from engineering, biology, chemistry, and materials science to fabricate constructs with precise spatial control of living and non-living components. This technology has tremendous potential to revolutionize regenerative medicine, drug testing, and personalized healthcare.</p>
+        </section>
+        
+        <section>
+            <h2>Core Principles of Bioprinting</h2>
+            
+            <div class="principle-cards">
+                <div class="principle-card">
+                    <h3>Bioinks</h3>
+                    <p>Bioinks are the fundamental building blocks of bioprinting, consisting of cells suspended in printable biomaterials. These materials need to balance biological compatibility, mechanical properties, and printability. Common bioinks include:</p>
+                    <ul>
+                        <li>Alginate</li>
+                        <li>Gelatin methacrylate (GelMA)</li>
+                        <li>Collagen</li>
+                        <li>Fibrin</li>
+                        <li>Decellularized extracellular matrix (dECM)</li>
+                    </ul>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>Cell Viability</h3>
+                    <p>Maintaining cell viability throughout the printing process is crucial. Factors affecting cell survival include:</p>
+                    <ul>
+                        <li>Shear stress during extrusion</li>
+                        <li>Temperature fluctuations</li>
+                        <li>Crosslinking mechanisms</li>
+                        <li>Osmotic pressure</li>
+                        <li>Oxygen and nutrient diffusion</li>
+                    </ul>
+                </div>
+                
+                <div class="principle-card">
+                    <h3>Structural Integrity</h3>
+                    <p>Bioprinted constructs must maintain their shape while supporting cell growth. This requires careful consideration of:</p>
+                    <ul>
+                        <li>Mechanical strength</li>
+                        <li>Degradation rate</li>
+                        <li>Crosslinking strategies</li>
+                        <li>Support structures</li>
+                        <li>Post-printing maturation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Major Bioprinting Technologies</h2>
+            
+            <div class="content-grid">
+                <div class="tech-card">
+                    <h3>Extrusion-Based Bioprinting</h3>
+                    <p>This method uses mechanical or pneumatic dispenser systems to extrude continuous filaments of bioink. It's the most common approach due to its versatility and compatibility with high-viscosity bioinks.</p>
+                    <p><strong>Advantages:</strong> Versatile, cost-effective, wide range of materials</p>
+                    <p><strong>Limitations:</strong> Lower resolution, higher shear stress on cells</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Inkjet-Based Bioprinting</h3>
+                    <p>Inkjet bioprinting deposits small droplets of bioink using thermal or piezoelectric actuators. This approach offers high precision but works best with low-viscosity materials.</p>
+                    <p><strong>Advantages:</strong> High resolution, high speed, precise control</p>
+                    <p><strong>Limitations:</strong> Limited to low-viscosity bioinks, potential thermal damage to cells</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Laser-Assisted Bioprinting</h3>
+                    <p>This nozzle-free technique uses laser pulses to deposit bioink with exceptional precision. It's ideal for high-resolution applications and cell-dense constructs.</p>
+                    <p><strong>Advantages:</strong> Extremely high resolution, minimal cell damage</p>
+                    <p><strong>Limitations:</strong> Slow process, complex setup, higher cost</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Stereolithography-Based Bioprinting</h3>
+                    <p>This approach uses light to selectively crosslink photosensitive biomaterials layer by layer, creating complex 3D structures with exceptional detail.</p>
+                    <p><strong>Advantages:</strong> High resolution, excellent structural detail</p>
+                    <p><strong>Limitations:</strong> Limited material selection, potential cytotoxicity of photocrosslinking</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Historical Context: Evolution of Bioprinting</h2>
+            
+            <div class="timeline">
+                <div class="container left">
+                    <div class="content">
+                        <h3>1980s-1990s</h3>
+                        <p>Early development of tissue engineering principles and scaffolding techniques laid the groundwork for bioprinting.</p>
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="content">
+                        <h3>2003</h3>
+                        <p>First inkjet-based cell printing demonstrated by Thomas Boland, who modified conventional inkjet printers to deposit viable cells.</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <h3>2009</h3>
+                        <p>Organovo developed the first commercial bioprinter and later produced the first bioprinted blood vessels.</p>
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="content">
+                        <h3>2010s</h3>
+                        <p>Rapid advancement in bioink development and printing technologies. First bioprinted functional tissues for pharmaceutical testing.</p>
+                    </div>
+                </div>
+                <div class="container left">
+                    <div class="content">
+                        <h3>2018-2020</h3>
+                        <p>Integration of multiple cell types and vasculature. Development of advanced in situ bioprinting techniques for direct wound healing applications.</p>
+                    </div>
+                </div>
+                <div class="container right">
+                    <div class="content">
+                        <h3>2020-Present</h3>
+                        <p>Focus on functional tissue constructs, pharmaceutical applications, and integration with other technologies like microfluidics and AI-driven design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Current Applications and Future Directions</h2>
+            <p>The field of bioprinting continues to evolve rapidly, with applications expanding across multiple domains:</p>
+            
+            <h3>Current Clinical Applications</h3>
+            <ul>
+                <li><strong>Skin regeneration:</strong> Bioprinted skin substitutes for burn wounds and chronic ulcers</li>
+                <li><strong>Cartilage repair:</strong> Patient-specific cartilage constructs for joint damage</li>
+                <li><strong>Bone reconstruction:</strong> Custom scaffolds for complex bone defects</li>
+                <li><strong>Drug screening:</strong> Tissue models for pharmaceutical testing and development</li>
+            </ul>
+            
+            <h3>Emerging Research Areas</h3>
+            <ul>
+                <li><strong>Vascularization strategies:</strong> Creating blood vessel networks within printed tissues</li>
+                <li><strong>Multi-material printing:</strong> Developing systems capable of printing with multiple bioinks simultaneously</li>
+                <li><strong>In situ bioprinting:</strong> Direct printing into wound sites or during surgical procedures</li>
+                <li><strong>4D bioprinting:</strong> Creating constructs that can change shape or function over time</li>
+                <li><strong>Organ-on-a-chip:</strong> Integration with microfluidic systems for physiological modeling</li>
+            </ul>
+            
+            <h3>Future Horizons</h3>
+            <p>While still in early stages, researchers are working toward several ambitious goals:</p>
+            <ul>
+                <li>Functional organ replacement for transplantation</li>
+                <li>Personalized medicine platforms for individual drug testing</li>
+                <li>Neural tissue engineering for spinal cord injury and neurological disorders</li>
+                <li>Integration with synthetic biology for programmable tissue functions</li>
+            </ul>
+        </section>
+        
+        <section class="assignments">
+            <h2>Week 1 Assignments</h2>
+            
+            <h3>Required Reading</h3>
+            <ul>
+                <li>Murphy, S.V. & Atala, A. (2023). "3D Bioprinting of Tissues and Organs." Nature Biotechnology, 41(3), pp. 302-320.</li>
+                <li>Zhang, Y.S. & Khademhosseini, A. (2022). "Advances in Engineering Hydrogels for Bioprinting." Trends in Biotechnology, 40(5), pp. 623-636.</li>
+                <li>Week 1 Course Notes (Available in the Learning Management System)</li>
+            </ul>
+            
+            <h3>Discussion Forum</h3>
+            <p>Post a response (minimum 300 words) to the following prompt by Wednesday at 11:59 PM:</p>
+            <p><em>"Compare two different bioprinting technologies and discuss their relative advantages and limitations for a specific tissue engineering application of your choice."</em></p>
+            <p>Respond to at least two classmates' posts by Sunday at 11:59 PM.</p>
+            
+            <h3>Assignment: Bioprinting Technology Analysis</h3>
+            <p>Write a 1,000-word analysis of a recent breakthrough in bioprinting technology (published within the last 2 years). Your analysis should include:</p>
+            <ul>
+                <li>Summary of the innovation</li>
+                <li>Technical approach and methodology</li>
+                <li>Advantages over previous techniques</li>
+                <li>Limitations and challenges</li>
+                <li>Potential applications and impact</li>
+            </ul>
+            <p>Due: Sunday at 11:59 PM</p>
+            
+            <a href="#" class="button">Submit Assignment</a>
+        </section>
+        
+        <section>
+            <h2>Next Week Preview</h2>
+            <p>In Week 2, we'll explore bioink formulations in depth, covering:</p>
+            <ul>
+                <li>Natural vs. synthetic biomaterials</li>
+                <li>Rheological properties and their importance</li>
+                <li>Cell-material interactions</li>
+                <li>Crosslinking mechanisms</li>
+                <li>Practical lab session: Bioink preparation and characterization</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Future Tech Academy. All rights reserved.</p>
+        <p>FH401: Advanced 3D Bioprinting</p>
+        <p>Instructor: Dr. Angela Chen | <a href="mailto:a.chen@futuretechacademy.edu" style="color: white;">a.chen@futuretechacademy.edu</a></p>
+    </footer>
+</body>
+  </html>
