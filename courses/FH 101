@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Body Builders: 3D Bioprinting for Kids</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #6a1b9a;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+    }
+    .week {
+      background: #fff3e0;
+      border: 3px dashed #ffb74d;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+    .activity {
+      background: #e1f5fe;
+      border-left: 6px solid #0288d1;
+      padding: 15px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .certificate {
+      background: #e8f5e9;
+      border: 3px dotted #66bb6a;
+      padding: 25px;
+      margin-top: 40px;
+      text-align: center;
+      font-size: 1.2em;
+      border-radius: 20px;
+    }
+    .certificate h2 {
+      color: #2e7d32;
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 My Body Builders: 3D Bioprinting Fun for Kids (Ages 3–6)</h1>
+
+  <div class="week">
+    <h2>Week 1: 🧠 Meet Your Body!</h2>
+    <p>Your body has many amazing parts like your heart, brain, and bones. They help you think, move, and feel. Today, we’ll learn where they go!</p>
+    <div class="activity">
+      🎨 Activity: Color the body outline and stick the heart, brain, and tummy where they belong!
+    </div>
+  </div>
+
+  <div class="week">
+    <h2>Week 2: 🔬 What Are Cells?</h2>
+    <p>Your body is made of tiny, tiny pieces called cells. They are too small to see, but they build everything in your body!</p>
+    <div class="activity">
+      🔵 Activity: Make cells out of playdough and create a tissue by putting many together.
+    </div>
+  </div>
+
+  <div class="week">
+    <h2>Week 3: 🖨️ What Is a 3D Printer?</h2>
+    <p>A 3D printer makes shapes by adding layers. It can print toys, tools, and even things for your body!</p>
+    <div class="activity">
+      🧱 Activity: Use cookie cutters or building blocks to make shapes in layers.
+    </div>
+  </div>
+
+  <div class="week">
+    <h2>Week 4: 🏥 Fixing Bodies with Bioprinters</h2>
+    <p>Bioprinters help doctors fix skin, bones, and more by making new parts from living cells.</p>
+    <div class="activity">
+      🩹 Activity: Make your own pretend bandage and help your stuffed toy friend feel better!
+    </div>
+  </div>
+
+  <div class="week">
+    <h2>Week 5: 🧪 My Future Lab!</h2>
+    <p>You can be a scientist who helps people. Dream big, build things, and be kind!</p>
+    <div class="activity">
+      🧤 Activity: Draw your own science lab and decorate a pretend lab coat!
+    </div>
+  </div>
+
+  <div class="certificate">
+    <h2>🏆 Certificate of Completion</h2>
+    <p>This certifies that <strong>____________________________</strong><br>
+    has successfully completed the 5-week course<br>
+    <em>'My Body Builders: A Fun Journey into 3D Bioprinting!'</em><br>
+    on <strong>[Date]</strong></p>
+    <p>__________________________<br>Instructor's Signature</p>
+  </div>
+</body>
+</html>
