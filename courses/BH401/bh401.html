@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BH401: Brain Computer Interfaces for the Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4a69bd 0%, #1e3799 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: left;
+        }
+        
+        .course-code {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .course-title {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .course-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        .student-portal {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .syllabus-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .syllabus-icon {
+            margin-right: 15px;
+            font-size: 36px;
+        }
+        
+        .syllabus-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .syllabus-item {
+            margin-bottom: 8px;
+        }
+        
+        .syllabus-button {
+            display: inline-block;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            min-width: 280px;
+        }
+        
+        .syllabus-button:hover {
+            background: #e9ecef;
+            border-color: #dee2e6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .syllabus-button::before {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        
+        .overview::before { content: "ℹ️"; }
+        .intro::before { content: "🧠"; }
+        .noninvasive::before { content: "📡"; }
+        .invasive::before { content: "🔬"; }
+        .applications::before { content: "💻"; }
+        .companies::before { content: "🏢"; }
+        .future::before { content: "🚀"; }
+        .certificate::before { content: "🏆"; }
+        .tools::before { content: "🛠️"; }
+        .ai-tutor::before { content: "🤖"; }
+        .outcomes::before { content: "🎯"; }
+        .assessment::before { content: "📝"; }
+        .resources::before { content: "📚"; }
+        
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 30px 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+        
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #bdc3c7;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #5dade2;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ecf0f1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #4a5f7a;
+            padding-top: 20px;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            font-size: 12px;
+            color: #95a5a6;
+        }
+        
+        .welcome-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .welcome-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .semester {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #495057;
+            margin-bottom: 20px;
+        }
+        
+        .academy-branding {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .course-code {
+                font-size: 36px;
+            }
+            
+            .course-title {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .syllabus-button {
+                min-width: 100%;
+                text-align: left;
+            }
+            
+            .footer {
+                padding: 30px 20px 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="academy-branding">Future Tech Academy</div>
+            <div class="course-code">BH401: Brain Computer Interfaces for the Future</div>
+            <div class="course-subtitle">Future of Humans Track | 8-Week Comprehensive Neurotechnology Course</div>
+            <div class="student-portal">👤 Student Portal</div>
+        </div>
+        
+        <div class="content">
+            <div class="syllabus-header">
+                <span class="syllabus-icon">📚</span>
+                Course Syllabus
+            </div>
+            
+            <ul class="syllabus-list">
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button overview">Course Overview</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button intro">Week 1: Introduction to BCI Technology</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button noninvasive">Week 2: Non-Invasive BCI Systems</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button invasive">Week 3: Invasive BCI Systems</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button applications">Week 4: BCI Applications</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button companies">Week 5: Neuralink & Synchron</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button future">Week 6: Future Trends in BCI</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button certificate">Week 7: Final Project & Certification</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button tools">Tools & Platforms</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button ai-tutor">AI Tutor</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button outcomes">Learning Outcomes</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button assessment">Assessment</a>
+                </li>
+                <li class="syllabus-item">
+                    <a href="#" class="syllabus-button resources">Resources</a>
+                </li>
+            </ul>
+            
+            <div class="welcome-section">
+                <div class="welcome-title">Welcome to Brain Computer Interfaces for the Future</div>
+                <div class="semester">Spring 2025</div>
+                <div class="description">
+                    This comprehensive 8-week course explores cutting-edge brain-computer interface (BCI) technologies and applications. Through interactive modules, virtual labs, and expert guidance, you'll gain hands-on experience with the latest advancements in neurotechnology, from non-invasive EEG systems to revolutionary invasive interfaces developed by companies like Neuralink and Synchron.
+                </div>
+                <div class="description">
+                    Discover how BCIs are transforming medicine, communication, and human enhancement. Learn about the technical foundations, current applications, and future possibilities of direct brain-computer communication. This course provides both theoretical knowledge and practical insights into one of the most exciting frontiers in neuroscience and engineering.
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Future Tech Academy</h4>
+                    <p>Advancing human potential through cutting-edge technology education</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">🔗 LinkedIn</a>
+                        <a href="#" class="social-link">🐦 Twitter</a>
+                        <a href="#" class="social-link">📧 Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Student Support</a></li>
+                        <li><a href="#">Technical Requirements</a></li>
+                        <li><a href="#">Course Catalog</a></li>
+                        <li><a href="#">Certification Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Course Information</h4>
+                    <ul class="footer-links">
+                        <li><strong>Duration:</strong> 8 Weeks</li>
+                        <li><strong>Format:</strong> Online Interactive</li>
+                        <li><strong>Level:</strong> Intermediate</li>
+                        <li><strong>Prerequisites:</strong> Basic Neuroscience</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Future Tech Academy. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </footer>
+    </div>
+</body>
+  </html>
