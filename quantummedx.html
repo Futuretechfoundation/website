@@ -1,74 +1,508 @@
-import { useState } from "react"; import { Card, CardContent } from "@/components/ui/card"; import { Button } from "@/components/ui/button"; import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"; import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, RadialBarChart, RadialBar } from 'recharts';
+import { Activity, Heart, Thermometer, Droplets, Brain, Zap, Shield, Cpu, Microscope, Wifi, AlertCircle, CheckCircle, Clock, TrendingUp } from 'lucide-react';
 
-export default function FutureTechHealthApp() { const [labResults, setLabResults] = useState(null); const [wearableData, setWearableData] = useState(null); const [roboticStatus, setRoboticStatus] = useState("Idle");
+export default function QuantumMedX() {
+  const [labResults, setLabResults] = useState(null);
+  const [wearableData, setWearableData] = useState(null);
+  const [roboticStatus, setRoboticStatus] = useState("Standby");
+  const [vitals, setVitals] = useState({
+    heartRate: 72,
+    bloodPressure: { systolic: 120, diastolic: 80 },
+    temperature: 98.6,
+    oxygenSat: 98,
+    stress: 25,
+    energy: 78
+  });
+  const [isConnected, setIsConnected] = useState(false);
+  const [aiAnalysis, setAiAnalysis] = useState("");
+  const [heartRateData, setHeartRateData] = useState([]);
+  const [time, setTime] = useState(new Date());
 
-return ( <div className="p-6 space-y-6"> <h1 className="text-3xl font-bold">FutureTech Foundation Health Suite</h1>
+  // Simulate real-time data updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+      if (isConnected) {
+        setVitals(prev => ({
+          ...prev,
+          heartRate: Math.max(60, Math.min(100, prev.heartRate + (Math.random() - 0.5) * 4)),
+          oxygenSat: Math.max(95, Math.min(100, prev.oxygenSat + (Math.random() - 0.5) * 0.5)),
+          stress: Math.max(0, Math.min(100, prev.stress + (Math.random() - 0.5) * 5)),
+          energy: Math.max(0, Math.min(100, prev.energy + (Math.random() - 0.5) * 3))
+        }));
+        
+        setHeartRateData(prev => {
+          const newData = [...prev, {
+            time: new Date().toLocaleTimeString(),
+            heartRate: vitals.heartRate,
+            stress: vitals.stress
+          }].slice(-10);
+          return newData;
+        });
+      }
+    }, 2000);
 
-<Tabs defaultValue="overview">
-    <TabsList>
-      <TabsTrigger value="overview">Overview</TabsTrigger>
-      <TabsTrigger value="lab">Lab Tests</TabsTrigger>
-      <TabsTrigger value="wearables">Wearables</TabsTrigger>
-      <TabsTrigger value="bioprinting">3D Bioprinting</TabsTrigger>
-      <TabsTrigger value="robotics">Surgical Robotics</TabsTrigger>
-    </TabsList>
+    return () => clearInterval(interval);
+  }, [isConnected, vitals.heartRate, vitals.stress]);
 
-    <TabsContent value="overview">
-      <Card>
-        <CardContent className="p-4">
-          <p>
-            Welcome to the most advanced consumer health platform. Monitor
-            vitals, order lab tests, connect your wearables, and initiate
-            robotic-assisted therapies in coordination with certified clinics.
-          </p>
-        </CardContent>
-      </Card>
-    </TabsContent>
+  const connectDevice = () => {
+    setIsConnected(true);
+    setWearableData("Neural-link established. Quantum sensors active.");
+    setAiAnalysis("AI Analysis: Optimal health parameters detected. Recommend maintaining current lifestyle patterns.");
+  };
 
-    <TabsContent value="lab">
-      <Card>
-        <CardContent className="space-y-4">
-          <p>Upload or order at-home lab kits with telehealth follow-up.</p>
-          <Input
-            placeholder="Upload lab report or barcode number"
-            onChange={(e) => setLabResults(e.target.value)}
-          />
-          <Button onClick={() => alert("Lab results submitted for review")}>Submit</Button>
-        </CardContent>
-      </Card>
-    </TabsContent>
+  const vitalCards = [
+    { icon: Heart, label: "Heart Rate", value: Math.round(vitals.heartRate), unit: "BPM", color: "text-red-400", bgColor: "bg-red-500/20" },
+    { icon: Thermometer, label: "Body Temp", value: vitals.temperature, unit: "°F", color: "text-orange-400", bgColor: "bg-orange-500/20" },
+    { icon: Droplets, label: "O2 Saturation", value: Math.round(vitals.oxygenSat), unit: "%", color: "text-blue-400", bgColor: "bg-blue-500/20" },
+    { icon: Brain, label: "Stress Level", value: Math.round(vitals.stress), unit: "%", color: "text-purple-400", bgColor: "bg-purple-500/20" },
+    { icon: Zap, label: "Energy", value: Math.round(vitals.energy), unit: "%", color: "text-green-400", bgColor: "bg-green-500/20" },
+    { icon: Shield, label: "Immunity", value: 94, unit: "/100", color: "text-cyan-400", bgColor: "bg-cyan-500/20" }
+  ];
 
-    <TabsContent value="wearables">
-      <Card>
-        <CardContent className="space-y-4">
-          <p>Connect your device to start syncing real-time vitals.</p>
-          <Button onClick={() => setWearableData("Streaming vital signs...")}>Connect Device</Button>
-          <p>{wearableData}</p>
-        </CardContent>
-      </Card>
-    </TabsContent>
+  const radialData = [
+    { name: 'Health Score', value: 87, fill: '#00ff88' },
+  ];
 
-    <TabsContent value="bioprinting">
-      <Card>
-        <CardContent className="space-y-4">
-          <p>Schedule a 3D bioprinting session with an integrated health provider.</p>
-          <Button onClick={() => alert("Request sent to bioprinting center")}>Request Appointment</Button>
-        </CardContent>
-      </Card>
-    </TabsContent>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-6">
+      {/* Animated background particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-1 h-1 bg-purple-400 rounded-full animate-ping"></div>
+        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"></div>
+      </div>
 
-    <TabsContent value="robotics">
-      <Card>
-        <CardContent className="space-y-4">
-          <p>Monitor or control authorized robotic procedures under medical supervision.</p>
-          <Button onClick={() => setRoboticStatus("Active: Diagnostic Scan Running")}>Activate Robotics</Button>
-          <p>Status: {roboticStatus}</p>
-        </CardContent>
-      </Card>
-    </TabsContent>
-  </Tabs>
-</div>
+      <div className="relative z-10 max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="relative">
+              <Cpu className="w-12 h-12 text-cyan-400 animate-pulse" />
+              <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl"></div>
+            </div>
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              QuantumMedX
+            </h1>
+          </div>
+          <p className="text-xl text-gray-300">Next-Generation Quantum Health Intelligence Platform</p>
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+            <Clock className="w-4 h-4" />
+            <span>{time.toLocaleString()}</span>
+            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`}></div>
+            <span>{isConnected ? 'Connected' : 'Offline'}</span>
+          </div>
+        </div>
 
-); }
+        {/* Health Overview Dashboard */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          {/* Vital Signs Grid */}
+          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-4">
+            {vitalCards.map((vital, index) => (
+              <Card key={index} className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 hover:scale-105">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div className={`p-2 rounded-lg ${vital.bgColor}`}>
+                      <vital.icon className={`w-5 h-5 ${vital.color}`} />
+                    </div>
+                    <TrendingUp className="w-4 h-4 text-green-400" />
+                  </div>
+                  <div className="mt-3">
+                    <p className="text-2xl font-bold">{vital.value}<span className="text-sm text-gray-400 ml-1">{vital.unit}</span></p>
+                    <p className="text-sm text-gray-400">{vital.label}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-  
+          {/* Health Score Radial */}
+          <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+            <CardContent className="p-4">
+              <h3 className="text-lg font-semibold mb-4 text-center">Quantum Health Score</h3>
+              <div className="h-48">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadialBarChart cx="50%" cy="50%" innerRadius="60%" outerRadius="90%" data={radialData}>
+                    <RadialBar dataKey="value" cornerRadius={10} fill="#00ff88" />
+                    <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-white text-2xl font-bold">
+                      87%
+                    </text>
+                  </RadialBarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-center text-sm text-gray-400 mt-2">Optimal Range</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Tabs */}
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500">
+              <Activity className="w-4 h-4 mr-2" />
+              Neural Dashboard
+            </TabsTrigger>
+            <TabsTrigger value="lab" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500">
+              <Microscope className="w-4 h-4 mr-2" />
+              Quantum Lab
+            </TabsTrigger>
+            <TabsTrigger value="wearables" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500">
+              <Wifi className="w-4 h-4 mr-2" />
+              Neural Link
+            </TabsTrigger>
+            <TabsTrigger value="bioprinting" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500">
+              <Cpu className="w-4 h-4 mr-2" />
+              Bio-Fabrication
+            </TabsTrigger>
+            <TabsTrigger value="robotics" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500">
+              <Zap className="w-4 h-4 mr-2" />
+              Surgical AI
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <Heart className="w-5 h-5 text-red-400" />
+                    Real-Time Vitals
+                  </h3>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={heartRateData}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                        <XAxis dataKey="time" stroke="#9CA3AF" fontSize={12} />
+                        <YAxis stroke="#9CA3AF" fontSize={12} />
+                        <Tooltip 
+                          contentStyle={{ 
+                            backgroundColor: '#1F2937', 
+                            border: '1px solid #374151',
+                            borderRadius: '8px',
+                            color: '#F9FAFB'
+                          }} 
+                        />
+                        <Area 
+                          type="monotone" 
+                          dataKey="heartRate" 
+                          stroke="#EF4444" 
+                          fill="url(#heartRateGradient)" 
+                          strokeWidth={2}
+                        />
+                        <defs>
+                          <linearGradient id="heartRateGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor="#EF4444" stopOpacity={0}/>
+                          </linearGradient>
+                        </defs>
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <Brain className="w-5 h-5 text-purple-400" />
+                    AI Health Analysis
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3 p-3 bg-slate-700/50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
+                      <div>
+                        <p className="font-medium">Cardiovascular Health</p>
+                        <p className="text-sm text-gray-400">Optimal rhythm detected. Continue current exercise routine.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-slate-700/50 rounded-lg">
+                      <AlertCircle className="w-5 h-5 text-yellow-400 mt-0.5" />
+                      <div>
+                        <p className="font-medium">Stress Management</p>
+                        <p className="text-sm text-gray-400">Elevated cortisol levels. Consider meditation or yoga.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-3 bg-slate-700/50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-green-400 mt-0.5" />
+                      <div>
+                        <p className="font-medium">Sleep Quality</p>
+                        <p className="text-sm text-gray-400">REM cycles optimized. Recovery parameters excellent.</p>
+                      </div>
+                    </div>
+                    {aiAnalysis && (
+                      <div className="p-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg border border-cyan-500/30">
+                        <p className="text-sm">{aiAnalysis}</p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="lab">
+            <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+              <CardContent className="p-6 space-y-6">
+                <div className="text-center">
+                  <Microscope className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">Quantum Laboratory Analysis</h3>
+                  <p className="text-gray-400">Upload molecular data or request at-home quantum diagnostics</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <Input
+                      placeholder="Enter quantum lab ID or upload genomic data..."
+                      className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400"
+                      onChange={(e) => setLabResults(e.target.value)}
+                    />
+                    <Button 
+                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 transition-all duration-300"
+                      onClick={() => {
+                        setLabResults("Quantum analysis initiated...");
+                        setTimeout(() => {
+                          setLabResults("✓ Genomic markers analyzed\n✓ Protein synthesis optimized\n✓ Cellular regeneration: 94% efficiency");
+                        }, 2000);
+                      }}
+                    >
+                      Initiate Quantum Analysis
+                    </Button>
+                  </div>
+                  
+                  <div className="bg-slate-700/30 rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Recent Lab Results</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Telomere Length</span>
+                        <span className="text-green-400">Optimal</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Mitochondrial Function</span>
+                        <span className="text-green-400">97%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Neural Connectivity</span>
+                        <span className="text-cyan-400">Enhanced</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {labResults && (
+                  <div className="bg-slate-700/50 rounded-lg p-4 border border-cyan-500/30">
+                    <h4 className="font-semibold mb-2 text-cyan-400">Analysis Results:</h4>
+                    <pre className="text-sm text-gray-300 whitespace-pre-wrap">{labResults}</pre>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="wearables">
+            <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+              <CardContent className="p-6 space-y-6">
+                <div className="text-center">
+                  <div className="relative mb-4">
+                    <Wifi className="w-16 h-16 text-cyan-400 mx-auto" />
+                    <div className={`absolute inset-0 ${isConnected ? 'animate-ping' : ''}`}>
+                      <Wifi className="w-16 h-16 text-cyan-400/30 mx-auto" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-2">Neural Link Interface</h3>
+                  <p className="text-gray-400">Connect quantum biometric sensors for real-time health monitoring</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <Button 
+                      className={`w-full transition-all duration-300 ${
+                        isConnected 
+                          ? 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600' 
+                          : 'bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600'
+                      }`}
+                      onClick={connectDevice}
+                      disabled={isConnected}
+                    >
+                      {isConnected ? 'Neural Link Active' : 'Establish Neural Link'}
+                    </Button>
+                    
+                    <div className="bg-slate-700/30 rounded-lg p-4">
+                      <h4 className="font-semibold mb-2">Connection Status</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400' : 'bg-gray-500'}`}></div>
+                          <span>Quantum Sensors: {isConnected ? 'Online' : 'Offline'}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400' : 'bg-gray-500'}`}></div>
+                          <span>Neural Interface: {isConnected ? 'Synchronized' : 'Standby'}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400' : 'bg-gray-500'}`}></div>
+                          <span>Data Stream: {isConnected ? 'Active' : 'Inactive'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-slate-700/30 rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Live Data Stream</h4>
+                    {wearableData ? (
+                      <div className="space-y-2 text-sm">
+                        <div className="text-green-400">{wearableData}</div>
+                        <div className="grid grid-cols-2 gap-2 mt-3">
+                          <div className="bg-slate-800/50 p-2 rounded">
+                            <div className="text-xs text-gray-400">Heart Rate</div>
+                            <div className="text-lg font-semibold text-red-400">{Math.round(vitals.heartRate)} BPM</div>
+                          </div>
+                          <div className="bg-slate-800/50 p-2 rounded">
+                            <div className="text-xs text-gray-400">Energy</div>
+                            <div className="text-lg font-semibold text-green-400">{Math.round(vitals.energy)}%</div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-gray-400 text-sm">No active connections</p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="bioprinting">
+            <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+              <CardContent className="p-6 space-y-6">
+                <div className="text-center">
+                  <Cpu className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                  <h3 className="text-2xl font-semibold mb-2">Quantum Bio-Fabrication</h3>
+                  <p className="text-gray-400">Schedule molecular-level tissue regeneration and organ cultivation</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card className="bg-slate-700/30 border-slate-600/50">
+                    <CardContent className="p-4 text-center">
+                      <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <Microscope className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <h4 className="font-semibold mb-2">Tissue Regeneration</h4>
+                      <p className="text-sm text-gray-400 mb-3">Advanced stem cell therapy</p>
+                      <Button size="sm" className="bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 border border-purple-500/30">
+                        Schedule
+                      </Button>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-slate-700/30 border-slate-600/50">
+                    <CardContent className="p-4 text-center">
+                      <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <Heart className="w-6 h-6 text-cyan-400" />
+                      </div>
+                      <h4 className="font-semibold mb-2">Organ Cultivation</h4>
+                      <p className="text-sm text-gray-400 mb-3">Bioprinted organ development</p>
+                      <Button size="sm" className="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 border border-cyan-500/30">
+                        Request
+                      </Button>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-slate-700/30 border-slate-600/50">
+                    <CardContent className="p-4 text-center">
+                      <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <Zap className="w-6 h-6 text-green-400" />
+                      </div>
+                      <h4 className="font-semibold mb-2">Neural Enhancement</h4>
+                      <p className="text-sm text-gray-400 mb-3">Cognitive augmentation therapy</p>
+                      <Button size="sm" className="bg-green-500/20 hover:bg-green-500/30 text-green-400 border border-green-500/30">
+                        Consult
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <div className="bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-lg p-4 border border-purple-500/20">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5 text-purple-400" />
+                    Current Bio-Fabrication Queue
+                  </h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span>Cartilage Regeneration Protocol</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                        <span className="text-yellow-400">In Progress</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Neural Pathway Optimization</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                        <span className="text-blue-400">Scheduled</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="robotics">
+            <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
+              <CardContent className="p-6 space-y-6">
+                <div className="text-center">
+                  <div className="relative mb-4">
+                    <Zap className="w-16 h-16 text-cyan-400 mx-auto" />
+                    <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-xl animate-pulse"></div>
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-2">Surgical AI Integration</h3>
+                  <p className="text-gray-400">Advanced robotic systems with quantum precision control</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 transition-all duration-300"
+                      onClick={() => {
+                        setRoboticStatus("Initializing Quantum Surgical AI...");
+                        setTimeout(() => {
+                          setRoboticStatus("Active: Precision Diagnostic Scan - 0.1nm Resolution");
+                        }, 2000);
+                      }}
+                    >
+                      Activate Surgical AI
+                    </Button>
+                    
+                    <div className="bg-slate-700/30 rounded-lg p-4">
+                      <h4 className="font-semibold mb-2">System Status</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span>Quantum Processors</span>
+                          <span className="text-green-400">Online</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Neural Interface</span>
+                          <span className="text-green-400">Synchronized</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Precision Calibration</span>
+                          <span className="text-cyan-400">0.001mm</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Safety Protocols</span>
+                          <span className="text-green-400">Active</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-slate-700/30 rounded-lg p-4">
+                    <h4 className="font-semibold mb-2">Current Operation</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-3 h-3 rounded-full ${robot
