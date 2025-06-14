@@ -1,23 +1,29 @@
-# Create a standalone HTML version with all features inlined using a script-based app
-# This is a simplified HTML web app that includes the full UI and logic with external libraries via CDN
+# Rewrite the standalone HTML app to use the full layout and styling from the original app,
+# while ensuring the blue overlay issue is avoided and all elements are visible.
 
-full_html_path = "/mnt/data/quantum-medx-full.html"
+full_ui_html_path = "/mnt/data/quantum-medx-ui-fixed.html"
 
-full_html_content = """<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QuantumMedX</title>
-  <script type="module">
-    import React, { useState, useEffect } from 'https://esm.sh/react@18.2.0';
-    import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
-    import {
-      AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, RadialBarChart, RadialBar
-    } from 'https://esm.sh/recharts@2.6.2';
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/recharts/umd/Recharts.min.js"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans">
+  <div id="root" class="p-6"></div>
 
-    const QuantumMedX = () => {
+  <script type="text/javascript">
+    const { useState, useEffect } = React;
+    const { ResponsiveContainer, AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip, RadialBarChart, RadialBar } = Recharts;
+
+    function QuantumMedX() {
       const [time, setTime] = useState(new Date());
+      const [isConnected, setIsConnected] = useState(false);
       const [vitals, setVitals] = useState({
         heartRate: 72,
         temperature: 98.6,
@@ -25,50 +31,67 @@ full_html_content = """<!DOCTYPE html>
         stress: 25,
         energy: 78
       });
-      const [connected, setConnected] = useState(false);
       const [heartRateData, setHeartRateData] = useState([]);
+      const [labResults, setLabResults] = useState('');
+      const [wearableData, setWearableData] = useState('');
+      const [aiAnalysis, setAiAnalysis] = useState('');
+      const [roboticStatus, setRoboticStatus] = useState('Standby');
 
       useEffect(() => {
         const interval = setInterval(() => {
           setTime(new Date());
-          if (connected) {
+          if (isConnected) {
             setVitals(prev => ({
               ...prev,
               heartRate: Math.max(60, Math.min(100, prev.heartRate + (Math.random() - 0.5) * 4)),
+              oxygenSat: Math.max(95, Math.min(100, prev.oxygenSat + (Math.random() - 0.5) * 0.5)),
               stress: Math.max(0, Math.min(100, prev.stress + (Math.random() - 0.5) * 5)),
               energy: Math.max(0, Math.min(100, prev.energy + (Math.random() - 0.5) * 3))
             }));
-            setHeartRateData(prev => [
-              ...prev.slice(-9),
-              { time: new Date().toLocaleTimeString(), heartRate: vitals.heartRate }
-            ]);
+
+            setHeartRateData(prev => {
+              const newData = [...prev, {
+                time: new Date().toLocaleTimeString(),
+                heartRate: vitals.heartRate
+              }].slice(-10);
+              return newData;
+            });
           }
         }, 2000);
         return () => clearInterval(interval);
-      }, [connected, vitals.heartRate]);
+      }, [isConnected, vitals]);
 
-      return (
-        React.createElement('div', { style: { backgroundColor: '#0f172a', color: 'white', padding: '20px', fontFamily: 'Arial' } },
-          React.createElement('h1', { style: { fontSize: '2rem', color: '#0ff' } }, 'QuantumMedX'),
-          React.createElement('p', null, 'Next-Generation Quantum Health Intelligence'),
-          React.createElement('p', null, time.toLocaleString()),
-          React.createElement('button', {
-            onClick: () => setConnected(true),
-            style: {
-              padding: '10px 20px', margin: '10px 0', backgroundColor: connected ? '#10b981' : '#6366f1',
-              border: 'none', color: 'white', cursor: 'pointer'
-            },
-            disabled: connected
-          }, connected ? 'Connected' : 'Connect Device'),
-          React.createElement('div', { style: { marginTop: '20px' } },
-            React.createElement('h3', null, 'Vitals'),
-            React.createElement('ul', null,
-              Object.entries(vitals).map(([key, value]) =>
-                React.createElement('li', { key }, `${key}: ${Math.round(value * 100) / 100}`)
-              )
-            )
-          ),
-          React.createElement('div', { style: { height: '300px', marginTop: '30px' } },
+      const connectDevice = () => {
+        setIsConnected(true);
+        setWearableData("Neural-link established. Quantum sensors active.");
+        setAiAnalysis("AI Analysis: Optimal health parameters detected. Recommend maintaining current lifestyle patterns.");
+      };
+
+      return React.createElement('div', { className: 'space-y-6 max-w-5xl mx-auto' },
+        React.createElement('div', { className: 'text-center space-y-2' },
+          React.createElement('h1', { className: 'text-4xl font-bold text-cyan-400' }, 'QuantumMedX'),
+          React.createElement('p', { className: 'text-gray-300' }, 'Next-Generation Quantum Health Intelligence Platform'),
+          React.createElement('p', { className: 'text-gray-400' }, time.toLocaleString()),
+          React.createElement('p', { className: isConnected ? 'text-green-400' : 'text-red-400' },
+            isConnected ? 'Connected' : 'Offline'
+          )
+        ),
+
+        React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 gap-4' },
+          ['heartRate', 'temperature', 'oxygenSat', 'stress', 'energy'].map(key =>
+            React.createElement('div', {
+              key,
+              className: 'bg-slate-800 p-4 rounded-lg shadow'
+            }, [
+              React.createElement('h2', { className: 'text-lg font-semibold capitalize' }, key),
+              React.createElement('p', { className: 'text-xl' }, Math.round(vitals[key] * 100) / 100)
+            ])
+          )
+        ),
+
+        React.createElement('div', { className: 'bg-slate-800 p-4 rounded-lg shadow' },
+          React.createElement('h3', { className: 'text-lg mb-2' }, 'Heart Rate Chart'),
+          React.createElement('div', { style: { height: '200px' } },
             React.createElement(ResponsiveContainer, { width: '100%', height: '100%' },
               React.createElement(AreaChart, { data: heartRateData },
                 React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#334155' }),
@@ -92,9 +115,12 @@ full_html_content = """<!DOCTYPE html>
                 })
               )
             )
-          ),
-          React.createElement('div', { style: { height: '200px', marginTop: '40px' } },
-            React.createElement('h3', null, 'Quantum Health Score'),
+          )
+        ),
+
+        React.createElement('div', { className: 'bg-slate-800 p-4 rounded-lg shadow text-center' },
+          React.createElement('h3', { className: 'text-lg mb-2' }, 'Quantum Health Score'),
+          React.createElement('div', { style: { height: '200px' } },
             React.createElement(ResponsiveContainer, { width: '100%', height: '100%' },
               React.createElement(RadialBarChart, {
                 cx: '50%',
@@ -119,23 +145,36 @@ full_html_content = """<!DOCTYPE html>
               )
             )
           )
+        ),
+
+        React.createElement('div', { className: 'text-center' },
+          React.createElement('button', {
+            onClick: connectDevice,
+            disabled: isConnected,
+            className: `px-4 py-2 rounded text-white ${isConnected ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'}`
+          }, isConnected ? 'Neural Link Active' : 'Connect Device')
+        ),
+
+        React.createElement('div', { className: 'bg-slate-800 p-4 rounded-lg shadow' },
+          React.createElement('h3', { className: 'text-lg mb-2' }, 'AI Health Analysis'),
+          React.createElement('p', { className: 'text-sm text-green-400' }, aiAnalysis)
+        ),
+
+        React.createElement('div', { className: 'bg-slate-800 p-4 rounded-lg shadow' },
+          React.createElement('h3', { className: 'text-lg mb-2' }, 'Live Data Stream'),
+          React.createElement('p', { className: 'text-sm text-cyan-400' }, wearableData)
         )
       );
-    };
+    }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(
-      React.createElement(React.StrictMode, null, React.createElement(QuantumMedX))
-    );
+    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(QuantumMedX));
   </script>
-</head>
-<body style="margin:0;background:#0f172a;">
-  <div id="root"></div>
 </body>
 </html>
 """
 
-# Save the file
-with open(full_html_path, "w") as f:
-    f.write(full_html_content)
+# Write the improved HTML file
+with open(full_ui_html_path, "w") as f:
+    f.write(html_content)
 
-full_html_path
+full_ui_html_path
