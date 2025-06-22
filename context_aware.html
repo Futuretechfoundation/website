@@ -1,365 +1,159 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Brain, 
-  Heart, 
-  Clock, 
-  MessageCircle, 
-  Settings, 
-  Activity, 
-  User, 
-  Sun, 
-  Moon,
-  Thermometer,
-  Volume2,
-  Camera,
-  Bell,
-  Battery,
-  Wifi
-} from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react"; import { Brain, Heart, Clock, MessageCircle, Settings, Activity, User as UserIcon, Sun, Moon, Thermometer, Volume2, Bell, Battery, Wifi, } from "lucide-react";
 
-const ContextAwareAIAgent = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [agentStatus, setAgentStatus] = useState('active');
-  const [conversations, setConversations] = useState([]);
-  const [environmentalData, setEnvironmentalData] = useState({
-    temperature: 72,
-    lightLevel: 65,
-    noiseLevel: 30,
-    timeOfDay: 'afternoon'
-  });
-  const [userContext, setUserContext] = useState({
-    name: 'Alex',
-    lastActivity: 'Reading',
-    stressLevel: 2,
-    heartRate: 72,
-    schedule: 'Free time',
-    mood: 'neutral'
-  });
-  const [autonomousTriggers, setAutonomousTriggers] = useState([
-    { id: 1, type: 'health', condition: 'Heart rate > 100', active: true },
-    { id: 2, type: 'schedule', condition: 'Missed medication reminder', active: true },
-    { id: 3, type: 'social', condition: 'No interaction for 2 hours', active: false },
-    { id: 4, type: 'learning', condition: 'Study session overdue', active: true }
-  ]);
-  const [activeInteractions, setActiveInteractions] = useState([]);
-  const intervalRef = useRef();
+/**
 
-  // Simulate real-time updates
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setCurrentTime(new Date());
-      
-      // Simulate environmental changes
-      setEnvironmentalData(prev => ({
-        ...prev,
-        temperature: prev.temperature + (Math.random() - 0.5) * 2,
-        lightLevel: Math.max(0, Math.min(100, prev.lightLevel + (Math.random() - 0.5) * 10)),
-        noiseLevel: Math.max(0, Math.min(100, prev.noiseLevel + (Math.random() - 0.5) * 15))
-      }));
+ContextAwareAIAgent
 
-      // Simulate user context changes
-      setUserContext(prev => ({
-        ...prev,
-        heartRate: Math.max(60, Math.min(120, prev.heartRate + (Math.random() - 0.5) * 5)),
-        stressLevel: Math.max(1, Math.min(5, prev.stressLevel + (Math.random() - 0.5) * 0.5))
-      }));
+Interactive simulation of a context‑aware AI agent.
 
-      // Check for autonomous triggers
-      checkAutonomousTriggers();
-    }, 2000);
+TailwindCSS is used for styling. / const ContextAwareAIAgent = () => { / ──────────────────────── State ─────────────────────── */ const [currentTime, setCurrentTime] = useState(new Date()); const [agentStatus, setAgentStatus] = useState("active");
 
-    return () => clearInterval(intervalRef.current);
-  }, []);
 
-  const checkAutonomousTriggers = () => {
-    const now = Date.now();
-    
-    // Simulate trigger conditions
-    if (userContext.heartRate > 95 && Math.random() > 0.8) {
-      initiateAutonomousInteraction('health', 'I noticed your heart rate is elevated. Would you like to try some breathing exercises?');
-    }
-    
-    if (userContext.stressLevel > 3.5 && Math.random() > 0.9) {
-      initiateAutonomousInteraction('wellness', 'You seem a bit stressed. How about we take a short break together?');
-    }
+const [conversations, setConversations] = useState([]); const [environmentalData, setEnvironmentalData] = useState({ temperature: 72, lightLevel: 65, noiseLevel: 30, }); const [userContext, setUserContext] = useState({ name: "Alex", lastActivity: "Reading", stressLevel: 2, heartRate: 72, schedule: "Free time", }); const [autonomousTriggers, setAutonomousTriggers] = useState([ { id: 1, type: "health", condition: "Heart rate > 100", active: true }, { id: 2, type: "schedule", condition: "Missed medication reminder", active: true }, { id: 3, type: "social", condition: "No interaction for 2 hours", active: false }, { id: 4, type: "learning", condition: "Study session overdue", active: true }, ]); const [activeInteractions, setActiveInteractions] = useState([]);
 
-    if (environmentalData.noiseLevel > 80 && Math.random() > 0.85) {
-      initiateAutonomousInteraction('environment', 'It\'s quite noisy here. Should I suggest a quieter activity?');
-    }
-  };
+const intervalRef = useRef(null);
 
-  const initiateAutonomousInteraction = (type, message) => {
-    const interaction = {
-      id: Date.now(),
-      type,
-      message,
-      timestamp: new Date(),
-      autonomous: true,
-      status: 'pending'
-    };
-    
-    setActiveInteractions(prev => [...prev, interaction]);
-    setConversations(prev => [...prev, {
-      id: interaction.id,
-      sender: 'agent',
-      message,
-      timestamp: new Date(),
-      type: 'autonomous'
-    }]);
-  };
+/* ─────────────────── Simulation Loop ────────────────── */ useEffect(() => { intervalRef.current = setInterval(() => { // 1. Keep the clock ticking setCurrentTime(new Date());
 
-  const respondToInteraction = (interactionId, response) => {
-    setActiveInteractions(prev => 
-      prev.map(interaction => 
-        interaction.id === interactionId 
-          ? { ...interaction, status: 'responded', userResponse: response }
-          : interaction
-      )
-    );
-    
-    setConversations(prev => [...prev, {
-      id: Date.now(),
-      sender: 'user',
-      message: response,
-      timestamp: new Date(),
-      responseToId: interactionId
-    }]);
-  };
+// 2. Update the environment
+  setEnvironmentalData((prev) => ({
+    ...prev,
+    temperature: +(prev.temperature + (Math.random() - 0.5) * 2).toFixed(1),
+    lightLevel: Math.max(0, Math.min(100, prev.lightLevel + (Math.random() - 0.5) * 10)),
+    noiseLevel: Math.max(0, Math.min(100, prev.noiseLevel + (Math.random() - 0.5) * 15)),
+  }));
 
-  const dismissInteraction = (interactionId) => {
-    setActiveInteractions(prev => prev.filter(interaction => interaction.id !== interactionId));
-  };
+  // 3. Update the user
+  setUserContext((prev) => ({
+    ...prev,
+    heartRate: Math.max(60, Math.min(120, prev.heartRate + (Math.random() - 0.5) * 5)),
+    stressLevel: Math.max(1, Math.min(5, +(prev.stressLevel + (Math.random() - 0.5) * 0.5).toFixed(1))),
+  }));
 
-  const getTimeOfDayIcon = () => {
-    const hour = currentTime.getHours();
-    return hour >= 6 && hour < 18 ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />;
-  };
+  // 4. See if the agent should speak up
+  checkAutonomousTriggers();
+}, 2000);
 
-  const getStressColor = (level) => {
-    if (level <= 2) return 'text-green-500';
-    if (level <= 3) return 'text-yellow-500';
-    return 'text-red-500';
-  };
+return () => clearInterval(intervalRef.current);
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-3">
-            <div className="p-3 bg-blue-600 rounded-xl">
-              <Brain className="w-8 h-8" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold">Context-Aware AI Agent</h1>
-              <p className="text-slate-400">Autonomous interaction system</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 bg-slate-700 px-4 py-2 rounded-lg">
-              {getTimeOfDayIcon()}
-              <span className="text-sm">{currentTime.toLocaleTimeString()}</span>
-            </div>
-            <div className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-              agentStatus === 'active' ? 'bg-green-600' : 'bg-slate-600'
-            }`}>
-              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-              <span className="text-sm capitalize">{agentStatus}</span>
-            </div>
-          </div>
-        </div>
+}, []);
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Environmental Context */}
-          <div className="bg-slate-800 rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center">
-              <Settings className="w-5 h-5 mr-2" />
-              Environmental Context
-            </h2>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Thermometer className="w-4 h-4 text-orange-400" />
-                  <span>Temperature</span>
-                </div>
-                <span className="font-mono">{environmentalData.temperature.toFixed(1)}°F</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Sun className="w-4 h-4 text-yellow-400" />
-                  <span>Light Level</span>
-                </div>
-                <span className="font-mono">{environmentalData.lightLevel.toFixed(0)}%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Volume2 className="w-4 h-4 text-purple-400" />
-                  <span>Noise Level</span>
-                </div>
-                <span className="font-mono">{environmentalData.noiseLevel.toFixed(0)} dB</span>
-              </div>
-            </div>
-          </div>
+/* ──────────────────── Helpers ───────────────────────── */ const getTimeOfDayIcon = () => { const hr = currentTime.getHours(); return hr >= 6 && hr < 18 ? <Sun size={16} className="inline-block" /> : <Moon size={16} className="inline-block" />; };
 
-          {/* User Context */}
-          <div className="bg-slate-800 rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center">
-              <User className="w-5 h-5 mr-2" />
-              User Context
-            </h2>
-            <div className="space-y-4">
-              <div className="text-center mb-4">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <User className="w-8 h-8" />
-                </div>
-                <h3 className="font-semibold">{userContext.name}</h3>
-                <p className="text-slate-400 text-sm">{userContext.lastActivity}</p>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Heart className="w-4 h-4 text-red-400" />
-                  <span>Heart Rate</span>
-                </div>
-                <span className="font-mono">{userContext.heartRate.toFixed(0)} BPM</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Activity className="w-4 h-4 text-blue-400" />
-                  <span>Stress Level</span>
-                </div>
-                <span className={`font-mono ${getStressColor(userContext.stressLevel)}`}>
-                  {userContext.stressLevel.toFixed(1)}/5
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4 text-green-400" />
-                  <span>Schedule</span>
-                </div>
-                <span className="text-sm">{userContext.schedule}</span>
-              </div>
-            </div>
-          </div>
+const getStressColor = (level) => { if (level <= 2) return "text-emerald-500"; if (level <= 3) return "text-yellow-500"; return "text-red-500"; };
 
-          {/* Autonomous Triggers */}
-          <div className="bg-slate-800 rounded-xl p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center">
-              <Bell className="w-5 h-5 mr-2" />
-              Trigger System
-            </h2>
-            <div className="space-y-3">
-              {autonomousTriggers.map(trigger => (
-                <div key={trigger.id} className="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
-                  <div>
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${
-                        trigger.active ? 'bg-green-400' : 'bg-slate-500'
-                      }`}></div>
-                      <span className="text-sm font-medium capitalize">{trigger.type}</span>
-                    </div>
-                    <p className="text-xs text-slate-400 mt-1">{trigger.condition}</p>
-                  </div>
-                  <button
-                    onClick={() => setAutonomousTriggers(prev => 
-                      prev.map(t => t.id === trigger.id ? {...t, active: !t.active} : t)
-                    )}
-                    className={`px-3 py-1 rounded text-xs font-medium ${
-                      trigger.active 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-slate-600 text-slate-300'
-                    }`}
-                  >
-                    {trigger.active ? 'ON' : 'OFF'}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+/* ───────────── Autonomous‑trigger logic ─────────────── */ const checkAutonomousTriggers = () => { if (userContext.heartRate > 95 && Math.random() > 0.8) { initiateAutonomousInteraction( "health", "I noticed your heart rate is elevated. Would you like to try some breathing exercises?" ); } if (userContext.stressLevel > 3.5 && Math.random() > 0.9) { initiateAutonomousInteraction( "wellness", "You seem a bit stressed. How about we take a short break together?" ); } if (environmentalData.noiseLevel > 80 && Math.random() > 0.85) { initiateAutonomousInteraction( "environment", "It's quite noisy here. Should I suggest a quieter activity?" ); } };
 
-        {/* Active Interactions */}
-        {activeInteractions.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Active Interactions
-            </h2>
-            <div className="space-y-4">
-              {activeInteractions.map(interaction => (
-                <div key={interaction.id} className="bg-blue-900/50 border border-blue-500/30 rounded-xl p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                        <Brain className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-medium">AI Agent</p>
-                        <p className="text-xs text-slate-400">
-                          {interaction.timestamp.toLocaleTimeString()} • {interaction.type}
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => dismissInteraction(interaction.id)}
-                      className="text-slate-400 hover:text-white"
-                    >
-                      ×
-                    </button>
-                  </div>
-                  <p className="text-slate-200 mb-4">{interaction.message}</p>
-                  {interaction.status === 'pending' && (
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => respondToInteraction(interaction.id, 'Yes, that would be helpful!')}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium"
-                      >
-                        Yes, help me
-                      </button>
-                      <button
-                        onClick={() => respondToInteraction(interaction.id, 'No, I\'m fine for now.')}
-                        className="px-4 py-2 bg-slate-600 hover:bg-slate-700 rounded-lg text-sm font-medium"
-                      >
-                        Not now
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+const initiateAutonomousInteraction = (type, message) => { const interaction = { id: Date.now(), type, message, timestamp: new Date(), autonomous: true, status: "pending", };
 
-        {/* Conversation History */}
-        <div className="mt-6 bg-slate-800 rounded-xl p-6">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <MessageCircle className="w-5 h-5 mr-2" />
-            Recent Conversations
-          </h2>
-          <div className="space-y-4 max-h-64 overflow-y-auto">
-            {conversations.length === 0 ? (
-              <p className="text-slate-400 text-center py-8">No conversations yet. The AI will initiate interactions based on context.</p>
-            ) : (
-              conversations.slice(-10).map(conv => (
-                <div key={conv.id} className={`flex ${conv.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-xs px-4 py-2 rounded-lg ${
-                    conv.sender === 'user' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-slate-700 text-slate-200'
-                  }`}>
-                    <p className="text-sm">{conv.message}</p>
-                    <p className="text-xs opacity-70 mt-1">
-                      {conv.timestamp.toLocaleTimeString()}
-                      {conv.type === 'autonomous' && ' • Auto-initiated'}
-                    </p>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+setActiveInteractions((prev) => [...prev, interaction]);
+setConversations((prev) => [
+  ...prev,
+  {
+    id: interaction.id,
+    sender: "agent",
+    message,
+    timestamp: new Date(),
+    type: "autonomous",
+  },
+]);
+
 };
 
-export default ContextAwareAIAgent;
+const respondToInteraction = (interactionId, response) => { setActiveInteractions((prev) => prev.map((int) => int.id === interactionId ? { ...int, status: "responded", userResponse: response } : int ) ); setConversations((prev) => [ ...prev, { id: Date.now(), sender: "user", message: response, timestamp: new Date(), responseToId: interactionId, }, ]); };
+
+const dismissInteraction = (interactionId) => { setActiveInteractions((prev) => prev.filter((int) => int.id !== interactionId)); };
+
+/* ───────────────────────── UI ───────────────────────── / return ( <div className="w-full max-w-4xl mx-auto p-4 space-y-6 text-slate-200"> {/ Header */} <header className="flex items-center justify-between"> <div> <h1 className="text-2xl font-semibold flex items-center gap-2"> <Brain size={24} /> Context‑Aware AI Agent </h1> <p className="text-sm text-slate-400">Autonomous interaction system</p> </div>
+
+<div className="text-right text-sm">
+      <span className="flex items-center gap-1 justify-end">
+        {getTimeOfDayIcon()} {currentTime.toLocaleTimeString()}
+      </span>
+      <span className="block text-xs text-emerald-500 capitalize">{agentStatus}</span>
+    </div>
+  </header>
+
+  {/* Environmental Context */}
+  <section>
+    <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
+      <Thermometer size={18} /> Environmental Context
+    </h2>
+    <div className="grid grid-cols-3 gap-4 text-center text-sm">
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">
+          {environmentalData.temperature.toFixed(1)}°F
+        </span>
+        <span className="text-slate-400">Temperature</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">
+          {environmentalData.lightLevel.toFixed(0)}%
+        </span>
+        <span className="text-slate-400">Light Level</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">
+          {environmentalData.noiseLevel.toFixed(0)} dB
+        </span>
+        <span className="text-slate-400">Noise Level</span>
+      </div>
+    </div>
+  </section>
+
+  {/* User Context */}
+  <section>
+    <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
+      <UserIcon size={18} /> User Context
+    </h2>
+    <div className="grid grid-cols-2 gap-4 text-sm">
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">{userContext.name}</span>
+        <span className="text-slate-400">Name</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">{userContext.lastActivity}</span>
+        <span className="text-slate-400">Last Activity</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className="block font-semibold">
+          {userContext.heartRate.toFixed(0)} BPM
+        </span>
+        <span className="text-slate-400">Heart Rate</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800">
+        <span className={`block font-semibold ${getStressColor(userContext.stressLevel)}`}>
+          {userContext.stressLevel.toFixed(1)}/5
+        </span>
+        <span className="text-slate-400">Stress Level</span>
+      </div>
+      <div className="p-3 rounded-lg bg-slate-800 col-span-2">
+        <span className="block font-semibold">{userContext.schedule}</span>
+        <span className="text-slate-400">Schedule</span>
+      </div>
+    </div>
+  </section>
+
+  {/* Trigger System */}
+  <section>
+    <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
+      <Settings size={18} /> Trigger System
+    </h2>
+    <ul className="space-y-2">
+      {autonomousTriggers.map((trigger) => (
+        <li
+          key={trigger.id}
+          className="flex items-center justify-between bg-slate-800 p-3 rounded-lg"
+        >
+          <div>
+            <p className="font-medium capitalize">{trigger.type}</p>
+            <p className="text-xs text-slate-400">{trigger.condition}</p>
+          </div>
+          <button
+            onClick={() =>
+              setAutonomousTriggers((prev) =>
+                prev.map((t) => (t.id === trigger.id ? { ...t, active: !t.active } : t))
+              )
+            }
+            className={`px-3 py-1 rounded text-xs font-medium ${
+
