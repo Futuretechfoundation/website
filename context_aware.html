@@ -1,205 +1,159 @@
-<!-- Context-Aware AI Agent — standalone HTML page -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Context-Aware AI Agent</title>
+<!-- Context-Aware AI Agent — one-file demo that works offline -->
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Context-Aware AI Agent</title>
 
-    <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind (just for styling) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- React 18 + React-DOM (development builds) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- React 18 UMD builds -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
-    <!-- lucide-react icon pack (UMD build exposes `lucideReact`) -->
-    <script crossorigin src="https://unpkg.com/lucide-react/dist/umd/lucide-react.min.js"></script>
+  <!-- Babel so we can author JSX in-browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Babel for in-browser JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  </head>
+  <!-- Lucide React UMD build (sets window.lucideReact) -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide-react/dist/umd/lucide-react.min.js" crossorigin></script>
 
-  <body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
-    <div id="root" class="p-4"></div>
+  <style>
+    /* fallback so you see *something* before React loads */
+    #root::before{
+      content:"Loading…";
+      color:#9ca3af; /* slate-400 */
+      font-family:system-ui, sans-serif;
+    }
+  </style>
+</head>
 
-    <!-- Main React code (compiled on-the-fly by Babel) -->
-    <script type="text/babel" data-presets="env,react">
-      const { useState, useEffect, useRef } = React;
-      const {
-        Brain,
-        Activity,
-        User: UserIcon,
-        Sun,
-        Moon,
-        Thermometer,
-      } = lucideReact;
+<body class="bg-slate-900 text-slate-200 antialiased min-h-screen">
+  <div id="root" class="p-4"></div>
 
-      /** ContextAwareAIAgent — interactive simulation */
-      function ContextAwareAIAgent() {
-        /* ─────────────── State ─────────────── */
-        const [currentTime, setCurrentTime] = useState(new Date());
-        const [agentStatus, setAgentStatus] = useState("active");
+  <!-- Main React code -->
+  <script type="text/babel" data-presets="env,react">
+    const { useState, useEffect } = React;
 
-        const [environmentalData, setEnvironmentalData] = useState({
-          temperature: 72,
-          lightLevel: 65,
-          noiseLevel: 30,
-        });
+    /* Safely grab icons only *after* the lucide script ran  */
+    const Icons = window.lucideReact ?? {};
+    const {
+      Brain      = () => <span>🧠</span>,
+      Activity   = () => <span>⚡</span>,
+      User:UserI = () => <span>👤</span>,
+      Sun        = () => <span>☀️</span>,
+      Moon       = () => <span>🌙</span>,
+      Thermometer= () => <span>🌡️</span>,
+    } = Icons;
 
-        const [userContext, setUserContext] = useState({
-          name: "Alex",
-          lastActivity: "Reading",
-          stressLevel: 2,
-          heartRate: 72,
-          schedule: "Free time",
-        });
+    function ContextAwareAIAgent(){
+      /* ------------- state ------------- */
+      const [now,setNow] = useState(new Date());
+      const [env,setEnv] = useState({t:72,lux:60,noise:30});
+      const [user,setUser]=useState({name:"Alex",hr:72,stress:2,activity:"Reading"});
+      const triggers=[
+        {id:1,txt:"Heart rate > 100",on:true},
+        {id:2,txt:"Missed medication", on:true},
+        {id:3,txt:"No interaction 2 h",on:false}
+      ];
 
-        const [autonomousTriggers] = useState([
-          { id: 1, type: "health", condition: "Heart rate > 100", active: true },
-          { id: 2, type: "schedule", condition: "Missed medication", active: true },
-          { id: 3, type: "social", condition: "No interaction 2h", active: false },
-          { id: 4, type: "learning", condition: "Study overdue", active: true },
-        ]);
+      /* ------------- pseudo-simulation ------------- */
+      useEffect(()=>{
+        const id=setInterval(()=>{
+          setNow(new Date());
+          setEnv(p=>({
+            t:+(p.t+(Math.random()-0.5)*2).toFixed(1),
+            lux:Math.max(0,Math.min(100,p.lux+(Math.random()-0.5)*8)),
+            noise:Math.max(0,Math.min(100,p.noise+(Math.random()-0.5)*10))
+          }));
+          setUser(p=>({
+            ...p,
+            hr:Math.max(60,Math.min(120,p.hr+(Math.random()-0.5)*4)),
+            stress:Math.max(1,Math.min(5,+(p.stress+(Math.random()-0.5)*0.3).toFixed(1)))
+          }));
+        },2000);
+        return()=>clearInterval(id);
+      },[]);
 
-        /* ─────────────── Simulation loop ─────────────── */
-        useEffect(() => {
-          const id = setInterval(() => {
-            setCurrentTime(new Date());
+      const DayIcon = now.getHours()>=6&&now.getHours()<18 ? Sun : Moon;
+      const stressClr = s=>s<=2?"text-emerald-500":s<=3?"text-yellow-400":"text-red-500";
 
-            setEnvironmentalData(prev => ({
-              ...prev,
-              temperature: +(prev.temperature + (Math.random() - 0.5) * 2).toFixed(1),
-              lightLevel: Math.max(0, Math.min(100, prev.lightLevel + (Math.random() - 0.5) * 10)),
-              noiseLevel: Math.max(0, Math.min(100, prev.noiseLevel + (Math.random() - 0.5) * 12)),
-            }));
+      /* ------------- UI ------------- */
+      return(
+        <div className="max-w-3xl mx-auto space-y-8">
+          {/* header */}
+          <header className="flex items-center justify-between">
+            <h1 className="flex items-center gap-2 text-emerald-400 text-2xl font-semibold">
+              <Brain size={24}/> Context-Aware AI Agent
+            </h1>
+            <div className="text-right text-sm leading-tight">
+              <span className="flex items-center gap-1 justify-end">
+                <DayIcon size={16}/> {now.toLocaleTimeString()}
+              </span>
+              <span className="text-emerald-500 text-xs">active</span>
+            </div>
+          </header>
 
-            setUserContext(prev => ({
-              ...prev,
-              heartRate: Math.max(60, Math.min(120, prev.heartRate + (Math.random() - 0.5) * 4)),
-              stressLevel: Math.max(1, Math.min(5, +(prev.stressLevel + (Math.random() - 0.5) * 0.4).toFixed(1))),
-            }));
-          }, 2000);
-
-          return () => clearInterval(id);
-        }, []);
-
-        /* ─────────────── Helpers ─────────────── */
-        const getTimeOfDayIcon = () =>
-          currentTime.getHours() >= 6 && currentTime.getHours() < 18
-            ? <Sun size={16} className="inline-block" />
-            : <Moon size={16} className="inline-block" />;
-
-        const stressColor = lvl =>
-          lvl <= 2 ? "text-emerald-500" : lvl <= 3 ? "text-yellow-500" : "text-red-500";
-
-        /* ─────────────── UI ─────────────── */
-        return (
-          <div className="w-full max-w-4xl mx-auto space-y-8">
-            {/* Header */}
-            <header className="flex items-center justify-between gap-4">
-              <div>
-                <h1 className="text-2xl font-semibold flex items-center gap-2 text-emerald-400">
-                  <Brain size={24} /> Context-Aware AI Agent
-                </h1>
-                <p className="text-sm text-slate-400">Autonomous interaction demo</p>
+          {/* environment */}
+          <section>
+            <h2 className="flex items-center gap-2 text-lg font-medium mb-2">
+              <Thermometer size={18}/> Environment
+            </h2>
+            <div className="grid grid-cols-3 gap-4 text-center text-sm">
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{env.t.toFixed(1)}°F</strong><br/><span className="text-slate-400">Temp</span>
               </div>
-
-              <div className="text-right text-sm">
-                <span className="flex items-center gap-1 justify-end">
-                  {getTimeOfDayIcon()} {currentTime.toLocaleTimeString()}
-                </span>
-                <span className="block text-xs text-emerald-500 capitalize">
-                  {agentStatus}
-                </span>
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{env.lux.toFixed(0)}%</strong><br/><span className="text-slate-400">Light</span>
               </div>
-            </header>
-
-            {/* Environmental Context */}
-            <section>
-              <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
-                <Thermometer size={18} /> Environmental Context
-              </h2>
-              <div className="grid grid-cols-3 gap-4 text-center text-sm">
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">
-                    {environmentalData.temperature.toFixed(1)}°F
-                  </span>
-                  <span className="text-slate-400">Temperature</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">
-                    {environmentalData.lightLevel.toFixed(0)}%
-                  </span>
-                  <span className="text-slate-400">Light Level</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">
-                    {environmentalData.noiseLevel.toFixed(0)} dB
-                  </span>
-                  <span className="text-slate-400">Noise Level</span>
-                </div>
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{env.noise.toFixed(0)} dB</strong><br/><span className="text-slate-400">Noise</span>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* User Context */}
-            <section>
-              <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
-                <UserIcon size={18} /> User Context
-              </h2>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">{userContext.name}</span>
-                  <span className="text-slate-400">Name</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">{userContext.lastActivity}</span>
-                  <span className="text-slate-400">Last Activity</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className="block font-semibold">
-                    {userContext.heartRate.toFixed(0)} BPM
-                  </span>
-                  <span className="text-slate-400">Heart Rate</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800">
-                  <span className={`block font-semibold ${stressColor(userContext.stressLevel)}`}>
-                    {userContext.stressLevel.toFixed(1)}/5
-                  </span>
-                  <span className="text-slate-400">Stress Level</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-800 col-span-2">
-                  <span className="block font-semibold">{userContext.schedule}</span>
-                  <span className="text-slate-400">Schedule</span>
-                </div>
+          {/* user */}
+          <section>
+            <h2 className="flex items-center gap-2 text-lg font-medium mb-2">
+              <UserI size={18}/> User
+            </h2>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{user.name}</strong><br/><span className="text-slate-400">Name</span>
               </div>
-            </section>
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{user.activity}</strong><br/><span className="text-slate-400">Activity</span>
+              </div>
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong>{user.hr.toFixed(0)} BPM</strong><br/><span className="text-slate-400">Heart rate</span>
+              </div>
+              <div className="bg-slate-800 p-3 rounded-lg">
+                <strong className={stressClr(user.stress)}>{user.stress.toFixed(1)}/5</strong><br/>
+                <span className="text-slate-400">Stress</span>
+              </div>
+            </div>
+          </section>
 
-            {/* Autonomous Triggers */}
-            <section>
-              <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
-                <Activity size={18} /> Autonomous Triggers
-              </h2>
-              <ul className="space-y-2 text-sm">
-                {autonomousTriggers.map(tr => (
-                  <li
-                    key={tr.id}
-                    className={`p-2 rounded-md ${
-                      tr.active ? "bg-emerald-800/30" : "bg-slate-700/30"
-                    }`}
-                  >
-                    <span className="font-medium">{tr.type}:</span> {tr.condition}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-        );
-      }
+          {/* triggers */}
+          <section>
+            <h2 className="flex items-center gap-2 text-lg font-medium mb-2">
+              <Activity size={18}/> Triggers
+            </h2>
+            <ul className="space-y-2 text-sm">
+              {triggers.map(t=>(
+                <li key={t.id}
+                    className={`p-2 rounded-md ${t.on?"bg-emerald-800/30":"bg-slate-700/40"}`}>
+                  {t.txt}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      );
+    }
 
-      /* ─────────────── Mount the app ─────────────── */
-      const root = ReactDOM.createRoot(document.getElementById("root"));
-      root.render(<ContextAwareAIAgent />);
-    </script>
-  </body>
+    /* Mount */
+    ReactDOM.createRoot(document.getElementById("root")).render(<ContextAwareAIAgent/>);
+  </script>
+</body>
 </html>
