@@ -256,5 +256,36 @@
           </div>
         </section>
 
-        {/* Trigger
+        {/* Trigger Section Placeholder */}
+        <section>
+          <h2 className="text-lg font-medium mb-2 flex items-center gap-2">
+            <Activity size={18} /> Autonomous Triggers
+          </h2>
+          <ul className="space-y-2 text-sm">
+            {autonomousTriggers.map((trigger) => (
+              <li
+                key={trigger.id}
+                className={`p-2 rounded-md ${
+                  trigger.active ? "bg-emerald-800/30" : "bg-slate-700/30"
+                }`}
+              >
+                <span className="font-medium">{trigger.type}:</span>{" "}
+                {trigger.condition}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* End of app */}
+      </div>
+    );
+  };
+
+  // Mount the React app
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<ContextAwareAIAgent />);
+</script>
+</body>
+</html>
+        
 
