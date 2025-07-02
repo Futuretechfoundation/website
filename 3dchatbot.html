@@ -40,6 +40,7 @@
       object-fit: contain;
       filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
       transition: transform 0.3s ease;
+      border-radius: 50%
     }
     
     #avatar-image.speaking {
@@ -293,7 +294,7 @@
   </div>
   
   <div id="avatar-container">
-    <img id="avatar-image" src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba Avatar" />
+    <img id="avatar-image" src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba Avatar"/>
   </div>
   
   <div id="chat-interface">
@@ -309,7 +310,7 @@
   <script>
     // Configuration
     const RESPONSES = {
-      "default": "I'm Afiba, your virtual assistant from the Future Tech Foundation. I can answer questions about our organization. How can I help you today?",
+      "default": "I'm Afiba, your virtual assistant from the Future Tech Foundation. How can I help you today?",
       "greeting": ["Hello!", "Hi there!", "Greetings!", "Welcome! How can I help?"],
       "mission": "Our mission at Future Tech Foundation is to empower communities through technology education and innovation with a focus on African development and representation in the tech space.",
       "services": "We offer technology workshops, community outreach programs, educational resources, mentorship opportunities, and networking events for tech professionals, with special emphasis on connecting African tech talent globally.",
