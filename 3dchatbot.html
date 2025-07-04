@@ -4,42 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afiba 3D Chatbot</title>
+  
+  <!-- Find a way to add Favicon -->
   <link rel="icon" type="image/x-icon" href="logo.favicon">
   
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-    
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
       overflow: hidden;
-      font-family: 'Rajdhani', sans-serif;
-      background: radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-      color: white;
-      cursor: none;
-    }
-    
-    /* Custom cursor */
-    .cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #00ffff;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.1s ease;
-      box-shadow: 0 0 15px #00ffff;
-    }
-    
-    .cursor.active {
-      transform: scale(1.5);
-      border-color: #ff0080;
-      box-shadow: 0 0 25px #ff0080;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
     }
     
     canvas {
@@ -47,311 +22,169 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 1;
-    }
-    
-    #main-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      z-index: 2;
     }
     
     #avatar-container {
-      position: absolute;
-      top: 50%;
+      position: fixed;
+      top: 25%;
       left: 50%;
-      transform: translate(-50%, -60%);
-      width: 400px;
-      height: 400px;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
       z-index: 5;
-    }
-    
-    #avatar-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #00ffff, #ff0080, #00ffff);
-      padding: 8px;
-      animation: borderRotate 4s linear infinite;
-    }
-    
-    @keyframes borderRotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
     
     #avatar-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.8));
-      transition: all 0.5s ease;
-      position: relative;
-      z-index: 2;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+      transition: transform 0.3s ease;
+      border-radius: 50%
     }
     
     #avatar-image.speaking {
-      animation: avatarPulse 0.8s ease-in-out infinite alternate;
-      filter: drop-shadow(0 0 40px rgba(255, 0, 128, 0.9));
+      animation: pulse 1s infinite alternate;
     }
     
-    @keyframes avatarPulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.8)); }
-      100% { transform: scale(1.08); filter: drop-shadow(0 0 50px rgba(255, 0, 128, 1)); }
-    }
-    
-    /* Holographic rings around avatar */
-    .holographic-ring {
-      position: absolute;
-      border: 2px solid rgba(0, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: ringFloat 3s ease-in-out infinite;
-    }
-    
-    .ring-1 { width: 450px; height: 450px; top: -25px; left: -25px; animation-delay: 0s; }
-    .ring-2 { width: 500px; height: 500px; top: -50px; left: -50px; animation-delay: 1s; }
-    .ring-3 { width: 550px; height: 550px; top: -75px; left: -75px; animation-delay: 2s; }
-    
-    @keyframes ringFloat {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-      50% { transform: scale(1.1) rotate(180deg); opacity: 0.7; }
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
     }
     
     #organization-name {
       position: absolute;
-      top: 30px;
-      left: 30px;
-      font-family: 'Orbitron', monospace;
-      font-size: 28px;
-      font-weight: 900;
-      background: linear-gradient(45deg, #00ffff, #ff0080, #00ff80);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-    
-    #organization-name:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 15px #00ffff);
-    }
-    
-    #organization-name a {
-      color: inherit;
-      text-decoration: none;
-    }
-    
-    #toggle-info {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 128, 0.2));
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(0, 255, 255, 0.5);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      top: 20px;
+      left: 20px;
+      color: black;
       font-size: 24px;
       font-weight: bold;
-      color: #00ffff;
-      cursor: pointer;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
       z-index: 10;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-    }
-    
-    #toggle-info:hover {
-      transform: scale(1.1) rotate(360deg);
-      border-color: #ff0080;
-      color: #ff0080;
-      box-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
-    }
-    
-    #info-panel {
-      position: absolute;
-      top: 100px;
-      right: 30px;
-      width: 350px;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.9));
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(0, 255, 255, 0.3);
-      border-radius: 20px;
-      padding: 25px;
-      display: none;
-      z-index: 9;
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
-      animation: panelSlide 0.5s ease-out;
-    }
-    
-    @keyframes panelSlide {
-      0% { transform: translateX(100%); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
-    }
-    
-    #info-panel h2 {
-      margin-bottom: 15px;
-      color: #00ffff;
-      font-family: 'Orbitron', monospace;
-      font-size: 24px;
-      text-align: center;
-    }
-    
-    #info-panel p {
-      margin-bottom: 15px;
-      line-height: 1.6;
-      color: #ccc;
-    }
-    
-    #info-panel h3 {
-      color: #ff0080;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    
-    #info-panel ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    #info-panel li {
-      padding: 5px 0;
-      border-left: 3px solid #00ffff;
-      padding-left: 15px;
-      margin-bottom: 8px;
-      transition: all 0.3s ease;
-    }
-    
-    #info-panel li:hover {
-      border-left-color: #ff0080;
-      transform: translateX(5px);
     }
     
     #chat-interface {
       position: absolute;
       bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 46, 0.8));
-      backdrop-filter: blur(25px);
-      border-top: 2px solid rgba(0, 255, 255, 0.3);
-      padding: 25px;
-      box-shadow: 0 -10px 40px rgba(0, 255, 255, 0.1);
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      box-sizing: border-box;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     #chat-messages {
-      max-height: 250px;
+      max-height: 200px;
       overflow-y: auto;
-      margin-bottom: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(26, 26, 46, 0.4));
-      border-radius: 15px;
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      scrollbar-width: thin;
-      scrollbar-color: #00ffff transparent;
-    }
-    
-    #chat-messages::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    #chat-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    
-    #chat-messages::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, #00ffff, #ff0080);
-      border-radius: 4px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: white;
     }
     
     .message {
-      margin-bottom: 15px;
-      padding: 15px 20px;
-      border-radius: 20px;
-      max-width: 85%;
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      max-width: 80%;
       word-wrap: break-word;
-      line-height: 1.6;
-      position: relative;
-      animation: messageSlide 0.5s ease-out;
-    }
-    
-    @keyframes messageSlide {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      line-height: 1.4;
     }
     
     .user-message {
-      background: linear-gradient(135deg, #2979FF, #1565C0);
+      background: #2979FF;
       color: white;
       margin-left: auto;
-      border-bottom-right-radius: 8px;
-      box-shadow: 0 5px 15px rgba(41, 121, 255, 0.3);
+      border-bottom-right-radius: 4px;
     }
     
     .bot-message {
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 128, 0.1));
-      color: #fff;
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
       margin-right: auto;
-      border-bottom-left-radius: 8px;
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+      border-bottom-left-radius: 4px;
     }
     
     #input-container {
       display: flex;
       align-items: center;
-      gap: 15px;
     }
     
     #message-input {
       flex-grow: 1;
-      padding: 18px 25px;
-      border: 2px solid rgba(0, 255, 255, 0.3);
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(26, 26, 46, 0.3));
+      padding: 12px 15px;
+      border: none;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.2);
       color: white;
       font-size: 16px;
-      font-family: 'Rajdhani', sans-serif;
       outline: none;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      transition: background 0.3s;
     }
     
     #message-input::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.6);
     }
     
     #message-input:focus {
-      border-color: #00ffff;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-      transform: scale(1.02);
+      background: rgba(255, 255, 255, 0.3);
     }
     
     #send-button {
-      padding: 18px 30px;
+      margin-left: 10px;
+      padding: 12px 20px;
       border: none;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #00C853, #00E676);
+      border-radius: 25px;
+      background: #00C853;
       color: white;
       font-weight: bold;
-      font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 200, 83, 0.3);
-      font-family: 'Rajdhani', sans-serif;
+      transition: background 0.3s;
     }
     
     #send-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 230, 118, 0.4);
+      background: #00E676;
     }
     
-    #send-button:active {
-      transform: scale(0.95);
+    #toggle-info {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+    
+    #toggle-info:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    #info-panel {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      display: none;
+      z-index: 9;
+    }
+    
+    #info-panel h2 {
+      margin-top: 0;
+      color: #00E676;
     }
     
     #loading-screen {
@@ -360,73 +193,32 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #000000, #1a1a2e, #16213e);
+      background: #000;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      color: white;
       z-index: 100;
     }
     
     .loader {
-      width: 120px;
-      height: 120px;
-      border: 4px solid transparent;
-      border-top: 4px solid #00ffff;
-      border-right: 4px solid #ff0080;
+      width: 100px;
+      height: 100px;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top: 5px solid #00E676;
       border-radius: 50%;
-      animation: loaderSpin 1.5s linear infinite;
-      margin-bottom: 30px;
-      position: relative;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
     }
     
-    .loader::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: -8px;
-      right: -8px;
-      bottom: -8px;
-      border: 2px solid transparent;
-      border-top: 2px solid #00ff80;
-      border-radius: 50%;
-      animation: loaderSpin 1s linear infinite reverse;
-    }
-    
-    @keyframes loaderSpin {
+    @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     
-    #loading-screen h2 {
-      font-family: 'Orbitron', monospace;
-      font-size: 32px;
-      margin-bottom: 15px;
-      background: linear-gradient(45deg, #00ffff, #ff0080);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textGlow 2s ease-in-out infinite alternate;
-    }
-    
-    @keyframes textGlow {
-      0% { filter: drop-shadow(0 0 10px #00ffff); }
-      100% { filter: drop-shadow(0 0 20px #ff0080); }
-    }
-    
-    #loading-screen p {
-      font-size: 18px;
-      color: #ccc;
-      animation: fadeInOut 2s ease-in-out infinite;
-    }
-    
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-    
     .fade-out {
-      animation: fadeOut 1.5s forwards;
+      animation: fadeOut 1s forwards;
     }
     
     @keyframes fadeOut {
@@ -434,205 +226,100 @@
       100% { opacity: 0; visibility: hidden; }
     }
     
-    /* Advanced holographic UI elements */
+    /* Add holographic UI elements */
     .holographic-ui {
       position: absolute;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.7;
       z-index: 3;
     }
     
     .ui-left {
-      left: 40px;
+      left: 20px;
       top: 50%;
       transform: translateY(-50%);
-      animation: uiFloat 4s ease-in-out infinite;
+      height: 300px;
+      width: 100px;
     }
     
     .ui-right {
-      right: 40px;
+      right: 20px;
       top: 50%;
       transform: translateY(-50%);
-      animation: uiFloat 4s ease-in-out infinite reverse;
-    }
-    
-    @keyframes uiFloat {
-      0%, 100% { transform: translateY(-50%) translateX(0); }
-      50% { transform: translateY(-60%) translateX(10px); }
-    }
-    
-    /* Particle effects */
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #00ffff;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: particleFloat 6s linear infinite;
-    }
-    
-    @keyframes particleFloat {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-    
-    /* Responsive design */
-    @media (max-width: 768px) {
-      #avatar-container {
-        width: 250px;
-        height: 250px;
-      }
-      
-      #organization-name {
-        font-size: 20px;
-        top: 20px;
-        left: 20px;
-      }
-      
-      #info-panel {
-        width: 280px;
-        right: 20px;
-        top: 80px;
-      }
-      
-      #chat-messages {
-        max-height: 200px;
-      }
-      
-      .message {
-        max-width: 90%;
-      }
+      height: 300px;
+      width: 100px;
     }
   </style>
 </head>
 <body>
-  <div class="cursor"></div>
-  
   <div id="loading-screen">
     <div class="loader"></div>
-    <h2>Initializing Afiba AI</h2>
-    <p>Connecting to the future...</p>
+    <h2>Loading Afiba Avatar...</h2>
+    <p>Preparing your interactive experience</p>
   </div>
 
-  <div id="main-container">
-    <div id="organization-name">
-      <a href="https://futuretechfoundation.github.io/website/index.html" target="_blank">
-        FUTURETECH FOUNDATION
-      </a>
-    </div>
-    
-    <button id="toggle-info">i</button>
-    
-    <div id="info-panel">
-      <h2>Afiba AI Assistant</h2>
-      <p>Advanced AI companion designed to provide comprehensive information about our organization and services.</p>
-      <h3>Quick Commands</h3>
-      <ul>
-        <li>What services do you offer?</li>
-        <li>How can I become a member?</li>
-        <li>What is your mission statement?</li>
-        <li>When was the organization founded?</li>
-        <li>Tell me about upcoming events</li>
-      </ul>
-    </div>
-    
-    <!-- Advanced holographic UI elements -->
-    <div class="holographic-ui ui-left">
-      <svg width="120" height="400" viewBox="0 0 120 400">
-        <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#00ffff;stop-opacity:0.8" />
-            <stop offset="100%" style="stop-color:#ff0080;stop-opacity:0.2" />
-          </linearGradient>
-        </defs>
-        <rect x="15" y="60" width="25" height="280" fill="url(#grad1)" rx="5">
-          <animate attributeName="height" values="280;320;280" dur="3s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="50" y="100" width="25" height="200" fill="url(#grad1)" rx="5">
-          <animate attributeName="height" values="200;260;200" dur="2.5s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="85" y="80" width="25" height="240" fill="url(#grad1)" rx="5">
-          <animate attributeName="height" values="240;300;240" dur="3.5s" repeatCount="indefinite"/>
-        </rect>
-        <circle cx="60" cy="30" r="15" fill="none" stroke="#00ffff" stroke-width="2">
-          <animate attributeName="r" values="15;20;15" dur="2s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    </div>
-    
-    <div class="holographic-ui ui-right">
-      <svg width="120" height="400" viewBox="0 0 120 400">
-        <defs>
-          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ff0080;stop-opacity:0.8" />
-            <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.2" />
-          </linearGradient>
-        </defs>
-        <circle cx="60" cy="80" r="40" fill="none" stroke="url(#grad2)" stroke-width="3">
-          <animate attributeName="r" values="40;50;40" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="60" cy="200" r="50" fill="none" stroke="url(#grad2)" stroke-width="3">
-          <animate attributeName="r" values="50;60;50" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="60" cy="320" r="45" fill="none" stroke="url(#grad2)" stroke-width="3">
-          <animate attributeName="r" values="45;55;45" dur="3.5s" repeatCount="indefinite"/>
-        </circle>
-        <polygon points="60,20 70,40 50,40" fill="#00ffff">
-          <animateTransform attributeName="transform" type="rotate" values="0 60 30;360 60 30" dur="4s" repeatCount="indefinite"/>
-        </polygon>
-      </svg>
-    </div>
-    
-    <div id="avatar-container">
-      <div class="holographic-ring ring-1"></div>
-      <div class="holographic-ring ring-2"></div>
-      <div class="holographic-ring ring-3"></div>
-      <div id="avatar-wrapper">
-        <img id="avatar-image" src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba Avatar"/>
-      </div>
-    </div>
-    
-    <div id="chat-interface">
-      <div id="chat-messages"></div>
-      <div id="input-container">
-        <input type="text" id="message-input" placeholder="Ask Afiba anything..." />
-        <button id="send-button">Send</button>
-      </div>
+  <div id="organization-name"> 
+    <a href="https://futuretechfoundation.github.io/website/index.html" target="_blank"> FUTURETECH FOUNDATION </a>
+  </div>
+  
+  <button id="toggle-info">i</button>
+  
+  <div id="info-panel">
+    <h2>About Afiba</h2>
+    <p>Afiba is an AI assistant designed to answer questions about our organization.</p>
+    <h3>Sample Questions</h3>
+    <ul>
+      <li>What services do you offer?</li>
+      <li>How can I become a member?</li>
+      <li>What is your mission statement?</li>
+      <li>When was the organization founded?</li>
+    </ul>
+  </div>
+  
+  <!-- Add holographic UI elements -->
+  <div class="holographic-ui ui-left">
+    <svg width="100" height="300" viewBox="0 0 100 300">
+      <rect x="10" y="50" width="20" height="200" fill="rgba(0, 255, 255, 0.2)" />
+      <rect x="40" y="100" width="20" height="150" fill="rgba(0, 255, 255, 0.2)" />
+      <rect x="70" y="70" width="20" height="180" fill="rgba(0, 255, 255, 0.2)" />
+    </svg>
+  </div>
+  
+  <div class="holographic-ui ui-right">
+    <svg width="100" height="300" viewBox="0 0 100 300">
+      <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+      <circle cx="50" cy="150" r="40" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+      <circle cx="50" cy="250" r="35" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
+    </svg>
+  </div>
+  
+  <div id="avatar-container">
+    <img id="avatar-image" src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba Avatar"/>
+  </div>
+  
+  <div id="chat-interface">
+    <div id="chat-messages"></div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Ask Afiba a question..." />
+      <button id="send-button">Send</button>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   <script>
-    // Advanced Configuration
+    // Configuration
     const RESPONSES = {
-      "default": "Hello! I'm Afiba, your advanced AI assistant from the Future Tech Foundation. I'm here to help you explore our innovative world of technology and community empowerment. What would you like to know?",
-      "greeting": [
-        "Welcome to the future! How can I assist you today?",
-        "Greetings, tech explorer! What brings you here?",
-        "Hello there! Ready to dive into the world of technology?",
-        "Hi! I'm excited to help you discover what we're all about!"
-      ],
-      "mission": "Our mission at Future Tech Foundation is to revolutionize communities through cutting-edge technology education and innovation, with a special focus on empowering African development and amplifying representation in the global tech ecosystem. We believe technology should bridge divides, not create them.",
-      "services": "We offer comprehensive technology workshops, immersive coding bootcamps, community outreach programs, extensive educational resources, personalized mentorship opportunities, and dynamic networking events for tech professionals. Our special focus includes connecting African tech talent with global opportunities and fostering innovation in underserved communities.",
-      "membership": "Joining us is easy! Visit our website and explore our membership tiers: Community Member (free access to resources), Active Member (workshop access), and Ambassador (mentorship opportunities). Each level offers unique benefits tailored to your involvement and passion for tech innovation.",
-      "founded": "The Future Tech Foundation was established in 2024 by a visionary group of tech innovators, educators, and community leaders. We're committed to bridging the digital divide and creating pathways for underrepresented communities to thrive in the technology sector.",
-      "events": "Our event calendar is packed with excitement! We host weekly coding circles, monthly innovation workshops, quarterly hackathons, and our flagship annual Pan-African Tech Summit. Our next major event is the Virtual Global Tech Conference featuring industry leaders from around the world.",
-      "contact": "Ready to connect? Reach us at info@futuretechfoundation.org or call our innovation hub at (507) 295-8561. You can also find us on social media @FutureTechFound. We're always excited to hear from fellow tech enthusiasts!",
-      "thankyou": [
-        "You're absolutely welcome! Keep innovating!",
-        "My pleasure! Technology is better when we share it!",
-        "Happy to help! That's what I'm here for!",
-        "Anytime! Let's keep building the future together!"
-      ],
-      "goodbye": [
-        "Until next time, keep coding!",
-        "Farewell, tech pioneer! See you in the digital realm!",
-        "Take care, and may your algorithms be ever efficient!",
-        "Goodbye! Remember, the future is what we make it!"
-      ]
+      "default": "I'm Afiba, your virtual assistant from the Future Tech Foundation. How can I help you today?",
+      "greeting": ["Hello!", "Hi there!", "Greetings!", "Welcome! How can I help?"],
+      "mission": "Our mission at Future Tech Foundation is to empower communities through technology education and innovation with a focus on African development and representation in the tech space.",
+      "services": "We offer technology workshops, community outreach programs, educational resources, mentorship opportunities, and networking events for tech professionals, with special emphasis on connecting African tech talent globally.",
+      "membership": "To become a member, visit our website and click on the 'Join Us' button. We offer different membership tiers based on your level of involvement and interest in our initiatives.",
+      "founded": "The Future Tech Foundation was founded in 2024 by a group of tech enthusiasts committed to bridging the digital divide in underserved communities and increasing African representation in technology fields.",
+      "events": "We host monthly tech workshops, quarterly hackathons, and an annual technology conference. Our next major event is our Pan-African Tech Summit happening virtually next month.",
+      "contact": "You can reach us at info@futuretechfoundation.org or call our main office at (507) 295-8561.",
+      "thankyou": ["You're welcome!", "Happy to help!", "Anytime!", "My pleasure!"],
+      "goodbye": ["Goodbye!", "See you later!", "Take care!", "Until next time!"]
     };
 
     // DOM Elements
@@ -643,19 +330,9 @@
     const infoPanel = document.getElementById('info-panel');
     const loadingScreen = document.getElementById('loading-screen');
     const avatarImage = document.getElementById('avatar-image');
-    const cursor = document.querySelector('.cursor');
     
-    // Custom cursor
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX - 10 + 'px';
-      cursor.style.top = e.clientY - 10 + 'px';
-    });
-    
-    document.addEventListener('mousedown', () => cursor.classList.add('active'));
-    document.addEventListener('mouseup', () => cursor.classList.remove('active'));
-    
-    // Advanced Three.js setup
-    let scene, camera, renderer, particles, galaxyGeometry, galaxyMaterial;
+    // Set up background effects with Three.js
+    let scene, camera, renderer, particles;
     
     function initThreeJS() {
       scene = new THREE.Scene();
@@ -665,70 +342,34 @@
       renderer.setClearColor(0x000000, 0);
       document.body.insertBefore(renderer.domElement, document.body.firstChild);
       
-      createGalaxyParticles();
-      createFloatingParticles();
+      // Add particles
+      createParticles();
       
+      // Position camera
       camera.position.z = 5;
       
+      // Handle window resize
       window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
       
+      // Animation loop
       animate();
     }
     
-    function createGalaxyParticles() {
-      galaxyGeometry = new THREE.BufferGeometry();
-      const particlesCount = 2000;
+    function createParticles() {
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 1000;
+      
       const posArray = new Float32Array(particlesCount * 3);
-      const colorsArray = new Float32Array(particlesCount * 3);
       
-      for(let i = 0; i < particlesCount * 3; i += 3) {
-        // Galaxy spiral pattern
-        const radius = Math.random() * 8;
-        const angle = Math.random() * Math.PI * 4;
-        const x = Math.cos(angle) * radius + (Math.random() - 0.5) * 2;
-        const y = (Math.random() - 0.5) * 4;
-        const z = Math.sin(angle) * radius + (Math.random() - 0.5) * 2;
-        
-        posArray[i] = x;
-        posArray[i + 1] = y;
-        posArray[i + 2] = z;
-        
-        // Color gradient
-        const colorIntensity = Math.random();
-        colorsArray[i] = colorIntensity; // R
-        colorsArray[i + 1] = colorIntensity * 0.5; // G
-        colorsArray[i + 2] = 1; // B
+      for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 10;
       }
       
-      galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-      galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
-      
-      galaxyMaterial = new THREE.PointsMaterial({
-        size: 0.03,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.8,
-        blending: THREE.AdditiveBlending
-      });
-      
-      particles = new THREE.Points(galaxyGeometry, galaxyMaterial);
-      scene.add(particles);
-    }
-    
-    function createFloatingParticles() {
-      const floatingGeometry = new THREE.BufferGeometry();
-      const floatingCount = 500;
-      const floatingPos = new Float32Array(floatingCount * 3);
-      
-      for(let i = 0; i < floatingCount * 3; i++) {
-        floatingPos[i] = (Math.random() - 0.5) * 15;
-      }
-      
-      floatingGeometry.setAttribute('position', new THREE.BufferAttribute(floatingPos, 3));
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
       
       const particlesMaterial = new THREE.PointsMaterial({
         size: 0.02,
