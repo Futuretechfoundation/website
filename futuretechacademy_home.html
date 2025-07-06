@@ -905,22 +905,21 @@
 </footer>
 
 <script>
-    /* Script for Sidebar Menu */
-    function toggleNav() {
-        const sidebar = document.getElementById("mySidebar");
-        const overlay = document.getElementById("myOverlay");
-        
-        if (sidebar.classList.contains("sidebar-active")) {
-            sidebar.classList.remove("sidebar-active");
-            overlay.style.display = "none";
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+
+        if (sidebar.classList.contains("show")) {
+            sidebar.classList.remove("show");
+            overlay.classList.remove("active");
         } else {
-            sidebar.classList.add("sidebar-active");
-            overlay.style.display = "block";
+            sidebar.classList.add("show");
+            overlay.classList.add("active");
         }
     }
 
-    // Smooth scroll for back to top button
-    document.querySelector('.back-home').addEventListener('click', function(e) {
+    // Optional: Smooth scroll for floating button
+    document.querySelector('.fab[href="#top"]').addEventListener('click', function(e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
