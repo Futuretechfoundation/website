@@ -1,505 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Afiba 3D Chatbot</title>
-  
-  <!-- Find a way to add Favicon -->
-  <link rel="icon" type="image/x-icon" href="logo.favicon">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FutureTech AI Assistant</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      box-sizing: border-box;
     }
-    
-    canvas {
-      display: block;
+
+    body, html {
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: white;
+      height: 100vh;
+    }
+
+    /* Animated background */
+    .bg-animation {
       position: fixed;
       top: 0;
       left: 0;
-    }
-    
-    #avatar-container {
-      position: fixed;
-      top: 25%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
-      z-index: 5;
-    }
-    
-    #avatar-image {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
-      transition: transform 0.3s ease;
-      border-radius: 50%
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(0, 255, 127, 0.1) 0%, transparent 50%);
+      animation: bg-shift 20s infinite ease-in-out;
+      z-index: -1;
     }
-    
-    #avatar-image.speaking {
-      animation: pulse 1s infinite alternate;
+
+    @keyframes bg-shift {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      33% { transform: rotate(120deg) scale(1.1); }
+      66% { transform: rotate(240deg) scale(0.9); }
     }
-    
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
-    }
-    
-    #organization-name {
+
+    /* Glassmorphism container */
+    #chat-container {
       position: absolute;
-      top: 20px;
-      left: 20px;
-      color: black;
-      font-size: 24px;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      top: 50%;
+      left: 50px;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 600px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
     }
-    
-    #chat-interface {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
-      padding: 15px;
-      box-sizing: border-box;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    #chat-container:hover {
+      transform: translateY(-50%) scale(1.02);
+      box-shadow: 
+        0 16px 64px rgba(0, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
-    
-    #chat-messages {
-      max-height: 200px;
-      overflow-y: auto;
-      margin-bottom: 10px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      color: white;
-    }
-    
-    .message {
-      margin-bottom: 8px;
-      padding: 8px 12px;
-      border-radius: 18px;
-      max-width: 80%;
-      word-wrap: break-word;
-      line-height: 1.4;
-    }
-    
-    .user-message {
-      background: #2979FF;
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 4px;
-    }
-    
-    .bot-message {
-      background: rgba(255, 255, 255, 0.8);
-      color: #333;
-      margin-right: auto;
-      border-bottom-left-radius: 4px;
-    }
-    
-    #input-container {
+
+    /* Avatar section */
+    .avatar-section {
       display: flex;
       align-items: center;
-    }
-    
-    #message-input {
-      flex-grow: 1;
-      padding: 12px 15px;
-      border: none;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      font-size: 16px;
-      outline: none;
-      transition: background 0.3s;
-    }
-    
-    #message-input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-    
-    #message-input:focus {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    #send-button {
-      margin-left: 10px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      background: #00C853;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    
-    #send-button:hover {
-      background: #00E676;
-    }
-    
-    #toggle-info {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 10;
-      transition: background 0.3s;
-    }
-    
-    #toggle-info:hover {
-      background: rgba(0, 0, 0, 0.8);
-    }
-    
-    #info-panel {
-      position: absolute;
-      top: 80px;
-      right: 20px;
-      width: 300px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
+      margin-bottom: 25px;
       padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #avatar-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 20px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: avatar-float 4s infinite ease-in-out;
+      box-shadow: 
+        0 0 0 3px rgba(0, 255, 255, 0.3),
+        0 0 30px rgba(0, 255, 255, 0.2);
+    }
+
+    #avatar-image::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #00ffff, #ff00ff, #00ff7f, #00ffff);
+      z-index: -1;
+      animation: rotate 3s linear infinite;
+      opacity: 0.6;
+    }
+
+    #avatar-image.speaking {
+      animation: avatar-speaking 0.6s infinite alternate;
+      box-shadow: 
+        0 0 0 3px rgba(0, 255, 127, 0.6),
+        0 0 50px rgba(0, 255, 127, 0.4);
+    }
+
+    .avatar-info h3 {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 5px;
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .avatar-info p {
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 300;
+    }
+
+    @keyframes avatar-float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    @keyframes avatar-speaking {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.08) rotate(1deg); }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Chat messages */
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 255, 255, 0.3) transparent;
+    }
+
+    #chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #chat-messages::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
       border-radius: 10px;
+    }
+
+    .message {
+      margin: 15px 0;
+      padding: 15px 20px;
+      border-radius: 20px;
+      max-width: 85%;
+      position: relative;
+      animation: message-appear 0.5s ease-out;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background: linear-gradient(135deg, #00ffff, #0080ff);
+      margin-left: auto;
+      text-align: right;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message {
+      background: linear-gradient(135deg, #ff00ff, #8000ff);
+      margin-right: auto;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(255, 0, 255, 0.3);
+      border-bottom-left-radius: 5px;
+    }
+
+    @keyframes message-appear {
+      0% { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.9);
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Input section */
+    .input-section {
+      display: flex;
+      gap: 12px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 15px;
+    }
+
+    #message-input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      display: none;
-      z-index: 9;
+      font-size: 1em;
+      outline: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
-    
-    #info-panel h2 {
-      margin-top: 0;
-      color: #00E676;
+
+    #message-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
     }
-    
-    #loading-screen {
-      position: fixed;
+
+    #message-input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.5);
+    }
+
+    #send-button {
+      padding: 15px 25px;
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #send-button::before {
+      content: '';
+      position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: #000;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s ease;
+    }
+
+    #send-button:hover::before {
+      left: 100%;
+    }
+
+    #send-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+    }
+
+    #send-button:active {
+      transform: translateY(0);
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    #toggle-info, #clear-chat {
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    #toggle-info:hover, #clear-chat:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 255, 255, 0.5);
+      color: #00ffff;
+    }
+
+    #info-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 350px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transform: translateX(400px);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+
+    #info-panel.visible {
+      transform: translateX(0);
+    }
+
+    #info-panel h3 {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #info-panel p {
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+    }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
-      z-index: 100;
+      z-index: 9999;
+      transition: opacity 0.8s ease-out;
     }
-    
-    .loader {
-      width: 100px;
-      height: 100px;
-      border: 5px solid rgba(255, 255, 255, 0.2);
-      border-top: 5px solid #00E676;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
+
+    .loading-text {
+      font-size: 2.5em;
+      font-weight: 300;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pulse 2s infinite ease-in-out;
     }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+
+    .loading-bar {
+      width: 300px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
     }
-    
-    .fade-out {
-      animation: fadeOut 1s forwards;
+
+    .loading-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      border-radius: 2px;
+      animation: loading 2s ease-in-out;
     }
-    
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
-    
-    /* Add holographic UI elements */
-    .holographic-ui {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.7;
-      z-index: 3;
+
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
     }
-    
-    .ui-left {
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 300px;
-      width: 100px;
-    }
-    
-    .ui-right {
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 300px;
-      width: 100px;
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      #chat-container {
+        left: 20px;
+        right: 20px;
+        width: auto;
+      }
+      
+      #info-panel {
+        right: 20px;
+        left: 20px;
+        width: auto;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="bg-animation"></div>
+  
   <div id="loading-screen">
-    <div class="loader"></div>
-    <h2>Loading Afiba Avatar...</h2>
-    <p>Preparing your interactive experience</p>
-  </div>
-
-  <div id="organization-name"> 
-    <a href="https://futuretechfoundation.github.io/website/index.html" target="_blank"> FUTURETECH FOUNDATION </a>
-  </div>
-  
-  <button id="toggle-info">i</button>
-  
-  <div id="info-panel">
-    <h2>About Afiba</h2>
-    <p>Afiba is an AI assistant designed to answer questions about our organization.</p>
-    <h3>Sample Questions</h3>
-    <ul>
-      <li>What services do you offer?</li>
-      <li>How can I become a member?</li>
-      <li>What is your mission statement?</li>
-      <li>When was the organization founded?</li>
-    </ul>
-  </div>
-  
-  <!-- Add holographic UI elements -->
-  <div class="holographic-ui ui-left">
-    <svg width="100" height="300" viewBox="0 0 100 300">
-      <rect x="10" y="50" width="20" height="200" fill="rgba(0, 255, 255, 0.2)" />
-      <rect x="40" y="100" width="20" height="150" fill="rgba(0, 255, 255, 0.2)" />
-      <rect x="70" y="70" width="20" height="180" fill="rgba(0, 255, 255, 0.2)" />
-    </svg>
-  </div>
-  
-  <div class="holographic-ui ui-right">
-    <svg width="100" height="300" viewBox="0 0 100 300">
-      <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
-      <circle cx="50" cy="150" r="40" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
-      <circle cx="50" cy="250" r="35" fill="none" stroke="rgba(0, 255, 255, 0.3)" stroke-width="2" />
-    </svg>
-  </div>
-  
-  <div id="avatar-container">
-    <img id="avatar-image" src="https://raw.githubusercontent.com/Futuretechfoundation/website/refs/heads/main/images/Afiba.webp" alt="Afiba Avatar"/>
-  </div>
-  
-  <div id="chat-interface">
-    <div id="chat-messages"></div>
-    <div id="input-container">
-      <input type="text" id="message-input" placeholder="Ask Afiba a question..." />
-      <button id="send-button">Send</button>
+    <div class="loading-text">FutureTech AI</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <div id="chat-container">
+    <div class="avatar-section">
+      <img id="avatar-image" src="https://i.imgur.com/GbQZ5aU.png" alt="Afiba AI Avatar">
+      <div class="avatar-info">
+        <h3>Afiba AI</h3>
+        <p>Your FutureTech Assistant</p>
+      </div>
+    </div>
+    
+    <div id="chat-messages"></div>
+    
+    <div class="input-section">
+      <input id="message-input" placeholder="Ask me anything about FutureTech..." />
+      <button id="send-button">Send</button>
+    </div>
+    
+    <div class="controls">
+      <button id="toggle-info">Info Panel</button>
+      <button id="clear-chat">Clear Chat</button>
+    </div>
+  </div>
+
+  <div id="info-panel">
+    <h3>FutureTech Foundation</h3>
+    <p><strong>Mission:</strong> Empowering ethical innovation, education, and AI for underserved communities worldwide.</p>
+    <p><strong>Founded:</strong> 2024</p>
+    <p><strong>Focus Areas:</strong> AI Research, Robotics, Bio-technology, Community Education</p>
+    <p><strong>Contact:</strong> info@futuretechfoundation.org<br>Phone: (507) 295-8561</p>
+    <p><strong>Join Us:</strong> Become a member to access exclusive resources and collaborate on cutting-edge projects.</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // Configuration
     const RESPONSES = {
-      "default": "I'm Afiba, your virtual assistant from the Future Tech Foundation. How can I help you today?",
-      "greeting": ["Hello!", "Hi there!", "Greetings!", "Welcome! How can I help?"],
-      "mission": "Our mission at Future Tech Foundation is to empower communities through technology education and innovation with a focus on African development and representation in the tech space.",
-      "services": "We offer technology workshops, community outreach programs, educational resources, mentorship opportunities, and networking events for tech professionals, with special emphasis on connecting African tech talent globally.",
-      "membership": "To become a member, visit our website and click on the 'Join Us' button. We offer different membership tiers based on your level of involvement and interest in our initiatives.",
-      "founded": "The Future Tech Foundation was founded in 2024 by a group of tech enthusiasts committed to bridging the digital divide in underserved communities and increasing African representation in technology fields.",
-      "events": "We host monthly tech workshops, quarterly hackathons, and an annual technology conference. Our next major event is our Pan-African Tech Summit happening virtually next month.",
-      "contact": "You can reach us at info@futuretechfoundation.org or call our main office at (507) 295-8561.",
-      "thankyou": ["You're welcome!", "Happy to help!", "Anytime!", "My pleasure!"],
-      "goodbye": ["Goodbye!", "See you later!", "Take care!", "Until next time!"]
+      "default": "I'm Afiba, your AI assistant from the FutureTech Foundation. I'm here to help you explore our mission of ethical innovation and community empowerment. What would you like to know?",
+      "greeting": [
+        "Hello! Welcome to FutureTech Foundation! 🚀", 
+        "Hi there! Ready to explore the future of technology?", 
+        "Welcome! I'm excited to help you discover our innovative projects!", 
+        "Hey! Let's dive into the world of ethical AI and innovation!"
+      ],
+      "mission": "Our mission is to empower underserved communities through ethical innovation, education, and research in future technology. We believe technology should serve humanity and bridge digital divides.",
+      "services": "We offer community workshops, AI tutoring systems, bio-research initiatives, robotics programs, and global tech mentorship. Our goal is to make advanced technology accessible to everyone.",
+      "membership": "Join our community by visiting our website and clicking 'Join Us'. Members get access to exclusive project teams, internal resources, workshops, and networking opportunities with innovators worldwide.",
+      "founded": "The FutureTech Foundation was established in 2024 with a vision to unite ethical tech builders from across the globe and create meaningful impact in underserved communities.",
+      "events": "We host monthly workshops, hackathons, and our signature Pan-African tech summit. These events bring together innovators, researchers, and community leaders. Check our website for upcoming events!",
+      "contact": "📧 Email: info@futuretechfoundation.org\n📞 Phone: (507) 295-8561\n🌐 Visit our website for more ways to connect with us!",
+      "projects": "Our flagship projects include:\n• NeuroMech Suit - Advanced prosthetics\n• BioSynth Designer - Biological innovation\n• UAP Engineering - Aerospace research\n• FutureTech Academy - Educational platform",
+      "volunteer": "Ready to make a difference? Sign our engagement form to get started: https://docs.google.com/forms/d/1aKfwkcy_SsW_5ajTsWJcatUtccboSuFmH_ywxdQyiXg/edit?chromeless=1",
+      "tracks": "We offer 3 specialized tracks:\n1️⃣ Future of Humans - Human enhancement & ethics\n2️⃣ Mind Uploading into Humanoids - Consciousness & AI\n3️⃣ UAP & Quantum Technology - Advanced physics & engineering",
+      "tutors": "Our AI tutors specialize in:\n• Regenerative Medicine\n• Robotics & Automation\n• UAP Theory & Physics\n• Neural Coding & Brain-Computer Interfaces",
+      "partners": "We collaborate with leading university labs, community organizations, and research hubs worldwide to co-develop inclusive innovation solutions that benefit everyone.",
+      "thankyou": ["You're very welcome! 😊", "Happy to help!", "Glad I could assist you!", "Anytime! Feel free to ask more questions!"],
+      "goodbye": ["Take care! Keep innovating! 🚀", "See you soon! Stay curious!", "Goodbye! Remember, the future is what we make it!", "Until next time! Keep pushing boundaries!"]
     };
 
-    // DOM Elements
     const messageInput = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');
     const chatMessages = document.getElementById('chat-messages');
     const toggleInfoButton = document.getElementById('toggle-info');
+    const clearChatButton = document.getElementById('clear-chat');
     const infoPanel = document.getElementById('info-panel');
     const loadingScreen = document.getElementById('loading-screen');
     const avatarImage = document.getElementById('avatar-image');
+
+    let isInfoVisible = false;
+    let messageHistory = [];
+
+    // Initialize app
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          addBotMessage("Hello! I'm Afiba, your AI assistant from FutureTech Foundation. How can I help you explore our innovative projects today? 🚀");
+        }, 800);
+      }, 2000);
+    });
+
+    // Three.js Background
+    let scene, camera, renderer, particles, connections;
     
-    // Set up background effects with Three.js
-    let scene, camera, renderer, particles;
-    
-    function initThreeJS() {
+    function initThree() {
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0x000000, 0);
-      document.body.insertBefore(renderer.domElement, document.body.firstChild);
-      
-      // Add particles
-      createParticles();
-      
-      // Position camera
       camera.position.z = 5;
       
-      // Handle window resize
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.domElement.style.position = 'fixed';
+      renderer.domElement.style.top = '0';
+      renderer.domElement.style.left = '0';
+      renderer.domElement.style.zIndex = '-1';
+      document.body.appendChild(renderer.domElement);
+
+      // Create particle system
+      const particleCount = 800;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const colors = new Float32Array(particleCount * 3);
       
-      // Animation loop
-      animate();
-    }
-    
-    function createParticles() {
-      const particlesGeometry = new THREE.BufferGeometry();
-      const particlesCount = 1000;
-      
-      const posArray = new Float32Array(particlesCount * 3);
-      
-      for(let i = 0; i < particlesCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 10;
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 20;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+        
+        colors[i * 3] = Math.random();
+        colors[i * 3 + 1] = Math.random();
+        colors[i * 3 + 2] = Math.random();
       }
       
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
       
-      const particlesMaterial = new THREE.PointsMaterial({
+      const material = new THREE.PointsMaterial({
         size: 0.02,
-        color: 0x00ffff,
+        vertexColors: true,
         transparent: true,
-        opacity: 0.5
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
       });
       
-      particles = new THREE.Points(particlesGeometry, particlesMaterial);
+      particles = new THREE.Points(geometry, material);
       scene.add(particles);
+
+      animate();
     }
-    
+
     function animate() {
       requestAnimationFrame(animate);
       
-      particles.rotation.x += 0.0005;
-      particles.rotation.y += 0.0005;
+      if (particles) {
+        particles.rotation.x += 0.0002;
+        particles.rotation.y += 0.0003;
+        
+        // Create wave motion
+        const positions = particles.geometry.attributes.position.array;
+        const time = Date.now() * 0.001;
+        
+        for (let i = 0; i < positions.length; i += 3) {
+          positions[i + 1] += Math.sin(time + positions[i] * 0.1) * 0.002;
+        }
+        
+        particles.geometry.attributes.position.needsUpdate = true;
+      }
       
       renderer.render(scene, camera);
     }
-    
-    // Chat functionality
+
+    // Event listeners
+    toggleInfoButton.addEventListener('click', () => {
+      isInfoVisible = !isInfoVisible;
+      infoPanel.classList.toggle('visible', isInfoVisible);
+    });
+
+    clearChatButton.addEventListener('click', () => {
+      chatMessages.innerHTML = '';
+      messageHistory = [];
+      addBotMessage("Chat cleared! How can I help you today? 🚀");
+    });
+
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    sendButton.addEventListener('click', sendMessage);
+
+    // Message functions
     function addUserMessage(text) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message user-message';
-      messageDiv.textContent = text;
-      chatMessages.appendChild(messageDiv);
+      const div = document.createElement('div');
+      div.className = 'message user-message';
+      div.textContent = text;
+      chatMessages.appendChild(div);
       chatMessages.scrollTop = chatMessages.scrollHeight;
+      messageHistory.push({ type: 'user', text });
     }
 
     function addBotMessage(text) {
-      // Animate avatar speaking
       avatarImage.classList.add('speaking');
+      const div = document.createElement('div');
+      div.className = 'message bot-message';
+      chatMessages.appendChild(div);
       
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message bot-message';
-      
-      // Simulate typing effect
       let i = 0;
-      messageDiv.textContent = "";
-      chatMessages.appendChild(messageDiv);
-      
+      const typingSpeed = 30;
       const typingEffect = setInterval(() => {
         if (i < text.length) {
-          messageDiv.textContent += text.charAt(i);
+          div.textContent += text.charAt(i++);
           chatMessages.scrollTop = chatMessages.scrollHeight;
-          i++;
         } else {
           clearInterval(typingEffect);
           setTimeout(() => {
             avatarImage.classList.remove('speaking');
           }, 500);
         }
-      }, 20);
-    }
-
-    function getRandomResponse(responseArray) {
-      return responseArray[Math.floor(Math.random() * responseArray.length)];
-    }
-
-    function processMessage(message) {
-      message = message.toLowerCase();
+      }, typingSpeed);
       
-      // Simple keyword-based responses
-      if (message.includes("hi") || message.includes("hello") || message.includes("hey")) {
-        return getRandomResponse(RESPONSES.greeting);
-      } else if (message.includes("mission") || message.includes("purpose")) {
-        return RESPONSES.mission;
-      } else if (message.includes("service") || message.includes("offer") || message.includes("provide")) {
-        return RESPONSES.services;
-      } else if (message.includes("member") || message.includes("join")) {
-        return RESPONSES.membership;
-      } else if (message.includes("found") || message.includes("start") || message.includes("begin")) {
-        return RESPONSES.founded;
-      } else if (message.includes("event") || message.includes("workshop") || message.includes("conference")) {
-        return RESPONSES.events;
-      } else if (message.includes("contact") || message.includes("email") || message.includes("phone") || message.includes("reach")) {
-        return RESPONSES.contact;
-      } else if (message.includes("thank")) {
-        return getRandomResponse(RESPONSES.thankyou);
-      } else if (message.includes("bye") || message.includes("goodbye") || message.includes("see you")) {
-        return getRandomResponse(RESPONSES.goodbye);
-      } else {
-        // Default response for unrecognized queries
-        return "I don't have specific information on that yet. For more details about the Future Tech Foundation, please contact our team or visit our website.";
+      messageHistory.push({ type: 'bot', text });
+    }
+
+    function getResponse(msg) {
+      const m = msg.toLowerCase();
+      
+      // Enhanced keyword matching with multiple keywords
+      const keywords = {
+        greeting: ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'],
+        mission: ['mission', 'purpose', 'goal', 'vision', 'what do you do'],
+        services: ['service', 'offer', 'provide', 'what can you do', 'programs'],
+        membership: ['member', 'join', 'sign up', 'become a member'],
+        founded: ['found', 'start', 'establish', 'created', 'when'],
+        events: ['event', 'workshop', 'summit', 'conference', 'meeting'],
+        contact: ['contact', 'email', 'phone', 'reach', 'get in touch'],
+        projects: ['project', 'initiative', 'work', 'research'],
+        volunteer: ['volunteer', 'help', 'contribute', 'engagement'],
+        tracks: ['track', 'course', 'program', 'curriculum'],
+        tutors: ['tutor', 'ai teacher', 'learning', 'education'],
+        partners: ['partner', 'collaborate', 'work with'],
+        thankyou: ['thank', 'thanks', 'appreciate'],
+        goodbye: ['bye', 'goodbye', 'see you', 'farewell', 'exit']
+      };
+
+      for (const [category, words] of Object.entries(keywords)) {
+        if (words.some(word => m.includes(word))) {
+          const response = RESPONSES[category];
+          return Array.isArray(response) ? response[Math.floor(Math.random() * response.length)] : response;
+        }
       }
+      
+      return RESPONSES.default;
     }
 
     function sendMessage() {
-      const message = messageInput.value.trim();
-      if (message === "") return;
-      
-      // Add user message to chat
-      addUserMessage(message);
-      messageInput.value = "";
-      
-      // Process and respond after a short delay
-      setTimeout(() => {
-        const response = processMessage(message);
-        addBotMessage(response);
-      }, 500);
+      const msg = messageInput.value.trim();
+      if (msg !== "") {
+        addUserMessage(msg);
+        setTimeout(() => {
+          const response = getResponse(msg);
+          addBotMessage(response);
+        }, 500);
+        messageInput.value = "";
+      }
     }
 
-    // Event listeners
-    sendButton.addEventListener('click', sendMessage);
-    
-    messageInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        sendMessage();
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (renderer) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
       }
     });
-    
-    toggleInfoButton.addEventListener('click', () => {
-      infoPanel.style.display = infoPanel.style.display === 'none' ? 'block' : 'none';
-    });
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      // Initialize Three.js background
-      initThreeJS();
-      
-      // Set the avatar image to the provided image
-      const dataImage = ""; // This is where you would put your base64 encoded image if needed
-      
-      // Hide loading screen after everything is loaded
-      setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-        addBotMessage(RESPONSES.default);
-      }, 1500);
-    });
+    // Initialize Three.js
+    initThree();
   </script>
 </body>
-  </html>
+</html>
