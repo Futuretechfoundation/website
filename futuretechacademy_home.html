@@ -695,7 +695,7 @@
       color: #add8ff;
       text-decoration: none;
       margin: 6px 0;
-      font-size: 0.95em;
+      font-size: 0.95em; o
     }
 
     .sidebar a:hover {
@@ -729,6 +729,82 @@
       }
     }
   
+    }
+
+    .menu-toggle {
+      font-size: 1.5em;
+      cursor: pointer;
+      display: none;
+    }
+
+    .sidebar {
+      width: 260px;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 50, 0.95);
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 998;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    .sidebar-section {
+      margin-bottom: 30px;
+    }
+
+    .sidebar-section h3 {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      color: #a0dfff;
+      text-transform: uppercase;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #add8ff;
+      text-decoration: none;
+      margin: 6px 0;
+      font-size: 0.95em;
+    }
+
+    .sidebar a:hover {
+      color: #ffffff;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 100px 30px 30px 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .sidebar {
+        top: 60px;
+        width: 260px;
+        transform: translateX(-100%);
+      }
+
+      .sidebar.show {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding-top: 100px;
+      }
+    }
+  
+
+  
     </style>
 </head>
 <body>
@@ -736,6 +812,9 @@
         <div class="header-left">
             <div class="hamburger" onclick="toggleNav()">
                 <i class="fas fa-bars"></i>
+            </div>
+            <div class="menu-toggle" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
             </div>
             <h1 class="site-title">FutureTech Academy</h1>
         </div>
