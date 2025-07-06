@@ -242,43 +242,59 @@
       background: rgba(255, 255, 255, 0.15);
       box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.5);
     }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-    #send-button {
-      padding: 15px 25px;
-      background: linear-gradient(45deg, #00ffff, #ff00ff);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        #send-button {
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            
+            /* Properties to center the text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-    #send-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      transition: left 0.5s ease;
-    }
+        #send-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
 
-    #send-button:hover::before {
-      left: 100%;
-    }
+        #send-button:hover::before {
+            left: 100%;
+        }
 
-    #send-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
-    }
+        #send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+        }
 
-    #send-button:active {
-      transform: translateY(0);
-    }
+        #send-button:active {
+            transform: translateY(0);
+        }
+
 
     /* Controls */
     .controls {
@@ -442,7 +458,7 @@
     <p><strong>Mission:</strong> Empowering ethical innovation, education, and AI for underserved communities worldwide.</p>
     <p><strong>Founded:</strong> 2024</p>
     <p><strong>Focus Areas:</strong> AI Research, Robotics, Bio-technology, Community Education</p>
-    <p><strong>Contact:</strong> info@futuretechfoundation.org<br>Phone: (507) 295-8561</p>
+    <p><strong>Contact:</strong> futuretechfoundationx@gmail.com<br>Phone: (507) 295-8561</p>
     <p><strong>Join Us:</strong> Become a member to access exclusive resources and collaborate on cutting-edge projects.</p>
   </div>
 
@@ -461,7 +477,7 @@
       "membership": "Join our community by visiting our website and clicking 'Join Us'. Members get access to exclusive project teams, internal resources, workshops, and networking opportunities with innovators worldwide.",
       "founded": "The FutureTech Foundation was established in 2024 with a vision to unite ethical tech builders from across the globe and create meaningful impact in underserved communities.",
       "events": "We host monthly workshops, hackathons, and our signature Pan-African tech summit. These events bring together innovators, researchers, and community leaders. Check our website for upcoming events!",
-      "contact": "📧 Email: info@futuretechfoundation.org\n📞 Phone: (507) 295-8561\n🌐 Visit our website for more ways to connect with us!",
+      "contact": "📧 Email: futuretechfoundationx@gmail.com\n📞 Phone: (507) 295-8561\n🌐 Visit our website for more ways to connect with us!",
       "projects": "Our flagship projects include:\n• NeuroMech Suit - Advanced prosthetics\n• BioSynth Designer - Biological innovation\n• UAP Engineering - Aerospace research\n• FutureTech Academy - Educational platform",
       "volunteer": "Ready to make a difference? Sign our engagement form to get started: https://docs.google.com/forms/d/1aKfwkcy_SsW_5ajTsWJcatUtccboSuFmH_ywxdQyiXg/edit?chromeless=1",
       "tracks": "We offer 3 specialized tracks:\n1️⃣ Future of Humans - Human enhancement & ethics\n2️⃣ Mind Uploading into Humanoids - Consciousness & AI\n3️⃣ UAP & Quantum Technology - Advanced physics & engineering",
