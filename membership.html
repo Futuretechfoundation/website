@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuretech Foundation Membership</title>
+  <title>Futuretech Foundation Membership Dashboard</title>
 
-  <!-- Ethers.js -->
+  <!-- Web3 & Ethers -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
-
-  <!-- Tailwind CSS -->
+  
+  <!-- Tailwind CDN -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
-    body {
+    html, body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 0;
+      background: linear-gradient(to bottom right, #4f46e5, #7c3aed);
       color: white;
     }
+    .hidden { display: none; }
     .btn {
       padding: 12px 24px;
       border-radius: 8px;
       font-weight: 500;
-      transition: 0.3s ease;
-    }
-    .btn:hover {
-      transform: scale(1.05);
+      transition: all 0.2s ease;
     }
     .btn-primary {
       background: linear-gradient(135deg, #3B82F6, #2563EB);
@@ -42,29 +41,62 @@
       background: transparent;
       color: white;
     }
-    .hidden {
-      display: none;
+    .btn:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-<!-- Landing Page -->
-<div id="landing-view" class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-  <h1 class="text-4xl font-bold mb-4">🚀 FutureTech Foundation</h1>
-  <p class="text-lg mb-4">Join the innovation movement</p>
-  <div id="bitcoin-price" class="text-yellow-300 text-md mb-4">≈ Loading BTC...</div>
-  <button id="connect-wallet-btn" class="btn btn-primary">
-    <i class="fas fa-wallet mr-2"></i>Connect Wallet
-  </button>
-  <div id="wallet-status" class="mt-4 text-sm"></div>
+<!-- LANDING PAGE -->
+<div id="landing-view" class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+  <h1 class="text-5xl font-bold mb-6">🚀 Join The Future</h1>
+  <p class="text-xl mb-4 max-w-xl">Become a member of the FutureTech Foundation — an exclusive community for visionaries, innovators, and tech pioneers.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-6xl w-full mb-10">
+    <div>
+      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-users mr-2"></i>Private Groups</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>AI & Machine Learning</li>
+        <li>Blockchain Development</li>
+        <li>Future Tech Investors</li>
+        <li>Quantum Computing</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-star mr-2"></i>Premium Benefits</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>1-on-1 Expert Mentorship</li>
+        <li>Exclusive Webinars</li>
+        <li>Priority Event Access</li>
+        <li>Certification Programs</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-gift mr-2"></i>Exclusive Perks</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>NFT Membership Badge</li>
+        <li>Premium Resource Library</li>
+        <li>Industry Partnerships</li>
+        <li>Quarterly Reports</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
+    <button id="connect-wallet-btn" class="btn btn-primary text-lg">
+      <i class="fas fa-wallet mr-2"></i>Connect Wallet
+    </button>
+    <p id="wallet-status" class="mt-4 text-sm text-white opacity-80"></p>
+  </div>
 </div>
 
-<!-- Dashboard -->
+<!-- DASHBOARD -->
 <div id="dashboard-view" class="hidden min-h-screen flex flex-col items-center justify-center text-center px-6">
-  <h2 class="text-3xl font-bold mb-4">Welcome to your Dashboard</h2>
-  <p class="text-md mb-2">Connected as: <span id="user-address" class="font-mono bg-white text-gray-900 px-2 py-1 rounded"></span></p>
-  <div id="btc-dashboard-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
+  <h2 class="text-4xl font-bold mb-4">Welcome to your Dashboard</h2>
+  <p class="text-lg mb-2">Connected as: <span id="user-address" class="font-mono bg-white text-gray-800 px-2 py-1 rounded"></span></p>
+  <p id="btc-dashboard-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</p>
   <button id="logout-btn" class="btn btn-outline">
     <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
   </button>
@@ -78,14 +110,13 @@
       const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
       const data = await res.json();
       const btcPrice = data.bitcoin.usd;
-      const usdAmount = 50;
-      const converted = (usdAmount / btcPrice).toFixed(6);
+      const converted = (50 / btcPrice).toFixed(6);
       document.getElementById('bitcoin-price').innerText = `≈ ${converted} BTC`;
       document.getElementById('btc-dashboard-price').innerText = `≈ ${converted} BTC`;
     } catch (err) {
       console.error(err);
-      document.getElementById('bitcoin-price').innerText = "BTC unavailable";
-      document.getElementById('btc-dashboard-price').innerText = "BTC unavailable";
+      document.getElementById('bitcoin-price').innerText = "BTC price unavailable";
+      document.getElementById('btc-dashboard-price').innerText = "BTC price unavailable";
     }
   }
 
@@ -98,12 +129,11 @@
     try {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       currentAccount = accounts[0];
-      document.getElementById('user-address').innerText =
-        `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
+      document.getElementById('user-address').innerText = `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
       showDashboard();
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
       updateStatus('Wallet connection failed.', 'red');
+      console.error(error);
     }
   }
 
@@ -136,6 +166,5 @@
     setInterval(fetchBTC, 30000);
   });
 </script>
-
 </body>
-  </html>
+</html>
