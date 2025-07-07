@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuretech Foundation Membership</title>
+  <title>Futuretech Foundation Membership Dashboard</title>
 
   <!-- Ethers.js -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
@@ -22,96 +22,89 @@
       margin: 0;
       padding: 0;
     }
-
-    .hidden {
-      display: none;
-    }
-
+    .hidden { display: none; }
     .btn {
-      @apply px-6 py-3 rounded-lg font-semibold transition-all;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
     }
-
     .btn-primary {
       background: linear-gradient(to right, #3B82F6, #2563EB);
       color: white;
     }
-
-    .btn-danger {
-      background: #dc2626;
+    .btn-outline {
+      border: 2px solid white;
       color: white;
+      background: transparent;
     }
   </style>
 </head>
 <body>
 
-  <!-- Landing Page -->
-  <div id="landing-view" class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+  <!-- Membership Section -->
+  <section id="membership-section" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
     <h1 class="text-4xl font-bold mb-4">🚀 FutureTech Foundation</h1>
-    <p class="text-xl mb-6">Join the innovation movement</p>
-    <div id="btc-price" class="text-yellow-300 mb-4">≈ Loading BTC...</div>
-    <button id="connect-wallet-btn" class="btn btn-primary">
-      <i class="fas fa-wallet mr-2"></i>Connect Wallet
+    <p class="text-xl mb-4">Exclusive membership for innovators and visionaries</p>
+    <div class="text-2xl font-semibold text-yellow-300 mb-6" id="btc-price">≈ Loading BTC...</div>
+    <button id="connect-wallet-btn" class="btn btn-primary mb-2">
+      <i class="fas fa-wallet mr-2"></i>Connect with MetaMask
     </button>
-    <p id="wallet-status" class="text-sm mt-4 text-red-200"></p>
-  </div>
+    <p id="wallet-status" class="text-white text-sm mt-2"></p>
+  </section>
 
-  <!-- Dashboard -->
-  <div id="dashboard-view" class="hidden min-h-screen flex flex-col items-center justify-center text-center px-4 bg-white text-gray-900">
-    <h2 class="text-3xl font-bold mb-4">🎉 Welcome to your Member Dashboard</h2>
-    <p class="text-lg mb-2">Connected Wallet: <span id="user-address" class="font-mono text-blue-600"></span></p>
-    <p class="mb-6 text-gray-700">Your membership includes the following personalized features:</p>
-    <ul class="text-left list-disc list-inside mb-6 text-gray-800">
-      <li>✅ Access to Private Groups</li>
-      <li>✅ Exclusive Webinars</li>
-      <li>✅ Mentorship Program</li>
-      <li>✅ NFT Membership Badge</li>
-      <li>✅ Premium Resource Library</li>
-    </ul>
-    <button id="logout-btn" class="btn btn-danger">
-      <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+  <!-- Dashboard Section -->
+  <section id="dashboard-section" class="hidden min-h-screen flex flex-col justify-center items-center text-center px-4 bg-white text-gray-900">
+    <h2 class="text-3xl font-bold mb-4">Welcome to your Member Dashboard</h2>
+    <p class="text-lg mb-2">Wallet: <span id="user-address" class="font-mono text-blue-600"></span></p>
+    <div class="text-left max-w-md w-full mt-6">
+      <h3 class="text-xl font-semibold mb-2">✅ Your Membership Includes:</h3>
+      <ul class="list-disc list-inside text-gray-800">
+        <li>Private Group Access</li>
+        <li>Exclusive Webinars</li>
+        <li>Mentorship Program</li>
+        <li>NFT Membership Badge</li>
+        <li>Premium Resources</li>
+      </ul>
+    </div>
+    <button id="logout-btn" class="btn btn-outline mt-6">
+      <i class="fas fa-sign-out-alt mr-2"></i>Disconnect Wallet
     </button>
-  </div>
+  </section>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script>
-    let currentAccount = null;
-
     async function fetchBTC() {
       try {
         const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
         const data = await res.json();
-        const btcPrice = data.bitcoin.usd;
-        const converted = (50 / btcPrice).toFixed(6);
-        document.getElementById('btc-price').innerText = `≈ ${converted} BTC (for $50)`;
-      } catch (err) {
+        const price = data.bitcoin.usd;
+        const btcValue = (50 / price).toFixed(6);
+        document.getElementById('btc-price').innerText = `≈ ${btcValue} BTC (for $50)`;
+      } catch (e) {
         document.getElementById('btc-price').innerText = 'BTC price unavailable';
-        console.error(err);
       }
     }
 
     async function connectWallet() {
       if (!window.ethereum) {
-        document.getElementById('wallet-status').innerText = 'MetaMask is not installed.';
+        document.getElementById('wallet-status').innerText = 'MetaMask not installed.';
         return;
       }
 
       try {
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        currentAccount = accounts[0];
-        document.getElementById('user-address').innerText =
-          currentAccount.slice(0, 6) + '...' + currentAccount.slice(-4);
-        document.getElementById('landing-view').classList.add('hidden');
-        document.getElementById('dashboard-view').classList.remove('hidden');
-      } catch (error) {
+        const user = accounts[0];
+        document.getElementById('user-address').innerText = `${user.slice(0, 6)}...${user.slice(-4)}`;
+        document.getElementById('membership-section').classList.add('hidden');
+        document.getElementById('dashboard-section').classList.remove('hidden');
+      } catch (err) {
         document.getElementById('wallet-status').innerText = 'Wallet connection failed.';
-        console.error(error);
       }
     }
 
     function disconnectWallet() {
-      currentAccount = null;
-      document.getElementById('dashboard-view').classList.add('hidden');
-      document.getElementById('landing-view').classList.remove('hidden');
+      document.getElementById('dashboard-section').classList.add('hidden');
+      document.getElementById('membership-section').classList.remove('hidden');
       document.getElementById('wallet-status').innerText = '';
     }
 
@@ -121,6 +114,5 @@
       document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
     });
   </script>
-
 </body>
 </html>
