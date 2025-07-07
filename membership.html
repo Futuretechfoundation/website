@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuretech Foundation Membership Dashboard</title>
+  <title>Futuretech Foundation Membership</title>
 
-  <!-- Fixed Ethers.js (UMD version) -->
+  <!-- Ethers.js -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
   <!-- Tailwind CSS -->
@@ -20,10 +20,10 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #f9fafb;
       margin: 0;
       padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #f9fafb;
     }
     .btn {
       padding: 12px 24px;
@@ -64,16 +64,50 @@
     <div id="wallet-status" class="wallet-status hidden"></div>
   </div>
 
+  <!-- Membership Features -->
+  <div id="membership-features" class="bg-white text-gray-800 py-16 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-8">🌟 Membership Features</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-gray-100 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">🌱 Starter Member</h3>
+        <ul class="list-disc list-inside text-left text-sm">
+          <li>Access to community forum</li>
+          <li>Volunteer opportunities</li>
+          <li>Starter badge</li>
+        </ul>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">🚀 Innovator Member</h3>
+        <ul class="list-disc list-inside text-left text-sm">
+          <li>Early access to tools</li>
+          <li>Invite to labs & research</li>
+          <li>Priority submissions</li>
+        </ul>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-xl shadow">
+        <h3 class="text-xl font-semibold mb-2">🧠 Visionary Member</h3>
+        <ul class="list-disc list-inside text-left text-sm">
+          <li>Direct collaboration w/ leadership</li>
+          <li>Listed as contributor</li>
+          <li>Invite to FutureTech Summit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <!-- Dashboard -->
   <div id="dashboard-view" class="hidden min-h-screen flex flex-col items-center justify-center text-center px-6">
     <h2 class="text-3xl font-bold mb-4">Welcome to your Dashboard</h2>
-    <p class="text-lg mb-2">Connected as: <span id="user-address" class="font-mono bg-white text-gray-800 px-2 py-1 rounded"></span></p>
+    <p class="text-lg mb-2">Connected as: 
+      <span id="user-address" class="font-mono bg-white text-gray-800 px-2 py-1 rounded"></span>
+    </p>
     <p id="btc-dashboard-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</p>
     <button id="logout-btn" class="btn btn-outline">
       <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
     </button>
   </div>
 
+  <!-- Script Section -->
   <script>
     let currentAccount = null;
     let provider = null;
@@ -130,11 +164,13 @@
 
     function showDashboard() {
       document.getElementById('landing-view').classList.add('hidden');
+      document.getElementById('membership-features').classList.add('hidden');
       document.getElementById('dashboard-view').classList.remove('hidden');
     }
 
     function showLanding() {
       document.getElementById('landing-view').classList.remove('hidden');
+      document.getElementById('membership-features').classList.remove('hidden');
       document.getElementById('dashboard-view').classList.add('hidden');
       document.getElementById('wallet-status').classList.add('hidden');
     }
@@ -146,6 +182,5 @@
       setInterval(fetchBTC, 30000);
     });
   </script>
-
 </body>
 </html>
