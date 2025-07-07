@@ -496,46 +496,69 @@
   </div>
 </div>
 
+<script>
+  const connectWalletBtn = document.getElementById('connect-wallet-btn');
+  const walletDisplay = document.getElementById('wallet-address');
+  const landingView = document.getElementById('landing-view');
+  const dashboardView = document.getElementById('dashboard-view');
+  const userAddress = document.getElementById('user-address');
+  const walletStatus = document.getElementById('wallet-status');
+  const disconnectWalletBtn = document.getElementById('disconnect-wallet-btn');
+  const logoutBtn = document.getElementById('logout-btn');
 
-  
-  
-
-  <script>
-    const connectButton = document.getElementById('connectButton');
-    const walletDisplay = document.getElementById('wallet-address');
-
-    async function connectWallet() {
-      if (typeof window.ethereum === 'undefined') {
-        walletDisplay.textContent = 'MetaMask is not installed.';
-        return;
-      }
-
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        walletDisplay.textContent = `Connected wallet: ${address}`;
-      } catch (err) {
-        walletDisplay.textContent = `Connection error: ${err.message}`;
-        console.error(err);
-      }
+  async function connectWallet() {
+    if (typeof window.ethereum === 'undefined') {
+      walletDisplay.textContent = 'MetaMask is not installed.';
+      return;
     }
 
-    connectButton.addEventListener('click', connectWallet);
-  
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+
+      // Show wallet info
+      walletDisplay.textContent = `Connected wallet: ${address}`;
+      userAddress.textContent = address;
+      walletStatus.textContent = 'Connected successfully.';
+      walletStatus.className = 'status-text status-success';
+
+      showDashboard();
+    } catch (err) {
+      walletDisplay.textContent = `Connection error: ${err.message}`;
+      walletStatus.textContent = 'Connection failed.';
+      walletStatus.className = 'status-text status-error';
+      console.error(err);
+    }
+  }
+
+  function disconnectWallet() {
+    landingView.classList.remove('hidden');
+    dashboardView.classList.add('hidden');
+    walletDisplay.textContent = '';
+    userAddress.textContent = '';
+    walletStatus.textContent = 'Disconnected.';
+    walletStatus.className = 'status-text status-normal';
+  }
+
   function showDashboard() {
     landingView.classList.add('hidden');
-    dashboardView.clas
-if (disconnectWalletBtn) {
-      disconnectWalletBtn.addEventListener('click', disconnectWallet);
-    }
+    dashboardView.classList.remove('hidden');
+  }
 
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', disconnectWallet);
-    }
-  });
-</script>
+  connectWalletBtn.addEventListener('click', connectWallet);
+
+  if (disconnectWalletBtn) {
+    disconnectWalletBtn.addEventListener('click', disconnectWallet);
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', disconnectWallet);
+  }
+    </script>
+  
+  
 
 </body>
 </html>
