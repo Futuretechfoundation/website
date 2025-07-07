@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FutureTech Membership</title>
+  <title>FutureTech Dashboard</title>
 
+  <!-- Ethers.js for MetaMask -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+
+  <!-- Tailwind CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <style>
@@ -17,38 +22,48 @@
       margin: 0;
       padding: 0;
     }
-    .btn { padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-    .btn-primary { background: #3B82F6; color: white; }
-    .btn-outline { border: 2px solid white; color: white; background: transparent; }
-    .wallet-status { padding: 10px; margin-top: 1rem; border-radius: 8px; font-weight: bold; }
-    .wallet-status.success { background: #10b98133; color: #059669; }
-    .wallet-status.error { background: #ef444433; color: #dc2626; }
-    .dashboard { display: none; }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+    .wallet-status {
+      padding: 10px;
+      margin-top: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .wallet-status.success {
+      background: #10b98133;
+      color: #059669;
+    }
+    .wallet-status.error {
+      background: #ef444433;
+      color: #dc2626;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Landing View -->
-  <div id="landing-view" class="min-h-screen flex flex-col items-center justify-center text-center px-4">
-    <h1 class="text-4xl font-bold mb-4">🚀 FutureTech Foundation</h1>
-    <p class="text-xl mb-6">Join the innovation movement</p>
-    <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
-    <button id="connect-wallet-btn" class="btn btn-primary mb-2">
-      <i class="fas fa-wallet mr-2"></i> Connect Wallet
-    </button>
-    <div id="wallet-status" class="wallet-status" style="display: none;"></div>
-  </div>
-
   <!-- Dashboard View -->
-  <div id="dashboard-view" class="dashboard min-h-screen p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold">Welcome to your Dashboard</h1>
-      <div class="flex items-center space-x-4">
-        <span id="user-address" class="bg-white text-gray-800 px-4 py-2 rounded"></span>
-        <button id="logout-btn" class="btn btn-outline"><i class="fas fa-sign-out-alt mr-2"></i> Disconnect</button>
-      </div>
+  <div id="dashboard-view" class="min-h-screen flex flex-col justify-center items-center p-6 text-center">
+    <h1 class="text-3xl font-bold mb-4">🚀 FutureTech Foundation</h1>
+    <p class="text-xl mb-2">Welcome to your Dashboard</p>
+    
+    <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
+
+    <div class="flex items-center justify-center mb-4">
+      <span id="user-address" class="bg-white text-gray-800 px-4 py-2 rounded text-sm mr-4"></span>
+      <button id="logout-btn" class="btn btn-outline"><i class="fas fa-sign-out-alt mr-2"></i> Disconnect</button>
     </div>
-    <p class="text-lg">You're now connected to the FutureTech Foundation as a Pro Member.</p>
+
+    <div id="wallet-status" class="wallet-status" style="display: none;"></div>
   </div>
 
   <script>
@@ -56,9 +71,11 @@
     let provider = null;
     let signer = null;
 
-    async function connectWallet() {
+    async function connectWalletOnLoad() {
       if (!window.ethereum) {
-        alert("MetaMask is not installed. Please install it to continue.");
+        document.getElementById('wallet-status').style.display = 'block';
+        document.getElementById('wallet-status').className = 'wallet-status error';
+        document.getElementById('wallet-status').innerText = 'MetaMask not installed';
         return;
       }
 
@@ -72,24 +89,49 @@
         provider = new ethers.providers.Web3Provider(window.ethereum);
         signer = provider.getSigner();
 
-        // Update UI
         document.getElementById('wallet-status').style.display = 'block';
         document.getElementById('wallet-status').className = 'wallet-status success';
         document.getElementById('wallet-status').innerText = 'Connected: ' + currentAccount;
 
-        document.getElementById('landing-view').style.display = 'none';
-        document.getElementById('dashboard-view').style.display = 'block';
         document.getElementById('user-address').innerText =
           currentAccount.slice(0, 6) + "..." + currentAccount.slice(-4);
 
-      } catch (error) {
-        console.error("MetaMask connection error:", error);
+      } catch (err) {
+        console.error("MetaMask connection error:", err);
         document.getElementById('wallet-status').style.display = 'block';
         document.getElementById('wallet-status').className = 'wallet-status error';
         document.getElementById('wallet-status').innerText =
-          error.message || 'Connection failed.';
+          err.message || 'Connection failed.';
       }
     }
 
     function disconnectWallet() {
-      current
+      currentAccount = null;
+      provider = null;
+      signer = null;
+      location.reload(); // reload the page
+    }
+
+    async function fetchBitcoinPrice() {
+      try {
+        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+        const data = await res.json();
+        const btcPrice = data.bitcoin.usd;
+        const priceText = `≈ ${(50 / btcPrice).toFixed(6)} BTC`;
+        document.getElementById('bitcoin-price').innerText = priceText;
+      } catch (err) {
+        console.error("BTC price fetch error:", err);
+        document.getElementById('bitcoin-price').innerText = "BTC price unavailable";
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
+      connectWalletOnLoad();
+      fetchBitcoinPrice();
+      setInterval(fetchBitcoinPrice, 30000); // update every 30s
+    });
+  </script>
+
+</body>
+</html>
