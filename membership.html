@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FutureTech Membership Dashboard</title>
+  <title>FutureTech Membership</title>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
@@ -58,17 +58,21 @@
 
     async function connectWallet() {
       if (!window.ethereum) {
-        alert("MetaMask not found. Please install it to use this feature.");
+        alert("MetaMask is not installed. Please install it to continue.");
         return;
       }
 
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (!accounts || accounts.length === 0) {
+          throw new Error("No accounts returned.");
+        }
+
         currentAccount = accounts[0];
         provider = new ethers.providers.Web3Provider(window.ethereum);
         signer = provider.getSigner();
 
-        console.log("Wallet connected:", currentAccount);
+        // Update UI
         document.getElementById('wallet-status').style.display = 'block';
         document.getElementById('wallet-status').className = 'wallet-status success';
         document.getElementById('wallet-status').innerText = 'Connected: ' + currentAccount;
@@ -77,46 +81,15 @@
         document.getElementById('dashboard-view').style.display = 'block';
         document.getElementById('user-address').innerText =
           currentAccount.slice(0, 6) + "..." + currentAccount.slice(-4);
-      } catch (err) {
-        console.error("Wallet connection failed:", err);
+
+      } catch (error) {
+        console.error("MetaMask connection error:", error);
         document.getElementById('wallet-status').style.display = 'block';
         document.getElementById('wallet-status').className = 'wallet-status error';
-        document.getElementById('wallet-status').innerText = 'Connection failed.';
+        document.getElementById('wallet-status').innerText =
+          error.message || 'Connection failed.';
       }
     }
 
     function disconnectWallet() {
-      console.log("Disconnecting wallet...");
-      currentAccount = null;
-      provider = null;
-      signer = null;
-
-      document.getElementById('dashboard-view').style.display = 'none';
-      document.getElementById('landing-view').style.display = 'flex';
-      document.getElementById('wallet-status').style.display = 'none';
-    }
-
-    async function fetchBitcoinPrice() {
-      try {
-        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-        const data = await res.json();
-        const btcPrice = data.bitcoin.usd;
-        const priceText = `≈ ${(50 / btcPrice).toFixed(6)} BTC`;
-        document.getElementById('bitcoin-price').innerText = priceText;
-        console.log("BTC Price loaded:", btcPrice);
-      } catch (err) {
-        console.error("Failed to fetch BTC price", err);
-        document.getElementById('bitcoin-price').innerText = "BTC price unavailable";
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
-      document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
-      fetchBitcoinPrice();
-      setInterval(fetchBitcoinPrice, 30000);
-    });
-  </script>
-
-</body>
-  </html>
+      current
