@@ -3,115 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuretech Foundation Membership</title>
-
-  <!-- Ethers.js -->
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <title>Join FutureTech Foundation</title>
 
   <!-- Tailwind CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #f9fafb;
+      margin: 0;
+      padding: 0;
     }
-    .btn {
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #3B82F6, #2563EB);
-      color: white;
-    }
-    .btn-outline {
-      border: 2px solid white;
-      color: white;
-      background: transparent;
-    }
-    .wallet-status {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-    }
-    .wallet-status.success { background: rgba(16,185,129,0.1); color: #059669; }
-    .wallet-status.error { background: rgba(239,68,68,0.1); color: #dc2626; }
     .hidden { display: none; }
+    .btn {
+      @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Landing Page -->
-  <div id="landing-view" class="min-h-screen flex flex-col items-center justify-center text-center px-6">
-    <h1 class="text-4xl font-bold mb-4">🚀 FutureTech Foundation</h1>
-    <p class="text-xl mb-4">Join the innovation movement</p>
-    <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
-    <button id="connect-wallet-btn" class="btn btn-primary">
-      <i class="fas fa-wallet mr-2"></i>Connect Wallet
-    </button>
-    <div id="wallet-status" class="wallet-status hidden"></div>
-  </div>
+  <!-- Sign-Up Landing Page -->
+  <div id="signup-view" class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+    <h1 class="text-4xl font-bold mb-4">🚀 Join FutureTech Foundation</h1>
+    <p class="text-lg mb-6">Be part of the movement reshaping the future through technology and innovation.</p>
+    
+    <!-- BTC Price -->
+    <div id="btc-price" class="text-yellow-300 mb-4">≈ Loading BTC (Membership Fee: $50)...</div>
 
-  <!-- Membership Features -->
-  <div id="membership-features" class="bg-white text-gray-800 py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold mb-8">🌟 Membership Features</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="bg-gray-100 p-6 rounded-xl shadow">
-        <h3 class="text-xl font-semibold mb-2">🌱 Starter Member</h3>
-        <ul class="list-disc list-inside text-left text-sm">
-          <li>Access to community forum</li>
-          <li>Volunteer opportunities</li>
-          <li>Starter badge</li>
-        </ul>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-xl shadow">
-        <h3 class="text-xl font-semibold mb-2">🚀 Innovator Member</h3>
-        <ul class="list-disc list-inside text-left text-sm">
-          <li>Early access to tools</li>
-          <li>Invite to labs & research</li>
-          <li>Priority submissions</li>
-        </ul>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-xl shadow">
-        <h3 class="text-xl font-semibold mb-2">🧠 Visionary Member</h3>
-        <ul class="list-disc list-inside text-left text-sm">
-          <li>Direct collaboration w/ leadership</li>
-          <li>Listed as contributor</li>
-          <li>Invite to FutureTech Summit</li>
-        </ul>
-      </div>
+    <!-- Membership Signup Form -->
+    <form id="membership-form" class="w-full max-w-sm bg-white p-6 rounded-xl shadow-md text-left text-gray-800">
+      <h2 class="text-2xl font-semibold mb-4">Become a Member</h2>
+      <label class="block mb-2">Full Name</label>
+      <input type="text" required class="w-full p-2 rounded border mb-4" />
+
+      <label class="block mb-2">Email Address</label>
+      <input type="email" required class="w-full p-2 rounded border mb-4" />
+
+      <button type="submit" class="btn w-full mb-4">Sign Up</button>
+      <p class="text-sm text-gray-600">We will contact you with next steps after signing up.</p>
+    </form>
+
+    <!-- Optional: Wallet Connect After Membership -->
+    <div id="wallet-area" class="hidden mt-8 text-center">
+      <p class="mb-2">Already a member? Connect your wallet to continue:</p>
+      <button id="connect-wallet-btn" class="btn"><i class="fas fa-wallet mr-2"></i>Connect Wallet</button>
     </div>
   </div>
 
   <!-- Dashboard -->
   <div id="dashboard-view" class="hidden min-h-screen flex flex-col items-center justify-center text-center px-6">
-    <h2 class="text-3xl font-bold mb-4">Welcome to your Dashboard</h2>
+    <h2 class="text-3xl font-bold mb-4">🎉 Welcome to the Member Dashboard</h2>
     <p class="text-lg mb-2">Connected as: 
       <span id="user-address" class="font-mono bg-white text-gray-800 px-2 py-1 rounded"></span>
     </p>
     <p id="btc-dashboard-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</p>
-    <button id="logout-btn" class="btn btn-outline">
-      <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
-    </button>
+    <button id="logout-btn" class="btn bg-red-600 mt-4"><i class="fas fa-sign-out-alt mr-2"></i>Disconnect</button>
   </div>
 
-  <!-- Script Section -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script>
     let currentAccount = null;
     let provider = null;
-    let signer = null;
 
     async function fetchBTC() {
       try {
@@ -119,67 +75,54 @@
         const data = await res.json();
         const btcPrice = data.bitcoin.usd;
         const converted = (50 / btcPrice).toFixed(6);
-        document.getElementById('bitcoin-price').innerText = `≈ ${converted} BTC`;
+        document.getElementById('btc-price').innerText = `≈ ${converted} BTC (for $50)`;
         document.getElementById('btc-dashboard-price').innerText = `≈ ${converted} BTC`;
       } catch (e) {
-        document.getElementById('bitcoin-price').innerText = "BTC price unavailable";
-        document.getElementById('btc-dashboard-price').innerText = "BTC price unavailable";
+        document.getElementById('btc-price').innerText = "BTC price unavailable";
         console.error(e);
       }
     }
 
     async function connectWallet() {
-      if (!window.ethereum) {
-        showStatus('MetaMask is not installed.', 'error');
-        return;
-      }
-
+      if (!window.ethereum) return alert("MetaMask not found");
       try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const accounts = await ethereum.request({ method: "eth_requestAccounts" });
         currentAccount = accounts[0];
         provider = new ethers.providers.Web3Provider(window.ethereum);
-        signer = provider.getSigner();
-
         document.getElementById('user-address').innerText = `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
         showDashboard();
-      } catch (error) {
-        showStatus(error.message || 'Wallet connection failed.', 'error');
-        console.error(error);
+      } catch (err) {
+        alert("Wallet connection failed.");
+        console.error(err);
       }
-    }
-
-    function disconnectWallet() {
-      currentAccount = null;
-      provider = null;
-      signer = null;
-      showLanding();
-    }
-
-    function showStatus(message, type) {
-      const el = document.getElementById('wallet-status');
-      el.innerText = message;
-      el.className = `wallet-status ${type}`;
-      el.classList.remove('hidden');
     }
 
     function showDashboard() {
-      document.getElementById('landing-view').classList.add('hidden');
-      document.getElementById('membership-features').classList.add('hidden');
+      document.getElementById('signup-view').classList.add('hidden');
       document.getElementById('dashboard-view').classList.remove('hidden');
     }
 
-    function showLanding() {
-      document.getElementById('landing-view').classList.remove('hidden');
-      document.getElementById('membership-features').classList.remove('hidden');
+    function showWalletArea() {
+      document.getElementById('wallet-area').classList.remove('hidden');
+    }
+
+    function showSignUpView() {
+      document.getElementById('signup-view').classList.remove('hidden');
       document.getElementById('dashboard-view').classList.add('hidden');
-      document.getElementById('wallet-status').classList.add('hidden');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
-      document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
       fetchBTC();
       setInterval(fetchBTC, 30000);
+
+      document.getElementById('membership-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert("🎉 Thank you for signing up! Now connect your wallet.");
+        showWalletArea();
+      });
+
+      document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
+      document.getElementById('logout-btn').addEventListener('click', showSignUpView);
     });
   </script>
 </body>
