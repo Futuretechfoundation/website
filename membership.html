@@ -5,114 +5,753 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Futuretech Foundation Membership Dashboard</title>
 
-  <!-- Ethers.js -->
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
-
-  <!-- Tailwind CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-
+  <!-- Web3 & Ethers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.min.js"></script>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    :root {
+      --primary: #3B82F6;
+      --primary-dark: #2563EB;
+      --secondary: #10B981;
+      --secondary-dark: #059669;
+      --dark: #1F2937;
+      --light: #F9FAFB;
+      --danger: #EF4444;
+      --warning: #F59E0B;
+    }
+    
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      color: var(--dark);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
     }
-    .hidden { display: none; }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
     .btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    
     .btn-primary {
-      background: linear-gradient(to right, #3B82F6, #2563EB);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+    
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-secondary:hover {
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
       color: white;
     }
-    .btn-outline {
+    
+    .btn-outline-white {
+      background: transparent;
       border: 2px solid white;
       color: white;
-      background: transparent;
+    }
+    
+    .btn-outline-white:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .btn-disconnect {
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      color: white;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+    
+    .btn-disconnect:hover {
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .membership-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transition: transform 0.3s ease;
+    }
+    
+    .membership-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .dashboard {
+      display: none;
+    }
+    
+    .sidebar {
+      background: linear-gradient(180deg, #1F2937 0%, #111827 100%);
+      min-height: 100vh;
+      color: white;
+      width: 256px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 40;
+    }
+    
+    .sidebar-link {
+      display: block;
+      padding: 16px 24px;
+      width: 100%;
+      text-align: left;
+      transition: all 0.3s ease;
+      color: rgba(255, 255, 255, 0.7);
+      border-left: 3px solid transparent;
+      position: relative;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    
+    .sidebar-link:hover, .sidebar-link.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-left-color: var(--primary);
+      transform: translateX(5px);
+    }
+    
+    .sidebar-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 12px;
+    }
+    
+    .content-section {
+      display: none;
+    }
+    
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    .dashboard-card {
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .private-group {
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .private-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="50" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="90" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>') repeat;
+      opacity: 0.1;
+      z-index: 1;
+    }
+    
+    .private-group > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+    
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      min-width: 200px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .user-dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown-item {
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      color: var(--dark);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .dropdown-item:hover {
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateX(5px);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #EF4444;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .group-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .main-content {
+      margin-left: 256px;
+      min-height: 100vh;
+    }
+    
+    .connected-wallet {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 12px 16px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        z-index: 100;
+        background: linear-gradient(90deg, #1F2937 0%, #111827 100%);
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+      }
+      
+      .sidebar-link {
+        padding: 12px 8px;
+        text-align: center;
+        border-left: none;
+        border-top: 3px solid transparent;
+        transform: none;
+        flex: 1;
+      }
+      
+      .sidebar-link:hover, .sidebar-link.active {
+        border-left-color: transparent;
+        border-top-color: var(--primary);
+        transform: translateY(-2px);
+      }
+      
+      .sidebar-link i {
+        margin-right: 0;
+        display: block;
+        margin-bottom: 4px;
+      }
+      
+      .sidebar-link span {
+        font-size: 12px;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        margin-bottom: 80px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- Landing Page View (Before Login) -->
+  <div id="landing-view" class="min-h-screen">
+    <header class="glassmorphism m-4 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
+            <i class="fas fa-rocket text-blue-600"></i>
+          </div>
+          <h1 class="text-xl font-bold text-white">Futuretech Foundation</h1>
+        </div>
+        <div>
+          <button id="connect-wallet-btn" onclick="connectWallet()" class="btn btn-primary pulse-animation">
+            <i class="fas fa-wallet mr-2"></i>Connect Wallet
+          </button>
+        </div>
+      </div>
+    </header>
 
-  <!-- Membership Section -->
-  <section id="membership-section" class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-    <h1 class="text-4xl font-bold mb-4">🚀 FutureTech Foundation</h1>
-    <p class="text-xl mb-4">Exclusive membership for innovators and visionaries</p>
-    <div class="text-2xl font-semibold text-yellow-300 mb-6" id="btc-price">≈ Loading BTC...</div>
-    <button id="connect-wallet-btn" class="btn btn-primary mb-2">
-      <i class="fas fa-wallet mr-2"></i>Connect with MetaMask
-    </button>
-    <p id="wallet-status" class="text-white text-sm mt-2"></p>
-  </section>
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-5xl font-bold mb-6 text-white">Join The Future</h1>
+          <p class="text-xl text-white opacity-90">Exclusive membership for innovators and visionaries</p>
+        </div>
 
-  <!-- Dashboard Section -->
-  <section id="dashboard-section" class="hidden min-h-screen flex flex-col justify-center items-center text-center px-4 bg-white text-gray-900">
-    <h2 class="text-3xl font-bold mb-4">Welcome to your Member Dashboard</h2>
-    <p class="text-lg mb-2">Wallet: <span id="user-address" class="font-mono text-blue-600"></span></p>
-    <div class="text-left max-w-md w-full mt-6">
-      <h3 class="text-xl font-semibold mb-2">✅ Your Membership Includes:</h3>
-      <ul class="list-disc list-inside text-gray-800">
-        <li>Private Group Access</li>
-        <li>Exclusive Webinars</li>
-        <li>Mentorship Program</li>
-        <li>NFT Membership Badge</li>
-        <li>Premium Resources</li>
-      </ul>
+        <!-- Membership Card -->
+        <div class="membership-card rounded-2xl shadow-2xl p-8 mb-12">
+          <div class="flex flex-col lg:flex-row justify-between items-start mb-8">
+            <div class="flex-1">
+              <span class="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-medium mb-4">
+                <i class="fas fa-crown mr-2"></i>Pro Membership
+              </span>
+              <h2 class="text-4xl font-bold mb-4">Unlock Your Potential</h2>
+              <p class="text-white text-opacity-90 text-lg mb-6">Join our exclusive community of innovators and future-focused professionals.</p>
+            </div>
+            <div class="text-right lg:text-left">
+              <div class="text-5xl font-bold mb-2">$50</div>
+              <div class="text-white text-opacity-80 text-lg">per year</div>
+              <div id="bitcoin-price" class="mt-2 font-medium text-yellow-300">≈ Loading BTC...</div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4">
+                <i class="fas fa-users mr-2"></i>Private Groups
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>AI & Machine Learning</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Blockchain Development</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Future Tech Investors</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Quantum Computing</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">
+                <i class="fas fa-star mr-2"></i>Premium Benefits
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>1-on-1 Expert Mentorship</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Exclusive Webinars</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Priority Event Access</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Certification Programs</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-4">
+                <i class="fas fa-gift mr-2"></i>Exclusive Perks
+              </h3>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>NFT Membership Badge</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Premium Resource Library</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Industry Partnerships</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle mr-2 text-green-300"></i>
+                  <span>Quarterly Reports</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <button onclick="window.open('https://nowpayments.io/payment/?iid=4387220382', '_blank')" class="btn btn-secondary text-lg px-12 py-4">
+              <i class="fas fa-rocket mr-2"></i>Become a Pro Member
+            </button>
+          </div>
+        </div>
+
+        <!-- Member Login -->
+        <div class="glassmorphism p-8 text-center">
+          <h2 class="text-3xl font-bold mb-6 text-white">Member Access</h2>
+          <p class="mb-8 text-white opacity-90 text-lg">Connect your wallet to access your personalized dashboard</p>
+          <button id="connect-wallet-bottom" onclick="connectWallet()" class="btn btn-outline-white">
+            <i class="fas fa-plug mr-2"></i>Connect with MetaMask
+          </button>
+          <p id="wallet-status" class="mt-4 text-sm text-white opacity-70"></p>
+        </div>
+      </div>
     </div>
-    <button id="logout-btn" class="btn btn-outline mt-6">
-      <i class="fas fa-sign-out-alt mr-2"></i>Disconnect Wallet
-    </button>
-  </section>
+  </div>
 
-  <!-- Script -->
+  <!-- Member Dashboard (After Login) -->
+  <div id="dashboard-view" class="dashboard min-h-screen">
+    <div class="flex">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="p-6 mb-6 hidden md:block">
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+              <i class="fas fa-rocket text-white"></i>
+            </div>
+            <h1 class="text-xl font-bold text-white">Futuretech</h1>
+          </div>
+        </div>
+        
+        <div class="px-3 hidden md:block">
+          <button class="sidebar-link active" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </button>
+          <button class="sidebar-link" data-section="groups">
+            <i class="fas fa-users"></i>
+            <span>Private Groups</span>
+            <div class="notification-badge">4</div>
+          </button>
+          <button class="sidebar-link" data-section="resources">
+            <i class="fas fa-book"></i>
+            <span>Resources</span>
+          </button>
+          <button class="sidebar-link" data-section="webinars">
+            <i class="fas fa-video"></i>
+            <span>Webinars</span>
+          </button>
+          <button class="sidebar-link" data-section="mentorship">
+            <i class="fas fa-user-graduate"></i>
+            <span>Mentorship</span>
+          </button>
+          <button class="sidebar-link" data-section="events">
+            <i class="fas fa-calendar"></i>
+            <span>Events</span>
+          </button>
+          <button class="sidebar-link" data-section="nft">
+            <i class="fas fa-certificate"></i>
+            <span>NFT Badge</span>
+          </button>
+          <button class="sidebar-link" data-section="profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+          </button>
+        </div>
+        
+        <div class="mt-auto p-6 hidden md:block">
+          <button id="logout-btn" onclick="disconnectWallet()" class="btn btn-disconnect w-full">
+            <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+          </button>
+        </div>
+        
+        <!-- Mobile navigation -->
+        <div class="md:hidden flex justify-around w-full">
+          <button class="sidebar-link active" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </button>
+          <button class="sidebar-link" data-section="groups">
+            <i class="fas fa-users"></i>
+            <span>Groups</span>
+            <div class="notification-badge">4</div>
+          </button>
+          <button class="sidebar-link" data-section="resources">
+            <i class="fas fa-book"></i>
+            <span>Resources</span>
+          </button>
+          <button class="sidebar-link" data-section="profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Main Content Area -->
+      <div class="flex-1 main-content">
+        <!-- Top Header -->
+        <header class="glassmorphism m-4 p-4">
+          <div class="flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white" id="section-title">Welcome to your Member Dashboard</h1>
+            <div class="flex items-center space-x-4">
+              <div class="hidden md:block">
+                <div class="connected-wallet">
+                  <i class="fas fa-wallet text-white"></i>
+                  <span id="user-address" class="text-sm font-medium">0x1234...5678</span>
+                </div>
+              </div>
+              <div class="user-dropdown">
+                <button class="flex items-center space-x-2 text-white">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <span class="hidden md:inline-block font-medium">Member</span>
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a class="dropdown-item" onclick="showSection('profile')">
+                    <i class="fas fa-user-circle mr-2"></i>Profile
+                  </a>
+                  <a class="dropdown-item" onclick="showSection('nft')">
+                    <i class="fas fa-certificate mr-2"></i>NFT Badge
+                  </a>
+                  <a class="dropdown-item" onclick="disconnectWallet()">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <!-- Dashboard Content -->
+        <div class="p-6">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+              <h2 class="text-3xl font-bold mb-2 text-white">🎉 Welcome to your Member Dashboard</h2>
+              <p class="text-white opacity-80 text-lg">Connected Wallet: <span id="connected-wallet-display" class="font-mono">0x99ed...14d8</span></p>
+            </div>
+            
+            <div class="glassmorphism p-8 mb-8">
+              <h3 class="text-2xl font-bold mb-6 text-white text-center">Your membership includes the following personalized features:</h3>
+              
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">Access to Private Groups</span>
+                  </div>
+                  
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">Exclusive Webinars</span>
+                  </div>
+                  
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">Mentorship Program</span>
+                  </div>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">NFT Membership Badge</span>
+                  </div>
+                  
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">Premium Resource Library</span>
+                  </div>
+                  
+                  <div class="flex items-center p-4 bg-white bg-opacity-20 rounded-lg">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <span class="text-white font-medium">Priority Event Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center">
+              <button onclick="disconnectWallet()" class="btn btn-disconnect">
+                <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    async function fetchBTC() {
-      try {
-        const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-        const data = await res.json();
-        const price = data.bitcoin.usd;
-        const btcValue = (50 / price).toFixed(6);
-        document.getElementById('btc-price').innerText = `≈ ${btcValue} BTC (for $50)`;
-      } catch (e) {
-        document.getElementById('btc-price').innerText = 'BTC price unavailable';
-      }
-    }
+    let provider = null;
+    let signer = null;
+    let userAddress = null;
+    let bitcoinPrice = null;
+    let priceUpdateInterval = null;
 
-    async function connectWallet() {
-      if (!window.ethereum) {
-        document.getElementById('wallet-status').innerText = 'MetaMask not installed.';
-        return;
-      }
-
-      try {
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        const user = accounts[0];
-        document.getElementById('user-address').innerText = `${user.slice(0, 6)}...${user.slice(-4)}`;
-        document.getElementById('membership-section').classList.add('hidden');
-        document.getElementById('dashboard-section').classList.remove('hidden');
-      } catch (err) {
-        document.getElementById('wallet-status').innerText = 'Wallet connection failed.';
-      }
-    }
-
-    function disconnectWallet() {
-      document.getElementById('dashboard-section').classList.add('hidden');
-      document.getElementById('membership-section').classList.remove('hidden');
-      document.getElementById('wallet-status').innerText = '';
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchBTC();
-      document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
-      document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeApp();
+      setupEventListeners();
+      updateBitcoinPrice();
+      
+      // Update Bitcoin price every 30 seconds
+      priceUpdateInterval = setInterval(updateBitcoinPrice, 30000);
     });
-  </script>
-</body>
-</html>
+
+    function initializeApp() {
+      // Check if wallet is already connected
+      if (typeof window.ethereum !== 'undefined') {
+        checkWalletConnection();
+      } else {
+        updateWalletStatus('MetaMask not detected. Please install MetaMask to continue.');
+      }
+    }
+
+    function setupEventListeners() {
+      // Sidebar navigation
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function() {
+          const section = this.getAttribute('data-section');
+          if (section) {
+            showSection(section);
+            updateActiveLink(this);
+          }
+        });
+      });
+
+      // Listen for account changes
+      if (typeof window.ethereum !== 'undefined') {
+        window.ethereum.on('accountsChanged', function(accounts) {
+          if (accounts.length === 0) {
+            disconnectWallet();
+          } else {
+            userAddress = accounts[0];
+            updateUserAddress();
+          }
+        });
+
+        window
