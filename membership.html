@@ -731,27 +731,29 @@
       }
     }
 
-    function setupEventListeners() {
-      // Sidebar navigation
-      document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', function() {
-          const section = this.getAttribute('data-section');
-          if (section) {
-            showSection(section);
-            updateActiveLink(this);
-          }
-        });
-      });
+    // Connect wallet function
+    async function connectWallet() {
+      try {
+        if (typeof window.ethereum === 'undefined') {
+          updateWalletStatus('MetaMask not detected. Please install MetaMask to continue.');
+          return;
+        }
 
-      // Listen for account changes
-      if (typeof window.ethereum !== 'undefined') {
-        window.ethereum.on('accountsChanged', function(accounts) {
-          if (accounts.length === 0) {
-            disconnectWallet();
-          } else {
-            userAddress = accounts[0];
-            updateUserAddress();
-          }
+        updateWalletStatus('Connecting...');
+        
+        // Request account access
+        const accounts = await window.ethereum.request({ 
+          method: 'eth_requestAccounts' 
         });
+        
+        if (accounts.length === 0) {
+          updateWalletStatus('No accounts found. Please connect to MetaMask.');
+          return;
+        }
 
-        window
+        // Initialize provider and signer
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        signer = provider.getSigner();
+        userAddress = accounts[0];
+        
+        // Update UI
