@@ -515,3 +515,15 @@
   function showDashboard() {
     landingView.classList.add('hidden');
     dashboardView.clas
+if (disconnectWalletBtn) {
+      disconnectWalletBtn.addEventListener('click', disconnectWallet);
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', disconnectWallet);
+    }
+  });
+</script>
+
+</body>
+</html>
