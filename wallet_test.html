@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MetaMask Wallet Connect</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #0f0f23;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    button {
+      padding: 12px 24px;
+      background: #2563EB;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #wallet-address {
+      margin-top: 20px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Connect to MetaMask</h1>
+  <button id="connectButton">Connect Wallet</button>
+  <div id="wallet-address"></div>
+
+  <script>
+    const connectButton = document.getElementById('connectButton');
+    const walletDisplay = document.getElementById('wallet-address');
+
+    async function connectWallet() {
+      if (typeof window.ethereum === 'undefined') {
+        walletDisplay.textContent = 'MetaMask is not installed.';
+        return;
+      }
+
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        walletDisplay.textContent = `Connected wallet: ${address}`;
+      } catch (err) {
+        walletDisplay.textContent = `Connection error: ${err.message}`;
+        console.error(err);
+      }
+    }
+
+    connectButton.addEventListener('click', connectWallet);
+  </script>
+
+</body>
+</html>
