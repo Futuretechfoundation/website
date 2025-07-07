@@ -753,14 +753,14 @@
             <section class="hero-banner loading" id="top">
                 <div class="hero-content">
                     <h1>Shaping Tomorrow's Tech Leaders</h1>
-                    <p>Join the future of technology education with cutting-edge programs, expert faculty, and hands-on learning experiences.</p>
-                    <div class="cta-buttons">
-                        <div style="text-align:center; margin: 2rem;">
+                    <p>Join the future of technology education with cutting-edge programs, expert faculty, and hands-on learning experiences.</p       
+</div>
+                <div style="text-align:center; margin-top: 2rem;">
   <button id="connect-wallet-btn" class="cta-button primary">
-    <i class="fas fa-wallet"></i> Access Courses with MetaMask
+    <i class="fas fa-wallet"></i> Connect with MetaMask
   </button>
   <p id="wallet-status" style="margin-top: 1rem; color: white;"></p>
-</div>
+                </div>
                         <a href="#programs" class="cta-button primary">
                             <i class="fas fa-rocket"></i> Explore Programs
                         </a>
@@ -933,27 +933,38 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 <script>
-  document.getElementById('connect-wallet-btn').addEventListener('click', async function () {
-    if (typeof window.ethereum !== 'undefined') {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
+  const connectBtn = document.getElementById('connect-wallet-btn');
+  const statusMsg = document.getElementById('wallet-status');
 
-        // Display connected address
-        document.getElementById('wallet-status').textContent = `Wallet connected: ${address}`;
+  connectBtn.addEventListener('click', async () => {
+    if (typeof window.ethereum === 'undefined') {
+      statusMsg.textContent = '🚫 MetaMask is not installed.';
+      return;
+    }
 
-        // Redirect to course catalog
-        window.location.href = "https://futuretechfoundation.github.io/Futuretechacademy/futuretfuturetechacademy_course_catelog.html";
+    try {
+      // Request account access
+      const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
+      await provider.send('eth_requestAccounts', []);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
 
-      } catch (error) {
-        console.error("User denied wallet connection", error);
-        document.getElementById('wallet-status').textContent = "Connection cancelled or failed.";
+      // Show status and redirect
+      statusMsg.textContent = `✅ Wallet connected: ${address}`;
+      console.log("Wallet address:", address);
+
+      // Redirect to course catalog
+      window.location.href = 'https://futuretechfoundation.github.io/Futuretechacademy/futuretfuturetechacademy_course_catelog.html';
+
+    } catch (err) {
+      console.error('Connection failed:', err);
+      if (err.code === 4001) {
+        statusMsg.textContent = '❌ Connection request was rejected.';
+      } else {
+        statusMsg.textContent = '❌ Could not connect. Please try again.';
       }
-    } else {
-      document.getElementById('wallet-status').textContent = "MetaMask is not installed.";
     }
   });
 </script>
