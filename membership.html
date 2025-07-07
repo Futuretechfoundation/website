@@ -42,6 +42,8 @@
       display: inline-block;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      border: none;
     }
     
     .btn::before {
@@ -75,6 +77,12 @@
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
     
     .glass-card {
@@ -177,6 +185,15 @@
       border-radius: 6px;
       transition: width 0.3s ease;
     }
+
+    .status-text {
+      transition: all 0.3s ease;
+    }
+
+    .status-connecting { color: #fbbf24; }
+    .status-success { color: #10b981; }
+    .status-error { color: #ef4444; }
+    .status-normal { color: rgba(255, 255, 255, 0.8); }
   </style>
 </head>
 <body>
@@ -265,11 +282,23 @@
   <div class="glass-card max-w-md mx-auto">
     <h2 class="text-2xl font-bold mb-4 text-center">🔐 Member Access</h2>
     <p class="mb-6 opacity-80 text-center">Already a member? Connect your wallet to access the dashboard.</p>
-    <div class="text-center">
+    
+    <!-- Wallet Connection UI -->
+    <div id="wallet-connection" class="text-center">
       <button id="connect-wallet-btn" class="btn btn-outline pulse-glow">
         <i class="fas fa-wallet mr-2"></i>Connect with MetaMask
       </button>
-      <p id="wallet-status" class="mt-4 text-sm opacity-80"></p>
+      
+      <!-- Wallet Info (hidden initially) -->
+      <div id="wallet-info" class="hidden mt-4">
+        <p class="text-white mb-2">Connected as:</p>
+        <p id="wallet-address" class="font-mono bg-gray-800 text-cyan-400 px-4 py-2 rounded-lg text-sm mb-4"></p>
+        <button id="disconnect-wallet-btn" class="btn btn-outline">
+          <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+        </button>
+      </div>
+      
+      <p id="wallet-status" class="mt-4 text-sm status-text status-normal"></p>
     </div>
   </div>
 </div>
@@ -460,55 +489,29 @@
 </div>
 
 <script>
+  // Global state
   let currentAccount = null;
+  let isConnecting = false;
 
-  async function fetchBTC() {
-    try {
-      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
-      const data = await res.json();
-      const btcPrice = data.bitcoin.usd;
-      const converted = (50 / btcPrice).toFixed(6);
-      const priceText = `≈ ${converted} BTC ($50 USD)`;
-      document.getElementById('bitcoin-price').innerText = priceText;
-      const dashboardPrice = document.getElementById('btc-dashboard-price');
-      if (dashboardPrice) {
-        dashboardPrice.innerText = priceText;
-      }
-    } catch (err) {
-      console.error('Error fetching BTC price:', err);
-      const fallbackText = "≈ 0.000459 BTC ($50 USD)";
-      document.getElementById('bitcoin-price').innerText = fallbackText;
-      const dashboardPrice = document.getElementById('btc-dashboard-price');
-      if (dashboardPrice) {
-        dashboardPrice.innerText = fallbackText;
-      }
+  // DOM elements
+  const connectWalletBtn = document.getElementById('connect-wallet-btn');
+  const disconnectWalletBtn = document.getElementById('disconnect-wallet-btn');
+  const walletInfo = document.getElementById('wallet-info');
+  const walletAddress = document.getElementById('wallet-address');
+  const walletStatus = document.getElementById('wallet-status');
+  const userAddress = document.getElementById('user-address');
+  const landingView = document.getElementById('landing-view');
+  const dashboardView = document.getElementById('dashboard-view');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  // Utility functions
+  function updateStatus(message, type = 'normal') {
+    if (walletStatus) {
+      walletStatus.textContent = message;
+      walletStatus.className = `mt-4 text-sm status-text status-${type}`;
     }
   }
 
-  async function connectWallet() {
-    if (!window.ethereum) {
-      updateStatus('MetaMask is not installed. Please install MetaMask to continue.', 'red');
-      return;
-    }
-
-    try {
-      updateStatus('Connecting to MetaMask...', 'yellow');
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      currentAccount = accounts[0];
-      document.getElementById('user-address').innerText = `${currentAccount.slice(0, 8)}...${currentAccount.slice(-6)}`;
-      updateStatus('Successfully connected!', 'green');
-      setTimeout(showDashboard, 1000);
-    } catch (error) {
-      updateStatus('Connection failed. Please try again.', 'red');
-      console.error('Wallet connection error:', error);
-    }
-  }
-
-  function disconnectWallet() {
-    currentAccount = null;
-    updateStatus('Wallet disconnected', 'white');
-    showLanding();
-  }
-
-  function updateStatus(message, color = 'white') {
-    co
+  function showDashboard() {
+    landingView.classList.add('hidden');
+    dashboardView.clas
