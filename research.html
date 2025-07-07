@@ -14,6 +14,7 @@
             --gray: #64748b;
             --card-bg: #ffffff;
             --accent: #06b6d4;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
         }
         
         * {
@@ -25,15 +26,16 @@
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             color: var(--secondary);
-            background-color: #f1f5f9;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
             line-height: 1.6;
-            padding-bottom: 100px;
+            overflow-x: hidden;
         }
         
+        /* Header with enhanced animation */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: var(--gradient);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -46,27 +48,44 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('/api/placeholder/1920/500') center/cover;
-            opacity: 0.1;
-            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
         }
         
-        header h1, header p {
-            position: relative;
-            z-index: 1;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             font-weight: 700;
+            position: relative;
+            z-index: 1;
+            animation: slideInFromTop 1s ease-out;
         }
         
         header p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: 1.3rem;
+            max-width: 800px;
             margin: 0 auto;
-            opacity: 0.9;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            animation: slideInFromBottom 1s ease-out 0.3s both;
+        }
+        
+        @keyframes slideInFromTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideInFromBottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .container {
@@ -75,12 +94,14 @@
             padding: 0 20px;
         }
         
+        /* Enhanced Navigation */
         nav {
-            background-color: var(--secondary);
+            background: rgba(15, 23, 42, 0.95);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .nav-container {
@@ -97,6 +118,11 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
         }
         
         .nav-links {
@@ -104,39 +130,74 @@
             list-style: none;
         }
         
-        .nav-links li {
-            margin: 0;
-            position: relative;
-        }
-        
         .nav-links a {
             color: white;
             text-decoration: none;
             padding: 1rem 1.5rem;
-            display: block;
-            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
             font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
         }
         
         .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
         
+        /* Enhanced Sections */
         section {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            margin: 2rem 0;
-            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            margin: 3rem 0;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
         }
         
         h2 {
             color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
         }
         
         h2::after {
@@ -144,226 +205,337 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
         
-        p {
-            margin-bottom: 1.5rem;
-        }
-        
+        /* Enhanced Research Grid */
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
         .research-card {
-            background-color: #f8fafc;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .research-card:hover::before {
+            opacity: 0.05;
         }
         
         .research-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
         .research-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
             display: block;
+            position: relative;
+            z-index: 1;
         }
         
         .research-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--secondary);
+            position: relative;
+            z-index: 1;
         }
         
-        .publications-list {
-            list-style: none;
+        .research-card p {
+            position: relative;
+            z-index: 1;
+            color: var(--gray);
+        }
+        
+        .research-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Enhanced Publications */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
         .publication-item {
-            background-color: #f8fafc;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 6px solid var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .publication-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.1;
+            transform: translate(50%, -50%);
         }
         
         .publication-item:hover {
-            transform: translateX(5px);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-left-color: var(--accent);
         }
         
         .publication-item h3 {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
         }
         
-        .publication-item p {
+        .publication-authors {
             color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 0;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
         
+        .publication-journal {
+            color: var(--primary);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .publication-year {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Enhanced Contact Section */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
         
         .contact-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 16px;
             text-align: center;
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
         .contact-card i {
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
         }
         
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .contact-card p {
+            color: var(--gray);
+            margin: 0;
+        }
+        
+        /* Enhanced Form */
         .contact-form {
-            display: grid;
-            gap: 1rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             max-width: 600px;
-            margin: 2rem auto 0;
+            margin: 0 auto;
         }
         
         .form-group {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
+            display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--secondary);
         }
         
         .form-group input,
         .form-group textarea {
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
         }
         
         .form-button {
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 500;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .form-button:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            position: fixed;
-            bottom: 0;
+            transition: all 0.3s ease;
             width: 100%;
         }
         
+        .form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Enhanced Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
         }
         
         .footer-links {
             display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             list-style: none;
         }
         
-        .footer-links li {
-            margin: 0 1rem;
-        }
-        
         .footer-links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            transition: color 0.3s ease;
         }
         
         .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        .home-btn {
-            background-color: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-        
-        .home-btn:hover {
-            background-color: var(--primary-dark);
+            color: var(--accent);
         }
         
         .social-links {
             display: flex;
+            gap: 1rem;
             list-style: none;
-            margin: 1rem 0;
-        }
-        
-        .social-links li {
-            margin: 0 0.5rem;
         }
         
         .social-links a {
             color: white;
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 36px;
-            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .social-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: var(--accent);
+            transform: translateY(-3px);
         }
         
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             header p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
             .menu-toggle {
@@ -387,15 +559,41 @@
             
             .nav-links a {
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
+                justify-content: center;
             }
             
             .research-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
             }
         }
     </style>
@@ -423,13 +621,13 @@
     </nav>
     
     <div class="container">
-        <section id="introduction">
+        <section id="introduction" class="fade-in">
             <h2>Introduction</h2>
             <p>Welcome to the research hub of FutureTech Foundation. Our mission is to push the boundaries of technology in fields like regenerative medicine, DNA nanorobotics, neural communication, surgical robotics, and advanced conceptual aerospace engineering, impacting the future of humanity.</p>
             <p>Our interdisciplinary team of scientists, engineers, and medical professionals collaborates to develop breakthrough technologies that address some of humanity's most pressing challenges. Through rigorous research, innovation, and ethical considerations, we strive to create solutions that enhance human capabilities and improve quality of life across the globe.</p>
         </section>
         
-        <section id="research-areas">
+        <section id="research-areas" class="fade-in">
             <h2>Research Areas</h2>
             <p>Our foundation focuses on cutting-edge research in several key areas that promise to revolutionize healthcare, technology, and human capabilities:</p>
             
@@ -466,457 +664,195 @@
             </div>
         </section>
         
-        <section id="publications">
+        <section id="publications" class="fade-in">
             <h2>Publications</h2>
             <p>Explore our recent research contributions in leading journals and conferences:</p>
             
-            <div class="publications-list">
+            <div class="publications-grid">
                 <div class="publication-item">
                     <h3>Targeted Delivery of CRISPR-Cas9 via DNA Nanorobots for Treatment of Neurodegenerative Disorders</h3>
-                    <p>Johnson, L., Zhang, M., et al. (2024). Journal of Molecular Medicine, 46(3), 278-293.</p>
+                    <div class="publication-authors">Johnson, L., Zhang, M., et al.</div>
+                    <div class="publication-journal">Journal of Molecular Medicine, 46(3), 278-293</div>
+                    <span class="publication-year">2024</span>
                 </div>
                 
                 <div class="publication-item">
                     <h3>Advancements in iPSC-Derived Tissue Engineering for Cardiovascular Regeneration</h3>
-                    <p>Rodriguez, A., Patel, S., et al. (2024). Nature Biotechnology, 42(5), 562-579.</p>
+                    <div class="publication-authors">Rodriguez, A., Patel, S., et al.</div>
+                    <div class="publication-journal">Nature Biotechnology, 42(5), 562-579</div>
+                    <span class="publication-year">2024</span>
                 </div>
                 
                 <div class="publication-item">
                     <h3>Neural Interface Optimization for Enhanced Brain-Computer Communication</h3>
-                    <p>Chen, W., Kim, J., et al. (2024). IEEE Transactions on Neural Systems and Rehabilitation Engineering, 32(2), 114-128.</p>
+                    <div class="publication-authors">Chen, W., Kim, J., et al.</div>
+                    <div class="publication-journal">IEEE Transactions on Neural Systems and Rehabilitation Engineering, 32(2), 114-128</div>
+                    <span class="publication-year">2024</span>
                 </div>
                 
                 <div class="publication-item">
                     <h3>Next-Generation Robotic Surgical Systems: Enhancing Precision in Microsurgery</h3>
-                    <p>Martinez, D., Anderson, T., et al. (2023). Journal of Medical Robotics Research, 8(4), 198-211.</p>
+                    <div class="publication-authors">Martinez, D., Anderson, T., et al.</div>
+                    <div class="publication-journal">Journal of Medical Robotics Research, 8(4), 198-211</div>
+                    <span class="publication-year">2023</span>
                 </div>
                 
                 <div class="publication-item">
-                    <h3>Advanced Materials for Aerospace Applications: A Comprehensive Review</h3>
-                    <p>Nakamura, H., Singh, R., et al. (2023). Progress in Aerospace Sciences, 135, 100789.</p>
-                </div>
-                
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
-        
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: #3498db;
-        }
-        
-        /* Publications Section */
-        .publications {
-            background-color: #fff;
-            padding: 60px 0;
-        }
-        
-        .publication-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        
-        .publication-item {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .publication-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .publication-title {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .publication-authors {
-            color: #7f8c8d;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-        
-        .publication-journal {
-            color: #3498db;
-            font-weight: 500;
-        }
-        
-        .publication-year {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-top: 10px;
-        }
-        
-        /* Contact Section */
-        .contact {
-            background-color: #f1f2f6;
-            padding: 60px 0;
-        }
-        
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .contact-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #3498db;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .contact-icon i {
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .contact-details h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #2c3e50;
-        }
-        
-        .contact-details p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-        
-        .contact-form {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #2c3e50;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .btn-submit {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn-submit:hover {
-            background-color: #2980b9;
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        
-        .footer-copyright {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #bdc3c7;
-        }
-        
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            background-color: #3498db;
-        }
-        
-        .social-icon i {
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #3498db;
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #2c3e50;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1000;
-            }
-            
-            .publication-list, .contact-content, .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .publication-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .contact-info {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .publication-list {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <!-- Publications Section -->
-    <section class="publications" id="publications">
-        <div class="container">
-            <h2>Publications</h2>
-            <div class="publication-list">
-                <div class="publication-item">
-                    <div class="publication-title">Quantum Neural Networks for Advanced Pattern Recognition in Unstructured Data</div>
+                    <h3>Quantum Neural Networks for Advanced Pattern Recognition in Unstructured Data</h3>
                     <div class="publication-authors">Zhang, L., Rodriguez, M., Patel, K., & Thompson, E.</div>
                     <div class="publication-journal">Journal of Quantum Computing</div>
-                    <div class="publication-year">2024</div>
+                    <span class="publication-year">2024</span>
                 </div>
-                
-                
                 
                 <div class="publication-item">
-                    <div class="publication-title">Bioengineered Nanomaterials for Targeted Drug Delivery: Clinical Applications and Future Prospects</div>
+                    <h3>Bioengineered Nanomaterials for Targeted Drug Delivery: Clinical Applications and Future Prospects</h3>
                     <div class="publication-authors">Martinez, C., Chen, H., & Anderson, R.</div>
                     <div class="publication-journal">Advanced Materials in Medicine</div>
-                    <div class="publication-year">2024</div>
+                    <span class="publication-year">2024</span>
                 </div>
-                
-                
-                
-                
             </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
+        </section>
+        
+        <section id="contact" class="fade-in">
             <h2>Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <p>1529 12th Ave SE, Rochester,  MN 55904</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+1 (507)-295-8561</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>futuretechfoundationx@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Office Hours</h3>
-                            <p>Monday-Friday: 9:00 AM - 5:00 PM</p>
-                        </div>
-                    </div>
+            <p>Get in touch with our research team to explore collaboration opportunities or learn more about our work:</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>1529 12th Ave SE, Rochester, MN 55904</p>
                 </div>
                 
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+1 (507) 295-8561</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>futuretechfoundationx@gmail.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Office Hours</h3>
+                    <p>Monday-Friday: 9:00 AM - 5:00 PM</p>
                 </div>
             </div>
+            
+            <div class="contact-form">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-button">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FutureTech Foundation</h3>
+                    <p>Advancing the frontiers of technology and regenerative medicine for a better tomorrow.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#research-areas">Research Areas</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <ul class="social-links">
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#" aria-label="Research Gate"><i class="fab fa-researchgate"></i></a></li>
+                        <li><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 FutureTech Foundation. All rights reserved.</p>
+            </div>
         </div>
-    </section>
+    </footer>
     
-    
-</body>
-</html>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
