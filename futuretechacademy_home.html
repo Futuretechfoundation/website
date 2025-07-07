@@ -945,18 +945,16 @@
     }
 
     try {
-      // Request account access
       const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
       await provider.send('eth_requestAccounts', []);
       const signer = provider.getSigner();
       const address = await signer.getAddress();
 
-      // Show status and redirect
       statusMsg.textContent = `✅ Wallet connected: ${address}`;
       console.log("Wallet address:", address);
 
-      // Redirect to course catalog
-      window.location.href = 'futuretfuturetechacademy_course_catelog.html';
+      // ✅ Redirect to live GitHub Pages URL
+      window.location.href = 'https://futuretechfoundation.github.io/website/futuretechacademy_course_catelog.html';
 
     } catch (err) {
       console.error('Connection failed:', err);
@@ -968,5 +966,6 @@
     }
   });
 </script>
+      
 </body>
 </html>
