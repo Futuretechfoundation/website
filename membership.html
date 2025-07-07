@@ -7,13 +7,13 @@
 
   <!-- Web3 & Ethers -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
-  
-  <!-- Tailwind CDN -->
+
+  <!-- Tailwind CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -90,6 +90,14 @@
     </button>
     <p id="wallet-status" class="mt-4 text-sm text-white opacity-80"></p>
   </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">Member Access</h2>
+    <p class="mb-4 opacity-80">Already a member? Use MetaMask to login.</p>
+    <button id="connect-wallet-bottom" class="btn btn-outline text-white border-white">
+      <i class="fas fa-plug mr-2"></i>Connect with MetaMask
+    </button>
+  </div>
 </div>
 
 <!-- DASHBOARD -->
@@ -160,11 +168,13 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
+    const connectButtons = document.querySelectorAll('#connect-wallet-btn, #connect-wallet-bottom');
+    connectButtons.forEach(btn => btn.addEventListener('click', connectWallet));
     document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
     fetchBTC();
     setInterval(fetchBTC, 30000);
   });
 </script>
+
 </body>
-</html>
+      </html>
