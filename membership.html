@@ -22,27 +22,160 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #4f46e5, #7c3aed);
+      background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
       color: white;
+      overflow-x: hidden;
     }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
     .hidden { display: none; }
+    
     .btn {
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: all 0.2s ease;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
     .btn-primary {
       background: linear-gradient(135deg, #3B82F6, #2563EB);
       color: white;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
     }
+    
     .btn-outline {
-      border: 2px solid white;
-      background: transparent;
-      color: white;
+      border: 2px solid #64ffda;
+      background: rgba(100, 255, 218, 0.1);
+      color: #64ffda;
+      backdrop-filter: blur(10px);
     }
+    
     .btn:hover {
-      transform: scale(1.05);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    .project-card {
+      background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(59, 130, 246, 0.1));
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #64ffda, #3B82F6);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(100, 255, 218, 0.2);
+    }
+    
+    .floating-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+    }
+    
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse-glow {
+      from { box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); }
+      to { box-shadow: 0 0 30px rgba(100, 255, 218, 0.8), 0 0 40px rgba(100, 255, 218, 0.4); }
+    }
+    
+    .membership-widget {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(100, 255, 218, 0.3);
+      border-radius: 20px;
+      padding: 20px;
+      backdrop-filter: blur(15px);
+    }
+
+    .member-section {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .calendar-event {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .project-progress {
+      background: rgba(100, 255, 218, 0.1);
+      border-radius: 6px;
+      height: 8px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #64ffda, #3B82F6);
+      border-radius: 6px;
+      transition: width 0.3s ease;
     }
   </style>
 </head>
@@ -50,64 +183,280 @@
 
 <!-- LANDING PAGE -->
 <div id="landing-view" class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
-  <h1 class="text-5xl font-bold mb-6">🚀 Join The Future</h1>
-  <p class="text-xl mb-4 max-w-xl">Become a member of the FutureTech Foundation — an exclusive community for visionaries, innovators, and tech pioneers.</p>
+  <div class="floating-animation mb-8">
+    <h1 class="text-6xl font-bold mb-6 glow-text">🚀 Join The Future</h1>
+    <p class="text-xl mb-8 max-w-2xl opacity-90">Become a member of the FutureTech Foundation — an exclusive community for visionaries, innovators, and tech pioneers shaping tomorrow's world.</p>
+  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-6xl w-full mb-10">
-    <div>
-      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-users mr-2"></i>Private Groups</h2>
-      <ul class="list-disc list-inside space-y-1">
-        <li>AI & Machine Learning</li>
-        <li>Blockchain Development</li>
-        <li>Future Tech Investors</li>
-        <li>Quantum Computing</li>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-7xl w-full mb-12">
+    <div class="project-card">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-robot text-2xl text-blue-400 mr-3"></i>
+        <h3 class="text-xl font-bold">NeuroMech Suit</h3>
+      </div>
+      <p class="text-sm opacity-80">Advanced neural-controlled exoskeleton technology for enhanced human capabilities and medical rehabilitation.</p>
+    </div>
+    
+    <div class="project-card">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-atom text-2xl text-purple-400 mr-3"></i>
+        <h3 class="text-xl font-bold">QuantumMedX</h3>
+      </div>
+      <p class="text-sm opacity-80">Revolutionary quantum computing applications in medical diagnostics and personalized treatment protocols.</p>
+    </div>
+    
+    <div class="project-card">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-print text-2xl text-green-400 mr-3"></i>
+        <h3 class="text-xl font-bold">In Vivo 3D Bioprinting</h3>
+      </div>
+      <p class="text-sm opacity-80">Cutting-edge bioprinting technology for direct organ and tissue printing inside the human body.</p>
+    </div>
+    
+    <div class="project-card">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-dna text-2xl text-cyan-400 mr-3"></i>
+        <h3 class="text-xl font-bold">DNA Nanorobotics</h3>
+      </div>
+      <p class="text-sm opacity-80">Programmable DNA-based nanorobots for targeted drug delivery and cellular repair mechanisms.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full mb-12">
+    <div class="glass-card">
+      <h2 class="text-2xl font-bold mb-4"><i class="fas fa-star mr-2 text-yellow-400"></i>Premium Benefits</h2>
+      <ul class="space-y-2 text-left">
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>1-on-1 Expert Mentorship</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Exclusive Research Access</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Priority Event Access</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Certification Programs</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Quarterly Tech Reports</li>
       </ul>
     </div>
-    <div>
-      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-star mr-2"></i>Premium Benefits</h2>
-      <ul class="list-disc list-inside space-y-1">
-        <li>1-on-1 Expert Mentorship</li>
-        <li>Exclusive Webinars</li>
-        <li>Priority Event Access</li>
-        <li>Certification Programs</li>
-      </ul>
-    </div>
-    <div>
-      <h2 class="text-2xl font-bold mb-2"><i class="fas fa-gift mr-2"></i>Exclusive Perks</h2>
-      <ul class="list-disc list-inside space-y-1">
-        <li>NFT Membership Badge</li>
-        <li>Premium Resource Library</li>
-        <li>Industry Partnerships</li>
-        <li>Quarterly Reports</li>
+    
+    <div class="glass-card">
+      <h2 class="text-2xl font-bold mb-4"><i class="fas fa-gift mr-2 text-pink-400"></i>Exclusive Perks</h2>
+      <ul class="space-y-2 text-left">
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>NFT Membership Badge</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Premium Resource Library</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Industry Partnerships</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Beta Testing Access</li>
+        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Community Voting Rights</li>
       </ul>
     </div>
   </div>
 
-  <div class="text-center">
-    <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</div>
-    <button id="connect-wallet-btn" class="btn btn-primary text-lg">
-      <i class="fas fa-wallet mr-2"></i>Connect Wallet
-    </button>
-    <p id="wallet-status" class="mt-4 text-sm text-white opacity-80"></p>
+  <!-- New Member Purchase Section -->
+  <div class="membership-widget mb-12">
+    <h2 class="text-3xl font-bold mb-4 text-center">💎 Become a Member</h2>
+    <div class="text-center mb-6">
+      <div id="bitcoin-price" class="text-yellow-300 text-lg mb-4 pulse-glow">≈ 0.000459 BTC ($50 USD)</div>
+      <p class="text-lg mb-4 opacity-80">Join our exclusive community of innovators</p>
+    </div>
+    
+    <div class="flex justify-center">
+      <iframe src="https://nowpayments.io/embeds/donation-widget?api_key=18B2JYF-AM14AVV-KSW9YD3-EVBY7NA" width="346" height="623" frameborder="0" scrolling="no" style="overflow-y: hidden; border-radius: 16px;">
+        Can't load widget
+      </iframe>
+    </div>
   </div>
 
-  <div class="mt-8">
-    <h2 class="text-2xl font-bold mb-4">Member Access</h2>
-    <p class="mb-4 opacity-80">Already a member? Use MetaMask to login.</p>
-    <button id="connect-wallet-bottom" class="btn btn-outline text-white border-white">
-      <i class="fas fa-plug mr-2"></i>Connect with MetaMask
-    </button>
+  <!-- Member Login Section -->
+  <div class="glass-card max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">🔐 Member Access</h2>
+    <p class="mb-6 opacity-80 text-center">Already a member? Connect your wallet to access the dashboard.</p>
+    <div class="text-center">
+      <button id="connect-wallet-btn" class="btn btn-outline pulse-glow">
+        <i class="fas fa-wallet mr-2"></i>Connect with MetaMask
+      </button>
+      <p id="wallet-status" class="mt-4 text-sm opacity-80"></p>
+    </div>
   </div>
 </div>
 
-<!-- DASHBOARD -->
-<div id="dashboard-view" class="hidden min-h-screen flex flex-col items-center justify-center text-center px-6">
-  <h2 class="text-4xl font-bold mb-4">Welcome to your Dashboard</h2>
-  <p class="text-lg mb-2">Connected as: <span id="user-address" class="font-mono bg-white text-gray-800 px-2 py-1 rounded"></span></p>
-  <p id="btc-dashboard-price" class="text-yellow-300 text-lg mb-4">≈ Loading BTC...</p>
-  <button id="logout-btn" class="btn btn-outline">
-    <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
-  </button>
+<!-- MEMBER DASHBOARD -->
+<div id="dashboard-view" class="hidden min-h-screen px-6 py-12">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="glass-card mb-8">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-4xl font-bold glow-text">🎯 Member Dashboard</h1>
+        <button id="logout-btn" class="btn btn-outline">
+          <i class="fas fa-sign-out-alt mr-2"></i>Disconnect
+        </button>
+      </div>
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-lg mb-2">Connected as:</p>
+          <p id="user-address" class="font-mono bg-gray-800 text-cyan-400 px-4 py-2 rounded-lg text-sm"></p>
+        </div>
+        <div class="text-right">
+          <p id="btc-dashboard-price" class="text-yellow-300 text-lg pulse-glow">≈ 0.000459 BTC ($50 USD)</p>
+          <p class="text-sm opacity-60">Membership Value</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Projects Section -->
+    <div class="member-section">
+      <h2 class="text-2xl font-bold mb-6"><i class="fas fa-rocket mr-2 text-blue-400"></i>My Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="project-card">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold flex items-center">
+              <i class="fas fa-robot text-blue-400 mr-2"></i>NeuroMech Suit
+            </h3>
+            <span class="text-sm bg-blue-500 text-white px-2 py-1 rounded">Active</span>
+          </div>
+          <p class="text-sm opacity-80 mb-3">Phase 3: Neural Interface Testing</p>
+          <div class="project-progress">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+          <div class="flex justify-between text-xs mt-2">
+            <span>Progress: 75%</span>
+            <span>Next Meeting: Jan 15</span>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold flex items-center">
+              <i class="fas fa-atom text-purple-400 mr-2"></i>QuantumMedX
+            </h3>
+            <span class="text-sm bg-purple-500 text-white px-2 py-1 rounded">Research</span>
+          </div>
+          <p class="text-sm opacity-80 mb-3">Algorithm Development Phase</p>
+          <div class="project-progress">
+            <div class="progress-bar" style="width: 45%"></div>
+          </div>
+          <div class="flex justify-between text-xs mt-2">
+            <span>Progress: 45%</span>
+            <span>Next Review: Jan 20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Membership Calendar -->
+    <div class="member-section">
+      <h2 class="text-2xl font-bold mb-6"><i class="fas fa-calendar-alt mr-2 text-green-400"></i>Upcoming Events</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="calendar-event">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold">Monthly Tech Symposium</h4>
+            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded">Jan 12</span>
+          </div>
+          <p class="text-sm opacity-80">Featuring AI breakthroughs in medical diagnostics</p>
+          <div class="flex items-center mt-2 text-xs">
+            <i class="fas fa-clock mr-1"></i>2:00 PM PST
+            <i class="fas fa-users ml-4 mr-1"></i>25 attending
+          </div>
+        </div>
+        
+        <div class="calendar-event">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold">NeuroMech Demo Day</h4>
+            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded">Jan 15</span>
+          </div>
+          <p class="text-sm opacity-80">Live demonstration of neural interface controls</p>
+          <div class="flex items-center mt-2 text-xs">
+            <i class="fas fa-clock mr-1"></i>10:00 AM PST
+            <i class="fas fa-users ml-4 mr-1"></i>12 attending
+          </div>
+        </div>
+        
+        <div class="calendar-event">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold">Quantum Computing Workshop</h4>
+            <span class="text-xs bg-purple-500 text-white px-2 py-1 rounded">Jan 18</span>
+          </div>
+          <p class="text-sm opacity-80">Hands-on quantum algorithm development</p>
+          <div class="flex items-center mt-2 text-xs">
+            <i class="fas fa-clock mr-1"></i>1:00 PM PST
+            <i class="fas fa-users ml-4 mr-1"></i>8 attending
+          </div>
+        </div>
+        
+        <div class="calendar-event">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-bold">Member Networking Hour</h4>
+            <span class="text-xs bg-cyan-500 text-white px-2 py-1 rounded">Jan 25</span>
+          </div>
+          <p class="text-sm opacity-80">Connect with fellow innovators and researchers</p>
+          <div class="flex items-center mt-2 text-xs">
+            <i class="fas fa-clock mr-1"></i>5:00 PM PST
+            <i class="fas fa-users ml-4 mr-1"></i>35 attending
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member Resources -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card">
+        <h3 class="text-xl font-bold mb-4"><i class="fas fa-book mr-2 text-blue-400"></i>Research Library</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center"><i class="fas fa-file-pdf text-red-400 mr-2"></i>Neural Interface Protocols</li>
+          <li class="flex items-center"><i class="fas fa-file-pdf text-red-400 mr-2"></i>Quantum Medical Applications</li>
+          <li class="flex items-center"><i class="fas fa-file-pdf text-red-400 mr-2"></i>Bioprinting Safety Guidelines</li>
+          <li class="flex items-center"><i class="fas fa-file-pdf text-red-400 mr-2"></i>DNA Nanorobot Design</li>
+        </ul>
+        <button class="btn btn-outline mt-4 w-full">Access Library</button>
+      </div>
+      
+      <div class="glass-card">
+        <h3 class="text-xl font-bold mb-4"><i class="fas fa-users mr-2 text-green-400"></i>Community</h3>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-xs">DR</div>
+            <div class="ml-3">
+              <p class="text-sm font-medium">Dr. Sarah Chen</p>
+              <p class="text-xs opacity-60">Quantum Computing Lead</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-xs">MR</div>
+            <div class="ml-3">
+              <p class="text-sm font-medium">Dr. Marcus Rodriguez</p>
+              <p class="text-xs opacity-60">Bioprinting Specialist</p>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-xs">AK</div>
+            <div class="ml-3">
+              <p class="text-sm font-medium">Dr. Alex Kim</p>
+              <p class="text-xs opacity-60">Neural Interface Engineer</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-outline mt-4 w-full">Join Discussion</button>
+      </div>
+      
+      <div class="glass-card">
+        <h3 class="text-xl font-bold mb-4"><i class="fas fa-trophy mr-2 text-yellow-400"></i>Achievements</h3>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <i class="fas fa-medal text-yellow-400 mr-2"></i>
+            <span class="text-sm">Early Adopter</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-star text-blue-400 mr-2"></i>
+            <span class="text-sm">Research Contributor</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-lightbulb text-green-400 mr-2"></i>
+            <span class="text-sm">Innovation Partner</span>
+          </div>
+        </div>
+        <div class="mt-4 p-3 bg-yellow-500 bg-opacity-20 rounded-lg">
+          <p class="text-sm"><strong>Next Goal:</strong> Beta Tester Badge</p>
+          <div class="project-progress mt-2">
+            <div class="progress-bar" style="width: 60%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -119,62 +468,47 @@
       const data = await res.json();
       const btcPrice = data.bitcoin.usd;
       const converted = (50 / btcPrice).toFixed(6);
-      document.getElementById('bitcoin-price').innerText = `≈ ${converted} BTC`;
-      document.getElementById('btc-dashboard-price').innerText = `≈ ${converted} BTC`;
+      const priceText = `≈ ${converted} BTC ($50 USD)`;
+      document.getElementById('bitcoin-price').innerText = priceText;
+      const dashboardPrice = document.getElementById('btc-dashboard-price');
+      if (dashboardPrice) {
+        dashboardPrice.innerText = priceText;
+      }
     } catch (err) {
-      console.error(err);
-      document.getElementById('bitcoin-price').innerText = "BTC price unavailable";
-      document.getElementById('btc-dashboard-price').innerText = "BTC price unavailable";
+      console.error('Error fetching BTC price:', err);
+      const fallbackText = "≈ 0.000459 BTC ($50 USD)";
+      document.getElementById('bitcoin-price').innerText = fallbackText;
+      const dashboardPrice = document.getElementById('btc-dashboard-price');
+      if (dashboardPrice) {
+        dashboardPrice.innerText = fallbackText;
+      }
     }
   }
 
   async function connectWallet() {
     if (!window.ethereum) {
-      updateStatus('MetaMask is not installed.', 'red');
+      updateStatus('MetaMask is not installed. Please install MetaMask to continue.', 'red');
       return;
     }
 
     try {
+      updateStatus('Connecting to MetaMask...', 'yellow');
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       currentAccount = accounts[0];
-      document.getElementById('user-address').innerText = `${currentAccount.slice(0, 6)}...${currentAccount.slice(-4)}`;
-      showDashboard();
+      document.getElementById('user-address').innerText = `${currentAccount.slice(0, 8)}...${currentAccount.slice(-6)}`;
+      updateStatus('Successfully connected!', 'green');
+      setTimeout(showDashboard, 1000);
     } catch (error) {
-      updateStatus('Wallet connection failed.', 'red');
-      console.error(error);
+      updateStatus('Connection failed. Please try again.', 'red');
+      console.error('Wallet connection error:', error);
     }
   }
 
   function disconnectWallet() {
     currentAccount = null;
+    updateStatus('Wallet disconnected', 'white');
     showLanding();
   }
 
   function updateStatus(message, color = 'white') {
-    const el = document.getElementById('wallet-status');
-    el.innerText = message;
-    el.style.color = color;
-  }
-
-  function showDashboard() {
-    document.getElementById('landing-view').classList.add('hidden');
-    document.getElementById('dashboard-view').classList.remove('hidden');
-    updateStatus('');
-  }
-
-  function showLanding() {
-    document.getElementById('dashboard-view').classList.add('hidden');
-    document.getElementById('landing-view').classList.remove('hidden');
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const connectButtons = document.querySelectorAll('#connect-wallet-btn, #connect-wallet-bottom');
-    connectButtons.forEach(btn => btn.addEventListener('click', connectWallet));
-    document.getElementById('logout-btn').addEventListener('click', disconnectWallet);
-    fetchBTC();
-    setInterval(fetchBTC, 30000);
-  });
-</script>
-
-</body>
-      </html>
+    co
